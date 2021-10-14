@@ -839,8 +839,9 @@ MonoBehaviour:
   critChange: 0.1
   critDamageScaler: 3
   attackList:
-  - attackWeight: 1
+  - attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -857,6 +858,7 @@ MonoBehaviour:
     canSkipReturn: 1
   - attackWeight: 1
     reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
     canAttackMidAir: 1
     attackDamageScaler: 1.2
     attackCritChanceScaler: 1
@@ -871,8 +873,9 @@ MonoBehaviour:
     canRotateOnDanger: 0
     canRotateOnReturn: 1
     canSkipReturn: 0
-  - attackWeight: 1
+  - attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
     canAttackMidAir: 1
     attackDamageScaler: 1
     attackCritChanceScaler: 1

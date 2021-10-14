@@ -133,6 +133,7 @@ public class PlayerInput : MonoBehaviour
         {
             verticalVector.y = jumpPower;
             groundColliders = new Collider[1];
+            attackManager.Jumped();
         }
 
         //camera forward and right vectors:

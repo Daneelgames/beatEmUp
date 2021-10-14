@@ -19,6 +19,7 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -61,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1634212991721</updated>
-      <workItem from="1634212994008" duration="9273000" />
+      <workItem from="1634212994008" duration="11265000" />
     </task>
     <servers />
   </component>

@@ -12,6 +12,7 @@ public class AttackManager : MonoBehaviour
     [SerializeField] [Range(1,10)] private float critDamageScaler = 3;
 
     [SerializeField] private List<Attack> attackList = new List<Attack>();
+    List<Attack> tempAttackList = new List<Attack>();
 
     private Coroutine attackSwingCoroutine;
     private Coroutine attackDangerCoroutine;
@@ -28,6 +29,29 @@ public class AttackManager : MonoBehaviour
     public bool CanMove => canMove;
     public bool CanRotate => canRotate;
 
+    public void Jumped()
+    {
+        if (attackSwingCoroutine != null)
+        {
+            StopCoroutine(attackSwingCoroutine);
+            attackSwingCoroutine = null;
+        }
+        if (attackDangerCoroutine != null)
+        {
+            StopCoroutine(attackDangerCoroutine);
+            attackDangerCoroutine = null;
+        }
+        if (attackReturnCoroutine != null)
+        {
+            StopCoroutine(attackReturnCoroutine);
+            attackReturnCoroutine = null;
+        }
+
+        currentAttack = null;
+        canMove = true;
+        canRotate = true;
+    }
+    
     public void TryToAttack()
     {
         // MELEE
@@ -62,15 +86,19 @@ public class AttackManager : MonoBehaviour
         attackSwingCoroutine = StartCoroutine(AttackSwing());
     }
 
+    
     void ChooseAttack()
     {
-        List<Attack> tempAttackList = new List<Attack>(attackList);
+        if (tempAttackList.Count <= 0)
+            tempAttackList = new List<Attack>(attackList);
+        
         int newIndex = -1;
         
         // GET RANDOM ATTACK BY WEIGHT
         // Get the total sum of all the attacks
         float weightSum = 0f;
-        for (int i = 0; i < tempAttackList.Count; ++i)
+        
+        for (int i = tempAttackList.Count - 1; i >= 0; --i)
         {
             weightSum += tempAttackList[i].AttackWeightCurrent;
         }
@@ -100,12 +128,13 @@ public class AttackManager : MonoBehaviour
         {
             // IF ATTACK IS NEW - RESETS OLD ATTACK'S WEIGHT
             if (prevAttack != null && prevAttack != newAttack)
-                prevAttack.ResetCurrentWeight();
+                prevAttack.RestoreCurrentWeight();
         }
         
         // lower new attack's current Weight   
-        newAttack.AttackWeightCurrent -= newAttack.ReduceAttackWeightOnRepeat;
+        newAttack.ReduceCurrentWeight();
         
+        tempAttackList.RemoveAt(newIndex);
         currentAttack = newAttack;
         prevAttack = currentAttack;
     }
@@ -150,6 +179,7 @@ public class Attack
     [Tooltip("This controls how often character uses this attack")]
     [SerializeField] [Range(0f, 1f)] private float attackWeight = 1f; 
     [SerializeField] [Range(0f, 1f)] private float reduceAttackWeightOnRepeat = 0.5f; 
+    [SerializeField] [Range(0f, 1f)] private float restoreAttackWeightOnAttackRest = 0.25f; 
     private float attackWeightCurrent = 1f;
 
     [SerializeField] private bool canAttackMidAir = false;
@@ -168,22 +198,23 @@ public class Attack
     [SerializeField] private bool canRotateOnReturn = true;
     [SerializeField] private bool canSkipReturn = true;
     
-
     public float AttackWeightCurrent
     {
         get => attackWeightCurrent;
         set => attackWeightCurrent = value;
     }
 
-    public float ReduceAttackWeightOnRepeat
+    public void RestoreCurrentWeight()
     {
-        get => reduceAttackWeightOnRepeat;
-        set => reduceAttackWeightOnRepeat = value;
+        attackWeightCurrent += restoreAttackWeightOnAttackRest;
+        attackWeightCurrent = Mathf.Clamp(attackWeightCurrent, 0,attackWeight);     
     }
 
-    public void ResetCurrentWeight()
+    public void ReduceCurrentWeight()
     {
-        attackWeightCurrent = attackWeight;
+        attackWeightCurrent -= reduceAttackWeightOnRepeat;
+        if (attackWeightCurrent <= 0)
+            attackWeightCurrent = attackWeight;
     }
 
     public float AttackSwingTime => attackSwingTime;
