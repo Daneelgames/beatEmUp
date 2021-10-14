@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130791d3e20646d2b6d81688877b0909, type: 3}
   m_Name: OutlineSettingsExample
   m_EditorClassIdentifier: 
-  edgeColor: {r: 0, g: 0, b: 0, a: 0.19607843}
+  edgeColor: {r: 0.2735849, g: 0.1974457, b: 0.1974457, a: 1}
   thickness: 2
   useDepth: 1
   useNormals: 1

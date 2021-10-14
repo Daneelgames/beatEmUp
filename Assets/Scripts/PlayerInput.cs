@@ -129,7 +129,7 @@ public class PlayerInput : MonoBehaviour
         else
             running = false;
 
-        if (grounded && Input.GetButtonDown("Jump"))
+        if (grounded && Input.GetButtonDown("Jump") && attackManager.CanMove)
         {
             verticalVector.y = jumpPower;
             groundColliders = new Collider[1];
