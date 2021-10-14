@@ -862,8 +862,8 @@ MonoBehaviour:
     attackCritChanceScaler: 1
     attackAnimationTriggerName: Attack1
     attackSwingTime: 0.33
-    attackDangerTime: 0.66
-    attackReturnTime: 0.7
+    attackDangerTime: 0.825
+    attackReturnTime: 0.66
     canMoveOnSwing: 1
     canMoveOnDanger: 0
     canMoveOnReturn: 0
