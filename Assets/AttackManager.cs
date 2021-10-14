@@ -20,6 +20,7 @@ public class AttackManager : MonoBehaviour
     [Header("Links")]
     [SerializeField] private Animator anim;
     private Attack currentAttack;
+    private Attack prevAttack;
 
     private bool canMove = true;
     private bool canRotate = true;
@@ -98,14 +99,15 @@ public class AttackManager : MonoBehaviour
         if (newAttack != currentAttack)
         {
             // IF ATTACK IS NEW - RESETS OLD ATTACK'S WEIGHT
-            if (currentAttack != null)
-                currentAttack.ResetCurrentWeight();
+            if (prevAttack != null && prevAttack != newAttack)
+                prevAttack.ResetCurrentWeight();
         }
         
         // lower new attack's current Weight   
         newAttack.AttackWeightCurrent -= newAttack.ReduceAttackWeightOnRepeat;
         
         currentAttack = newAttack;
+        prevAttack = currentAttack;
     }
     
     IEnumerator AttackSwing()
