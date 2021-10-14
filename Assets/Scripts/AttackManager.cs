@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +9,7 @@ public class AttackManager : MonoBehaviour
 {
     [Header("Attack Stats")] 
     [SerializeField] private int baseAttackDamage = 10;
-    [SerializeField] [Range(0,1)] private float critChange = 0.1f;
+    [SerializeField] [Range(0,1)] private float critChance = 0.1f;
     [SerializeField] [Range(1,10)] private float critDamageScaler = 3;
 
     [SerializeField] private List<Attack> attackList = new List<Attack>();
@@ -21,6 +22,13 @@ public class AttackManager : MonoBehaviour
     [Header("Links")]
     [SerializeField] private Animator anim;
     private Attack currentAttack;
+
+    public Attack CurrentAttack
+    {
+        get => currentAttack;
+        set => currentAttack = value;
+    }
+
     private Attack prevAttack;
 
     private bool canMove = true;
@@ -48,6 +56,35 @@ public class AttackManager : MonoBehaviour
         }
 
         currentAttack = null;
+        canMove = true;
+        canRotate = true;
+    }
+
+    public void Damaged()
+    {
+        if (attackSwingCoroutine != null)
+        {
+            StopCoroutine(attackSwingCoroutine);
+            attackSwingCoroutine = null;
+        }
+        if (attackDangerCoroutine != null)
+        {
+            StopCoroutine(attackDangerCoroutine);
+            attackDangerCoroutine = null;
+        }
+        if (attackReturnCoroutine != null)
+        {
+            StopCoroutine(attackReturnCoroutine);
+            attackReturnCoroutine = null;
+        }
+
+        currentAttack = null;
+        canMove = false;
+        canRotate = false;
+    }
+
+    public void RestoredFromDamage()
+    {
         canMove = true;
         canRotate = true;
     }
@@ -154,8 +191,23 @@ public class AttackManager : MonoBehaviour
     {
         canMove = currentAttack.CanMoveOnDanger;
         canRotate = currentAttack.CanRotateOnDanger;
+        
+        for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
+        {
+            var part = currentAttack.dangeorusParts[index];
+            if (part)
+                part.SetDangerous(true);
+        }
 
         yield return new WaitForSeconds(currentAttack.AttackDangerTime);
+        
+        for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
+        {
+            var part = currentAttack.dangeorusParts[index];
+            if (part)
+                part.SetDangerous(false);
+        }
+        
         attackReturnCoroutine = StartCoroutine(AttackReturn());
         attackDangerCoroutine = null;
     }
@@ -171,8 +223,20 @@ public class AttackManager : MonoBehaviour
         canMove = true;
         canRotate = true;
     }
-}
 
+    public void DamageOtherBodyPart(BodyPart partToDamage)
+    {
+        int resultDamage = Mathf.RoundToInt(baseAttackDamage * currentAttack.AttackDamageScaler);
+        float randomCritChance = Random.value;
+        int _criticalDamage = 0;
+        
+        if (randomCritChance <= critChance * currentAttack.AttackCritChanceScaler)
+            resultDamage *= Mathf.RoundToInt(critDamageScaler);
+
+        partToDamage.HC.Damage(resultDamage);
+    }
+}
+# region Attack
 [Serializable]
 public class Attack
 {
@@ -184,7 +248,11 @@ public class Attack
 
     [SerializeField] private bool canAttackMidAir = false;
     [SerializeField] [Range(0.1f,5f)] private float attackDamageScaler = 1f;
+    public float AttackDamageScaler { get => attackDamageScaler; }
+    
     [SerializeField] [Range(0f,5f)] private float attackCritChanceScaler = 1f;
+    public float AttackCritChanceScaler { get => attackCritChanceScaler; }
+
     [SerializeField] private string attackAnimationTriggerName = "Attack";
     [Header("Time")]
     [SerializeField] private float attackSwingTime = 0.5f;
@@ -197,6 +265,8 @@ public class Attack
     [SerializeField] private bool canRotateOnDanger = false;
     [SerializeField] private bool canRotateOnReturn = true;
     [SerializeField] private bool canSkipReturn = true;
+    
+    public List<BodyPart> dangeorusParts;
     
     public float AttackWeightCurrent
     {
@@ -233,3 +303,4 @@ public class Attack
     public bool CanRotateOnReturn => canRotateOnReturn;
     public bool CanSkipReturn => canSkipReturn;
 }
+# endregion
