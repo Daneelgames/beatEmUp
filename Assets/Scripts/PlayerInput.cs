@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     [Header("Links")]
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Animator anim;
+    [SerializeField] private AttackManager attackManager;
 
     private Quaternion lookRotation;
 
@@ -49,25 +50,69 @@ public class PlayerInput : MonoBehaviour
         StartCoroutine(ControlMovementAnimations());
     }
 
-    void Update()
+    IEnumerator ControlMovementAnimations()
     {
-        GetMovementInput();
-        AddGravity();
-        ApplyMovement();
-        RotateToMovementDirection();
+        #region movement Animations
+        while (true)
+        {
+            //yield return new WaitForSeconds(0.1f);
+            yield return null;
+            if (moving && anim.GetBool(Moving) == false)
+            {
+                anim.SetBool(Moving, true);
+            }
+            else if (!moving && anim.GetBool(Moving))
+            {
+                anim.SetBool(Moving, false);
+            }
+            
+            if (running && anim.GetBool(Running) == false)
+            {
+                anim.SetBool(Running, true);
+            }
+            else if (!running && anim.GetBool(Running))
+            {
+                anim.SetBool(Running, false);
+            }
+            
+            if (!grounded && anim.GetBool(Jumping) == false)
+            {
+                anim.SetBool(Jumping, true);
+            }
+            else if (grounded && anim.GetBool(Jumping))
+            {
+                anim.SetBool(Jumping, false);
+            }
+        }
+        #endregion
     }
 
     private void FixedUpdate()
     {
         CheckGrounded();
     }
-
     void CheckGrounded()
     {
         Physics.OverlapSphereNonAlloc(transform.position + Vector3.up * characterRadius/2, characterRadius, groundColliders, groundMask);
         grounded = groundColliders[0];
     }
 
+    void Update()
+    {
+        GetAttackingInput();
+        GetMovementInput();
+        AddGravity();
+        ApplyMovement();
+        RotateToMovementDirection();
+    }
+
+
+    void GetAttackingInput()
+    {
+        if (Input.GetButtonDown("Attack"))
+            attackManager.TryToAttack();
+    }
+    
     void GetMovementInput()
     {
         //reading the input:
@@ -121,12 +166,16 @@ public class PlayerInput : MonoBehaviour
         float resultMovementSpeed = movementSpeed;
         if (running)
             resultMovementSpeed += runningSpeedBonus;
-        characterController.Move((movementVector * resultMovementSpeed + verticalVector) * Time.deltaTime);
+        
+        if (attackManager.CanMove)
+            characterController.Move((movementVector * resultMovementSpeed) * Time.deltaTime);
+        
+        characterController.Move(verticalVector * Time.deltaTime);
     }
 
     void RotateToMovementDirection()
     {
-        if (!moving)
+        if (!moving || !attackManager.CanRotate)
             return;
 
         lookRotation.SetLookRotation(movementVector, Vector3.up);
@@ -134,38 +183,4 @@ public class PlayerInput : MonoBehaviour
         transform.eulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
     }
 
-    IEnumerator ControlMovementAnimations()
-    {
-        while (true)
-        {
-            //yield return new WaitForSeconds(0.1f);
-            yield return null;
-            if (moving && anim.GetBool(Moving) == false)
-            {
-                anim.SetBool(Moving, true);
-            }
-            else if (!moving && anim.GetBool(Moving))
-            {
-                anim.SetBool(Moving, false);
-            }
-            
-            if (running && anim.GetBool(Running) == false)
-            {
-                anim.SetBool(Running, true);
-            }
-            else if (!running && anim.GetBool(Running))
-            {
-                anim.SetBool(Running, false);
-            }
-            
-            if (!grounded && anim.GetBool(Jumping) == false)
-            {
-                anim.SetBool(Jumping, true);
-            }
-            else if (grounded && anim.GetBool(Jumping))
-            {
-                anim.SetBool(Jumping, false);
-            }
-        }
-    }
 }

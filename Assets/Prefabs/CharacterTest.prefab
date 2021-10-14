@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 5926532711273271618}
   - component: {fileID: 3532836427261899380}
   - component: {fileID: 1277168340}
+  - component: {fileID: 4792253143275227139}
   m_Layer: 7
   m_Name: CharacterTest
   m_TagString: Untagged
@@ -803,6 +804,7 @@ MonoBehaviour:
     m_Bits: 64
   characterController: {fileID: 1277168340}
   anim: {fileID: 919132149555714730}
+  attackManager: {fileID: 4792253143275227139}
 --- !u!143 &1277168340
 CharacterController:
   m_ObjectHideFlags: 0
@@ -821,6 +823,71 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &4792253143275227139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757401403179926516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2fa30289f427945abc08867a171b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseAttackDamage: 10
+  critChange: 0.1
+  critDamageScaler: 3
+  attackList:
+  - attackWeight: 1
+    reduceAttackWeightOnRepeat: 0.5
+    canAttackMidAir: 0
+    attackDamageScaler: 1
+    attackCritChanceScaler: 1
+    attackAnimationTriggerName: Attack0
+    attackSwingTime: 0.25
+    attackDangerTime: 0.25
+    attackReturnTime: 0.1
+    canMoveOnSwing: 1
+    canMoveOnDanger: 0
+    canMoveOnReturn: 1
+    canRotateOnSwing: 1
+    canRotateOnDanger: 0
+    canRotateOnReturn: 0
+    canSkipReturn: 1
+  - attackWeight: 1
+    reduceAttackWeightOnRepeat: 0.5
+    canAttackMidAir: 1
+    attackDamageScaler: 1.2
+    attackCritChanceScaler: 1
+    attackAnimationTriggerName: Attack1
+    attackSwingTime: 0.33
+    attackDangerTime: 0.66
+    attackReturnTime: 0.7
+    canMoveOnSwing: 1
+    canMoveOnDanger: 0
+    canMoveOnReturn: 0
+    canRotateOnSwing: 1
+    canRotateOnDanger: 0
+    canRotateOnReturn: 0
+    canSkipReturn: 0
+  - attackWeight: 1
+    reduceAttackWeightOnRepeat: 0.5
+    canAttackMidAir: 0
+    attackDamageScaler: 1
+    attackCritChanceScaler: 1
+    attackAnimationTriggerName: Attack2
+    attackSwingTime: 0.25
+    attackDangerTime: 0.25
+    attackReturnTime: 0.1
+    canMoveOnSwing: 1
+    canMoveOnDanger: 0
+    canMoveOnReturn: 1
+    canRotateOnSwing: 1
+    canRotateOnDanger: 0
+    canRotateOnReturn: 0
+    canSkipReturn: 1
+  anim: {fileID: 919132149555714730}
 --- !u!1 &6928500999500087476
 GameObject:
   m_ObjectHideFlags: 0
