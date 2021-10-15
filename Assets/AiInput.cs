@@ -251,7 +251,7 @@ public class AiInput : MonoBehaviour
 
         for (int i = 0; i < hc.Enemies.Count; i++)
         {
-            if (hc.Enemies[i] == null || hc.Enemies[i].gameObject == null)
+            if (hc.Enemies[i] == null || hc.Enemies[i].gameObject == null || hc.Enemies[i].Health < 0)
             {
                 hc.RemoveEnemyAt(i);
                 return;   
