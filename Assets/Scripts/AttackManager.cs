@@ -19,7 +19,7 @@ public class AttackManager : MonoBehaviour
     private Coroutine attackDangerCoroutine;
     private Coroutine attackReturnCoroutine;
 
-    [Header("Links")]
+    [Header("Links")] [SerializeField] private HealthController hc;
     [SerializeField] private Animator anim;
     private Attack currentAttack;
 
@@ -226,6 +226,8 @@ public class AttackManager : MonoBehaviour
 
     public void DamageOtherBodyPart(BodyPart partToDamage)
     {
+        if (currentAttack == null)
+            return;
         int resultDamage = Mathf.RoundToInt(baseAttackDamage * currentAttack.AttackDamageScaler);
         float randomCritChance = Random.value;
         int _criticalDamage = 0;
@@ -233,7 +235,7 @@ public class AttackManager : MonoBehaviour
         if (randomCritChance <= critChance * currentAttack.AttackCritChanceScaler)
             resultDamage *= Mathf.RoundToInt(critDamageScaler);
 
-        partToDamage.HC.Damage(resultDamage);
+        partToDamage.HC.Damage(resultDamage, hc);
     }
 }
 # region Attack

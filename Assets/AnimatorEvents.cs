@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class AnimatorEvents : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AudioManager _audioManager;
+    
+    public void PlayStep()
     {
-        
+        if (_audioManager)
+            _audioManager.PlaySteps();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void PlayAttack()
     {
-        
+        if (_audioManager)
+            _audioManager.PlayAttack();
+    }
+    public void PlayDamaged()
+    {
+        if (_audioManager)
+            _audioManager.PlayDamaged();
     }
 }

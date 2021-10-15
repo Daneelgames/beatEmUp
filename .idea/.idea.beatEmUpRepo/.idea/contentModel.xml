@@ -5,7 +5,10 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="AiInput.cs" t="Include" />
+        <e p="AiNavigationManager.cs" t="Include" />
         <e p="AnimatorEvents.cs" t="Include" />
+        <e p="AudioManager.cs" t="Include" />
         <e p="BodyPart.cs" t="Include" />
         <e p="BodyPartsManager.cs" t="Include" />
         <e p="FlatKit" t="Include">

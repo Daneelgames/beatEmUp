@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class BodyPart : MonoBehaviour
 {
-    [SerializeField] private LayerMask layerMask;
     [SerializeField] private HealthController hc;
     [SerializeField] private AttackManager _attackManager;
+    [SerializeField] private Collider collider;
+    public Collider Collider => collider;
     public HealthController HC => hc;
 
     bool dangerous = false;
@@ -20,6 +21,7 @@ public class BodyPart : MonoBehaviour
         ownBodyPartsGameObjects.Clear();
         _attackManager = attackManager;
         hc = _hc;
+        collider = GetComponent<Collider>();
         for (int i = 0; i < tempList.Count; i++)
         {
             ownBodyPartsGameObjects.Add(tempList[i].gameObject);

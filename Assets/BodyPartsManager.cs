@@ -24,4 +24,13 @@ public class BodyPartsManager : MonoBehaviour
             bodyParts[i].SetOwnBodyParts(bodyParts, attackManager, hc);
         }
     }
+
+    public void SetAllPartsColliders()
+    {
+        for (var index = 0; index < bodyParts.Count; index++)
+        {
+            var bodyPart = bodyParts[index];
+            bodyPart.Collider.isTrigger = false;
+        }
+    }
 }

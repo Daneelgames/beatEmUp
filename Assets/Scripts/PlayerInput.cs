@@ -14,6 +14,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     [Header("Links")]
+    [SerializeField] private HealthController hc;
+    public HealthController HC => hc;
+    
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Animator anim;
     [SerializeField] private AttackManager attackManager;
@@ -179,6 +182,8 @@ public class PlayerInput : MonoBehaviour
         if (!moving || !attackManager.CanRotate)
             return;
 
+        Vector3 enemyVector;
+        
         lookRotation.SetLookRotation(movementVector, Vector3.up);
         var targetRotation = Quaternion.Slerp(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
