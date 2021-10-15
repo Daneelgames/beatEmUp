@@ -177,16 +177,49 @@ public class PlayerInput : MonoBehaviour
         characterController.Move(verticalVector * Time.deltaTime);
     }
 
+    
     void RotateToMovementDirection()
     {
-        if (!moving || !attackManager.CanRotate)
+        if (!attackManager.CanRotate)
             return;
 
-        Vector3 enemyVector;
+        Vector3 enemyVector = Vector3.zero;
+        float distance = 5;
+        bool rotateToEnemy = false;
+        if (hc.Enemies.Count > 0)
+        {
+            for (int i = hc.Enemies.Count - 1; i >= 0; i--)
+            {
+                if (hc.Enemies[i] == null || hc.Enemies[i].Health <= 0)
+                {
+                    hc.RemoveEnemyAt(i);
+                    continue;
+                }
+                float newDistance = Vector3.Distance(hc.Enemies[i].transform.position, transform.position);
+                if (newDistance <= distance)
+                {
+                    distance = newDistance;
+                    enemyVector = hc.Enemies[i].transform.position - transform.position;
+                    enemyVector.Normalize();
+                    rotateToEnemy = true;
+                }
+            }   
+        }
         
-        lookRotation.SetLookRotation(movementVector, Vector3.up);
+        if (!rotateToEnemy && !moving)
+            return;
+        
+        if (rotateToEnemy)
+            lookRotation.SetLookRotation(enemyVector, Vector3.up);
+        else
+            lookRotation.SetLookRotation(movementVector, Vector3.up);
+        
         var targetRotation = Quaternion.Slerp(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
     }
 
+    public void Death()
+    {
+        
+    }
 }

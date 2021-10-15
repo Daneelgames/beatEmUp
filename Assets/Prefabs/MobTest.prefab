@@ -1475,14 +1475,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
+  anim: {fileID: 919132149555714730}
   _aiInput: {fileID: 2984947846422348196}
   agent: {fileID: 315908125812861007}
   rb: {fileID: 4956596149813344476}
   _bodyPartsManager: {fileID: 1212818261}
   health: 1000
-  anim: {fileID: 919132149555714730}
   _attackManager: {fileID: 4792253143275227139}
-  damagedAnimationTime: 0.5
+  damagedAnimationTime: 0.25
 --- !u!114 &1212818261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,6 +1507,17 @@ MonoBehaviour:
   - {fileID: 1610119941}
   - {fileID: 137015411}
   - {fileID: 1264857821}
+  removableParts:
+  - {fileID: 799975424}
+  - {fileID: 1151221938}
+  - {fileID: 376145812}
+  - {fileID: 362900792}
+  - {fileID: 1147915039}
+  - {fileID: 371326942}
+  - {fileID: 1610119941}
+  - {fileID: 137015411}
+  - {fileID: 1264857821}
+  bloodSfx: {fileID: 3042827937223044910, guid: 5bc71a68c838b244ba809a832214db88, type: 3}
 --- !u!114 &2984947846422348196
 MonoBehaviour:
   m_ObjectHideFlags: 0

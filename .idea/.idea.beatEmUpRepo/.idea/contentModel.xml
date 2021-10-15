@@ -11,6 +11,13 @@
         <e p="AudioManager.cs" t="Include" />
         <e p="BodyPart.cs" t="Include" />
         <e p="BodyPartsManager.cs" t="Include" />
+        <e p="CartoonBloodFX" t="Include">
+          <e p="Source" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="UI.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="FlatKit" t="Include">
           <e p="[Render Pipeline] URP" t="Include">
             <e p="RenderFeatures" t="Include">

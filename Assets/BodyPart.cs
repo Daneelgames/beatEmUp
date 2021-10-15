@@ -16,6 +16,8 @@ public class BodyPart : MonoBehaviour
 
     private List<GameObject> damagedBodyPartsGameObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> ownBodyPartsGameObjects = new List<GameObject>();
+    [SerializeField] Vector3 globalScaleAfterReparenting = new Vector3(30, 30, 30);
+    public Vector3 GlobalScaleAfterReparenting => globalScaleAfterReparenting;
     public void SetOwnBodyParts(List<BodyPart> tempList, AttackManager attackManager, HealthController _hc)
     {
         ownBodyPartsGameObjects.Clear();

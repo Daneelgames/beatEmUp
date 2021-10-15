@@ -9,6 +9,7 @@ public class HealthController : MonoBehaviour
 
     [Header("Links")] 
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private Animator anim;
     [SerializeField] private AiInput _aiInput;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Rigidbody rb;
@@ -16,7 +17,8 @@ public class HealthController : MonoBehaviour
     
     [Header("Stats")]
     [SerializeField] private int health = 100;
-    [SerializeField] private Animator anim;
+    public int Health => health;
+
     private static readonly int DamagedString = Animator.StringToHash("Damaged");
     private static readonly int Alive = Animator.StringToHash("Alive");
     [SerializeField] private AttackManager _attackManager;
@@ -94,6 +96,8 @@ public class HealthController : MonoBehaviour
     void Death()
     {
         _bodyPartsManager.SetAllPartsColliders();
+        //if (Random.value > 0.5f)
+        _bodyPartsManager.RemovePart(false);
         
         if (_aiInput)
             _aiInput.Death();
@@ -106,7 +110,7 @@ public class HealthController : MonoBehaviour
         rb.isKinematic = false;
         rb.useGravity = true;
         SetLayerRecursively(gameObject, 6);
-        rb.AddExplosionForce(100,transform.position + Random.onUnitSphere, 50);
+        rb.AddExplosionForce(100,transform.position + Random.onUnitSphere, 10);
     }
 
     void SetLayerRecursively(GameObject obj, int newLayer)

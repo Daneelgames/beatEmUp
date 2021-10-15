@@ -5,7 +5,11 @@ using UnityEngine;
 public class BodyPartsManager : MonoBehaviour
 {
     public List<BodyPart> bodyParts;
+    [SerializeField] private List<BodyPart> removableParts;
 
+    public List<BodyPart> RemovableParts => removableParts;
+
+    [SerializeField] private GameObject bloodSfx;
     void Start()
     {
         if (bodyParts.Count == 0)
@@ -31,6 +35,31 @@ public class BodyPartsManager : MonoBehaviour
         {
             var bodyPart = bodyParts[index];
             bodyPart.Collider.isTrigger = false;
+        }
+    }
+
+    public void RemovePart(bool attackerGetsPArt)
+    {
+        if (removableParts.Count <= 0)
+            return;
+
+        if (!attackerGetsPArt)
+        {
+            Instantiate(bloodSfx, transform.position, transform.rotation);
+            var partToRemove = removableParts[Random.Range(0, removableParts.Count)];
+            Vector3 partNewWorldPos = partToRemove.transform.position;
+            Quaternion partNewWorldRot = partToRemove.transform.rotation;
+            removableParts.Remove(partToRemove);
+            partToRemove.transform.SetParent(null,true);
+            partToRemove.transform.position = partNewWorldPos;
+            partToRemove.transform.rotation = partNewWorldRot;
+            partToRemove.transform.localScale = partToRemove.GlobalScaleAfterReparenting;
+            
+            var newRb = partToRemove.gameObject.AddComponent<Rigidbody>();
+            newRb.isKinematic = false;
+            newRb.useGravity = true;
+            newRb.AddExplosionForce(100, transform.position - Vector3.up * 2 + Random.onUnitSphere * 1, 10);
+            print(partNewWorldPos + "; partToRemove.transform.position " + partToRemove.transform.position );
         }
     }
 }

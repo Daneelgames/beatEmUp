@@ -30,7 +30,7 @@ public class CameraFollowPlayer : MonoBehaviour
         while (true)
         {
             // parent smoothly follows it
-            parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * 5f, cameraSmooth * Time.smoothDeltaTime);
+            parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * 2f, cameraSmooth * Time.smoothDeltaTime);
             yield return null;
         }
     }
