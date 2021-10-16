@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour
 {
+    [SerializeField] private float distanceInFrontOfCharacter = 3;
     [SerializeField] private float cameraSmooth = 0.75f;
+    [SerializeField] private float cameraTurnSpeed = 500f;
     
     private Transform parent;
     private IEnumerator Start()
@@ -30,7 +32,8 @@ public class CameraFollowPlayer : MonoBehaviour
         while (true)
         {
             // parent smoothly follows it
-            parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * 2f, cameraSmooth * Time.smoothDeltaTime);
+            parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter, cameraSmooth * Time.smoothDeltaTime);
+            parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * Time.deltaTime * cameraTurnSpeed);
             yield return null;
         }
     }

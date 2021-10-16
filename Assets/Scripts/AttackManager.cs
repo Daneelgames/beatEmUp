@@ -48,6 +48,13 @@ public class AttackManager : MonoBehaviour
         {
             StopCoroutine(attackDangerCoroutine);
             attackDangerCoroutine = null;
+            
+            for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
+            {
+                var part = currentAttack.dangeorusParts[index];
+                if (part)
+                    part.SetDangerous(false);
+            }
         }
         if (attackReturnCoroutine != null)
         {
@@ -71,6 +78,13 @@ public class AttackManager : MonoBehaviour
         {
             StopCoroutine(attackDangerCoroutine);
             attackDangerCoroutine = null;
+            
+            for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
+            {
+                var part = currentAttack.dangeorusParts[index];
+                if (part)
+                    part.SetDangerous(false);
+            }
         }
         if (attackReturnCoroutine != null)
         {
@@ -78,6 +92,7 @@ public class AttackManager : MonoBehaviour
             attackReturnCoroutine = null;
         }
 
+        
         currentAttack = null;
         canMove = false;
         canRotate = false;

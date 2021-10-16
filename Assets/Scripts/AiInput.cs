@@ -5,9 +5,19 @@ using UnityEngine.AI;
 
 public class AiInput : MonoBehaviour
 {
+    enum State
+    {
+        Wander, Idle, FollowTarget
+    }
+
+    [SerializeField] private State state = State.Wander;
+    
     [Header("Stats")] 
     [SerializeField] float updateRate = 0.5f;
+    [SerializeField] private float walkSpeed = 2;
+    [SerializeField] private float runSpeed = 4;
     [SerializeField] private float stopDistance = 3;
+    [SerializeField] private float runDistanceThreshold = 5;
     [SerializeField] private float looseTargetDistance = 20;
     [SerializeField] private bool simpleWalker = true;
     [SerializeField] private Vector2 idleTimeMinMax = new Vector2(5, 30);
@@ -17,7 +27,8 @@ public class AiInput : MonoBehaviour
 
     private Vector3 currentTargetPosition;
 
-    [Header("Links")]
+    [Header("Links")] 
+    [SerializeField] private AudioSource alert;
     [SerializeField] private HealthController hc;
     [SerializeField] private AttackManager _attackManager;
     [SerializeField] private NavMeshAgent agent;
@@ -26,18 +37,13 @@ public class AiInput : MonoBehaviour
     private bool moving = false;
     private bool alive = true;
     
-    enum State
-    {
-        Wander, Idle, FollowTarget
-    }
-
-    private State state = State.Wander;
     private static readonly int Moving = Animator.StringToHash("Moving");
 
     private Coroutine wanderCoroutine;
     private Coroutine idleCoroutine;
     private Coroutine followTargetCoroutine;
-    
+    private static readonly int Running = Animator.StringToHash("Running");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +60,7 @@ public class AiInput : MonoBehaviour
             StartCoroutine(SimpleWalker());   
     }
     
-    public void Damaged(HealthController damager)
+    public void SetAggro(HealthController damager)
     {
         if (state != State.FollowTarget)
         {
@@ -73,11 +79,29 @@ public class AiInput : MonoBehaviour
             {
                 PlayerInput.Instance.HC.AddEnemy(hc);
             }
+
+            if (aleartCoroutine != null)
+                StopCoroutine(aleartCoroutine);
+            aleartCoroutine = StartCoroutine(Alert());
             
+            agent.SetDestination(damager.transform.position);
             followTargetCoroutine = StartCoroutine(FollowTarget());
         }
     }
 
+
+    private Coroutine aleartCoroutine;
+    IEnumerator Alert()
+    {
+        alert.gameObject.SetActive(false);
+        yield return null;
+        alert.gameObject.SetActive(true);
+        alert.pitch = Random.Range(0.75f, 1.1f);
+        alert.Play();
+        yield return new WaitForSeconds(1f);
+        alert.gameObject.SetActive(false);
+    }
+    
     IEnumerator SimpleWalker()
     {
         Vector3 previousPos = transform.position;
@@ -154,15 +178,32 @@ public class AiInput : MonoBehaviour
 
         while (true)
         {
-            currentTargetPosition = GetPositionOfClosestEnemy();
+            currentTargetPosition = GetPositionOfClosestEnemy(true);
+            
             
             if (_attackManager.CanMove)
             {
+                if (Vector3.Distance(transform.position, currentTargetPosition) > runDistanceThreshold)
+                {
+                    // RUN
+                    anim.SetBool(Running, true);
+                    agent.speed = runSpeed;
+                }
+                else
+                {
+                    // WALK
+                    anim.SetBool(Running, false);
+                    agent.speed = walkSpeed;
+                }
+                
                 agent.isStopped = false;
                 agent.SetDestination(currentTargetPosition);   
             }
             else
+            {
                 agent.isStopped = true;
+                agent.speed = walkSpeed;
+            }
 
             yield return new WaitForSeconds(updateRate);
         }
@@ -187,7 +228,7 @@ public class AiInput : MonoBehaviour
         return newPos;
     }
     
-    Vector3 GetPositionOfClosestEnemy()
+    Vector3 GetPositionOfClosestEnemy(bool onlyVisible)
     {
         Vector3 newPos = transform.position;
         
@@ -196,6 +237,9 @@ public class AiInput : MonoBehaviour
         HealthController closestEnemy = null;
         for (int i = 0; i < hc.Enemies.Count; i++)
         {
+            if (hc.VisibleHCs.Contains(hc.Enemies[i]) == false)
+                continue;
+            
             newDistance = Vector3.Distance(transform.position, hc.Enemies[i].transform.position);
             if (newDistance < looseTargetDistance && newDistance < distance)
             {

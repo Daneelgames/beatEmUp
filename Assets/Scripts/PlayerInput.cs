@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class PlayerInput : MonoBehaviour
 
     public static PlayerInput Instance;
 
+    bool alive = true;
     private void Awake()
     {
         Instance = this;
@@ -102,6 +104,8 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+        if (alive == false)
+            return;
         GetAttackingInput();
         GetMovementInput();
         AddGravity();
@@ -220,6 +224,14 @@ public class PlayerInput : MonoBehaviour
 
     public void Death()
     {
-        
+        alive = false;
+        StopAllCoroutines();
+        StartCoroutine(RestartLevel());
+    }
+
+    IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
     }
 }

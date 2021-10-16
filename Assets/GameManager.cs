@@ -1,15 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] private List<HealthController> units = new List<HealthController>();
+    public List<HealthController> Units => units;
+
     private void Awake()
     {
         Instance = this;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void AddUnit(HealthController hc)
+    {
+        if (units.Contains(hc) == false)
+            units.Add(hc);
     }
     
     public void SetLayerRecursively(GameObject obj, int newLayer)

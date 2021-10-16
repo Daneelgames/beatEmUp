@@ -198,6 +198,7 @@
           </e>
         </e>
         <e p="GameManager.cs" t="Include" />
+        <e p="PlayerUi.cs" t="Include" />
         <e p="SC Post Effects" t="Include">
           <e p="Editor" t="Include">
             <e p="Editors" t="Include">

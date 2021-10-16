@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
+    public bool drawFOV = false;
+    
+    [Header("Links")]
+    [SerializeField] private HealthController hc;
+    
+    [Header("Stats")]
+    [SerializeField] private float resetVisibleUnitsCooldown = 5f;
     [SerializeField] private float updateDelay = 0.25f;
     [SerializeField] private float viewRadius;
     [SerializeField] private float meshResolution;
@@ -20,11 +27,11 @@ public class FieldOfView : MonoBehaviour
     private List<Transform> visibleTargets = new List<Transform>();
     public List<Transform> VisibleTargets => visibleTargets;
 
-
     [SerializeField] MeshFilter viewMeshFilter;
     [SerializeField] private Mesh viewMesh;
 
     [SerializeField] private float edgeDistanceThreshold;
+    private bool alive = true;
     private void Start()
     {
         viewMesh = new Mesh();
@@ -33,17 +40,34 @@ public class FieldOfView : MonoBehaviour
         StartCoroutine(FindTargetsWithDelay());
     }
 
+    public void Death()
+    {
+        StopAllCoroutines();
+        alive = false;
+        viewMeshFilter.gameObject.SetActive(false);
+    }
+
     IEnumerator FindTargetsWithDelay()
     {
+        float t = 0;
         while (true)
         {
             yield return new WaitForSeconds(updateDelay);
+            t += updateDelay;
+            if (t >= resetVisibleUnitsCooldown)
+            {
+                t = 0;
+                hc.ResetVisibleUnits();
+            }
             FindVisibleTargets();
         }
     }
 
     private void LateUpdate()
     {
+        if (!alive || !drawFOV)
+            return;
+        
         DrawFieldOfView();
     }
 
@@ -61,13 +85,15 @@ public class FieldOfView : MonoBehaviour
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+                if (!Physics.Raycast(transform.position + Vector3.up * 2, dirToTarget, dstToTarget, obstacleMask))
                 {
                     // unit is visible
                     visibleTargets.Add(target);
                 }
             }
         }
+
+        StartCoroutine(hc.UpdateVisibleTargets(visibleTargets));
     }
 
     void DrawFieldOfView()

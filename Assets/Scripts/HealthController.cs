@@ -6,47 +6,61 @@ using UnityEngine.AI;
 
 public class HealthController : MonoBehaviour
 {
-
     [Header("Links")] 
+    [SerializeField] private PlayerInput playerInput;
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private AttackManager _attackManager;
     [SerializeField] private Animator anim;
     [SerializeField] private AiInput _aiInput;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BodyPartsManager _bodyPartsManager;
+    [SerializeField] private FieldOfView fieldOfView;
 
     [Header("Stats")] 
     [SerializeField] private bool invincible = false;
-    [SerializeField] private int health = 100;
+    [SerializeField] private int health = 1000;
+    [SerializeField] private int healthMax = 1000;
+    [SerializeField] private float damagedAnimationTime = 0.5f;
+    private bool damageOnCooldown = false;
     public int Health => health;
+    public int HealthMax => healthMax;
 
     private static readonly int DamagedString = Animator.StringToHash("Damaged");
     private static readonly int Alive = Animator.StringToHash("Alive");
-    [SerializeField] private AttackManager _attackManager;
-    [SerializeField] private float damagedAnimationTime = 0.5f;
 
     private bool damaged = false;
-
     public bool Damaged => damaged;
 
     private Coroutine damageAnimCoroutine;
 
-    private List<HealthController> enemies = new List<HealthController>();
+    [SerializeField] private List<HealthController> enemies = new List<HealthController>();
     public List<HealthController> Enemies => enemies;
-    
+    private List<HealthController> visibleHCs = new List<HealthController>();
+    public List<HealthController> VisibleHCs => visibleHCs;
+
     [ContextMenu("FastInit")]
     public void FastInit()
     {
         _attackManager = GetComponent<AttackManager>();
         anim = GetComponentInChildren<Animator>();
     }
+
+    void Start()
+    {
+        GameManager.Instance.AddUnit(this);
+    }
+    
     public void Damage(int dmg, HealthController damager)
     {
+        if (damageOnCooldown)
+            return;
+        
         if (health <= 0)
             return;
 
         if (_aiInput)
-            _aiInput.Damaged(damager);
+            _aiInput.SetAggro(damager);
         
         AddEnemy(damager);
         
@@ -64,7 +78,6 @@ public class HealthController : MonoBehaviour
             {
                 StopCoroutine(damageAnimCoroutine);
             }
-
             damageAnimCoroutine = StartCoroutine(DamageAnim());
         }
     }
@@ -72,13 +85,19 @@ public class HealthController : MonoBehaviour
     IEnumerator DamageAnim()
     {
         damaged = true;
-        anim.SetBool(DamagedString, true);
+        if (_attackManager == null || _attackManager.CurrentAttack == null)
+        {
+            anim.SetBool(DamagedString, true);   
+        }
         _attackManager.Damaged();
-        
+        damageOnCooldown = true;
         yield return new WaitForSeconds(damagedAnimationTime);
         
         damaged = false;
-        anim.SetBool(DamagedString, false);
+        
+        anim.SetBool(DamagedString, false); 
+        
+        damageOnCooldown = false;
         _attackManager.RestoredFromDamage();
     }
 
@@ -97,17 +116,51 @@ public class HealthController : MonoBehaviour
             enemies.RemoveAt(index);
     }
 
+    public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
+    {
+        float t = 0;
+        for (int i = 0; i < visibleTargets.Count; i++)
+        {
+            var target = visibleTargets[i].gameObject;
+            for (int j = 0; j < GameManager.Instance.Units.Count; j++)
+            {
+                var unit = GameManager.Instance.Units[j];
+                if (visibleHCs.Contains(unit) == false && unit._bodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects.Contains(target))
+                {
+                    visibleHCs.Add(unit);
+                    if (enemies.Contains(unit) && _aiInput)
+                        _aiInput.SetAggro(unit);
+                }
+            }
+
+            t++;
+            if (t > 20)
+            {
+                t = 0;
+                yield return null;   
+            }
+        }
+    }
+    
+    public void ResetVisibleUnits()
+    {
+        visibleHCs.Clear();
+    }
+    
     void Death()
     {
         _bodyPartsManager.SetAllPartsColliders();
         
+        if (playerInput)
+            playerInput.Death();
         if (_aiInput)
             _aiInput.Death();
-        
         if (agent)
             agent.enabled = false;
         if (characterController)
             characterController.enabled = false;
+        if (fieldOfView)
+            fieldOfView.Death();
         
         rb.isKinematic = false;
         rb.useGravity = true;
@@ -118,6 +171,7 @@ public class HealthController : MonoBehaviour
         {
             StartCoroutine(_bodyPartsManager.RemovePart(false));   
         }
+
         
         StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(5, rb, 5, true));
     }
