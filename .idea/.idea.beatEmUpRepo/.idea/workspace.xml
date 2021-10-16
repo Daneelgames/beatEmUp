@@ -16,24 +16,25 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/HealthController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/AiNavigationManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/AudioManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BodyPartsManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/AnimatorEvents.cs" />
       <option value="$PROJECT_DIR$/Assets/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollowPlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/BodyPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/BodyPartsManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/CustomTools.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -85,7 +86,8 @@
       <option name="presentableId" value="Default" />
       <updated>1634212991721</updated>
       <workItem from="1634212994008" duration="17831000" />
-      <workItem from="1634301082457" duration="13968000" />
+      <workItem from="1634301082457" duration="14591000" />
+      <workItem from="1634370604459" duration="1954000" />
     </task>
     <servers />
   </component>

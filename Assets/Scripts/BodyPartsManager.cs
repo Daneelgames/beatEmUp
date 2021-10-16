@@ -38,10 +38,10 @@ public class BodyPartsManager : MonoBehaviour
         }
     }
 
-    public void RemovePart(bool attackerGetsPArt)
+    public IEnumerator RemovePart(bool attackerGetsPArt)
     {
         if (removableParts.Count <= 0)
-            return;
+            yield break;
 
         if (!attackerGetsPArt)
         {
@@ -49,17 +49,28 @@ public class BodyPartsManager : MonoBehaviour
             var partToRemove = removableParts[Random.Range(0, removableParts.Count)];
             Vector3 partNewWorldPos = partToRemove.transform.position;
             Quaternion partNewWorldRot = partToRemove.transform.rotation;
+            Vector3 newScale = partToRemove.GlobalScaleAfterReparenting;
+
+            GameObject partToDublicate = partToRemove.gameObject;
             removableParts.Remove(partToRemove);
-            partToRemove.transform.SetParent(null,true);
-            partToRemove.transform.position = partNewWorldPos;
-            partToRemove.transform.rotation = partNewWorldRot;
-            partToRemove.transform.localScale = partToRemove.GlobalScaleAfterReparenting;
+            Destroy(partToRemove);
             
-            var newRb = partToRemove.gameObject.AddComponent<Rigidbody>();
+            GameObject newPart = Instantiate(partToDublicate, partToDublicate.transform.position, partToDublicate.transform.rotation);
+            
+            Destroy(partToDublicate);
+            
+            yield return new WaitForSeconds(0.1f);
+            
+            newPart.transform.position = partNewWorldPos;
+            newPart.transform.rotation = partNewWorldRot;
+            newPart.transform.localScale = newScale;
+            
+            var newRb = newPart.gameObject.AddComponent<Rigidbody>();
             newRb.isKinematic = false;
             newRb.useGravity = true;
             newRb.AddExplosionForce(100, transform.position - Vector3.up * 2 + Random.onUnitSphere * 1, 10);
-            print(partNewWorldPos + "; partToRemove.transform.position " + partToRemove.transform.position );
+
+            StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(3, newRb, 3, true));
         }
     }
 }

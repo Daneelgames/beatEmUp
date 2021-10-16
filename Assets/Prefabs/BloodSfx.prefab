@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 60
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -284,8 +284,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0
+      scalar: 5
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4884,7 +4884,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3042827937223044902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 7.52}
+  m_LocalPosition: {x: 0, y: -0, z: 10.4}
   m_LocalScale: {x: 0.42196, y: 0.4219599, z: 0.4219599}
   m_Children: []
   m_Father: {fileID: 3042827937223537422}
@@ -4905,7 +4905,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14538,8 +14538,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      scalar: 90
+      minScalar: 30
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19256,6 +19256,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blood7
       objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: a916dc58201e3fa4d9fd72b636b7ef82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a916dc58201e3fa4d9fd72b636b7ef82, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -19319,6 +19323,10 @@ PrefabInstance:
     - target: {fileID: 19800002, guid: a916dc58201e3fa4d9fd72b636b7ef82, type: 3}
       propertyPath: scalingMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: a916dc58201e3fa4d9fd72b636b7ef82, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: a916dc58201e3fa4d9fd72b636b7ef82, type: 3}
       propertyPath: m_Materials.Array.size
@@ -19417,6 +19425,10 @@ PrefabInstance:
     - target: {fileID: 19800000, guid: 489a1d3cf5d15494f8fb97d5706b10bb, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 489a1d3cf5d15494f8fb97d5706b10bb, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 19900000, guid: 489a1d3cf5d15494f8fb97d5706b10bb, type: 3}
       propertyPath: m_Materials.Array.size

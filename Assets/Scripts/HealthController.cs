@@ -97,7 +97,7 @@ public class HealthController : MonoBehaviour
     {
         _bodyPartsManager.SetAllPartsColliders();
         //if (Random.value > 0.5f)
-        _bodyPartsManager.RemovePart(false);
+        StartCoroutine(_bodyPartsManager.RemovePart(false));
         
         if (_aiInput)
             _aiInput.Death();
@@ -109,17 +109,9 @@ public class HealthController : MonoBehaviour
         
         rb.isKinematic = false;
         rb.useGravity = true;
-        SetLayerRecursively(gameObject, 6);
+        GameManager.Instance.SetLayerRecursively(gameObject, 6);
         rb.AddExplosionForce(100,transform.position + Random.onUnitSphere, 10);
-    }
 
-    void SetLayerRecursively(GameObject obj, int newLayer)
-    {
-        obj.layer = newLayer;
-   
-        foreach (Transform child in obj.transform)
-        {
-            SetLayerRecursively( child.gameObject, newLayer );
-        }
+        StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(5, rb, 5, true));
     }
 }
