@@ -16,6 +16,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -33,8 +35,12 @@
       <option value="$PROJECT_DIR$/Assets/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CustomTools.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/FieldOfView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -87,7 +93,7 @@
       <updated>1634212991721</updated>
       <workItem from="1634212994008" duration="17831000" />
       <workItem from="1634301082457" duration="14591000" />
-      <workItem from="1634370604459" duration="1954000" />
+      <workItem from="1634370604459" duration="8592000" />
     </task>
     <servers />
   </component>

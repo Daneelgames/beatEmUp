@@ -12,6 +12,9 @@
             </e>
           </e>
         </e>
+        <e p="Editor" t="Include">
+          <e p="FieldOfViewEditor.cs" t="Include" />
+        </e>
         <e p="FlatKit" t="Include">
           <e p="[Render Pipeline] URP" t="Include">
             <e p="RenderFeatures" t="Include">
@@ -523,6 +526,7 @@
           <e p="BodyPart.cs" t="Include" />
           <e p="BodyPartsManager.cs" t="Include" />
           <e p="CameraFollowPlayer.cs" t="Include" />
+          <e p="FieldOfView.cs" t="Include" />
           <e p="HealthController.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
         </e>

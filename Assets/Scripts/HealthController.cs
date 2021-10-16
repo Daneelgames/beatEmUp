@@ -14,8 +14,9 @@ public class HealthController : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BodyPartsManager _bodyPartsManager;
-    
-    [Header("Stats")]
+
+    [Header("Stats")] 
+    [SerializeField] private bool invincible = false;
     [SerializeField] private int health = 100;
     public int Health => health;
 
@@ -49,7 +50,8 @@ public class HealthController : MonoBehaviour
         
         AddEnemy(damager);
         
-        health -= dmg;
+        if (!invincible)
+            health -= dmg;
 
         if (health <= 0)
         {
@@ -58,7 +60,6 @@ public class HealthController : MonoBehaviour
         }
         else
         {
-            _attackManager.Damaged();
             if (damageAnimCoroutine != null)
             {
                 StopCoroutine(damageAnimCoroutine);
@@ -72,7 +73,10 @@ public class HealthController : MonoBehaviour
     {
         damaged = true;
         anim.SetBool(DamagedString, true);
+        _attackManager.Damaged();
+        
         yield return new WaitForSeconds(damagedAnimationTime);
+        
         damaged = false;
         anim.SetBool(DamagedString, false);
         _attackManager.RestoredFromDamage();
@@ -96,8 +100,6 @@ public class HealthController : MonoBehaviour
     void Death()
     {
         _bodyPartsManager.SetAllPartsColliders();
-        //if (Random.value > 0.5f)
-        StartCoroutine(_bodyPartsManager.RemovePart(false));
         
         if (_aiInput)
             _aiInput.Death();
@@ -112,6 +114,11 @@ public class HealthController : MonoBehaviour
         GameManager.Instance.SetLayerRecursively(gameObject, 6);
         rb.AddExplosionForce(100,transform.position + Random.onUnitSphere, 10);
 
+        if (Random.value > 0.5f)
+        {
+            StartCoroutine(_bodyPartsManager.RemovePart(false));   
+        }
+        
         StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(5, rb, 5, true));
     }
 }

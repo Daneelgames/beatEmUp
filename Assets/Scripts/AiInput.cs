@@ -41,14 +41,19 @@ public class AiInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         currentTargetPosition = transform.position;
         
         Wander();
         
         if (simpleWalker)
-            StartCoroutine(SimpleWalker());
+            StartCoroutine(SimpleWalker());   
     }
-
+    
     public void Damaged(HealthController damager)
     {
         if (state != State.FollowTarget)
@@ -270,5 +275,11 @@ public class AiInput : MonoBehaviour
     {
         StopAllCoroutines();
         alive = false;
+    }
+
+    public void Ressurect()
+    {
+        alive = true;
+        Init();
     }
 }
