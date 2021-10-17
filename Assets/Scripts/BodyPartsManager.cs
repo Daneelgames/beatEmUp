@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class BodyPartsManager : MonoBehaviour
 {
+    [SerializeField] private BodyPart hipsBone;
+    public BodyPart HipsBone => hipsBone;
+    public Transform victimTargetTransform;
+
     public List<BodyPart> bodyParts;
     [SerializeField] private List<BodyPart> removableParts;
 
     public List<BodyPart> RemovableParts => removableParts;
 
     [SerializeField] private GameObject bloodSfx;
+
+    [SerializeField] private GameObject victimTestGameObject;
     void Start()
     {
         if (bodyParts.Count == 0)
             InitBodyParts();
+
+        if (victimTestGameObject != null)
+            victimTestGameObject.name += " Test";
     }
 
     [ContextMenu("InitBodyParts")]
@@ -31,9 +40,14 @@ public class BodyPartsManager : MonoBehaviour
 
     public void SetAllPartsColliders()
     {
-        for (var index = 0; index < bodyParts.Count; index++)
+        for (var index = bodyParts.Count - 1; index >= 0; index--)
         {
             var bodyPart = bodyParts[index];
+            if (bodyPart == null)
+            {
+                bodyParts.RemoveAt(index);
+                continue;
+            }
             bodyPart.Collider.isTrigger = false;
         }
     }

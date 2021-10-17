@@ -8,13 +8,20 @@ public class HealthController : MonoBehaviour
 {
     [Header("Links")] 
     [SerializeField] private PlayerInput playerInput;
+    public PlayerInput PlayerInput => playerInput;
+
     [SerializeField] private CharacterController characterController;
     [SerializeField] private AttackManager _attackManager;
     [SerializeField] private Animator anim;
+    public Animator Anim => anim;
+
     [SerializeField] private AiInput _aiInput;
+    public AiInput AiInput => _aiInput;
+
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private BodyPartsManager _bodyPartsManager;
+    public BodyPartsManager BodyPartsManager => _bodyPartsManager;
     [SerializeField] private FieldOfView fieldOfView;
 
     [Header("Stats")] 
@@ -69,8 +76,7 @@ public class HealthController : MonoBehaviour
 
         if (health <= 0)
         {
-            anim.SetBool(Alive, false);
-            Death();
+            Death(false, true, false, Random.value > 0.5f);
         }
         else
         {
@@ -119,10 +125,10 @@ public class HealthController : MonoBehaviour
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
     {
         float t = 0;
-        for (int i = 0; i < visibleTargets.Count; i++)
+        for (int i = visibleTargets.Count - 1; i >= 0; i--)
         {
             var target = visibleTargets[i].gameObject;
-            for (int j = 0; j < GameManager.Instance.Units.Count; j++)
+            for (int j = GameManager.Instance.Units.Count - 1; j >= 0; j--)
             {
                 var unit = GameManager.Instance.Units[j];
                 if (visibleHCs.Contains(unit) == false && unit._bodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects.Contains(target))
@@ -147,9 +153,9 @@ public class HealthController : MonoBehaviour
         visibleHCs.Clear();
     }
     
-    void Death()
+    public void Death(bool onlyDisableAllSystems, bool explode, bool removeRbInstantly, bool removePart)
     {
-        _bodyPartsManager.SetAllPartsColliders();
+        health = 0;
         
         if (playerInput)
             playerInput.Death();
@@ -161,18 +167,36 @@ public class HealthController : MonoBehaviour
             characterController.enabled = false;
         if (fieldOfView)
             fieldOfView.Death();
-        
-        rb.isKinematic = false;
-        rb.useGravity = true;
-        GameManager.Instance.SetLayerRecursively(gameObject, 6);
-        rb.AddExplosionForce(100,transform.position + Random.onUnitSphere, 10);
 
-        if (Random.value > 0.5f)
+        if (onlyDisableAllSystems)
+        {
+            anim.enabled = false;
+            return;   
+        }
+        
+        _bodyPartsManager.SetAllPartsColliders();
+        
+        anim.SetBool(Alive, false);
+
+        GameManager.Instance.SetLayerRecursively(gameObject, 6);
+
+        if (removePart)
         {
             StartCoroutine(_bodyPartsManager.RemovePart(false));   
         }
-
         
-        StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(5, rb, 5, true));
+        if (rb)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;   
+            
+            if (explode)
+                rb.AddExplosionForce(100,transform.position + Random.onUnitSphere, 10);
+            
+            if (!removeRbInstantly)
+                StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(5, rb, 5, true));
+            else
+                Destroy(rb);
+        }
     }
 }

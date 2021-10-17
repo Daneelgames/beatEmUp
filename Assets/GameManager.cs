@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,14 @@ public class GameManager : MonoBehaviour
         Instance = this;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey("g") && Input.GetKey("z") && Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void AddUnit(HealthController hc)
@@ -51,5 +60,31 @@ public class GameManager : MonoBehaviour
         SetLayerRecursively(newRb.gameObject, 6);
         if (destroy)
             Destroy(newRb);
+    }
+
+    public HealthController GetClosestUnit(HealthController hcAttacker, bool onlyEnemies, float maxDistance)
+    {
+        float distance = maxDistance;
+        float newDistance = 0;
+        
+        HealthController closestUnit = null;
+        
+        for (int i = 0; i < units.Count; i++)
+        {
+            if (units[i] == hcAttacker)
+                continue;
+
+            if (hcAttacker.Enemies.Contains(units[i]) == false && onlyEnemies)
+                continue;
+
+            newDistance = Vector3.Distance(hcAttacker.transform.position, units[i].transform.position);
+            if (newDistance < distance)
+            {
+                distance = newDistance;
+                closestUnit = units[i];
+            }
+        }
+
+        return closestUnit;
     }
 }

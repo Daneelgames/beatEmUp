@@ -14,6 +14,8 @@ public class AttackManager : MonoBehaviour
 
     [SerializeField] private List<Attack> attackList = new List<Attack>();
     List<Attack> tempAttackList = new List<Attack>();
+    [SerializeField] private List<GrabAttack> grabAttacksList = new List<GrabAttack>();
+    [SerializeField] private float grabAttacksRange = 3;
 
     private Coroutine attackSwingCoroutine;
     private Coroutine attackDangerCoroutine;
@@ -22,11 +24,15 @@ public class AttackManager : MonoBehaviour
     [Header("Links")] [SerializeField] private HealthController hc;
     [SerializeField] private Animator anim;
     private Attack currentAttack;
+    private GrabAttack currentGrabAttack;
 
     public Attack CurrentAttack
     {
         get => currentAttack;
-        set => currentAttack = value;
+    }
+    public GrabAttack CurrentGrabAttack
+    {
+        get => currentGrabAttack;
     }
 
     private Attack prevAttack;
@@ -34,11 +40,28 @@ public class AttackManager : MonoBehaviour
     private bool canMove = true;
     private bool canRotate = true;
 
-    public bool CanMove => canMove;
-    public bool CanRotate => canRotate;
+    public bool CanMove
+    {
+        get => canMove;
+        set
+        {
+            canMove = value; 
+        }
+    }
+    public bool CanRotate
+    {
+        get => canRotate;
+        set
+        {
+            canRotate = value; 
+        }
+    }
 
     public void Jumped()
     {
+        if (currentGrabAttack != null)
+            return;
+        
         if (attackSwingCoroutine != null)
         {
             StopCoroutine(attackSwingCoroutine);
@@ -63,12 +86,15 @@ public class AttackManager : MonoBehaviour
         }
 
         currentAttack = null;
-        canMove = true;
-        canRotate = true;
+        CanMove = true;
+        CanRotate = true;
     }
 
     public void Damaged()
     {
+        if (currentGrabAttack != null)
+            return;
+
         if (attackSwingCoroutine != null)
         {
             StopCoroutine(attackSwingCoroutine);
@@ -91,25 +117,64 @@ public class AttackManager : MonoBehaviour
             StopCoroutine(attackReturnCoroutine);
             attackReturnCoroutine = null;
         }
-
         
         currentAttack = null;
-        canMove = false;
-        canRotate = false;
+        CanMove = false;
+        CanRotate = false;
     }
 
     public void RestoredFromDamage()
     {
-        canMove = true;
-        canRotate = true;
+        if (currentGrabAttack != null)
+            return;
+
+        CanMove = true;
+        CanRotate = true;
     }
     
     public void TryToAttack()
     {
+        if (currentGrabAttack != null)
+            return;
+
         // MELEE
-        if (currentAttack != null && !currentAttack.CanSkipReturn)
+        if (currentAttack != null && !currentAttack.CanSkipReturn && attackReturnCoroutine != null)
         {
             return;
+        }
+        
+        // IF LOW HP ENEMY NEARBY
+        var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, true,grabAttacksRange); 
+        if (nearbyEnemy != null)
+        {
+            // EXECUTE PAIRED ANIMATION
+            float healthPercent = (nearbyEnemy.Health * 1f) / (nearbyEnemy.HealthMax * 1f);
+
+            if (nearbyEnemy.PlayerInput == null && nearbyEnemy.VisibleHCs.Contains(hc) == false && nearbyEnemy.AiInput.aiState != AiInput.State.FollowTarget)
+                healthPercent = 0;
+            
+            currentGrabAttack = ChooseGrabAttack(healthPercent);
+
+            if (currentGrabAttack != null)
+            {
+                if (attackSwingCoroutine != null)
+                {
+                    StopCoroutine(attackSwingCoroutine);
+                    attackSwingCoroutine = null;
+                }
+                if (attackDangerCoroutine != null)
+                {
+                    StopCoroutine(attackDangerCoroutine);
+                    attackDangerCoroutine = null;
+                }
+                if (attackReturnCoroutine != null)
+                {
+                    StopCoroutine(attackReturnCoroutine);
+                    attackReturnCoroutine = null;
+                }
+                StartCoroutine(ExecuteGrabAttack(nearbyEnemy));
+                return;   
+            }
         }
         
         if (attackReturnCoroutine != null)
@@ -117,17 +182,11 @@ public class AttackManager : MonoBehaviour
             // Stops return coroutine
             StopCoroutine(attackReturnCoroutine);
             attackReturnCoroutine = null;
-            canMove = true;
-            canRotate = true;
+            CanMove = true;
+            CanRotate = true;
         }
         
-        if (attackDangerCoroutine != null)
-        {
-            // Already attacking, do nothing and exit
-            return;
-        }
-        
-        if (attackSwingCoroutine != null)
+        if (attackDangerCoroutine != null || attackSwingCoroutine != null)
         {
             // Already attacking, do nothing and exit
             return;
@@ -138,6 +197,85 @@ public class AttackManager : MonoBehaviour
         attackSwingCoroutine = StartCoroutine(AttackSwing());
     }
 
+
+    GrabAttack ChooseGrabAttack(float healthPercent)
+    {
+        List<GrabAttack> tempList = new List<GrabAttack>(grabAttacksList);
+
+        for (int i = tempList.Count - 1; i >= 0; i--)
+        {
+            if (healthPercent > tempList[i].healthPercentMin)
+                tempList.RemoveAt(i);
+        }
+
+        if (tempList.Count <= 0)
+            return null;
+        
+        return tempList[Random.Range(0, tempList.Count)];
+    }
+
+    IEnumerator ExecuteGrabAttack(HealthController victimHc)
+    {
+        //move victim's hips inside our animator
+        victimHc.Death(true, false, false, false);
+        
+        Transform victimsHips = victimHc.BodyPartsManager.HipsBone.transform;
+        
+        Vector3 localPositionInsideParent = victimsHips.localPosition;
+        Vector3 localScaleInsideParent = victimsHips.localScale;
+        Quaternion localRotationInsideParent = victimsHips.localRotation;
+        
+        victimsHips.parent = hc.BodyPartsManager.victimTargetTransform;
+        hc.Anim.Rebind();
+        anim.Rebind();
+
+        anim.SetBool(currentGrabAttack.AttackAnimationTriggerName, true);
+        CanMove = false;
+        CanRotate = false;
+
+        yield return StartCoroutine(MoveVictimHipsInsideAnimator(victimsHips, localPositionInsideParent, localScaleInsideParent, localRotationInsideParent));
+        
+        yield return new WaitForSeconds(currentGrabAttack.GrabAttackDuration);
+        
+        anim.SetBool(currentGrabAttack.AttackAnimationTriggerName, false);
+        CanMove = true;
+        CanRotate = true;
+
+        victimHc.Death(false, false, true, false);
+        
+        victimHc.transform.position = victimHc.BodyPartsManager.HipsBone.transform.position; 
+        victimHc.transform.rotation = victimHc.BodyPartsManager.HipsBone.transform.rotation;
+
+        GameObject fakeCorpse = Instantiate(victimsHips.gameObject, victimsHips.transform.position, victimsHips.transform.rotation);
+        fakeCorpse.transform.parent = victimHc.transform;
+        
+        Destroy(victimsHips.gameObject);
+        
+        anim.Rebind();
+        
+        currentGrabAttack = null;
+    }
+
+    IEnumerator MoveVictimHipsInsideAnimator(Transform victimsHips, Vector3 localPositionInsideParent,
+        Vector3 localScaleInsideParent, Quaternion localRotationInsideParent)
+    {
+        Vector3 victimsInitLocalPos = victimsHips.localPosition;
+        Quaternion victimIniLocalRot = victimsHips.localRotation;
+        
+        float t = 0;
+        
+        while (t < currentGrabAttack.prepareTime)
+        {
+            t += Time.deltaTime;
+            victimsHips.position = Vector3.Lerp(victimsInitLocalPos, localPositionInsideParent, t / currentGrabAttack.prepareTime);
+            victimsHips.rotation = Quaternion.Slerp(victimIniLocalRot, localRotationInsideParent, t / currentGrabAttack.prepareTime);
+            yield return null;
+        }
+
+        victimsHips.localPosition = localPositionInsideParent;
+        victimsHips.localScale = localScaleInsideParent;
+        victimsHips.localRotation = localRotationInsideParent;
+    }
     
     void ChooseAttack()
     {
@@ -193,8 +331,8 @@ public class AttackManager : MonoBehaviour
     
     IEnumerator AttackSwing()
     {
-        canMove = currentAttack.CanMoveOnSwing;
-        canRotate = currentAttack.CanRotateOnSwing;
+        CanMove = currentAttack.CanMoveOnSwing;
+        CanRotate = currentAttack.CanRotateOnSwing;
         
         anim.SetTrigger(currentAttack.AttackAnimationTriggerName);
         yield return new WaitForSeconds(currentAttack.AttackSwingTime);
@@ -204,8 +342,8 @@ public class AttackManager : MonoBehaviour
 
     IEnumerator AttackDanger()
     {
-        canMove = currentAttack.CanMoveOnDanger;
-        canRotate = currentAttack.CanRotateOnDanger;
+        CanMove = currentAttack.CanMoveOnDanger;
+        CanRotate = currentAttack.CanRotateOnDanger;
         
         for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
         {
@@ -229,14 +367,14 @@ public class AttackManager : MonoBehaviour
 
     IEnumerator AttackReturn()
     {
-        canMove = currentAttack.CanMoveOnReturn;
-        canRotate = currentAttack.CanRotateOnReturn;
+        CanMove = currentAttack.CanMoveOnReturn;
+        CanRotate = currentAttack.CanRotateOnReturn;
         
         yield return new WaitForSeconds(currentAttack.AttackReturnTime);
         attackReturnCoroutine = null;
         currentAttack = null;
-        canMove = true;
-        canRotate = true;
+        CanMove = true;
+        CanRotate = true;
     }
 
     public void DamageOtherBodyPart(BodyPart partToDamage)
@@ -321,3 +459,15 @@ public class Attack
     public bool CanSkipReturn => canSkipReturn;
 }
 # endregion
+
+#region GrabAttack
+
+[Serializable]
+public class GrabAttack
+{
+    public string AttackAnimationTriggerName = "PairedAttack";
+    public float prepareTime = 0.5f;
+    public float GrabAttackDuration = 1f;
+    [Range(0.01f, 0.99f)] public float healthPercentMin = 0.2f;
+}
+#endregion

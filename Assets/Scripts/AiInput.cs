@@ -5,14 +5,22 @@ using UnityEngine.AI;
 
 public class AiInput : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         Wander, Idle, FollowTarget
     }
 
     [SerializeField] private State state = State.Wander;
     
-    [Header("Stats")] 
+    public State aiState
+    {
+        get => state;
+        set => state = value;
+    }
+
+    
+    [Header("Stats")]
+
     [SerializeField] float updateRate = 0.5f;
     [SerializeField] private float walkSpeed = 2;
     [SerializeField] private float runSpeed = 4;

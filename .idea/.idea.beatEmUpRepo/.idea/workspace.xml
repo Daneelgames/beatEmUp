@@ -32,18 +32,18 @@
       <option value="$PROJECT_DIR$/Assets/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CustomTools.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollowPlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/PlayerUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -97,6 +97,8 @@
       <workItem from="1634212994008" duration="17831000" />
       <workItem from="1634301082457" duration="14591000" />
       <workItem from="1634370604459" duration="17664000" />
+      <workItem from="1634461456835" duration="11215000" />
+      <workItem from="1634473656696" duration="230000" />
     </task>
     <servers />
   </component>
