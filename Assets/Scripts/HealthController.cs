@@ -68,6 +68,12 @@ public class HealthController : MonoBehaviour
 
         if (_aiInput)
             _aiInput.SetAggro(damager);
+
+        if (visibleHCs.Contains(damager) == false &&
+            Vector3.Distance(transform.position, damager.transform.position) < 10)
+        {
+            visibleHCs.Add(damager);
+        }
         
         AddEnemy(damager);
         

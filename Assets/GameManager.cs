@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -85,6 +86,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        
+        print("GetClosestUnit " + closestUnit);
         return closestUnit;
     }
 }

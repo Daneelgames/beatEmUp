@@ -3041,7 +3041,7 @@ MonoBehaviour:
     prepareTime: 0.5
     GrabAttackDuration: 2.5
     healthPercentMin: 0.2
-  grabAttacksRange: 2
+  grabAttacksRange: 3
   hc: {fileID: 1212818265}
   anim: {fileID: 919132149555714730}
 --- !u!143 &1277168340

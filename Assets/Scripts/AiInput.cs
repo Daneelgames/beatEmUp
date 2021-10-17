@@ -317,7 +317,7 @@ public class AiInput : MonoBehaviour
             if (hc.Enemies[i].gameObject == other.gameObject)
             {
                 attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
-                _attackManager.TryToAttack();
+                _attackManager.TryToAttack(false);
                 return;
             }
         }

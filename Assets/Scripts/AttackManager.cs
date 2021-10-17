@@ -132,7 +132,7 @@ public class AttackManager : MonoBehaviour
         CanRotate = true;
     }
     
-    public void TryToAttack()
+    public void TryToAttack(bool playerInput)
     {
         if (currentGrabAttack != null)
             return;
@@ -144,7 +144,7 @@ public class AttackManager : MonoBehaviour
         }
         
         // IF LOW HP ENEMY NEARBY
-        var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, true,grabAttacksRange); 
+        var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, !playerInput,grabAttacksRange); 
         if (nearbyEnemy != null)
         {
             // EXECUTE PAIRED ANIMATION

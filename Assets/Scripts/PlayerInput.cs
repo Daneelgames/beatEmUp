@@ -117,7 +117,7 @@ public class PlayerInput : MonoBehaviour
     void GetAttackingInput()
     {
         if (Input.GetButtonDown("Attack"))
-            attackManager.TryToAttack();
+            attackManager.TryToAttack(true);
     }
     
     void GetMovementInput()
