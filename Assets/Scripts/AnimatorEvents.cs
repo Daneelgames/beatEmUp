@@ -5,11 +5,17 @@ using UnityEngine;
 public class AnimatorEvents : MonoBehaviour
 {
     [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private NoiseMaker noiseMaker;
     
     public void PlayStep()
     {
         if (_audioManager)
-            _audioManager.PlaySteps();
+            _audioManager.PlaySteps(true);
+    }
+    public void PlayRunStep()
+    {
+        if (_audioManager)
+            _audioManager.PlaySteps(false);
     }
     public void PlayAttack()
     {
@@ -20,5 +26,16 @@ public class AnimatorEvents : MonoBehaviour
     {
         if (_audioManager)
             _audioManager.PlayDamaged();
+    }
+
+    public void WalkStepNoise()
+    {
+        if (noiseMaker)
+            noiseMaker.WalkStepNoise();
+    }
+    public void RunStepNoise()
+    {
+        if (noiseMaker)
+            noiseMaker.RunStepNoise();
     }
 }

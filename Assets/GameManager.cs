@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayBeforeStart);
         float t = 0;
+        
+        if (newRb == null)
+            yield break;
+        
         Vector3 startVel = newRb.velocity;
         Vector3 startAngularVel = newRb.angularVelocity;
         while (t < time)
@@ -86,8 +90,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        
-        print("GetClosestUnit " + closestUnit);
         return closestUnit;
     }
 }

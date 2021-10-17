@@ -6671,7 +6671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  updateRate: 0.5
+  hears: 1
   walkSpeed: 4
   runSpeed: 8
   stopDistance: 2
@@ -7489,3 +7489,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioManager: {fileID: 6744019107223394889}
+  noiseMaker: {fileID: 0}

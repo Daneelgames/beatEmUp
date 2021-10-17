@@ -12,12 +12,16 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> attackClips;
     public List<AudioClip> damagedClips;
     
-    public void PlaySteps()
+    public void PlaySteps(bool halfVolume)
     {
         if (stepsAu == null)
             return;
         
         stepsAu.clip = stepsClips[Random.Range(0, stepsClips.Count)];
+        if (halfVolume)
+            stepsAu.volume = 0.5f;
+        else
+            stepsAu.volume = 1f;
         stepsAu.pitch = Random.Range(0.6f, 1.1f);
         stepsAu.Play();
     }

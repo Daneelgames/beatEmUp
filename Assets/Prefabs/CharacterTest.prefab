@@ -2846,6 +2846,7 @@ GameObject:
   - component: {fileID: 1579235668}
   - component: {fileID: 7252111422681748140}
   - component: {fileID: 324289374}
+  - component: {fileID: 6592121289291070097}
   m_Layer: 7
   m_Name: CharacterTest
   m_TagString: Untagged
@@ -3146,6 +3147,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hc: {fileID: 1212818265}
   healthbar: {fileID: 1085433770}
+--- !u!114 &6592121289291070097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757401403179926516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa1e500a81033f429023daba06d1ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  makeStepNoise: 1
+  walkStepNoiseDistance: 3
+  runStepNoiseDistance: 15
 --- !u!1 &5882399220427191655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,3 +4141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioManager: {fileID: 1579235668}
+  noiseMaker: {fileID: 6592121289291070097}

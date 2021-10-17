@@ -7,7 +7,7 @@ public class AiInput : MonoBehaviour
 {
     public enum State
     {
-        Wander, Idle, FollowTarget
+        Wander, Idle, FollowTarget, Alert
     }
 
     [SerializeField] private State state = State.Wander;
@@ -18,10 +18,11 @@ public class AiInput : MonoBehaviour
         set => state = value;
     }
 
-    
-    [Header("Stats")]
 
-    [SerializeField] float updateRate = 0.5f;
+    [Header("Stats")] 
+    [SerializeField] private bool hears = true;
+    public bool Hears => hears;
+    float updateRate = 0.5f;
     [SerializeField] private float walkSpeed = 2;
     [SerializeField] private float runSpeed = 4;
     [SerializeField] private float stopDistance = 3;
@@ -50,9 +51,9 @@ public class AiInput : MonoBehaviour
     private Coroutine wanderCoroutine;
     private Coroutine idleCoroutine;
     private Coroutine followTargetCoroutine;
+    private Coroutine investigateCoroutine;
     private static readonly int Running = Animator.StringToHash("Running");
 
-    // Start is called before the first frame update
     void Start()
     {
         Init();
@@ -60,41 +61,77 @@ public class AiInput : MonoBehaviour
 
     public void Init()
     {
+        SpawnController.Instance.AddAiInput(this);
+        
         currentTargetPosition = transform.position;
         
-        Wander();
+        if (state == State.Wander)
+            Wander();
+        else if (state == State.Idle)
+            Idle();
         
         if (simpleWalker)
             StartCoroutine(SimpleWalker());   
     }
+
+    void StopBehaviourCoroutines()
+    {
+        if (wanderCoroutine != null)
+        {
+            StopCoroutine(wanderCoroutine);
+            wanderCoroutine = null;
+        }
+        if (idleCoroutine != null)
+        {
+            StopCoroutine(idleCoroutine);
+            idleCoroutine = null;
+        }
+        
+        if (followTargetCoroutine != null)
+        {
+            StopCoroutine(followTargetCoroutine);
+            followTargetCoroutine = null;
+        }
+        
+        if (aleartCoroutine != null)
+        {
+            StopCoroutine(aleartCoroutine);
+            aleartCoroutine = null;
+        }
+    }
     
     public void SetAggro(HealthController damager)
     {
+        print("SET AGGRO " + damager);
         if (state != State.FollowTarget)
         {
-            if (wanderCoroutine != null)
-            {
-                StopCoroutine(wanderCoroutine);
-                wanderCoroutine = null;
-            }
-            if (idleCoroutine != null)
-            {
-                StopCoroutine(idleCoroutine);
-                idleCoroutine = null;
-            }
-
+            StopBehaviourCoroutines();
+            
             if (PlayerInput.Instance.gameObject == damager.gameObject)
             {
                 PlayerInput.Instance.HC.AddEnemy(hc);
             }
 
-            if (aleartCoroutine != null)
-                StopCoroutine(aleartCoroutine);
             aleartCoroutine = StartCoroutine(Alert());
             
             agent.SetDestination(damager.transform.position);
             followTargetCoroutine = StartCoroutine(FollowTarget());
         }
+    }
+
+    public void HeardNoise(Vector3 noiseMakerPos)
+    {
+        if (!alive)
+            return;
+        
+        if (state == State.FollowTarget || state == State.Alert)
+            return;
+        
+        StopBehaviourCoroutines();
+        aleartCoroutine = StartCoroutine(Alert());
+            
+        agent.SetDestination(noiseMakerPos);
+        investigateCoroutine = StartCoroutine(Investigate(noiseMakerPos));
     }
 
 
@@ -163,11 +200,7 @@ public class AiInput : MonoBehaviour
                 else
                 {
                     // REST A BIT
-                    if (idleCoroutine != null)
-                        StopCoroutine(idleCoroutine);
-                    
-                    idleCoroutine = StartCoroutine(Idle());
-
+                    Idle();
                     wanderCoroutine = null;
                     yield break;
                 }
@@ -180,14 +213,64 @@ public class AiInput : MonoBehaviour
             yield return new WaitForSeconds(updateRate);
         }
     }
+
+    void Idle()
+    {
+        if (idleCoroutine != null)
+            StopCoroutine(idleCoroutine);
+                    
+        idleCoroutine = StartCoroutine(Ideling());
+    }
+
+    IEnumerator Investigate(Vector3 investigationPoint)
+    {
+        state = State.Alert;
+        // WALK
+        anim.SetBool(Running, false);
+        agent.speed = walkSpeed;
+
+        while (true)
+        {
+            if (alive == false)
+                yield break;
+            
+            if (_attackManager.CanMove)
+            {
+                agent.isStopped = false;
+                agent.SetDestination(investigationPoint);   
+            }
+            else
+            {
+                agent.isStopped = true;
+            }
+
+            yield return new WaitForSeconds(updateRate);
+            
+            if (alive == false)
+                yield break;
+            
+            if (Vector3.Distance(transform.position, investigationPoint) <= stopDistance)
+            {
+                if (Random.value > 0.5f)
+                    Idle();
+                else
+                    Wander();
+                
+                investigateCoroutine = null;
+                yield break;
+            }
+        }
+    }
     IEnumerator FollowTarget()
     {
         state = State.FollowTarget;
 
         while (true)
         {
-            currentTargetPosition = GetPositionOfClosestEnemy(true);
+            if (alive == false)
+                yield break;
             
+            currentTargetPosition = GetPositionOfClosestEnemy(true);
             
             if (_attackManager.CanMove)
             {
@@ -245,7 +328,7 @@ public class AiInput : MonoBehaviour
         HealthController closestEnemy = null;
         for (int i = 0; i < hc.Enemies.Count; i++)
         {
-            if (hc.VisibleHCs.Contains(hc.Enemies[i]) == false)
+            if (onlyVisible && hc.VisibleHCs.Contains(hc.Enemies[i]) == false)
                 continue;
             
             newDistance = Vector3.Distance(transform.position, hc.Enemies[i].transform.position);
@@ -265,6 +348,11 @@ public class AiInput : MonoBehaviour
                 StopCoroutine(followTargetCoroutine);
                 followTargetCoroutine = null;
             }
+            if (investigateCoroutine != null)
+            {
+                StopCoroutine(investigateCoroutine);
+                investigateCoroutine = null;
+            }
             Wander();
         }
         
@@ -283,9 +371,9 @@ public class AiInput : MonoBehaviour
         return newPos;
     }
     
-    IEnumerator Idle()
+    IEnumerator Ideling()
     {
-        state = State.Wander;
+        state = State.Idle;
         yield return new WaitForSeconds(Random.Range(idleTimeMinMax.x, idleTimeMinMax.y));
         wanderCoroutine = StartCoroutine(WanderOverTime());
     }
@@ -323,9 +411,10 @@ public class AiInput : MonoBehaviour
         }
     }
 
+
     public void Death()
     {
-        StopAllCoroutines();
+        StopBehaviourCoroutines();
         alive = false;
     }
 

@@ -75,19 +75,28 @@ public class FieldOfView : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        RaycastHit hit;
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
+            
+            if (target == transform)
+            {
+                continue;
+            }
+            
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             
             // if in viewport
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position + Vector3.up * 2, dirToTarget, dstToTarget, obstacleMask))
+
+                Physics.Raycast(transform.position + Vector3.up * 2,  dirToTarget, out hit, dstToTarget, obstacleMask);
+
+                if (hit.collider == null)
                 {
-                    // unit is visible
                     visibleTargets.Add(target);
                 }
             }

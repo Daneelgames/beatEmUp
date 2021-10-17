@@ -198,6 +198,7 @@
           </e>
         </e>
         <e p="GameManager.cs" t="Include" />
+        <e p="NoiseMaker.cs" t="Include" />
         <e p="PlayerUi.cs" t="Include" />
         <e p="SC Post Effects" t="Include">
           <e p="Editor" t="Include">
@@ -531,6 +532,7 @@
           <e p="HealthController.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
         </e>
+        <e p="SpawnController.cs" t="Include" />
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
