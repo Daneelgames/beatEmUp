@@ -102,7 +102,6 @@ public class AiInput : MonoBehaviour
     
     public void SetAggro(HealthController damager)
     {
-        print("SET AGGRO " + damager);
         if (state != State.FollowTarget)
         {
             StopBehaviourCoroutines();

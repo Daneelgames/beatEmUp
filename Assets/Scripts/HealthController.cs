@@ -133,9 +133,13 @@ public class HealthController : MonoBehaviour
         float t = 0;
         for (int i = visibleTargets.Count - 1; i >= 0; i--)
         {
+            if (i >= visibleTargets.Count)
+                continue;
             var target = visibleTargets[i].gameObject;
             for (int j = GameManager.Instance.Units.Count - 1; j >= 0; j--)
             {
+                if (j >= GameManager.Instance.Units.Count)
+                    continue;
                 var unit = GameManager.Instance.Units[j];
                 if (visibleHCs.Contains(unit) == false && unit._bodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects.Contains(target))
                 {

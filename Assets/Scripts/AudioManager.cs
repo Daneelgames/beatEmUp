@@ -12,14 +12,14 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> attackClips;
     public List<AudioClip> damagedClips;
     
-    public void PlaySteps(bool halfVolume)
+    public void PlaySteps(bool reduceVolume)
     {
         if (stepsAu == null)
             return;
         
         stepsAu.clip = stepsClips[Random.Range(0, stepsClips.Count)];
-        if (halfVolume)
-            stepsAu.volume = 0.5f;
+        if (reduceVolume)
+            stepsAu.volume = 0.3f;
         else
             stepsAu.volume = 1f;
         stepsAu.pitch = Random.Range(0.6f, 1.1f);
