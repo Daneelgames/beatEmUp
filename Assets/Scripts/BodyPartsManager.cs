@@ -13,10 +13,8 @@ public class BodyPartsManager : MonoBehaviour
 
     public List<BodyPart> RemovableParts => removableParts;
     
-    [SerializeField] private Transform weaponParentTransform;
-    public Transform WeaponParentTransform => weaponParentTransform;
 
-    private GameObject bloodSfx;
+    [SerializeField] private GameObject bloodSfx;
 
     [SerializeField] private GameObject victimTestGameObject;
     void Start()
@@ -90,4 +88,5 @@ public class BodyPartsManager : MonoBehaviour
             StartCoroutine(GameManager.Instance.FreezeRigidbodyOverTime(3, newRb, 3, true));
         }
     }
+
 }

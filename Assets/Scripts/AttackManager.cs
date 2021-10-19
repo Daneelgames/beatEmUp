@@ -21,11 +21,20 @@ public class AttackManager : MonoBehaviour
     private Coroutine attackDangerCoroutine;
     private Coroutine attackReturnCoroutine;
 
-    [Header("Links")] [SerializeField] private HealthController hc;
+    private Weapon weaponInHands;
+    
+    [Header("Links")] 
+    [SerializeField] private HealthController hc;
+    public HealthController Hc => hc;
+
+    [SerializeField] private Transform weaponParentTransform;
+    public Transform WeaponParentTransform => weaponParentTransform;
+    
     [SerializeField] private Animator anim;
     private Attack currentAttack;
     private GrabAttack currentGrabAttack;
     public GameObject HitParticle;
+    
 
     private List<HealthController> damagedHCs = new List<HealthController>();
     public Attack CurrentAttack
@@ -144,39 +153,42 @@ public class AttackManager : MonoBehaviour
         {
             return;
         }
-        
-        // IF LOW HP ENEMY NEARBY
-        var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, !playerInput,grabAttacksRange); 
-        if (nearbyEnemy != null)
+
+        if (weaponInHands == null)
         {
-            // EXECUTE PAIRED ANIMATION
-            float healthPercent = (nearbyEnemy.Health * 1f) / (nearbyEnemy.HealthMax * 1f);
-
-            if (nearbyEnemy.PlayerInput == null && nearbyEnemy.VisibleHCs.Contains(hc) == false && nearbyEnemy.AiInput.aiState != AiInput.State.FollowTarget)
-                healthPercent = 0;
-            
-            currentGrabAttack = ChooseGrabAttack(healthPercent);
-
-            if (currentGrabAttack != null)
+            // IF LOW HP ENEMY NEARBY
+            var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, !playerInput,grabAttacksRange); 
+            if (nearbyEnemy != null)
             {
-                if (attackSwingCoroutine != null)
+                // EXECUTE PAIRED ANIMATION
+                float healthPercent = (nearbyEnemy.Health * 1f) / (nearbyEnemy.HealthMax * 1f);
+
+                if (nearbyEnemy.PlayerInput == null && nearbyEnemy.VisibleHCs.Contains(hc) == false && nearbyEnemy.AiInput.aiState != AiInput.State.FollowTarget)
+                    healthPercent = 0;
+            
+                currentGrabAttack = ChooseGrabAttack(healthPercent);
+
+                if (currentGrabAttack != null)
                 {
-                    StopCoroutine(attackSwingCoroutine);
-                    attackSwingCoroutine = null;
+                    if (attackSwingCoroutine != null)
+                    {
+                        StopCoroutine(attackSwingCoroutine);
+                        attackSwingCoroutine = null;
+                    }
+                    if (attackDangerCoroutine != null)
+                    {
+                        StopCoroutine(attackDangerCoroutine);
+                        attackDangerCoroutine = null;
+                    }
+                    if (attackReturnCoroutine != null)
+                    {
+                        StopCoroutine(attackReturnCoroutine);
+                        attackReturnCoroutine = null;
+                    }
+                    StartCoroutine(ExecuteGrabAttack(nearbyEnemy));
+                    return;   
                 }
-                if (attackDangerCoroutine != null)
-                {
-                    StopCoroutine(attackDangerCoroutine);
-                    attackDangerCoroutine = null;
-                }
-                if (attackReturnCoroutine != null)
-                {
-                    StopCoroutine(attackReturnCoroutine);
-                    attackReturnCoroutine = null;
-                }
-                StartCoroutine(ExecuteGrabAttack(nearbyEnemy));
-                return;   
-            }
+            }   
         }
         
         if (attackReturnCoroutine != null)
@@ -294,50 +306,57 @@ public class AttackManager : MonoBehaviour
         if (tempAttackList.Count <= 0)
             tempAttackList = new List<Attack>(attackList);
         
-        int newIndex = -1;
-        
-        // GET RANDOM ATTACK BY WEIGHT
-        // Get the total sum of all the attacks
-        float weightSum = 0f;
-        
-        for (int i = tempAttackList.Count - 1; i >= 0; --i)
+        if (weaponInHands == null)
         {
-            weightSum += tempAttackList[i].AttackWeightCurrent;
-        }
-        // Step through all the possibilities, one by one, checking to see if each one is selected.
-        int index = 0;
-        int lastIndex = tempAttackList.Count - 1;
-        while (index < lastIndex)
-        {
-            // Do a probability check with a likelihood of weights[index] / weightSum.
-            if (Random.Range(0, weightSum) < tempAttackList[index].AttackWeightCurrent)
+            int newIndex = -1;
+        
+            // GET RANDOM ATTACK BY WEIGHT
+            // Get the total sum of all the attacks
+            float weightSum = 0f;
+        
+            for (int i = tempAttackList.Count - 1; i >= 0; --i)
             {
-                newIndex = index;
+                weightSum += tempAttackList[i].AttackWeightCurrent;
+            }
+            // Step through all the possibilities, one by one, checking to see if each one is selected.
+            int index = 0;
+            int lastIndex = tempAttackList.Count - 1;
+            while (index < lastIndex)
+            {
+                // Do a probability check with a likelihood of weights[index] / weightSum.
+                if (Random.Range(0, weightSum) < tempAttackList[index].AttackWeightCurrent)
+                {
+                    newIndex = index;
+                }
+ 
+                // Remove the last item from the sum of total untested weights and try again.
+                weightSum -= tempAttackList[index++].AttackWeightCurrent;
             }
  
-            // Remove the last item from the sum of total untested weights and try again.
-            weightSum -= tempAttackList[index++].AttackWeightCurrent;
-        }
- 
-        // No other item was selected, so return very last index.
-        if (newIndex == -1)
-            newIndex = index;
-        
+            // No other item was selected, so return very last index.
+            if (newIndex == -1)
+                newIndex = index;
             
-        var newAttack = tempAttackList[newIndex];
+            var newAttack = tempAttackList[newIndex];
 
-        if (newAttack != currentAttack)
+            if (newAttack != currentAttack)
+            {
+                // IF ATTACK IS NEW - RESETS OLD ATTACK'S WEIGHT
+                if (prevAttack != null && prevAttack != newAttack)
+                    prevAttack.RestoreCurrentWeight();
+            }
+        
+            // lower new attack's current Weight   
+            newAttack.ReduceCurrentWeight();
+            tempAttackList.RemoveAt(newIndex);
+            currentAttack = newAttack;
+        }
+        else
         {
-            // IF ATTACK IS NEW - RESETS OLD ATTACK'S WEIGHT
-            if (prevAttack != null && prevAttack != newAttack)
-                prevAttack.RestoreCurrentWeight();
+            // weapon attack
+            currentAttack = weaponInHands.WeaponAttacks[Random.Range(0, weaponInHands.WeaponAttacks.Count)];
         }
         
-        // lower new attack's current Weight   
-        newAttack.ReduceCurrentWeight();
-        
-        tempAttackList.RemoveAt(newIndex);
-        currentAttack = newAttack;
         prevAttack = currentAttack;
     }
     
@@ -364,6 +383,9 @@ public class AttackManager : MonoBehaviour
                 part.SetDangerous(true);
         }
 
+        if (weaponInHands)
+            weaponInHands.SetDangerous(true);
+
         yield return new WaitForSeconds(currentAttack.AttackDangerTime);
         
         for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
@@ -372,6 +394,8 @@ public class AttackManager : MonoBehaviour
             if (part)
                 part.SetDangerous(false);
         }
+        if (weaponInHands)
+            weaponInHands.SetDangerous(true);
         
         attackReturnCoroutine = StartCoroutine(AttackReturn());
         attackDangerCoroutine = null;
@@ -389,27 +413,63 @@ public class AttackManager : MonoBehaviour
         CanRotate = true;
     }
 
-    public void DamageOtherBodyPart(BodyPart partToDamage)
+    public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage)
     {
         if (currentAttack == null)
-            return;
+            return false;
         
         if (damagedHCs.Contains(partToDamage.HC))
-            return;
+            return false;
 
+        bool damagedSuccessfully = false;
+        
         damagedHCs.Add(partToDamage.HC);
         var newParticle = Instantiate(HitParticle,partToDamage.Collider.bounds.center, Quaternion.identity);
-        int resultDamage = Mathf.RoundToInt(baseAttackDamage * currentAttack.AttackDamageScaler);
+        int resultDamage = Mathf.RoundToInt((baseAttackDamage + additionalWeaponDamage) * currentAttack.AttackDamageScaler);
         float randomCritChance = Random.value;
         int _criticalDamage = 0;
         
         if (randomCritChance <= critChance * currentAttack.AttackCritChanceScaler)
             resultDamage *= Mathf.RoundToInt(critDamageScaler);
 
-        partToDamage.HC.Damage(resultDamage, hc);
+        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc);
+        
+        if (hc.Friends.Contains(partToDamage.HC))
+        {
+            if (Random.value < hc.AiInput.Kidness)
+            {
+                hc.RemoveEnemy(partToDamage.HC);
+            }
+        }
+
+        return damagedSuccessfully;
     }
 
     
+    public void PickWeapon(Interactable interactable)
+    {
+        interactable.transform.position = WeaponParentTransform.position;
+        interactable.transform.rotation = WeaponParentTransform.rotation;
+        interactable.transform.parent = WeaponParentTransform;
+        interactable.WeaponPickUp.SetNewOwner(this);
+        
+        if (weaponInHands != null)
+        {
+            var weaponToDrop = Instantiate(weaponInHands, weaponInHands.transform.position, weaponInHands.transform.rotation);
+            
+            weaponToDrop.transform.localScale = Vector3.one;
+            weaponToDrop.Interactable.ToggleTriggerCollider(false);
+            weaponToDrop.Interactable.ToggleRigidbodyKinematicAndGravity(false, true);
+        }
+        
+        weaponInHands = interactable.WeaponPickUp;
+    }
+
+    public void RemoveWeapon(Weapon weapon)
+    {
+        if (weaponInHands == weapon)
+            weaponInHands = null;
+    }
 }
 
 

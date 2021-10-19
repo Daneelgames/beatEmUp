@@ -861,6 +861,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1016545380944619034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6886546273252934812}
+  m_Layer: 7
+  m_Name: WeaponTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6886546273252934812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016545380944619034}
+  m_LocalRotation: {x: -0.00000011362134, y: 0.7109901, z: -0.7032022, w: -0.00000016391276}
+  m_LocalPosition: {x: 0.0000000433065, y: -0.000100010075, z: -0.009799987}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7816097520245534672}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90.63098, y: 0, z: -180}
 --- !u!1 &1029143299534692903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1133,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4810535640808504758}
+  - {fileID: 6886546273252934812}
   m_Father: {fileID: 4459590091486471831}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -48.387, y: 24.485, z: 0}
@@ -2898,6 +2929,7 @@ MonoBehaviour:
   healthMax: 1000
   damagedAnimationTime: 0.25
   enemies: []
+  friends: []
 --- !u!114 &1212818261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2934,7 +2966,7 @@ MonoBehaviour:
   - {fileID: 137015411}
   - {fileID: 1264857821}
   - {fileID: 1147915039}
-  weaponParentTransform: {fileID: 0}
+  bloodSfx: {fileID: 3042827937223044910, guid: 5bc71a68c838b244ba809a832214db88, type: 3}
   victimTestGameObject: {fileID: 6883282593699104755}
 --- !u!114 &3532836427261899380
 MonoBehaviour:
@@ -2955,7 +2987,7 @@ MonoBehaviour:
   jumpPower: 10
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   hc: {fileID: 1212818265}
   characterController: {fileID: 1277168340}
   anim: {fileID: 919132149555714730}
@@ -2996,32 +3028,10 @@ MonoBehaviour:
     dangeorusParts:
     - {fileID: 371326942}
     - {fileID: 1610119941}
-  - attackWeight: 1
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
-    canAttackMidAir: 1
-    attackDamageScaler: 1.2
-    attackCritChanceScaler: 1
-    attackAnimationTriggerName: Attack1
-    attackSwingTime: 0.33
-    attackDangerTime: 0.825
-    attackReturnTime: 0.25
-    canMoveOnSwing: 1
-    canMoveOnDanger: 0
-    canMoveOnReturn: 0
-    canRotateOnSwing: 1
-    canRotateOnDanger: 0
-    canRotateOnReturn: 1
-    canSkipReturn: 0
-    dangeorusParts:
-    - {fileID: 799975424}
-    - {fileID: 1151221938}
-    - {fileID: 376145812}
-    - {fileID: 362900792}
   - attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
-    canAttackMidAir: 1
+    canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
     attackAnimationTriggerName: Attack2
@@ -3045,6 +3055,7 @@ MonoBehaviour:
     healthPercentMin: 0.2
   grabAttacksRange: 3
   hc: {fileID: 1212818265}
+  weaponParentTransform: {fileID: 6886546273252934812}
   anim: {fileID: 919132149555714730}
   HitParticle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!143 &1277168340
@@ -3180,6 +3191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b08fb2bf76e0e4d959cbf32308fb6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HighlightClosestInteractable: 1
+  hc: {fileID: 1212818265}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  interactionDistance: 2
+  closestInteractableFeedbackPrefab: {fileID: 1537568254847043838, guid: 7675092e0c658f64a8197376644954d3, type: 3}
 --- !u!1 &5882399220427191655
 GameObject:
   m_ObjectHideFlags: 0

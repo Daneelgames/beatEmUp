@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151901633666427244}
+  - component: {fileID: 7318904859703233040}
+  - component: {fileID: 6370107276239718916}
   - component: {fileID: 7587218235422167295}
-  m_Layer: 6
-  m_Name: SmallCactusProp
+  - component: {fileID: 8917492187792215327}
+  m_Layer: 9
+  m_Name: SmallCactusWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151901633666427245}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -32,6 +35,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7318904859703233040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151901633666427245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70696dfd68d957d448f82f2a369e8701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableOwner: {fileID: 0}
+  rb: {fileID: 8917492187792215327}
+  _collider: {fileID: 7587218235422167295}
+  weaponPickUp: {fileID: 6370107276239718916}
+--- !u!114 &6370107276239718916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151901633666427245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b8a33e8860d014eb3c9b8912dfd603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAttacks:
+  - attackWeight: 2
+    reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
+    canAttackMidAir: 0
+    attackDamageScaler: 1
+    attackCritChanceScaler: 1
+    attackAnimationTriggerName: Attack2
+    attackSwingTime: 0.25
+    attackDangerTime: 0.25
+    attackReturnTime: 0.1
+    canMoveOnSwing: 1
+    canMoveOnDanger: 1
+    canMoveOnReturn: 1
+    canRotateOnSwing: 1
+    canRotateOnDanger: 0
+    canRotateOnReturn: 0
+    canSkipReturn: 1
+    dangeorusParts: []
+  attacksLeft: 3
+  interactable: {fileID: 0}
 --- !u!135 &7587218235422167295
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -45,6 +97,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5329271
   m_Center: {x: 0, y: 0.38888925, z: 0}
+--- !u!54 &8917492187792215327
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151901633666427245}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &8627189758241833472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,6 +123,22 @@ PrefabInstance:
     - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_Name
       value: cactus03_m
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1753111941425576, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949044754145288, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4747018190753414, guid: 628ca882a5b7c144799112fa3339945c, type: 3}
       propertyPath: m_RootOrder

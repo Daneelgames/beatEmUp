@@ -12,6 +12,8 @@ public class HealthController : MonoBehaviour
 
     [SerializeField] private CharacterController characterController;
     [SerializeField] private AttackManager _attackManager;
+    public AttackManager AttackManager => _attackManager;
+
     [SerializeField] private Animator anim;
     public Animator Anim => anim;
 
@@ -43,6 +45,10 @@ public class HealthController : MonoBehaviour
 
     [SerializeField] private List<HealthController> enemies = new List<HealthController>();
     public List<HealthController> Enemies => enemies;
+    
+    [SerializeField] private List<HealthController> friends = new List<HealthController>();
+    public List<HealthController> Friends => friends;
+    
     private List<HealthController> visibleHCs = new List<HealthController>();
     public List<HealthController> VisibleHCs => visibleHCs;
 
@@ -58,13 +64,15 @@ public class HealthController : MonoBehaviour
         GameManager.Instance.AddUnit(this);
     }
     
-    public void Damage(int dmg, HealthController damager)
+    public bool Damage(int dmg, HealthController damager)
     {
+        bool damaged = false;
+        
         if (damageOnCooldown)
-            return;
+            return damaged;
         
         if (health <= 0)
-            return;
+            return damaged;
 
         if (visibleHCs.Contains(damager) == false &&
             Vector3.Distance(transform.position, damager.transform.position) < 10)
@@ -78,7 +86,10 @@ public class HealthController : MonoBehaviour
             _aiInput.SetAggro(damager);
 
         if (!invincible)
+        {
+            damaged = true;
             health -= dmg;
+        }
 
         if (health <= 0)
         {
@@ -92,6 +103,8 @@ public class HealthController : MonoBehaviour
             }
             damageAnimCoroutine = StartCoroutine(DamageAnim());
         }
+
+        return damaged;
     }
 
     IEnumerator DamageAnim()
@@ -126,6 +139,12 @@ public class HealthController : MonoBehaviour
     {
         if (enemies.Count > index)
             enemies.RemoveAt(index);
+    }
+
+    public void RemoveEnemy(HealthController unit)
+    {
+        if (enemies.Contains(unit))
+            enemies.Remove(unit);
     }
 
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)

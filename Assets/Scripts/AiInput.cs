@@ -20,7 +20,10 @@ public class AiInput : MonoBehaviour
 
 
     [Header("Stats")] 
-    [SerializeField] private bool hears = true;
+    [SerializeField] [Range(0f, 1f)] private float kidness = 0.5f;
+    public float Kidness => kidness;
+
+    private bool hears = true;
     public bool Hears => hears;
     float updateRate = 0.5f;
     [SerializeField] private float walkSpeed = 2;
@@ -103,6 +106,9 @@ public class AiInput : MonoBehaviour
     
     public void SetAggro(HealthController damager)
     {
+        if (hc.Friends.Contains(damager) && Random.value < kidness)
+            return;
+        
         if (state != State.FollowTarget)
         {
             StopBehaviourCoroutines();
@@ -119,15 +125,17 @@ public class AiInput : MonoBehaviour
         }
     }
 
-    public void HeardNoise(Vector3 noiseMakerPos)
+    public IEnumerator HeardNoise(Vector3 noiseMakerPos, float distance)
     {
         if (!alive)
-            return;
+            yield break;
         
         if (state == State.FollowTarget || state == State.Alert)
-            return;
+            yield break;
         
         StopBehaviourCoroutines();
+
+        yield return new WaitForSeconds(distance / 20f);
         
         agent.SetDestination(noiseMakerPos);
         investigateCoroutine = StartCoroutine(Investigate(noiseMakerPos));

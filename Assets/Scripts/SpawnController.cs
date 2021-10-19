@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+    [SerializeField] private List<Interactable> _interactables;
+    [SerializeField] private List<GameObject> _interactablesGameObjects;
+
+    public List<Interactable> Interactables => _interactables;
+    public List<GameObject> InteractablesGameObjects => _interactablesGameObjects;
+
     public static SpawnController Instance;
 
     private List<AiInput> spawnedAiInputs = new List<AiInput>();
@@ -29,8 +35,17 @@ public class SpawnController : MonoBehaviour
 
             if (newDistance <= maxDistance)
             {
-                spawnedAiInputs[i].HeardNoise(noiseMakerPos);
+                StartCoroutine(spawnedAiInputs[i].HeardNoise(noiseMakerPos, newDistance));
             }
+        }
+    }
+
+    public void AddInteractable(Interactable newInteractable)
+    {
+        if (Interactables.Contains(newInteractable) == false)
+        {
+            Interactables.Add(newInteractable);
+            _interactablesGameObjects.Add(newInteractable.gameObject);
         }
     }
 }

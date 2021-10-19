@@ -198,7 +198,6 @@
           </e>
         </e>
         <e p="GameManager.cs" t="Include" />
-        <e p="InteractionController.cs" t="Include" />
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">
             <e p="CartoonFX Free.txt" t="Include" />
@@ -230,9 +229,6 @@
             </e>
           </e>
         </e>
-        <e p="NoiseMaker.cs" t="Include" />
-        <e p="OneShotSound.cs" t="Include" />
-        <e p="PlayerUi.cs" t="Include" />
         <e p="SC Post Effects" t="Include">
           <e p="Editor" t="Include">
             <e p="Editors" t="Include">
@@ -563,9 +559,15 @@
           <e p="CameraFollowPlayer.cs" t="Include" />
           <e p="FieldOfView.cs" t="Include" />
           <e p="HealthController.cs" t="Include" />
+          <e p="Interactable.cs" t="Include" />
+          <e p="InteractionController.cs" t="Include" />
+          <e p="NoiseMaker.cs" t="Include" />
+          <e p="OneShotSound.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
+          <e p="PlayerUi.cs" t="Include" />
+          <e p="SpawnController.cs" t="Include" />
         </e>
-        <e p="SpawnController.cs" t="Include" />
+        <e p="Weapon.cs" t="Include" />
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

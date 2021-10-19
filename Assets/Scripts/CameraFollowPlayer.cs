@@ -45,7 +45,7 @@ public class CameraFollowPlayer : MonoBehaviour
             return;
         
         // parent smoothly follows it
-        parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter, cameraSmooth * Time.smoothDeltaTime);
+        parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter, cameraSmooth * Time.deltaTime);
         parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * (cameraTurnSpeed * Time.deltaTime));
 
         mouseInputY = -Input.GetAxis("Mouse Y");
