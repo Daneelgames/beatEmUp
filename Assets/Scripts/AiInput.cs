@@ -38,6 +38,7 @@ public class AiInput : MonoBehaviour
 
     [Header("Links")] 
     [SerializeField] private AudioSource alert;
+    [SerializeField] private NoiseMaker noiseMaker;
     [SerializeField] private HealthController hc;
     [SerializeField] private AttackManager _attackManager;
     [SerializeField] private NavMeshAgent agent;
@@ -127,18 +128,24 @@ public class AiInput : MonoBehaviour
             return;
         
         StopBehaviourCoroutines();
-        aleartCoroutine = StartCoroutine(Alert());
-            
+        
         agent.SetDestination(noiseMakerPos);
         investigateCoroutine = StartCoroutine(Investigate(noiseMakerPos));
+        
+        aleartCoroutine = StartCoroutine(Alert());
     }
 
 
     private Coroutine aleartCoroutine;
     IEnumerator Alert()
     {
+        print("Alert");
         alert.gameObject.SetActive(false);
         yield return null;
+        
+        if (noiseMaker)
+            noiseMaker.ShoutNoise();
+        
         alert.gameObject.SetActive(true);
         alert.pitch = Random.Range(0.75f, 1.1f);
         alert.Play();

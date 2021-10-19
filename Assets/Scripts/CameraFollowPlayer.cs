@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class CameraFollowPlayer : MonoBehaviour
 {
+
+    [SerializeField] private Vector2 xMinMax = new Vector2(15, 40);
     [SerializeField] private float distanceInFrontOfCharacter = 3;
     [SerializeField] private float cameraSmooth = 0.75f;
     [SerializeField] private float cameraTurnSpeed = 500f;
@@ -47,11 +49,16 @@ public class CameraFollowPlayer : MonoBehaviour
 
         mouseInputY = -Input.GetAxis("Mouse Y");
 
-        if (transform.localEulerAngles.x > 40 && mouseInputY > 0)
-            mouseInputY = 0;
-        else if (transform.localEulerAngles.x < 15 && mouseInputY < 0)
+        if (transform.localEulerAngles.x > xMinMax.y && mouseInputY > 0)
+        {
+            mouseInputY = 0;   
+        }
+        else if (transform.localEulerAngles.x < xMinMax.x && mouseInputY < 0)
             mouseInputY = 0;
         
-        transform.localEulerAngles += new Vector3(mouseInputY, 0, 0) * ((cameraTurnSpeed / 5) * Time.deltaTime);
+        transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((cameraTurnSpeed / 5) * Time.deltaTime));
+
+        var resultEulerAngles = transform.localEulerAngles;
+        transform.eulerAngles = new Vector3(Mathf.Clamp(resultEulerAngles.x,xMinMax.x,xMinMax.y), transform.eulerAngles.y, transform.eulerAngles.z);
     }
 }

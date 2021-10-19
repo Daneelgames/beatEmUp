@@ -6568,6 +6568,7 @@ GameObject:
   - component: {fileID: 4004280659553395925}
   - component: {fileID: 6744019107223394889}
   - component: {fileID: 4369443321332258601}
+  - component: {fileID: 467956864760804726}
   m_Layer: 7
   m_Name: MobTest
   m_TagString: Untagged
@@ -6614,7 +6615,7 @@ MonoBehaviour:
   rb: {fileID: 4956596149813344476}
   _bodyPartsManager: {fileID: 1212818261}
   fieldOfView: {fileID: 4369443321332258601}
-  invincible: 0
+  invincible: 1
   health: 1000
   healthMax: 1000
   damagedAnimationTime: 0.25
@@ -6670,7 +6671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47e0c954deb66a4393f461307c1dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 1
   hears: 1
   walkSpeed: 4
   runSpeed: 8
@@ -6684,6 +6685,7 @@ MonoBehaviour:
     m_Bits: 64
   attackCooldownMinMax: {x: 0.2, y: 1.5}
   alert: {fileID: 2700809410262813614}
+  noiseMaker: {fileID: 467956864760804726}
   hc: {fileID: 1212818265}
   _attackManager: {fileID: 4792253143275227139}
   agent: {fileID: 315908125812861007}
@@ -6700,7 +6702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2fa30289f427945abc08867a171b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttackDamage: 150
+  baseAttackDamage: 200
   critChance: 0.1
   critDamageScaler: 3
   attackList:
@@ -6774,6 +6776,7 @@ MonoBehaviour:
   grabAttacksRange: 2
   hc: {fileID: 1212818265}
   anim: {fileID: 919132149555714730}
+  HitParticle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!54 &4956596149813344476
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6867,7 +6870,7 @@ MonoBehaviour:
   drawFOV: 0
   hc: {fileID: 1212818265}
   resetVisibleUnitsCooldown: 5
-  updateDelay: 0.25
+  updateDelay: 0.5
   viewRadius: 15
   meshResolution: 1
   edgeResolveIterations: 3
@@ -6881,6 +6884,25 @@ MonoBehaviour:
   viewMeshFilter: {fileID: 158685165846845973}
   viewMesh: {fileID: 0}
   edgeDistanceThreshold: 0.5
+--- !u!114 &467956864760804726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757401403179926516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa1e500a81033f429023daba06d1ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  makeStepNoise: 0
+  walkStepNoiseDistance: 1
+  runStepNoiseDistance: 10
+  makeAttackNoise: 0
+  attackNoiseDistance: 10
+  shouts: 1
+  shoutNoiseDistance: 20
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0
@@ -7489,4 +7511,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioManager: {fileID: 6744019107223394889}
-  noiseMaker: {fileID: 0}
+  noiseMaker: {fileID: 467956864760804726}

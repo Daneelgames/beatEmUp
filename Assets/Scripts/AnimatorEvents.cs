@@ -38,4 +38,10 @@ public class AnimatorEvents : MonoBehaviour
         if (noiseMaker)
             noiseMaker.RunStepNoise();
     }
+
+    public void AttackNoise()
+    {
+        if (noiseMaker)
+            noiseMaker.AttackNoise();
+    }
 }

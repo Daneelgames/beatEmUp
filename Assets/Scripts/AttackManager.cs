@@ -25,7 +25,9 @@ public class AttackManager : MonoBehaviour
     [SerializeField] private Animator anim;
     private Attack currentAttack;
     private GrabAttack currentGrabAttack;
+    public GameObject HitParticle;
 
+    private List<HealthController> damagedHCs = new List<HealthController>();
     public Attack CurrentAttack
     {
         get => currentAttack;
@@ -183,7 +185,7 @@ public class AttackManager : MonoBehaviour
             StopCoroutine(attackReturnCoroutine);
             attackReturnCoroutine = null;
             CanMove = true;
-            CanRotate = true;
+            CanRotate = true;   
         }
         
         if (attackDangerCoroutine != null || attackSwingCoroutine != null)
@@ -191,7 +193,8 @@ public class AttackManager : MonoBehaviour
             // Already attacking, do nothing and exit
             return;
         }
-        
+        // clear the list of attacked units from previous attack 
+        damagedHCs.Clear();
         // If not attacking, start new attack
         ChooseAttack();
         attackSwingCoroutine = StartCoroutine(AttackSwing());
@@ -219,6 +222,9 @@ public class AttackManager : MonoBehaviour
         //move victim's hips inside our animator
         victimHc.Death(true, false, false, false);
         
+        if (victimHc.BodyPartsManager.HipsBone == null)
+            yield break;
+        
         Transform victimsHips = victimHc.BodyPartsManager.HipsBone.transform;
         
         Vector3 localPositionInsideParent = victimsHips.localPosition;
@@ -235,7 +241,13 @@ public class AttackManager : MonoBehaviour
 
         yield return StartCoroutine(MoveVictimHipsInsideAnimator(victimsHips, localPositionInsideParent, localScaleInsideParent, localRotationInsideParent));
         
+        if (victimHc.BodyPartsManager.HipsBone == null)
+            yield break;
+        
         yield return new WaitForSeconds(currentGrabAttack.GrabAttackDuration);
+        
+        if (victimHc.BodyPartsManager.HipsBone == null)
+            yield break;
         
         anim.SetBool(currentGrabAttack.AttackAnimationTriggerName, false);
         CanMove = true;
@@ -381,6 +393,12 @@ public class AttackManager : MonoBehaviour
     {
         if (currentAttack == null)
             return;
+        
+        if (damagedHCs.Contains(partToDamage.HC))
+            return;
+
+        damagedHCs.Add(partToDamage.HC);
+        var newParticle = Instantiate(HitParticle,partToDamage.Collider.bounds.center, Quaternion.identity);
         int resultDamage = Mathf.RoundToInt(baseAttackDamage * currentAttack.AttackDamageScaler);
         float randomCritChance = Random.value;
         int _criticalDamage = 0;
@@ -390,7 +408,12 @@ public class AttackManager : MonoBehaviour
 
         partToDamage.HC.Damage(resultDamage, hc);
     }
+
+    
 }
+
+
+
 # region Attack
 [Serializable]
 public class Attack

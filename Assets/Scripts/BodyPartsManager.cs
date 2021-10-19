@@ -12,8 +12,11 @@ public class BodyPartsManager : MonoBehaviour
     [SerializeField] private List<BodyPart> removableParts;
 
     public List<BodyPart> RemovableParts => removableParts;
+    
+    [SerializeField] private Transform weaponParentTransform;
+    public Transform WeaponParentTransform => weaponParentTransform;
 
-    [SerializeField] private GameObject bloodSfx;
+    private GameObject bloodSfx;
 
     [SerializeField] private GameObject victimTestGameObject;
     void Start()

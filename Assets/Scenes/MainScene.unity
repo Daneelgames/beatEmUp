@@ -5682,7 +5682,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1212818265, guid: a4035f6258de52e42b18fa5b37ace39f, type: 3}
   m_PrefabInstance: {fileID: 8226991104933179891}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1243327811}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea07920a5b447ff48932b57f57365127, type: 3}
@@ -5881,7 +5881,7 @@ Transform:
   - {fileID: 631776932}
   - {fileID: 596668440}
   m_Father: {fileID: 895082989}
-  m_RootOrder: 43
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &346475055
 PrefabInstance:
@@ -7945,7 +7945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 921d7754748f73440a821fbf338c4ace, type: 3}
       propertyPath: m_RootOrder
-      value: 45
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 921d7754748f73440a821fbf338c4ace, type: 3}
       propertyPath: m_LocalScale.x
@@ -10358,9 +10358,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c13274e7ba2474cad0065f6cf3940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xMinMax: {x: 15, y: 40}
   distanceInFrontOfCharacter: 3
   cameraSmooth: 2
-  cameraTurnSpeed: 300
+  cameraTurnSpeed: 500
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -16758,11 +16759,11 @@ Transform:
   - {fileID: 1371004993}
   - {fileID: 2639023697677132378}
   - {fileID: 240672241}
+  - {fileID: 334086166}
   - {fileID: 930530465}
   - {fileID: 1405015820}
   - {fileID: 1935991207}
   - {fileID: 2064393535}
-  - {fileID: 334086166}
   - {fileID: 1634553337}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -21209,25 +21210,9 @@ PrefabInstance:
       propertyPath: enemies.Array.data[0]
       value: 
       objectReference: {fileID: 324289381}
-    - target: {fileID: 2984947846422348196, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
-      propertyPath: state
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4369443321332258601, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
-      propertyPath: drawFOV
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4369443321332258601, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
-      propertyPath: updateDelay
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5757401403179926516, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Name
       value: MobTest (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5757401403179926516, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5926532711273271618, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_RootOrder
@@ -22828,6 +22813,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4476881461000374, guid: c4bc74b0a7f30164493f6b2b1cd5969e, type: 3}
   m_PrefabInstance: {fileID: 1240299151}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1243327811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5757401403179926516, guid: a4035f6258de52e42b18fa5b37ace39f, type: 3}
+  m_PrefabInstance: {fileID: 8226991104933179891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1243327812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243327811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b08fb2bf76e0e4d959cbf32308fb6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1244228301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39545,14 +39547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1277168340, guid: a4035f6258de52e42b18fa5b37ace39f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609723194, guid: a4035f6258de52e42b18fa5b37ace39f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 34.94995
-      objectReference: {fileID: 0}
     - target: {fileID: 5757401403179926516, guid: a4035f6258de52e42b18fa5b37ace39f, type: 3}
       propertyPath: m_Name
       value: CharacterTest

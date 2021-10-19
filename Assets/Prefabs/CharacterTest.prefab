@@ -210,7 +210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 34.95}
+  m_AnchoredPosition: {x: 0, y: 34.94995}
   m_SizeDelta: {x: 500, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1609723196
@@ -2971,7 +2971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2fa30289f427945abc08867a171b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttackDamage: 200
+  baseAttackDamage: 250
   critChance: 0.1
   critDamageScaler: 3
   attackList:
@@ -3045,6 +3045,7 @@ MonoBehaviour:
   grabAttacksRange: 3
   hc: {fileID: 1212818265}
   anim: {fileID: 919132149555714730}
+  HitParticle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!143 &1277168340
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3089,7 +3090,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.3, y: 1, z: 0.3}
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
@@ -3162,6 +3163,10 @@ MonoBehaviour:
   makeStepNoise: 1
   walkStepNoiseDistance: 3
   runStepNoiseDistance: 15
+  makeAttackNoise: 0
+  attackNoiseDistance: 10
+  shouts: 0
+  shoutNoiseDistance: 20
 --- !u!1 &5882399220427191655
 GameObject:
   m_ObjectHideFlags: 0

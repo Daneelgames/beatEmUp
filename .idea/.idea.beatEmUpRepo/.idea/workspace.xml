@@ -22,6 +22,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/SpawnController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/PlayerUi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/OneShotSound.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -38,18 +39,20 @@
       <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/PlayerUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/NoiseMaker.cs" />
       <option value="$PROJECT_DIR$/Assets/SpawnController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorEvents.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollowPlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/OneShotSound.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorEvents.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/NoiseMaker.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/InteractionController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -105,6 +108,7 @@
       <workItem from="1634370604459" duration="17664000" />
       <workItem from="1634461456835" duration="11215000" />
       <workItem from="1634473656696" duration="11053000" />
+      <workItem from="1634581327724" duration="4855000" />
     </task>
     <servers />
   </component>

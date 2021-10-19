@@ -7,6 +7,11 @@ public class NoiseMaker : MonoBehaviour
     public bool makeStepNoise = false;
     public float walkStepNoiseDistance = 1;
     public float runStepNoiseDistance = 10;
+    public bool makeAttackNoise = false;
+    public float attackNoiseDistance = 10;
+    
+    public bool shouts = false;
+    public float shoutNoiseDistance = 20;
     
     public void WalkStepNoise()
     {
@@ -21,5 +26,21 @@ public class NoiseMaker : MonoBehaviour
             return;
         
         SpawnController.Instance.MakeNoise(transform.position, runStepNoiseDistance);
+    }
+
+    public void AttackNoise()
+    {
+        if (!makeAttackNoise)
+            return;
+        
+        SpawnController.Instance.MakeNoise(transform.position, attackNoiseDistance);
+    }
+    
+    public void ShoutNoise()
+    {
+        if (!shouts)
+            return;
+        
+        SpawnController.Instance.MakeNoise(transform.position, shoutNoiseDistance);
     }
 }
