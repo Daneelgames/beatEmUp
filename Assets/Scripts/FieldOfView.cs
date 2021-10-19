@@ -9,9 +9,12 @@ public class FieldOfView : MonoBehaviour
     
     [Header("Links")]
     [SerializeField] private HealthController hc;
-    
-    [Header("Stats")]
-    [SerializeField] private float resetVisibleUnitsCooldown = 5f;
+
+    [Header("Stats")] 
+    [SerializeField] private int minVisibleBonesToSeeUnit = 4;
+    public int MinVisibleBonesToSeeUnit => minVisibleBonesToSeeUnit;
+
+    private float resetVisibleUnitsCooldown = 5f;
     [SerializeField] private float updateDelay = 0.25f;
     [SerializeField] private float viewRadius;
     [SerializeField] private float meshResolution;

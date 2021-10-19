@@ -32,7 +32,8 @@ public class CameraFollowPlayer : MonoBehaviour
 
         // set camera as child
         transform.parent = parent;
-        targetRotation = transform.rotation; 
+        targetRotation = transform.rotation;
+        yield return new WaitForSeconds(1);
         canFollow = true;
     }
 

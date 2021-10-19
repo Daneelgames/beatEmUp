@@ -139,7 +139,6 @@ public class AiInput : MonoBehaviour
     private Coroutine aleartCoroutine;
     IEnumerator Alert()
     {
-        print("Alert");
         alert.gameObject.SetActive(false);
         yield return null;
         

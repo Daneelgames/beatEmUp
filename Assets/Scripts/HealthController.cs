@@ -130,6 +130,8 @@ public class HealthController : MonoBehaviour
 
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
     {
+        Dictionary<HealthController, int> visibleBonesOfUnits = new Dictionary<HealthController, int>();
+        
         float t = 0;
         for (int i = visibleTargets.Count - 1; i >= 0; i--)
         {
@@ -141,11 +143,28 @@ public class HealthController : MonoBehaviour
                 if (j >= GameManager.Instance.Units.Count)
                     continue;
                 var unit = GameManager.Instance.Units[j];
-                if (visibleHCs.Contains(unit) == false && unit._bodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects.Contains(target))
+                
+                if (unit._bodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects.Contains(target) == false)
+                    continue;
+                
+                if (visibleHCs.Contains(unit) == false)
                 {
-                    visibleHCs.Add(unit);
-                    if (enemies.Contains(unit) && _aiInput)
-                        _aiInput.SetAggro(unit);
+                    if (visibleBonesOfUnits.ContainsKey(unit) == false)
+                    {
+                        visibleBonesOfUnits.Add(unit, 1);
+                    }
+                    else
+                    {
+                        visibleBonesOfUnits[unit]++;
+
+                        if (visibleBonesOfUnits[unit] > fieldOfView.MinVisibleBonesToSeeUnit)
+                        {
+                            visibleHCs.Add(unit);
+                            if (enemies.Contains(unit) && _aiInput)
+                                _aiInput.SetAggro(unit);   
+                        }
+                    }
+
                 }
             }
 
