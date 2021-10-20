@@ -36,7 +36,13 @@ public class InteractionController : MonoBehaviour
                 if (newDistance < distance)
                 {
                     closestPoint = tempClosestPoint;
-                    var foundInteractable = SpawnController.Instance.Interactables[SpawnController.Instance.InteractablesGameObjects.IndexOf(interactablesInRadius[i].gameObject)];
+                    int newInt =
+                        SpawnController.Instance.InteractablesGameObjects.IndexOf(interactablesInRadius[i].gameObject);
+                    
+                    if (SpawnController.Instance.Interactables.Count <= newInt)
+                        break; 
+                            
+                    var foundInteractable = SpawnController.Instance.Interactables[newInt];
 
                     if (foundInteractable != null && foundInteractable.CanBeInteractedBy(hc))
                     {
