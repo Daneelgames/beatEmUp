@@ -65,6 +65,12 @@ public class Weapon : MonoBehaviour
 
                     if (attacksLeft <= 0)
                     {
+                        
+                        if (SpawnController.Instance.Interactables.Contains(interactable))
+                            SpawnController.Instance.Interactables.Remove(interactable);
+                        if (SpawnController.Instance.InteractablesGameObjects.Contains(interactable.gameObject))
+                            SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
+                        
                         AttackManager.RemoveWeapon(this);
                         Destroy(gameObject);
                     }

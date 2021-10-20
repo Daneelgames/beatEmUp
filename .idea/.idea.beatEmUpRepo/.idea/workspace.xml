@@ -48,12 +48,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollowPlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SpawnController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/InteractionController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SpawnController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Weapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/InteractionController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -110,7 +110,8 @@
       <workItem from="1634461456835" duration="11215000" />
       <workItem from="1634473656696" duration="11053000" />
       <workItem from="1634581327724" duration="4855000" />
-      <workItem from="1634665560041" duration="12049000" />
+      <workItem from="1634665560041" duration="12231000" />
+      <workItem from="1634740051449" duration="1841000" />
     </task>
     <servers />
   </component>

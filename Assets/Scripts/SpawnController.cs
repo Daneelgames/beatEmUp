@@ -45,7 +45,7 @@ public class SpawnController : MonoBehaviour
         if (Interactables.Contains(newInteractable) == false)
         {
             Interactables.Add(newInteractable);
-            _interactablesGameObjects.Add(newInteractable.gameObject);
+            InteractablesGameObjects.Add(newInteractable.gameObject);
         }
     }
 }

@@ -149,9 +149,54 @@ public class HealthController : MonoBehaviour
 
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
     {
+        float t = 0;
+        for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
+        {
+            int visibleBonesAmount = 0;
+ 
+            var unit = GameManager.Instance.Units[i];
+            if (unit == this)
+                continue;
+
+            for (int j = unit.BodyPartsManager.bodyParts.Count - 1; j >= 0; j--)
+            {
+                if (unit.BodyPartsManager.bodyParts[j] == null)
+                    continue;
+                
+                if (visibleTargets.Contains(unit.BodyPartsManager.bodyParts[j].transform))
+                {
+                    visibleBonesAmount++;
+                }
+            }
+            
+            /*
+            if (unit.playerInput)
+                print("Sees " + visibleBonesAmount + " of player's bones!");*/
+
+            if (visibleBonesAmount > fieldOfView.MinVisibleBonesToSeeUnit)
+            {
+                if (visibleHCs.Contains(unit) == false)
+                {
+                    visibleHCs.Add(unit);  
+                    
+                    if (enemies.Contains(unit) && _aiInput)
+                        _aiInput.SetAggro(unit);   
+                }
+            }
+
+            t++;
+            if (t > 20)
+            {
+                t = 0;
+                yield return null;   
+            }
+        }
+        
+        yield break;
+        
         Dictionary<HealthController, int> visibleBonesOfUnits = new Dictionary<HealthController, int>();
         
-        float t = 0;
+        t = 0;
         for (int i = visibleTargets.Count - 1; i >= 0; i--)
         {
             if (i >= visibleTargets.Count)
@@ -176,6 +221,9 @@ public class HealthController : MonoBehaviour
                     {
                         visibleBonesOfUnits[unit]++;
 
+                        if (unit.playerInput)
+                            print(unit + "; " + visibleBonesOfUnits[unit]);
+                        
                         if (visibleBonesOfUnits[unit] > fieldOfView.MinVisibleBonesToSeeUnit)
                         {
                             visibleHCs.Add(unit);
@@ -183,7 +231,6 @@ public class HealthController : MonoBehaviour
                                 _aiInput.SetAggro(unit);   
                         }
                     }
-
                 }
             }
 

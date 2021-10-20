@@ -25,21 +25,20 @@ public class InteractionController : MonoBehaviour
         // pick up the item and put it in a weapon BodyPartsManager.WeaponParentTransform
         while (true)
         {
-            Collider[] interactablesInRadius = Physics.OverlapSphere(transform.position, interactionDistance, layerMask);
+            Collider[] interactableColliders = Physics.OverlapSphere(transform.position, interactionDistance, layerMask);
             Vector3 closestPoint = transform.position;
             Interactable closestInteractable = null;
             float distance = 100;
-            for (int i = 0; i < interactablesInRadius.Length; i++)
+            for (int i = 0; i < interactableColliders.Length; i++)
             {
-                var tempClosestPoint = interactablesInRadius[i].ClosestPoint(transform.position);
+                var tempClosestPoint = interactableColliders[i].ClosestPoint(transform.position);
                 float newDistance = Vector3.Distance(transform.position, tempClosestPoint);
                 if (newDistance < distance)
                 {
                     closestPoint = tempClosestPoint;
-                    int newInt =
-                        SpawnController.Instance.InteractablesGameObjects.IndexOf(interactablesInRadius[i].gameObject);
+                    int newInt = SpawnController.Instance.InteractablesGameObjects.IndexOf(interactableColliders[i].gameObject);
                     
-                    if (SpawnController.Instance.Interactables.Count <= newInt)
+                    if (newInt == -1 || SpawnController.Instance.Interactables.Count <= newInt)
                         break; 
                             
                     var foundInteractable = SpawnController.Instance.Interactables[newInt];
@@ -61,7 +60,7 @@ public class InteractionController : MonoBehaviour
                         closestInteractableFeedback.SetActive(true);
                 }
                 
-                if (Input.GetButtonDown("Interact"))
+                if (Input.GetButtonDown("Interact") && hc.PlayerInput)
                     Interact(closestInteractable);
             }
             else
@@ -82,6 +81,9 @@ public class InteractionController : MonoBehaviour
             interactable.ToggleRigidbodyKinematicAndGravity(true, false);
             hc.AttackManager.PickWeapon(interactable);
             GameManager.Instance.SetLayerRecursively(interactable.gameObject, 7);
+            
+            SpawnController.Instance.Interactables.Remove(interactable);
+            SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
         }
     }
 }
