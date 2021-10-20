@@ -180,7 +180,8 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64616248164359216, guid: 3a0a30c4014e71342ae79edf0a0e737a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3a0a30c4014e71342ae79edf0a0e737a, type: 3}
 --- !u!4 &5786373897098895918 stripped
 Transform:

@@ -17,8 +17,7 @@ public class AiInput : MonoBehaviour
         get => state;
         set => state = value;
     }
-
-
+    
     [Header("Stats")] 
     [SerializeField] [Range(0f, 1f)] private float kidness = 0.5f;
     public float Kidness => kidness;
@@ -140,6 +139,10 @@ public class AiInput : MonoBehaviour
         agent.SetDestination(noiseMakerPos);
         investigateCoroutine = StartCoroutine(Investigate(noiseMakerPos));
         
+        
+        if (aleartCoroutine != null)
+            yield break;
+        
         aleartCoroutine = StartCoroutine(Alert());
     }
 
@@ -158,6 +161,7 @@ public class AiInput : MonoBehaviour
         alert.Play();
         yield return new WaitForSeconds(1f);
         alert.gameObject.SetActive(false);
+        aleartCoroutine = null;
     }
     
     IEnumerator SimpleWalker()

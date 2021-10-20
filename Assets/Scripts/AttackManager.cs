@@ -145,6 +145,8 @@ public class AttackManager : MonoBehaviour
     
     public void TryToAttack(bool playerInput)
     {
+        print("currentGrabAttack " + currentGrabAttack + "; currentAttack " + currentAttack);
+        
         if (currentGrabAttack != null)
             return;
 

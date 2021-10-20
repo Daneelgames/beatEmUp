@@ -2346,13 +2346,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4261318003063812743}
-  m_LocalRotation: {x: -0.22874498, y: 6.585444e-10, z: 6.585445e-10, w: 0.9734864}
-  m_LocalPosition: {x: 0.0003, y: -0.0028, z: 0.0068}
-  m_LocalScale: {x: 1.4386272, y: 1.4386274, z: 0.884195}
+  m_LocalRotation: {x: -0.21854867, y: 6.585445e-10, z: 6.585446e-10, w: 0.9758261}
+  m_LocalPosition: {x: 0.00098, y: -0.00041, z: 0.01325}
+  m_LocalScale: {x: 0.6443437, y: 0.59318614, z: 0.6619299}
   m_Children: []
   m_Father: {fileID: 2261199665141216099}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -26.446, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -25.248, y: 0, z: 0}
 --- !u!33 &6301443351027765948
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2381,7 +2381,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b2366f8cdefdcfc4e83c0b327ffab2db, type: 2}
+  - {fileID: 2100000, guid: 2abc63ec329af3d468fdca2652143375, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3196,8 +3196,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  interactionDistance: 2
-  closestInteractableFeedbackPrefab: {fileID: 1537568254847043838, guid: 7675092e0c658f64a8197376644954d3, type: 3}
+  interactionDistance: 3
+  closestInteractableFeedbackPrefab: {fileID: 9169272506748579682, guid: 7675092e0c658f64a8197376644954d3, type: 3}
+  interactableColliders: []
 --- !u!1 &5882399220427191655
 GameObject:
   m_ObjectHideFlags: 0

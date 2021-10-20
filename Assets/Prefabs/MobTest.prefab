@@ -6653,6 +6653,7 @@ MonoBehaviour:
   damagedAnimationTime: 0.4
   enemies:
   - {fileID: 0}
+  friends: []
 --- !u!114 &1212818261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6704,7 +6705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
-  hears: 1
+  kidness: 0.5
   walkSpeed: 4
   runSpeed: 8
   stopDistance: 2
@@ -6902,7 +6903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawFOV: 0
   hc: {fileID: 1212818265}
-  minVisibleBonesToSeeUnit: 4
+  minVisibleBonesToSeeUnit: 6
   updateDelay: 0.5
   viewRadius: 15
   meshResolution: 1
@@ -6954,7 +6955,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   interactionDistance: 2
-  closestInteractableFeedbackPrefab: {fileID: 1537568254847043838, guid: 7675092e0c658f64a8197376644954d3, type: 3}
+  closestInteractableFeedbackPrefab: {fileID: 9169272506748579682, guid: 7675092e0c658f64a8197376644954d3, type: 3}
+  interactableColliders: []
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0

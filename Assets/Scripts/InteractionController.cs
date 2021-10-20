@@ -10,12 +10,18 @@ public class InteractionController : MonoBehaviour
     public LayerMask layerMask;
     public float interactionDistance = 2;
 
-    public GameObject closestInteractableFeedbackPrefab;
-    private GameObject closestInteractableFeedback;
+    public ParticleSystem closestInteractableFeedbackPrefab;
+    private ParticleSystem closestInteractableFeedback;
+    private ParticleSystem.EmissionModule closestInteractableFeedbackEmissionModule;
+    [SerializeField]
+    private Collider[] interactableColliders;
     void Start()
     {
         if (HighlightClosestInteractable)
+        {
             closestInteractableFeedback = Instantiate(closestInteractableFeedbackPrefab, transform.position, Quaternion.identity);
+            closestInteractableFeedbackEmissionModule = closestInteractableFeedback.emission;
+        }
         
         StartCoroutine(UpdateInteraction());
     }
@@ -25,14 +31,16 @@ public class InteractionController : MonoBehaviour
         // pick up the item and put it in a weapon BodyPartsManager.WeaponParentTransform
         while (true)
         {
-            Collider[] interactableColliders = Physics.OverlapSphere(transform.position, interactionDistance, layerMask);
+            interactableColliders = Physics.OverlapSphere(transform.position, interactionDistance, layerMask);
             Vector3 closestPoint = transform.position;
             Interactable closestInteractable = null;
             float distance = 100;
             for (int i = 0; i < interactableColliders.Length; i++)
             {
                 var tempClosestPoint = interactableColliders[i].ClosestPoint(transform.position);
+                print(tempClosestPoint);
                 float newDistance = Vector3.Distance(transform.position, tempClosestPoint);
+                
                 if (newDistance < distance)
                 {
                     closestPoint = tempClosestPoint;
@@ -56,8 +64,7 @@ public class InteractionController : MonoBehaviour
                 if (HighlightClosestInteractable)
                 {
                     closestInteractableFeedback.transform.position = closestPoint;
-                    if (closestInteractableFeedback.activeInHierarchy == false)
-                        closestInteractableFeedback.SetActive(true);
+                    closestInteractableFeedbackEmissionModule.rateOverTime = 10;
                 }
                 
                 if (Input.GetButtonDown("Interact") && hc.PlayerInput)
@@ -65,8 +72,8 @@ public class InteractionController : MonoBehaviour
             }
             else
             {
-                if (closestInteractableFeedback && closestInteractableFeedback.activeInHierarchy)
-                    closestInteractableFeedback.SetActive(false);
+                if (closestInteractableFeedback)
+                    closestInteractableFeedbackEmissionModule.rateOverTime = 0;
             }
             
             yield return null;
