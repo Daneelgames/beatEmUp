@@ -27,6 +27,8 @@ public class PlayerInput : MonoBehaviour
 
     private Vector3 movementVector;
     private Vector3 verticalVector;
+    private Vector3 aimPoint;
+    
     private float horizontalAxis;
     private float verticalAxis;
 
@@ -113,7 +115,7 @@ public class PlayerInput : MonoBehaviour
         GetMovementInput();
         AddGravity();
         ApplyMovement();
-        RotateToMovementDirection();
+        Rotate();
     }
 
     void GetAttackingInput()
@@ -129,6 +131,9 @@ public class PlayerInput : MonoBehaviour
             }
 
             Aim();
+            
+            if (Input.GetButtonDown("Attack"))
+                attackManager.TryToThrowWeapon(aimPoint);
         }
         else
         {
@@ -153,6 +158,7 @@ public class PlayerInput : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100))
         {
             _interactionController.ClosestInteractableFeedback.transform.position = hit.point + transform.up * 0.1f;
+            aimPoint = hit.point;
         }
     }
     
@@ -218,41 +224,48 @@ public class PlayerInput : MonoBehaviour
     }
 
     
-    void RotateToMovementDirection()
+    void Rotate()
     {
         if (!attackManager.CanRotate)
             return;
 
-        Vector3 enemyVector = Vector3.zero;
-        float distance = 5;
-        bool rotateToEnemy = false;
-        if (hc.Enemies.Count > 0)
+        if (!aiming)
         {
-            for (int i = hc.Enemies.Count - 1; i >= 0; i--)
+            Vector3 enemyVector = Vector3.zero;
+            float distance = 5;
+            bool rotateToEnemy = false;
+            if (hc.Enemies.Count > 0)
             {
-                if (hc.Enemies[i] == null || hc.Enemies[i].Health <= 0)
+                for (int i = hc.Enemies.Count - 1; i >= 0; i--)
                 {
-                    hc.RemoveEnemyAt(i);
-                    continue;
-                }
-                float newDistance = Vector3.Distance(hc.Enemies[i].transform.position, transform.position);
-                if (newDistance <= distance)
-                {
-                    distance = newDistance;
-                    enemyVector = hc.Enemies[i].transform.position - transform.position;
-                    enemyVector.Normalize();
-                    rotateToEnemy = true;
-                }
-            }   
+                    if (hc.Enemies[i] == null || hc.Enemies[i].Health <= 0)
+                    {
+                        hc.RemoveEnemyAt(i);
+                        continue;
+                    }
+                    float newDistance = Vector3.Distance(hc.Enemies[i].transform.position, transform.position);
+                    if (newDistance <= distance)
+                    {
+                        distance = newDistance;
+                        enemyVector = hc.Enemies[i].transform.position - transform.position;
+                        enemyVector.Normalize();
+                        rotateToEnemy = true;
+                    }
+                }   
+            }
+        
+            if (!rotateToEnemy && !moving)
+                return;   
+            
+            if (rotateToEnemy)
+                lookRotation.SetLookRotation(enemyVector, Vector3.up);
+            else
+                lookRotation.SetLookRotation(movementVector, Vector3.up);
         }
-        
-        if (!rotateToEnemy && !moving)
-            return;
-        
-        if (rotateToEnemy)
-            lookRotation.SetLookRotation(enemyVector, Vector3.up);
         else
-            lookRotation.SetLookRotation(movementVector, Vector3.up);
+        {
+            lookRotation.SetLookRotation(aimPoint - transform.position, Vector3.up);
+        }
         
         var targetRotation = Quaternion.Slerp(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);

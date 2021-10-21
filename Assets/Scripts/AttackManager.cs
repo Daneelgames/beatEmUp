@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -32,8 +33,8 @@ public class AttackManager : MonoBehaviour
     public Transform WeaponParentTransform => weaponParentTransform;
     
     [SerializeField] private Animator anim;
-    private Attack currentAttack;
-    private GrabAttack currentGrabAttack;
+    private Attack currentAttack = null;
+    private GrabAttack currentGrabAttack = null;
     public GameObject HitParticle;
     
     private List<HealthController> damagedHCs = new List<HealthController>();
@@ -147,8 +148,13 @@ public class AttackManager : MonoBehaviour
     {
         if (currentGrabAttack != null)
         {
-            print("currentGrabAttack != null");
-            return;
+            if (grabAttacksList.Count > 0)
+            {
+                print("currentGrabAttack != null");
+                return;   
+            }
+                
+            currentGrabAttack = null;
         }
 
         // MELEE
@@ -217,12 +223,17 @@ public class AttackManager : MonoBehaviour
         attackSwingCoroutine = StartCoroutine(AttackSwing());
     }
 
-    public void ThrowWeapon()
+    public void TryToThrowWeapon(Vector3 throwTargetPoint)
     {
         if (weaponInHands == null)
             return;
+        weaponInHands.transform.parent = null;
         
-        
+        SpawnController.Instance.Interactables.Add(weaponInHands.Interactable);
+        SpawnController.Instance.InteractablesGameObjects.Add(weaponInHands.gameObject);
+
+        weaponInHands.Throw(throwTargetPoint);
+        weaponInHands = null;
     }
 
 

@@ -25,6 +25,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] private BodyPartsManager _bodyPartsManager;
     public BodyPartsManager BodyPartsManager => _bodyPartsManager;
     [SerializeField] private FieldOfView fieldOfView;
+    public FieldOfView FieldOfView => fieldOfView;
 
     [Header("Stats")] 
     [SerializeField] private bool invincible = false;
@@ -74,17 +75,23 @@ public class HealthController : MonoBehaviour
         if (health <= 0)
             return damaged;
 
-        if (visibleHCs.Contains(damager) == false &&
-            Vector3.Distance(transform.position, damager.transform.position) < 10)
+        if (damager)
         {
-            visibleHCs.Add(damager);
+            if (visibleHCs.Contains(damager) == false &&
+                Vector3.Distance(transform.position, damager.transform.position) < 10)
+            {
+                visibleHCs.Add(damager);
+            }
+        
+            AddEnemy(damager);
+        
+            if (_aiInput)
+                _aiInput.SetAggro(damager);
         }
         
-        AddEnemy(damager);
+        if (FieldOfView)
+            FieldOfView.DelayCooldown(5);
         
-        if (_aiInput)
-            _aiInput.SetAggro(damager);
-
         if (!invincible)
         {
             damaged = true;
@@ -93,7 +100,7 @@ public class HealthController : MonoBehaviour
 
         if (health <= 0)
         {
-            Death(false, true, false, Random.value > 0.5f);
+            Death(false, true, false, true);
         }
         else
         {

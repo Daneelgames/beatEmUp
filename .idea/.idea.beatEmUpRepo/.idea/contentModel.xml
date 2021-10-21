@@ -197,6 +197,9 @@
             </e>
           </e>
         </e>
+        <e p="FreeWeapons" t="Include">
+          <e p="Read_me.txt" t="Include" />
+        </e>
         <e p="GameManager.cs" t="Include" />
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">

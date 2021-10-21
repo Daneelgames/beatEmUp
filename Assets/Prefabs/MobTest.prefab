@@ -6930,7 +6930,7 @@ MonoBehaviour:
   makeStepNoise: 0
   walkStepNoiseDistance: 1
   runStepNoiseDistance: 10
-  makeAttackNoise: 0
+  makeAttackNoise: 1
   attackNoiseDistance: 10
   shouts: 1
   shoutNoiseDistance: 20
@@ -6953,7 +6953,6 @@ MonoBehaviour:
     m_Bits: 512
   interactionDistance: 2
   closestInteractableFeedbackPrefab: {fileID: 9169272506748579682, guid: 7675092e0c658f64a8197376644954d3, type: 3}
-  interactableColliders: []
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0

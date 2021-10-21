@@ -55,6 +55,8 @@ public class InteractionController : MonoBehaviour
             if (aiming)
                 continue;
             
+            
+            
             interactableColliders = Physics.OverlapSphere(transform.position, interactionDistance, layerMask);
             Vector3 closestPoint = transform.position;
             Interactable closestInteractable = null;

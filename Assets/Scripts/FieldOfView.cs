@@ -37,6 +37,7 @@ public class FieldOfView : MonoBehaviour
 
     [SerializeField] private float edgeDistanceThreshold;
     private bool alive = true;
+    float resetVisibleUnitsCooldownCurrent = 0;
     private void Start()
     {
         viewMesh = new Mesh();
@@ -54,12 +55,12 @@ public class FieldOfView : MonoBehaviour
 
     IEnumerator FindTargetsWithDelay()
     {
-        float t = 0;
+        resetVisibleUnitsCooldownCurrent = 0;
         while (true)
         {
             yield return new WaitForSeconds(updateDelay);
-            t += updateDelay;
-            if (t >= resetVisibleUnitsCooldown)
+            resetVisibleUnitsCooldownCurrent += updateDelay;
+            if (resetVisibleUnitsCooldownCurrent >= resetVisibleUnitsCooldown)
             {
                 bool canReset = true;
                 for (int i = 0; i < hc.Enemies.Count; i++)
@@ -76,10 +77,18 @@ public class FieldOfView : MonoBehaviour
                     hc.ResetVisibleUnits();
                 }
                 
-                t = 0;
+                resetVisibleUnitsCooldownCurrent = 0;
             }
             FindVisibleTargets();
         }
+    }
+
+    public void DelayCooldown(float amount)
+    {
+        resetVisibleUnitsCooldownCurrent -= amount;
+        
+        if (resetVisibleUnitsCooldownCurrent <= 0)
+            resetVisibleUnitsCooldownCurrent = 0;
     }
 
     private void LateUpdate()

@@ -82,8 +82,10 @@ MonoBehaviour:
     canRotateOnReturn: 0
     canSkipReturn: 1
     dangeorusParts: []
+  throwPower: 50
   attacksLeft: 2
   interactable: {fileID: 5405347542776371676}
+  rb: {fileID: 6148280074050707155}
 --- !u!135 &5177284745129542451
 SphereCollider:
   m_ObjectHideFlags: 0
