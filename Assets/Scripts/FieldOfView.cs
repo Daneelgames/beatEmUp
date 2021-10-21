@@ -10,6 +10,8 @@ public class FieldOfView : MonoBehaviour
     [Header("Links")]
     [SerializeField] private HealthController hc;
 
+    [SerializeField] private Transform eyesTransfom;
+
     [Header("Stats")] 
     [SerializeField] private int minVisibleBonesToSeeUnit = 4;
     public int MinVisibleBonesToSeeUnit => minVisibleBonesToSeeUnit;
@@ -25,7 +27,7 @@ public class FieldOfView : MonoBehaviour
     public float ViewAngle => viewAngle;
 
     [SerializeField] private LayerMask targetMask;
-    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private LayerMask raycastUnitsAndObstaclesMask;
 
     private List<Transform> visibleTargets = new List<Transform>();
     public List<Transform> VisibleTargets => visibleTargets;
@@ -77,7 +79,7 @@ public class FieldOfView : MonoBehaviour
     void FindVisibleTargets()
     {
         visibleTargets.Clear();
-        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(eyesTransfom.position, viewRadius, targetMask);
         RaycastHit hit;
 
         for (int i = 0; i < targetsInViewRadius.Length; i++)
@@ -93,14 +95,15 @@ public class FieldOfView : MonoBehaviour
             
             // if in viewport
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-            {
-                float dstToTarget = Vector3.Distance(transform.position, target.position);
+            {            
+                float dstToTarget = Vector3.Distance(eyesTransfom.position, target.position);
 
-                Physics.Raycast(transform.position + Vector3.up * 2,  dirToTarget, out hit, dstToTarget, obstacleMask);
-
-                if (hit.collider == null)
+                Physics.Raycast(eyesTransfom.position,  (target.position - eyesTransfom.position).normalized, out hit, dstToTarget, raycastUnitsAndObstaclesMask);
+                
+                if (hit.collider)
                 {
-                    visibleTargets.Add(target);
+                    if (hit.collider.transform == target)
+                        visibleTargets.Add(target);
                 }
             }
         }
@@ -201,7 +204,7 @@ public class FieldOfView : MonoBehaviour
         Vector3 dir = DirFromAngle(globalAngle, true);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, dir, out hit, viewRadius, obstacleMask))
+        if (Physics.Raycast(transform.position, dir, out hit, viewRadius, raycastUnitsAndObstaclesMask))
         {
             return new ViewCastInfo(true,hit.point, hit.distance, globalAngle);
         }

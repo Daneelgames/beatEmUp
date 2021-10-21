@@ -14,6 +14,7 @@ public class AttackManager : MonoBehaviour
 
     [SerializeField] private List<Attack> attackList = new List<Attack>();
     List<Attack> tempAttackList = new List<Attack>();
+    
     [SerializeField] private List<GrabAttack> grabAttacksList = new List<GrabAttack>();
     [SerializeField] private float grabAttacksRange = 3;
 
@@ -35,7 +36,6 @@ public class AttackManager : MonoBehaviour
     private GrabAttack currentGrabAttack;
     public GameObject HitParticle;
     
-
     private List<HealthController> damagedHCs = new List<HealthController>();
     public Attack CurrentAttack
     {
@@ -145,8 +145,6 @@ public class AttackManager : MonoBehaviour
     
     public void TryToAttack(bool playerInput)
     {
-        print("currentGrabAttack " + currentGrabAttack + "; currentAttack " + currentAttack);
-        
         if (currentGrabAttack != null)
             return;
 
@@ -156,7 +154,8 @@ public class AttackManager : MonoBehaviour
             return;
         }
 
-        if (weaponInHands == null)
+        // GRAB ATTACK
+        if (grabAttacksList.Count > 0 && weaponInHands == null)
         {
             // IF LOW HP ENEMY NEARBY
             var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, !playerInput,grabAttacksRange); 
@@ -458,6 +457,8 @@ public class AttackManager : MonoBehaviour
         if (weaponInHands != null)
         {
             var weaponToDrop = Instantiate(weaponInHands, weaponInHands.transform.position, weaponInHands.transform.rotation);
+            
+            GameManager.Instance.SetLayerRecursively(weaponToDrop.gameObject, 9);
             
             weaponToDrop.transform.localScale = Vector3.one;
             weaponToDrop.Interactable.ToggleTriggerCollider(false);

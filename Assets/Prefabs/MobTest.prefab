@@ -6903,7 +6903,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawFOV: 0
   hc: {fileID: 1212818265}
-  minVisibleBonesToSeeUnit: 6
+  eyesTransfom: {fileID: 5578621983223641640}
+  minVisibleBonesToSeeUnit: 4
   updateDelay: 0.5
   viewRadius: 15
   meshResolution: 1
@@ -6912,9 +6913,9 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 128
-  obstacleMask:
+  raycastUnitsAndObstaclesMask:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 192
   viewMeshFilter: {fileID: 158685165846845973}
   viewMesh: {fileID: 0}
   edgeDistanceThreshold: 0.5

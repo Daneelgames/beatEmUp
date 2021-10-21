@@ -38,7 +38,6 @@ public class InteractionController : MonoBehaviour
             for (int i = 0; i < interactableColliders.Length; i++)
             {
                 var tempClosestPoint = interactableColliders[i].ClosestPoint(transform.position);
-                print(tempClosestPoint);
                 float newDistance = Vector3.Distance(transform.position, tempClosestPoint);
                 
                 if (newDistance < distance)

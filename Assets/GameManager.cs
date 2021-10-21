@@ -20,10 +20,23 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            TogglePause();
+        }
+        
         if (Input.GetKey("g") && Input.GetKey("z") && Input.GetKeyDown("r"))
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    void TogglePause()
+    {
+        if (Time.timeScale < 0.5f)
+            Time.timeScale = 1f;
+        else
+            Time.timeScale = 0f;
     }
 
     public void AddUnit(HealthController hc)
