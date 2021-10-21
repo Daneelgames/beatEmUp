@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private HealthController hc;
     public HealthController HC => hc;
     
+    [SerializeField] private InteractionController _interactionController;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Animator anim;
     [SerializeField] private AttackManager attackManager;
@@ -44,6 +45,8 @@ public class PlayerInput : MonoBehaviour
     public static PlayerInput Instance;
 
     bool alive = true;
+    private bool aiming = false;
+    
     private void Awake()
     {
         Instance = this;
@@ -113,11 +116,44 @@ public class PlayerInput : MonoBehaviour
         RotateToMovementDirection();
     }
 
-
     void GetAttackingInput()
     {
-        if (Input.GetButtonDown("Attack"))
-            attackManager.TryToAttack(true);
+        if (Input.GetButton("Aim"))
+        {
+            if (aiming == false)
+            {
+                _interactionController.StartAiming();
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = false;
+                aiming = true;
+            }
+
+            Aim();
+        }
+        else
+        {
+            if (aiming)
+            {
+                _interactionController.StopAiming();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                aiming = false;
+            }
+            
+            if (Input.GetButtonDown("Attack"))
+                attackManager.TryToAttack(true);
+        }
+    }
+
+    void Aim()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            _interactionController.ClosestInteractableFeedback.transform.position = hit.point + transform.up * 0.1f;
+        }
     }
     
     void GetMovementInput()

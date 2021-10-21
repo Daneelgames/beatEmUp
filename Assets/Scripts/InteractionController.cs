@@ -11,10 +11,16 @@ public class InteractionController : MonoBehaviour
     public float interactionDistance = 2;
 
     public ParticleSystem closestInteractableFeedbackPrefab;
+
     private ParticleSystem closestInteractableFeedback;
+    public  ParticleSystem ClosestInteractableFeedback => closestInteractableFeedback;
+    
     private ParticleSystem.EmissionModule closestInteractableFeedbackEmissionModule;
-    [SerializeField]
+    public ParticleSystem.EmissionModule ClosestInteractableFeedbackEmissionModule => closestInteractableFeedbackEmissionModule;
+
     private Collider[] interactableColliders;
+
+    private bool aiming = false;
     void Start()
     {
         if (HighlightClosestInteractable)
@@ -26,11 +32,29 @@ public class InteractionController : MonoBehaviour
         StartCoroutine(UpdateInteraction());
     }
 
+    public void StartAiming()
+    {
+        aiming = true;
+        closestInteractableFeedbackEmissionModule.rateOverTime = 10;
+    }
+    
+    public void StopAiming()
+    {
+        closestInteractableFeedbackEmissionModule.rateOverTime = 0;
+        aiming = false;
+    }
+    
+
     IEnumerator UpdateInteraction()
     {
         // pick up the item and put it in a weapon BodyPartsManager.WeaponParentTransform
         while (true)
         {
+            yield return null;
+            
+            if (aiming)
+                continue;
+            
             interactableColliders = Physics.OverlapSphere(transform.position, interactionDistance, layerMask);
             Vector3 closestPoint = transform.position;
             Interactable closestInteractable = null;
@@ -75,7 +99,6 @@ public class InteractionController : MonoBehaviour
                     closestInteractableFeedbackEmissionModule.rateOverTime = 0;
             }
             
-            yield return null;
         }
     }
 

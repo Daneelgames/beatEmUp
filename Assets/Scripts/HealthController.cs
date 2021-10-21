@@ -191,56 +191,6 @@ public class HealthController : MonoBehaviour
                 yield return null;   
             }
         }
-        
-        yield break;
-        
-        Dictionary<HealthController, int> visibleBonesOfUnits = new Dictionary<HealthController, int>();
-        
-        t = 0;
-        for (int i = visibleTargets.Count - 1; i >= 0; i--)
-        {
-            if (i >= visibleTargets.Count)
-                continue;
-            var target = visibleTargets[i].gameObject;
-            for (int j = GameManager.Instance.Units.Count - 1; j >= 0; j--)
-            {
-                if (j >= GameManager.Instance.Units.Count)
-                    continue;
-                var unit = GameManager.Instance.Units[j];
-                
-                if (unit._bodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects.Contains(target) == false)
-                    continue;
-                
-                if (visibleHCs.Contains(unit) == false)
-                {
-                    if (visibleBonesOfUnits.ContainsKey(unit) == false)
-                    {
-                        visibleBonesOfUnits.Add(unit, 1);
-                    }
-                    else
-                    {
-                        visibleBonesOfUnits[unit]++;
-
-                        if (unit.playerInput)
-                            print(unit + "; " + visibleBonesOfUnits[unit]);
-                        
-                        if (visibleBonesOfUnits[unit] > fieldOfView.MinVisibleBonesToSeeUnit)
-                        {
-                            visibleHCs.Add(unit);
-                            if (enemies.Contains(unit) && _aiInput)
-                                _aiInput.SetAggro(unit);   
-                        }
-                    }
-                }
-            }
-
-            t++;
-            if (t > 20)
-            {
-                t = 0;
-                yield return null;   
-            }
-        }
     }
     
     public void ResetVisibleUnits()

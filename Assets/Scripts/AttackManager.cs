@@ -146,11 +146,15 @@ public class AttackManager : MonoBehaviour
     public void TryToAttack(bool playerInput)
     {
         if (currentGrabAttack != null)
+        {
+            print("currentGrabAttack != null");
             return;
+        }
 
         // MELEE
         if (currentAttack != null && !currentAttack.CanSkipReturn && attackReturnCoroutine != null)
         {
+            print("currentAttack != null");
             return;
         }
 
@@ -211,6 +215,14 @@ public class AttackManager : MonoBehaviour
         // If not attacking, start new attack
         ChooseAttack();
         attackSwingCoroutine = StartCoroutine(AttackSwing());
+    }
+
+    public void ThrowWeapon()
+    {
+        if (weaponInHands == null)
+            return;
+        
+        
     }
 
 

@@ -61,8 +61,22 @@ public class FieldOfView : MonoBehaviour
             t += updateDelay;
             if (t >= resetVisibleUnitsCooldown)
             {
+                bool canReset = true;
+                for (int i = 0; i < hc.Enemies.Count; i++)
+                {
+                    if (hc.VisibleHCs.Contains(hc.Enemies[i]))
+                    {
+                        canReset = false;
+                        break;
+                    }
+                }
+
+                if (canReset)
+                {
+                    hc.ResetVisibleUnits();
+                }
+                
                 t = 0;
-                hc.ResetVisibleUnits();
             }
             FindVisibleTargets();
         }

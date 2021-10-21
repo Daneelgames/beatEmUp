@@ -2989,6 +2989,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   hc: {fileID: 1212818265}
+  _interactionController: {fileID: 1243327812}
   characterController: {fileID: 1277168340}
   anim: {fileID: 919132149555714730}
   attackManager: {fileID: 4792253143275227139}
@@ -3194,7 +3195,6 @@ MonoBehaviour:
     m_Bits: 512
   interactionDistance: 3
   closestInteractableFeedbackPrefab: {fileID: 9169272506748579682, guid: 7675092e0c658f64a8197376644954d3, type: 3}
-  interactableColliders: []
 --- !u!1 &5882399220427191655
 GameObject:
   m_ObjectHideFlags: 0

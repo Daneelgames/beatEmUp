@@ -7,7 +7,7 @@ public class AiInput : MonoBehaviour
 {
     public enum State
     {
-        Wander, Idle, FollowTarget, Alert
+        Wander, Idle, FollowTarget, Investigate
     }
 
     [SerializeField] private State state = State.Wander;
@@ -92,14 +92,15 @@ public class AiInput : MonoBehaviour
         
         if (followTargetCoroutine != null)
         {
+            print("StopCoroutine(followTargetCoroutine);");
             StopCoroutine(followTargetCoroutine);
             followTargetCoroutine = null;
         }
         
-        if (aleartCoroutine != null)
+        if (alertCoroutine != null)
         {
-            StopCoroutine(aleartCoroutine);
-            aleartCoroutine = null;
+            StopCoroutine(alertCoroutine);
+            alertCoroutine = null;
         }
     }
     
@@ -117,7 +118,7 @@ public class AiInput : MonoBehaviour
                 PlayerInput.Instance.HC.AddEnemy(hc);
             }
 
-            aleartCoroutine = StartCoroutine(Alert());
+            alertCoroutine = StartCoroutine(Alert());
             
             agent.SetDestination(damager.transform.position);
             followTargetCoroutine = StartCoroutine(FollowTarget());
@@ -129,25 +130,29 @@ public class AiInput : MonoBehaviour
         if (!alive)
             yield break;
         
-        if (state == State.FollowTarget || state == State.Alert)
+        if (state == State.FollowTarget || state == State.Investigate)
             yield break;
         
         StopBehaviourCoroutines();
 
         yield return new WaitForSeconds(distance / 20f);
         
-        agent.SetDestination(noiseMakerPos);
+        if (agent && agent.enabled)
+            agent.SetDestination(noiseMakerPos);
+        else
+            yield break;
+        
         investigateCoroutine = StartCoroutine(Investigate(noiseMakerPos));
         
         
-        if (aleartCoroutine != null)
+        if (alertCoroutine != null)
             yield break;
         
-        aleartCoroutine = StartCoroutine(Alert());
+        alertCoroutine = StartCoroutine(Alert());
     }
 
 
-    private Coroutine aleartCoroutine;
+    private Coroutine alertCoroutine;
     IEnumerator Alert()
     {
         alert.gameObject.SetActive(false);
@@ -161,7 +166,7 @@ public class AiInput : MonoBehaviour
         alert.Play();
         yield return new WaitForSeconds(1f);
         alert.gameObject.SetActive(false);
-        aleartCoroutine = null;
+        alertCoroutine = null;
     }
     
     IEnumerator SimpleWalker()
@@ -212,7 +217,10 @@ public class AiInput : MonoBehaviour
                     newTargetPosition =  NewPositionNearPointOfInterest();
 
                     currentTargetPosition = newTargetPosition;
-                    agent.SetDestination(newTargetPosition);   
+                    if (agent && agent.enabled)
+                        agent.SetDestination(newTargetPosition);   
+                    else
+                        yield break;
                 }
                 else
                 {
@@ -224,7 +232,10 @@ public class AiInput : MonoBehaviour
             }
             else
             {
-                agent.SetDestination(currentTargetPosition);   
+                if (agent && agent.enabled)
+                    agent.SetDestination(currentTargetPosition);
+                else
+                    yield break;
             }
 
             yield return new WaitForSeconds(updateRate);
@@ -241,7 +252,7 @@ public class AiInput : MonoBehaviour
 
     IEnumerator Investigate(Vector3 investigationPoint)
     {
-        state = State.Alert;
+        state = State.Investigate;
         // WALK
         anim.SetBool(Running, false);
         agent.speed = walkSpeed;

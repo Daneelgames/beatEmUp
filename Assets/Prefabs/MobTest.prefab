@@ -6801,11 +6801,7 @@ MonoBehaviour:
     dangeorusParts:
     - {fileID: 137015411}
     - {fileID: 1264857821}
-  grabAttacksList:
-  - AttackAnimationTriggerName: GrabAttack0
-    prepareTime: 0.5
-    GrabAttackDuration: 3
-    healthPercentMin: 0.2
+  grabAttacksList: []
   grabAttacksRange: 2
   hc: {fileID: 1212818265}
   weaponParentTransform: {fileID: 4178932214755681905}
