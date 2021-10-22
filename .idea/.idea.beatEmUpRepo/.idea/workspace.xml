@@ -51,10 +51,10 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorEvents.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/NoiseMaker.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Weapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -115,7 +115,7 @@
       <workItem from="1634740051449" duration="7598000" />
       <workItem from="1634816785275" duration="14180000" />
       <workItem from="1634907567506" duration="2483000" />
-      <workItem from="1634912042804" duration="3531000" />
+      <workItem from="1634912042804" duration="6829000" />
     </task>
     <servers />
   </component>

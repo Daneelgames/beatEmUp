@@ -157,6 +157,10 @@ public class HealthController : MonoBehaviour
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
     {
         float t = 0;
+        float distance = 100;
+        float newDistance = 0;
+        HealthController closestVisibleEnemy = null;
+        
         for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
         {
             int visibleBonesAmount = 0;
@@ -180,7 +184,13 @@ public class HealthController : MonoBehaviour
             {
                 if (enemies.Contains(unit))
                 {
-                    _attackManager.SeeEnemy(unit);
+                    newDistance = Vector3.Distance(transform.position, unit.transform.position);
+                    if (newDistance < distance)
+                    {
+                        distance = newDistance;
+                        closestVisibleEnemy = unit;
+                    }
+                    
                 }
                 if (visibleHCs.Contains(unit) == false)
                 {
@@ -192,11 +202,18 @@ public class HealthController : MonoBehaviour
             }
 
             t++;
-            if (t > 20)
+            if (t > 50)
             {
                 t = 0;
                 yield return null;   
             }
+        }
+
+        if (closestVisibleEnemy != null)
+        {
+            _attackManager.SeeEnemy(closestVisibleEnemy);
+            _aiInput.SetAggro(closestVisibleEnemy);
+            _aiInput.RotateTowardsClosestEnemy(closestVisibleEnemy.transform);
         }
     }
     

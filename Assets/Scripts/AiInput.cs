@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class AiInput : MonoBehaviour
 {
@@ -32,8 +34,8 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float looseTargetDistance = 20;
     [SerializeField] private bool simpleWalker = true;
     [SerializeField] private Vector2 idleTimeMinMax = new Vector2(5, 30);
-    [SerializeField] private LayerMask groundMask;
     [SerializeField] private Vector2 attackCooldownMinMax = new Vector2(0.5f, 3f);
+    [SerializeField] private LayerMask groundMask;
     private float attackCooldownCurrent = 0;
 
     private Vector3 currentTargetPosition;
@@ -96,6 +98,12 @@ public class AiInput : MonoBehaviour
             followTargetCoroutine = null;
         }
         
+        if (investigateCoroutine != null)
+        {
+            StopCoroutine(investigateCoroutine);
+            investigateCoroutine = null;
+        }
+        
         if (alertCoroutine != null)
         {
             StopCoroutine(alertCoroutine);
@@ -105,10 +113,11 @@ public class AiInput : MonoBehaviour
     
     public void SetAggro(HealthController damager)
     {
+        print ("SetAggro");
         if (hc.Friends.Contains(damager) && Random.value < kidness)
             return;
         
-        if (state != State.FollowTarget)
+        if (followTargetCoroutine == null && state != State.FollowTarget)
         {
             StopBehaviourCoroutines();
             
@@ -117,7 +126,7 @@ public class AiInput : MonoBehaviour
                 PlayerInput.Instance.HC.AddEnemy(hc);
             }
 
-            alertCoroutine = StartCoroutine(Alert());
+            alertCoroutine = StartCoroutine(Alert()); 
             
             agent.SetDestination(damager.transform.position);
             followTargetCoroutine = StartCoroutine(FollowTarget());
@@ -205,6 +214,7 @@ public class AiInput : MonoBehaviour
         state = State.Wander;
         currentTargetPosition = NewPositionNearPointOfInterest();
 
+        print ("WanderOverTime");
         while (true)
         {
             if (Vector3.Distance(transform.position, currentTargetPosition) < stopDistance)
@@ -400,6 +410,7 @@ public class AiInput : MonoBehaviour
     
     IEnumerator Ideling()
     {
+        print ("Ideling");
         state = State.Idle;
         yield return new WaitForSeconds(Random.Range(idleTimeMinMax.x, idleTimeMinMax.y));
         wanderCoroutine = StartCoroutine(WanderOverTime());
@@ -408,6 +419,33 @@ public class AiInput : MonoBehaviour
     IEnumerator MoveTowardsTarget()
     {
         yield return new WaitForSeconds(updateRate);
+    }
+
+    public void RotateTowardsClosestEnemy(Transform targetTransform)
+    {
+        if (rotateTowardsClosestEnemyCoroutine != null)
+        {
+            StopCoroutine(rotateTowardsClosestEnemyCoroutine);
+        }
+
+        rotateTowardsClosestEnemyCoroutine = StartCoroutine(RotateTowardsClosestEnemyCoroutine(targetTransform));
+    }
+
+    private Coroutine rotateTowardsClosestEnemyCoroutine;
+    private Quaternion targetRotation = Quaternion.identity;
+    private Quaternion targetRotation1 = Quaternion.identity;
+    IEnumerator RotateTowardsClosestEnemyCoroutine(Transform targetTransform)
+    {
+        while (true)
+        {
+            if (targetTransform == null)
+                yield break;
+            
+            targetRotation1.SetLookRotation(targetTransform.position - transform.position); 
+            targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, Time.deltaTime);
+            transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
+            yield return null;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -433,6 +471,9 @@ public class AiInput : MonoBehaviour
             {
                 attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
                 _attackManager.TryToAttack(false);
+                
+                StopBehaviourCoroutines();
+                followTargetCoroutine = StartCoroutine(FollowTarget());
                 return;
             }
         }
