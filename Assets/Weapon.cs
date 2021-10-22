@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [Header("Ranged")]
+    
+    [SerializeField] private List<Attack> rangedWeaponAttacks = new List<Attack>();
+    public List<Attack> RangedWeaponAttacks => rangedWeaponAttacks;
+    [SerializeField] private int rangedWeaponDamage = 1000;
+    [SerializeField] private int ammo = 0;
+    public int Ammo => ammo;
+    
+    [Header("Universal")]
+
     [SerializeField] private List<Attack> weaponAttacks = new List<Attack>();
     public List<Attack> WeaponAttacks => weaponAttacks;
     [SerializeField] private Vector3 eulearsOnThrow = Vector3.zero;
-    
     [SerializeField] private int weaponDamage = 500;
     [SerializeField] private int throwDamage = 500;
     [SerializeField] private int impactNoiseDistance = 10;
@@ -28,6 +37,7 @@ public class Weapon : MonoBehaviour
     private List<GameObject> ownBodyPartsGameObjects = new List<GameObject>();
     private List<GameObject> damagedBodyPartsGameObjects = new List<GameObject>();
 
+    private Coroutine thrownCoroutine;
     public AttackManager AttackManager
     {
         get => attackManager;
@@ -50,14 +60,43 @@ public class Weapon : MonoBehaviour
         AttackManager = null;
         transform.localEulerAngles = eulearsOnThrow;
         Interactable.ToggleTriggerCollider(false);
-        Interactable.ToggleRigidbodyKinematicAndGravity(false, true);
-        Rigidbody.AddForce((throwTargetPoint - transform.position).normalized * ThrowPower, ForceMode.Impulse); 
+        Interactable.ToggleRigidbodyKinematicAndGravity(false, true); 
         GameManager.Instance.SetLayerRecursively(gameObject,9);
         SetDangerous(true);
+        
+        StopThrowFly();
+        
+        thrownCoroutine = StartCoroutine(Thrown(throwTargetPoint));
+    }
+
+    IEnumerator Thrown(Vector3 targetPoint)
+    {
+        Rigidbody.useGravity = false;
+        
+        while (true)
+        {
+            Rigidbody.AddTorque(0,90,0);
+            Rigidbody.AddForce((targetPoint - transform.position).normalized * ThrowPower, ForceMode.Force);
+            yield return null;
+        }
+    }
+
+    void StopThrowFly()
+    {
+        if (thrownCoroutine != null)
+            StopCoroutine(thrownCoroutine);
+
+        Rigidbody.useGravity = true;
+
     }
     
     private void OnTriggerStay(Collider other)
     {
+        if (thrownCoroutine != null && other.gameObject.layer == 6)
+        {
+            StopThrowFly();
+        }
+        
         if (dangerous)
         {
             if (other.gameObject.layer != 7)
@@ -76,6 +115,8 @@ public class Weapon : MonoBehaviour
 
             if (newPartToDamage)
             {
+                StopThrowFly();
+                
                 if (AttackManager == null)
                 {
                     attacksLeft = 0;

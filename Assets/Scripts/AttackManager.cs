@@ -236,7 +236,6 @@ public class AttackManager : MonoBehaviour
         weaponInHands = null;
     }
 
-
     GrabAttack ChooseGrabAttack(float healthPercent)
     {
         List<GrabAttack> tempList = new List<GrabAttack>(grabAttacksList);
@@ -378,7 +377,16 @@ public class AttackManager : MonoBehaviour
         else
         {
             // weapon attack
-            currentAttack = weaponInHands.WeaponAttacks[Random.Range(0, weaponInHands.WeaponAttacks.Count)];
+            // try to shoot if weapon has ammo
+            if (weaponInHands.Ammo > 0)
+            {
+                currentAttack = weaponInHands.RangedWeaponAttacks[Random.Range(0, weaponInHands.RangedWeaponAttacks.Count)];   
+            }
+            else
+            {
+                // use melee attack
+                currentAttack = weaponInHands.WeaponAttacks[Random.Range(0, weaponInHands.WeaponAttacks.Count)];
+            }
         }
         
         prevAttack = currentAttack;
@@ -504,12 +512,10 @@ public class AttackManager : MonoBehaviour
 [Serializable]
 public class Attack
 {
-    [Tooltip("This controls how often character uses this attack")]
-    [SerializeField] [Range(0f, 1f)] private float attackWeight = 1f; 
-    [SerializeField] [Range(0f, 1f)] private float reduceAttackWeightOnRepeat = 0.5f; 
-    [SerializeField] [Range(0f, 1f)] private float restoreAttackWeightOnAttackRest = 0.25f; 
-    private float attackWeightCurrent = 1f;
-
+    [Header("Ranged")] 
+    [SerializeField] private Transform shotPosition;
+        
+    [Header("Universal")]
     [SerializeField] private bool canAttackMidAir = false;
     [SerializeField] [Range(0.1f,5f)] private float attackDamageScaler = 1f;
     public float AttackDamageScaler { get => attackDamageScaler; }
@@ -518,7 +524,7 @@ public class Attack
     public float AttackCritChanceScaler { get => attackCritChanceScaler; }
 
     [SerializeField] private string attackAnimationTriggerName = "Attack";
-    [Header("Time")]
+    [Header("Timings")]
     [SerializeField] private float attackSwingTime = 0.5f;
     [SerializeField] private float attackDangerTime = 0.5f;
     [SerializeField] private float attackReturnTime = 0.5f;
@@ -529,9 +535,14 @@ public class Attack
     [SerializeField] private bool canRotateOnDanger = false;
     [SerializeField] private bool canRotateOnReturn = true;
     [SerializeField] private bool canSkipReturn = true;
-    
     public List<BodyPart> dangeorusParts;
-    
+ 
+    [Header("Randomized weights")]
+    [SerializeField] [Range(0f, 1f)] private float attackWeight = 1f; 
+    [SerializeField] [Range(0f, 1f)] private float reduceAttackWeightOnRepeat = 0.5f; 
+    [SerializeField] [Range(0f, 1f)] private float restoreAttackWeightOnAttackRest = 0.25f; 
+    private float attackWeightCurrent = 1f;
+   
     public float AttackWeightCurrent
     {
         get => attackWeightCurrent;
