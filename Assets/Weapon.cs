@@ -10,8 +10,12 @@ public class Weapon : MonoBehaviour
     public List<Attack> RangedWeaponAttacks => rangedWeaponAttacks;
     [SerializeField] private int rangedWeaponDamage = 1000;
     [SerializeField] private int ammo = 0;
-    public int Ammo => ammo;
-    
+    public int Ammo
+    {
+        get { return ammo; }
+        set { ammo = value; }
+    }
+
     [Header("Universal")]
 
     [SerializeField] private List<Attack> weaponAttacks = new List<Attack>();
@@ -21,12 +25,14 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int throwDamage = 500;
     [SerializeField] private int impactNoiseDistance = 10;
     [SerializeField] private int throwPower = 10;
+    [SerializeField] private float minDistanceToStopThrowFly = 2;
     public int ThrowPower => throwPower;
     [SerializeField] private int attacksLeft = 3;
     
     private bool dangerous = false;
 
     [Header("Links")] 
+    [SerializeField] private AudioSource shotAu;
     [SerializeField] Interactable interactable;
     [SerializeField] Rigidbody rb;
     public Rigidbody Rigidbody => rb;
@@ -78,6 +84,8 @@ public class Weapon : MonoBehaviour
             Rigidbody.AddTorque(0,90,0);
             Rigidbody.AddForce((targetPoint - transform.position).normalized * ThrowPower, ForceMode.Force);
             yield return null;
+            if (Vector3.Distance(transform.position, targetPoint) < minDistanceToStopThrowFly)
+                StopThrowFly();
         }
     }
 
@@ -88,6 +96,14 @@ public class Weapon : MonoBehaviour
 
         Rigidbody.useGravity = true;
 
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (thrownCoroutine != null && other.collider.gameObject.layer == 6)
+        {
+            StopThrowFly();
+        }
     }
     
     private void OnTriggerStay(Collider other)
@@ -150,9 +166,13 @@ public class Weapon : MonoBehaviour
                 SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
                       
             if (attackManager)
-                AttackManager.RemoveWeapon(this);
-            
-            Destroy(gameObject);
+                AttackManager.DestroyWeapon(this);
         }
+    }
+
+    public void ShotFX()
+    {
+        shotAu.pitch = Random.Range(0.75f, 1.25f);
+        shotAu.Play();
     }
 }

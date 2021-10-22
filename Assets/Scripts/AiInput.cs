@@ -92,7 +92,6 @@ public class AiInput : MonoBehaviour
         
         if (followTargetCoroutine != null)
         {
-            print("StopCoroutine(followTargetCoroutine);");
             StopCoroutine(followTargetCoroutine);
             followTargetCoroutine = null;
         }

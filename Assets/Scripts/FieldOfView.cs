@@ -16,7 +16,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private int minVisibleBonesToSeeUnit = 4;
     public int MinVisibleBonesToSeeUnit => minVisibleBonesToSeeUnit;
 
-    private float resetVisibleUnitsCooldown = 5f;
+    [SerializeField] private float resetVisibleUnitsCooldown = 10f;
     [SerializeField] private float updateDelay = 0.25f;
     [SerializeField] private float viewRadius;
     [SerializeField] private float meshResolution;

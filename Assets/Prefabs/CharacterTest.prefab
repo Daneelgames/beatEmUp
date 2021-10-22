@@ -3009,9 +3009,8 @@ MonoBehaviour:
   critChance: 0.1
   critDamageScaler: 3
   attackList:
-  - attackWeight: 2
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
+    useAmmo: 0
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -3029,9 +3028,11 @@ MonoBehaviour:
     dangeorusParts:
     - {fileID: 371326942}
     - {fileID: 1610119941}
-  - attackWeight: 2
+    attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
+    useAmmo: 0
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -3049,10 +3050,14 @@ MonoBehaviour:
     dangeorusParts:
     - {fileID: 137015411}
     - {fileID: 1264857821}
+    attackWeight: 2
+    reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
   grabAttacksList: []
   grabAttacksRange: 3
   hc: {fileID: 1212818265}
   weaponParentTransform: {fileID: 6886546273252934812}
+  weaponInHands: {fileID: 0}
   anim: {fileID: 919132149555714730}
   HitParticle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!143 &1277168340
@@ -3174,6 +3179,8 @@ MonoBehaviour:
   runStepNoiseDistance: 15
   makeAttackNoise: 1
   attackNoiseDistance: 10
+  makeShotNoise: 1
+  shotNoiseDistance: 25
   shouts: 0
   shoutNoiseDistance: 20
 --- !u!114 &1243327812

@@ -6735,13 +6735,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2fa30289f427945abc08867a171b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttackDamage: 200
+  baseAttackDamage: 350
   critChance: 0.1
   critDamageScaler: 3
   attackList:
-  - attackWeight: 2
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
+    useAmmo: 0
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -6759,9 +6758,11 @@ MonoBehaviour:
     dangeorusParts:
     - {fileID: 371326942}
     - {fileID: 1610119941}
-  - attackWeight: 1
+    attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
+    useAmmo: 0
     canAttackMidAir: 1
     attackDamageScaler: 1.2
     attackCritChanceScaler: 1
@@ -6781,9 +6782,11 @@ MonoBehaviour:
     - {fileID: 1151221938}
     - {fileID: 376145812}
     - {fileID: 362900792}
-  - attackWeight: 2
+    attackWeight: 1
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
+    useAmmo: 0
     canAttackMidAir: 1
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -6801,10 +6804,14 @@ MonoBehaviour:
     dangeorusParts:
     - {fileID: 137015411}
     - {fileID: 1264857821}
+    attackWeight: 2
+    reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
   grabAttacksList: []
   grabAttacksRange: 2
   hc: {fileID: 1212818265}
   weaponParentTransform: {fileID: 4178932214755681905}
+  weaponInHands: {fileID: 0}
   anim: {fileID: 919132149555714730}
   HitParticle: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!54 &4956596149813344476
@@ -6901,6 +6908,7 @@ MonoBehaviour:
   hc: {fileID: 1212818265}
   eyesTransfom: {fileID: 5578621983223641640}
   minVisibleBonesToSeeUnit: 4
+  resetVisibleUnitsCooldown: 10
   updateDelay: 0.5
   viewRadius: 15
   meshResolution: 1

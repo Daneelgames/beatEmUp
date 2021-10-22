@@ -9,6 +9,8 @@ public class NoiseMaker : MonoBehaviour
     public float runStepNoiseDistance = 10;
     public bool makeAttackNoise = false;
     public float attackNoiseDistance = 10;
+    public bool makeShotNoise = false;
+    public float shotNoiseDistance = 25;
     
     public bool shouts = false;
     public float shoutNoiseDistance = 20;
@@ -34,6 +36,13 @@ public class NoiseMaker : MonoBehaviour
             return;
         
         SpawnController.Instance.MakeNoise(transform.position, attackNoiseDistance);
+    }
+    public void ShotNoise()
+    {
+        if (!makeAttackNoise)
+            return;
+        
+        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance);
     }
     
     public void ShoutNoise()

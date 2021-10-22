@@ -44,4 +44,9 @@ public class AnimatorEvents : MonoBehaviour
         if (noiseMaker)
             noiseMaker.AttackNoise();
     }
+    public void ShotNoise()
+    {
+        if (noiseMaker)
+            noiseMaker.ShotNoise();
+    }
 }

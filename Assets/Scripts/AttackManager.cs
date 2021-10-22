@@ -23,7 +23,6 @@ public class AttackManager : MonoBehaviour
     private Coroutine attackDangerCoroutine;
     private Coroutine attackReturnCoroutine;
 
-    private Weapon weaponInHands;
     
     [Header("Links")] 
     [SerializeField] private HealthController hc;
@@ -31,6 +30,8 @@ public class AttackManager : MonoBehaviour
 
     [SerializeField] private Transform weaponParentTransform;
     public Transform WeaponParentTransform => weaponParentTransform;
+    
+    [SerializeField] private Weapon weaponInHands;
     
     [SerializeField] private Animator anim;
     private Attack currentAttack = null;
@@ -67,6 +68,12 @@ public class AttackManager : MonoBehaviour
         {
             canRotate = value; 
         }
+    }
+
+    void Start()
+    {
+        if (weaponInHands)
+            weaponInHands.SetNewOwner(this);
     }
 
     public void Jumped()
@@ -143,6 +150,21 @@ public class AttackManager : MonoBehaviour
         CanMove = true;
         CanRotate = true;
     }
+
+    public void SeeEnemy(HealthController hc)
+    {
+        float distance = Vector3.Distance(transform.position, hc.transform.position);
+        if (weaponInHands && weaponInHands.Ammo > 0)
+        {
+            if (distance  > 3)
+                TryToAttack(false);   
+        }
+        else if (distance <= 3)
+        {
+            TryToAttack(false);
+        }
+    }
+    
     
     public void TryToAttack(bool playerInput)
     {
@@ -408,6 +430,12 @@ public class AttackManager : MonoBehaviour
         CanMove = currentAttack.CanMoveOnDanger;
         CanRotate = currentAttack.CanRotateOnDanger;
         
+        if (currentAttack.UseAmmo && weaponInHands)
+        {
+            weaponInHands.Ammo -= 1;
+            weaponInHands.ShotFX();
+        }
+        
         for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
         {
             var part = currentAttack.dangeorusParts[index];
@@ -485,6 +513,13 @@ public class AttackManager : MonoBehaviour
         interactable.transform.parent = WeaponParentTransform;
         interactable.WeaponPickUp.SetNewOwner(this);
         
+        DropWeapon();
+        
+        weaponInHands = interactable.WeaponPickUp;
+    }
+
+    void DropWeapon()
+    {
         if (weaponInHands != null)
         {
             var weaponToDrop = Instantiate(weaponInHands, weaponInHands.transform.position, weaponInHands.transform.rotation);
@@ -494,15 +529,22 @@ public class AttackManager : MonoBehaviour
             weaponToDrop.transform.localScale = Vector3.one;
             weaponToDrop.Interactable.ToggleTriggerCollider(false);
             weaponToDrop.Interactable.ToggleRigidbodyKinematicAndGravity(false, true);
+            DestroyWeapon(weaponInHands);
         }
-        
-        weaponInHands = interactable.WeaponPickUp;
     }
 
-    public void RemoveWeapon(Weapon weapon)
+    public void DestroyWeapon(Weapon weapon)
     {
         if (weaponInHands == weapon)
+        {
+            Destroy(weaponInHands.gameObject);
             weaponInHands = null;
+        }
+    }
+
+    public void Death()
+    {
+        DropWeapon();
     }
 }
 
@@ -514,7 +556,9 @@ public class Attack
 {
     [Header("Ranged")] 
     [SerializeField] private Transform shotPosition;
-        
+    [SerializeField] private bool useAmmo = false;
+    public bool UseAmmo => useAmmo;
+    
     [Header("Universal")]
     [SerializeField] private bool canAttackMidAir = false;
     [SerializeField] [Range(0.1f,5f)] private float attackDamageScaler = 1f;

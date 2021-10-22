@@ -175,13 +175,13 @@ public class HealthController : MonoBehaviour
                     visibleBonesAmount++;
                 }
             }
-            
-            /*
-            if (unit.playerInput)
-                print("Sees " + visibleBonesAmount + " of player's bones!");*/
 
             if (visibleBonesAmount > fieldOfView.MinVisibleBonesToSeeUnit)
             {
+                if (enemies.Contains(unit))
+                {
+                    _attackManager.SeeEnemy(unit);
+                }
                 if (visibleHCs.Contains(unit) == false)
                 {
                     visibleHCs.Add(unit);  
@@ -211,6 +211,8 @@ public class HealthController : MonoBehaviour
         
         if (playerInput)
             playerInput.Death();
+        if (_attackManager)
+            _attackManager.Death();
         if (_aiInput)
             _aiInput.Death();
         if (agent)

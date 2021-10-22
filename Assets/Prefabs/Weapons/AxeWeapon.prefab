@@ -63,10 +63,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b8a33e8860d014eb3c9b8912dfd603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangedWeaponAttacks: []
+  rangedWeaponDamage: 1000
+  ammo: 0
   weaponAttacks:
-  - attackWeight: 2
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -82,6 +83,9 @@ MonoBehaviour:
     canRotateOnReturn: 0
     canSkipReturn: 1
     dangeorusParts: []
+    attackWeight: 2
+    reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
   eulearsOnThrow: {x: 90, y: 0, z: 0}
   weaponDamage: 1000
   throwDamage: 1500
@@ -117,8 +121,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6960457, y: 1.8484375, z: 0.14591932}
-  m_Center: {x: 0.20117386, y: 0.09068977, z: -0.0011222647}
+  m_Size: {x: 0.17649953, y: 1.8649173, z: 0.7279085}
+  m_Center: {x: 0.041904468, y: 0.120135665, z: 0.17571132}
 --- !u!1001 &8048752038889753571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.043977737
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -160,23 +164,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.043977737
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: -0.0000003501773
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: -0.0000003501773
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -188,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 8b1b8c6927c7e48458cd5a3240f876f6, type: 3}
       propertyPath: m_Materials.Array.data[0]
