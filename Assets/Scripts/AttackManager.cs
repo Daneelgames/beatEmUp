@@ -22,7 +22,6 @@ public class AttackManager : MonoBehaviour
     private Coroutine attackSwingCoroutine;
     private Coroutine attackDangerCoroutine;
     private Coroutine attackReturnCoroutine;
-
     
     [Header("Links")] 
     [SerializeField] private HealthController hc;
@@ -151,22 +150,22 @@ public class AttackManager : MonoBehaviour
         CanRotate = true;
     }
 
-    public void SeeEnemy(HealthController hc)
+    public void SeeEnemy(HealthController hc, BodyPart boneToAim)
     {
         float distance = Vector3.Distance(transform.position, hc.transform.position);
         if (weaponInHands && weaponInHands.Ammo > 0)
         {
             if (distance  > 3)
-                TryToAttack(false);   
+                TryToAttack(false, boneToAim);   
         }
         else if (distance <= 3)
         {
-            TryToAttack(false);
+            TryToAttack(false, boneToAim);
         }
     }
     
     
-    public void TryToAttack(bool playerInput)
+    public void TryToAttack(bool playerInput, BodyPart boneToAim)
     {
         if (currentGrabAttack != null)
         {
@@ -186,6 +185,7 @@ public class AttackManager : MonoBehaviour
             return;
         }
 
+        #region Grab Attack
         // GRAB ATTACK
         if (grabAttacksList.Count > 0 && weaponInHands == null)
         {
@@ -223,6 +223,7 @@ public class AttackManager : MonoBehaviour
                 }
             }   
         }
+        #endregion
         
         if (attackReturnCoroutine != null)
         {
@@ -242,7 +243,7 @@ public class AttackManager : MonoBehaviour
         damagedHCs.Clear();
         // If not attacking, start new attack
         ChooseAttack();
-        attackSwingCoroutine = StartCoroutine(AttackSwing());
+        attackSwingCoroutine = StartCoroutine(AttackSwing(boneToAim));
     }
 
     public void TryToThrowWeapon(Vector3 throwTargetPoint)
@@ -414,18 +415,18 @@ public class AttackManager : MonoBehaviour
         prevAttack = currentAttack;
     }
     
-    IEnumerator AttackSwing()
+    IEnumerator AttackSwing(BodyPart boneToAim)
     {
         CanMove = currentAttack.CanMoveOnSwing;
         CanRotate = currentAttack.CanRotateOnSwing;
         
         anim.SetTrigger(currentAttack.AttackAnimationTriggerName);
         yield return new WaitForSeconds(currentAttack.AttackSwingTime);
-        attackDangerCoroutine = StartCoroutine(AttackDanger());
+        attackDangerCoroutine = StartCoroutine(AttackDanger(boneToAim));
         attackSwingCoroutine = null;
     }
 
-    IEnumerator AttackDanger()
+    IEnumerator AttackDanger(BodyPart boneToAim)
     {
         CanMove = currentAttack.CanMoveOnDanger;
         CanRotate = currentAttack.CanRotateOnDanger;
@@ -433,7 +434,7 @@ public class AttackManager : MonoBehaviour
         if (currentAttack.UseAmmo && weaponInHands)
         {
             weaponInHands.Ammo -= 1;
-            weaponInHands.ShotFX();
+            weaponInHands.ShotFX(boneToAim, currentAttack.MissChance);
         }
         
         for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
@@ -558,6 +559,9 @@ public class Attack
     [SerializeField] private Transform shotPosition;
     [SerializeField] private bool useAmmo = false;
     public bool UseAmmo => useAmmo;
+    
+    [SerializeField] [Range(0, 1)] private float missChance = 0.5f;
+    public float MissChance => missChance;
     
     [Header("Universal")]
     [SerializeField] private bool canAttackMidAir = false;

@@ -114,6 +114,7 @@ public class AiInput : MonoBehaviour
     public void SetAggro(HealthController damager)
     {
         print ("SetAggro");
+        
         if (hc.Friends.Contains(damager) && Random.value < kidness)
             return;
         
@@ -126,10 +127,14 @@ public class AiInput : MonoBehaviour
                 PlayerInput.Instance.HC.AddEnemy(hc);
             }
 
-            alertCoroutine = StartCoroutine(Alert()); 
-            
             agent.SetDestination(damager.transform.position);
-            followTargetCoroutine = StartCoroutine(FollowTarget());
+            
+            if (followTargetCoroutine == null)
+                followTargetCoroutine = StartCoroutine(FollowTarget());
+            
+            if (alertCoroutine != null)
+                return;
+            alertCoroutine = StartCoroutine(Alert()); 
         }
     }
 
@@ -442,7 +447,7 @@ public class AiInput : MonoBehaviour
                 yield break;
             
             targetRotation1.SetLookRotation(targetTransform.position - transform.position); 
-            targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, Time.deltaTime);
+            targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
             transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
             yield return null;
         }
@@ -470,7 +475,7 @@ public class AiInput : MonoBehaviour
             if (hc.Enemies[i].gameObject == other.gameObject)
             {
                 attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
-                _attackManager.TryToAttack(false);
+                _attackManager.TryToAttack(false, null);
                 
                 StopBehaviourCoroutines();
                 followTargetCoroutine = StartCoroutine(FollowTarget());
