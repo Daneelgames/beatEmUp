@@ -146,7 +146,7 @@ public class PlayerInput : MonoBehaviour
             }
             
             if (Input.GetButtonDown("Attack"))
-                attackManager.TryToAttack(true);
+                attackManager.TryToAttack(true, null);
         }
     }
 

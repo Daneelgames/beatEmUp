@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Ranged")]
-    
+    [Header("Ranged")] 
+    [SerializeField] private float shotRaycastDistance = 100;
+    [SerializeField] private float shotNoiseDistance = 100;
     [SerializeField] private List<Attack> rangedWeaponAttacks = new List<Attack>();
     public List<Attack> RangedWeaponAttacks => rangedWeaponAttacks;
     [SerializeField] private int rangedWeaponDamage = 1000;
     [SerializeField] private int ammo = 0;
+    [SerializeField] private ParticleSystem shotParticles;
+    [SerializeField] private LayerMask shotLayerMask;
     public int Ammo
     {
         get { return ammo; }
@@ -136,7 +139,8 @@ public class Weapon : MonoBehaviour
                 if (AttackManager == null)
                 {
                     attacksLeft = 0;
-                    DamageDirectly(newPartToDamage);
+                    SpawnController.Instance.MakeNoise(transform.position, impactNoiseDistance);
+                    DamageDirectly(newPartToDamage, throwDamage);
                     AfterAttack(newPartToDamage);
                 }
                 else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage))
@@ -148,10 +152,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void DamageDirectly(BodyPart partToDamage)
+    void DamageDirectly(BodyPart partToDamage, int dmg)
     {
-        SpawnController.Instance.MakeNoise(transform.position, impactNoiseDistance);
-        partToDamage.HC.Damage(throwDamage, null);
+        partToDamage.HC.Damage(dmg, null);
     }
 
     void AfterAttack(BodyPart newPartToDamage)
@@ -170,9 +173,42 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void ShotFX()
+    public void ShotFX(BodyPart boneToAim, float missChance)
     {
+        if (boneToAim)
+        {
+            float r = Random.value;
+            if (r < missChance)
+            {
+                // hit
+                shotParticles.transform.LookAt(boneToAim.transform.position);
+                boneToAim.HC.Damage(rangedWeaponDamage, attackManager.Hc);
+            }
+            else
+            {
+                // miss
+                Vector3 missPosition = boneToAim.transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                
+                // RAYCAST
+                RaycastHit hit;
+                if (Physics.Raycast(shotParticles.transform.position, missPosition - shotParticles.transform.position,
+                    out hit, shotRaycastDistance, shotLayerMask))
+                {
+                    shotParticles.transform.LookAt(hit.point);
+
+                    if (hit.collider.gameObject.layer == 7)
+                    {
+                        BodyPart part = hit.collider.gameObject.GetComponent<BodyPart>();
+                        if (part)
+                            DamageDirectly(part, rangedWeaponDamage);
+                    }
+                }
+            }
+        }
+        
+        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance);
         shotAu.pitch = Random.Range(0.75f, 1.25f);
         shotAu.Play();
+        shotParticles.Play();
     }
 }

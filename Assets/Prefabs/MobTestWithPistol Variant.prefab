@@ -116,6 +116,30 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2891489604020056583, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891489604020056583, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891489604020056583, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891489604020056583, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891489604020056583, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891489604020056583, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2990754416440667523, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_IsTrigger
       value: 1

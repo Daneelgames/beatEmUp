@@ -160,6 +160,7 @@ public class HealthController : MonoBehaviour
         float distance = 100;
         float newDistance = 0;
         HealthController closestVisibleEnemy = null;
+        BodyPart visibleTargetToAim = null; 
         
         for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
         {
@@ -176,6 +177,7 @@ public class HealthController : MonoBehaviour
                 
                 if (visibleTargets.Contains(unit.BodyPartsManager.bodyParts[j].transform))
                 {
+                    visibleTargetToAim = unit.BodyPartsManager.bodyParts[j];
                     visibleBonesAmount++;
                 }
             }
@@ -211,7 +213,7 @@ public class HealthController : MonoBehaviour
 
         if (closestVisibleEnemy != null)
         {
-            _attackManager.SeeEnemy(closestVisibleEnemy);
+            _attackManager.SeeEnemy(closestVisibleEnemy, visibleTargetToAim);
             _aiInput.SetAggro(closestVisibleEnemy);
             _aiInput.RotateTowardsClosestEnemy(closestVisibleEnemy.transform);
         }
