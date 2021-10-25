@@ -109,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5757401403179926516, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Name
-      value: AiCharacterTest Variant
+      value: AiAllyTest Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5926532711273271618, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_RootOrder
@@ -155,9 +155,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsAu
+      value: 
+      objectReference: {fileID: 3866326194857481907}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: abdada0cd0803914895be64be1b3918b, type: 3}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: cbf899adf25d8eb4a877568e07f4af21, type: 3}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7428147f88423b94684d12ccbd718825, type: 3}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 32659b9e250cc9c44ae1a11933069d6f, type: 3}
     - target: {fileID: 6928500999500087476, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Name
       value: Hair
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+--- !u!82 &3866326194857481907 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7089079299650208771, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+  m_PrefabInstance: {fileID: 6324895699573756592}
+  m_PrefabAsset: {fileID: 0}
