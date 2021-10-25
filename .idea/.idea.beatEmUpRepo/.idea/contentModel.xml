@@ -232,6 +232,7 @@
             </e>
           </e>
         </e>
+        <e p="PartyInputManager.cs" t="Include" />
         <e p="SC Post Effects" t="Include">
           <e p="Editor" t="Include">
             <e p="Editors" t="Include">
@@ -559,7 +560,7 @@
           <e p="AudioManager.cs" t="Include" />
           <e p="BodyPart.cs" t="Include" />
           <e p="BodyPartsManager.cs" t="Include" />
-          <e p="CameraFollowPlayer.cs" t="Include" />
+          <e p="CameraController.cs" t="Include" />
           <e p="FieldOfView.cs" t="Include" />
           <e p="HealthController.cs" t="Include" />
           <e p="Interactable.cs" t="Include" />

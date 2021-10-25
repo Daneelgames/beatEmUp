@@ -5046,7 +5046,7 @@ MonoBehaviour:
     attackWeight: 1
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
-  rangedWeaponDamage: 1000
+  rangedWeaponDamage: 300
   ammo: 5
   shotParticles: {fileID: 2891489604020056583}
   shotLayerMask:

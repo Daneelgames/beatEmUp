@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class AiInput : MonoBehaviour
 {
+    public bool inParty = false;
     public enum State
     {
         Wander, Idle, FollowTarget, Investigate
@@ -30,6 +31,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float walkSpeed = 2;
     [SerializeField] private float runSpeed = 4;
     [SerializeField] private float stopDistance = 3;
+    [SerializeField] private float stopDistanceAllyToPlayer = 5;
     [SerializeField] private float runDistanceThreshold = 5;
     [SerializeField] private float looseTargetDistance = 20;
     [SerializeField] private bool simpleWalker = true;
@@ -122,10 +124,12 @@ public class AiInput : MonoBehaviour
         {
             StopBehaviourCoroutines();
             
-            if (PlayerInput.Instance.gameObject == damager.gameObject)
+            if (PlayerInput.Instance && PlayerInput.Instance.gameObject == damager.gameObject)
             {
                 PlayerInput.Instance.HC.AddEnemy(hc);
             }
+            else if (damager.AiInput && damager.AiInput.inParty)
+                damager.AddEnemy(hc);
 
             agent.SetDestination(damager.transform.position);
             
@@ -140,6 +144,9 @@ public class AiInput : MonoBehaviour
 
     public IEnumerator HeardNoise(Vector3 noiseMakerPos, float distance)
     {
+        if (inParty)
+            yield break;
+        
         if (!alive)
             yield break;
         
@@ -168,6 +175,7 @@ public class AiInput : MonoBehaviour
     private Coroutine alertCoroutine;
     IEnumerator Alert()
     {
+        print("Alert");
         alert.gameObject.SetActive(false);
         yield return null;
         
@@ -211,7 +219,10 @@ public class AiInput : MonoBehaviour
 
     void Wander()
     {
-        wanderCoroutine = StartCoroutine(WanderOverTime());
+        if (inParty == false)
+            wanderCoroutine = StartCoroutine(WanderOverTime());
+        else
+            wanderCoroutine = StartCoroutine(WanderWithPlayer());
     }
     
     IEnumerator WanderOverTime()
@@ -250,6 +261,48 @@ public class AiInput : MonoBehaviour
                     agent.SetDestination(currentTargetPosition);
                 else
                     yield break;
+            }
+
+            yield return new WaitForSeconds(updateRate);
+        }
+    }
+    
+    IEnumerator WanderWithPlayer()
+    {
+        state = State.Wander;
+
+        print ("WanderWithPlayer");
+        while (true)
+        {
+            currentTargetPosition = NewPositionNearPointOfInterest();
+            float newDistance = Vector3.Distance(transform.position, currentTargetPosition); 
+            if (newDistance > stopDistanceAllyToPlayer)
+            {
+                if (agent && agent.enabled)
+                {
+                    if (newDistance > runDistanceThreshold)
+                    {
+                        // RUN
+                        anim.SetBool(Running, true);
+                        agent.speed = runSpeed;
+                    }
+                    else
+                    {
+                        // WALK
+                        anim.SetBool(Running, false);
+                        agent.speed = walkSpeed;
+                    }
+                
+                    agent.isStopped = false;
+                    agent.SetDestination(currentTargetPosition);   
+                }
+                else
+                    yield break;
+            }
+            else
+            {
+                anim.SetBool(Running, false);
+                agent.speed = walkSpeed;
             }
 
             yield return new WaitForSeconds(updateRate);
@@ -344,8 +397,8 @@ public class AiInput : MonoBehaviour
 
     Vector3 NewPositionNearPointOfInterest()
     {
-        Vector3 newPos =
-            AiNavigationManager.instance.PointsOfInterest[Random.Range(0, AiNavigationManager.instance.PointsOfInterest.Count)].position + Random.insideUnitSphere * Random.Range(1, 5);
+        Vector3 newPos = AiNavigationManager.instance.PointsOfInterest[Random.Range(0, AiNavigationManager.instance.PointsOfInterest.Count)].position + Random.insideUnitSphere * Random.Range(1, 5);
+        
         NavMeshHit hit;
         float tries = 5;
         while (tries > 0)
@@ -418,7 +471,7 @@ public class AiInput : MonoBehaviour
         print ("Ideling");
         state = State.Idle;
         yield return new WaitForSeconds(Random.Range(idleTimeMinMax.x, idleTimeMinMax.y));
-        wanderCoroutine = StartCoroutine(WanderOverTime());
+        Wander();
     }
     
     IEnumerator MoveTowardsTarget()

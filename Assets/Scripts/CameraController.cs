@@ -5,12 +5,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CameraFollowPlayer : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
-
     [SerializeField] private Vector2 xMinMax = new Vector2(15, 40);
     [SerializeField] private float distanceInFrontOfCharacter = 3;
     [SerializeField] private float cameraSmooth = 0.75f;
+    [SerializeField] private float cameraMoveSpeed = 100;
     [SerializeField] private float cameraTurnSpeed = 500f;
     
     private Transform parent;
@@ -45,7 +45,18 @@ public class CameraFollowPlayer : MonoBehaviour
             return;
         
         // parent smoothly follows it
-        parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter, cameraSmooth * Time.deltaTime);
+        Vector3 targetPosition = parent.gameObject.transform.position;
+        if (PlayerInput.Instance)
+            targetPosition = PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter;
+        else if (PartyInputManager.Instance)
+        {
+            float horizontalAxis = Input.GetAxis("Horizontal");
+            float verticalAxis = Input.GetAxis("Vertical");
+            Vector3 movementVector = parent.gameObject.transform.forward * verticalAxis + parent.gameObject.transform.right * horizontalAxis;
+            targetPosition += movementVector.normalized * cameraMoveSpeed;
+        }
+        
+        parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);
         parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * (cameraTurnSpeed * Time.deltaTime));
 
         mouseInputY = -Input.GetAxis("Mouse Y");
