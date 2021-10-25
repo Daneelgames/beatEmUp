@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -9,13 +10,16 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private List<HealthController> units = new List<HealthController>();
+    public Camera mainCamera;
     public List<HealthController> Units => units;
+    public int navMeshSampleIterations = 10;
 
+    public LayerMask groundLayerMask;
     private void Awake()
     {
         Instance = this;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
@@ -102,5 +106,34 @@ public class GameManager : MonoBehaviour
         }
 
         return closestUnit;
+    }
+
+    public Vector3 MouseWorldGroundPosition()
+    {
+        Vector3 mousePos = Vector3.zero;
+        
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayerMask)) {
+            mousePos = hit.point;
+        }
+        return mousePos;
+    }
+
+    public Vector3 GetClosestNavmeshPoint(Vector3 newPos)
+    {
+        Vector3 closestPosition = newPos;
+        NavMeshHit hit;
+        for (int i = 0; i < navMeshSampleIterations; i++)
+        {
+            if (NavMesh.SamplePosition(newPos, out hit, 5 + 5 * i, NavMesh.AllAreas))
+            {
+                closestPosition = hit.position;
+                break;
+            }
+        }
+        
+        return closestPosition;
     }
 }

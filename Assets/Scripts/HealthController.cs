@@ -52,6 +52,7 @@ public class HealthController : MonoBehaviour
     
     private List<HealthController> visibleHCs = new List<HealthController>();
     public List<HealthController> VisibleHCs => visibleHCs;
+    public bool enemiesInSight = false;
 
     [ContextMenu("FastInit")]
     public void FastInit()
@@ -63,6 +64,9 @@ public class HealthController : MonoBehaviour
     void Start()
     {
         GameManager.Instance.AddUnit(this);
+        
+        if (_aiInput && _aiInput.inParty)
+            PartyInputManager.Instance.AddPartyMember(this);
     }
     
     public bool Damage(int dmg, HealthController damager)
@@ -86,7 +90,7 @@ public class HealthController : MonoBehaviour
             AddEnemy(damager);
         
             if (_aiInput)
-                _aiInput.SetAggro(damager);
+                _aiInput.DamagedByEnemy(damager);
         }
         
         if (FieldOfView)
@@ -100,6 +104,7 @@ public class HealthController : MonoBehaviour
 
         if (health <= 0)
         {
+            damager.RemoveEnemy(this);
             Death(false, true, false, true);
         }
         else
@@ -138,20 +143,20 @@ public class HealthController : MonoBehaviour
         if (damager == null)
             return;
         
-        if (enemies.Contains(damager) == false)
-            enemies.Add(damager);
+        if (Enemies.Contains(damager) == false && Friends.Contains(damager) == false)
+            Enemies.Add(damager);
     }
 
     public void RemoveEnemyAt(int index)
     {
-        if (enemies.Count > index)
-            enemies.RemoveAt(index);
+        if (Enemies.Count > index)
+            Enemies.RemoveAt(index);
     }
 
     public void RemoveEnemy(HealthController unit)
     {
-        if (enemies.Contains(unit))
-            enemies.Remove(unit);
+        if (Enemies.Contains(unit))
+            Enemies.Remove(unit);
     }
 
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
@@ -162,12 +167,14 @@ public class HealthController : MonoBehaviour
         HealthController closestVisibleEnemy = null;
         BodyPart visibleTargetToAim = null; 
         
+        enemiesInSight = false;
+        
         for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
         {
             int visibleBonesAmount = 0;
  
             var unit = GameManager.Instance.Units[i];
-            if (unit == this)
+            if (unit == this || unit.health <= 0)
                 continue;
 
             for (int j = unit.BodyPartsManager.bodyParts.Count - 1; j >= 0; j--)
@@ -184,23 +191,24 @@ public class HealthController : MonoBehaviour
 
             if (visibleBonesAmount > fieldOfView.MinVisibleBonesToSeeUnit)
             {
-                if (enemies.Contains(unit))
+                if (Enemies.Contains(unit))
                 {
                     newDistance = Vector3.Distance(transform.position, unit.transform.position);
                     if (newDistance < distance)
                     {
                         distance = newDistance;
                         closestVisibleEnemy = unit;
+                        
+                        enemiesInSight = true;
                     }
-                    
                 }
+                
                 if (visibleHCs.Contains(unit) == false)
                 {
                     visibleHCs.Add(unit);  
-                    
-                    if (enemies.Contains(unit) && _aiInput)
-                        _aiInput.SetAggro(unit);   
+                     
                 }
+                
             }
 
             t++;
@@ -214,8 +222,10 @@ public class HealthController : MonoBehaviour
         if (closestVisibleEnemy != null)
         {
             _attackManager.SeeEnemy(closestVisibleEnemy, visibleTargetToAim);
-            _aiInput.SetAggro(closestVisibleEnemy);
-            _aiInput.RotateTowardsClosestEnemy(closestVisibleEnemy.transform);
+            if (_aiInput)
+            {
+                _aiInput.SeeEnemy(closestVisibleEnemy);
+            }
         }
     }
     

@@ -31,6 +31,11 @@ public class AttackManager : MonoBehaviour
     public Transform WeaponParentTransform => weaponParentTransform;
     
     [SerializeField] private Weapon weaponInHands;
+    public Weapon WeaponInHands
+    {
+        get { return weaponInHands; }
+        set { weaponInHands = value; }
+    }
     
     [SerializeField] private Animator anim;
     private Attack currentAttack = null;
@@ -71,8 +76,8 @@ public class AttackManager : MonoBehaviour
 
     void Start()
     {
-        if (weaponInHands)
-            weaponInHands.SetNewOwner(this);
+        if (WeaponInHands)
+            WeaponInHands.SetNewOwner(this);
     }
 
     public void Jumped()
@@ -153,7 +158,7 @@ public class AttackManager : MonoBehaviour
     public void SeeEnemy(HealthController hc, BodyPart boneToAim)
     {
         float distance = Vector3.Distance(transform.position, hc.transform.position);
-        if (weaponInHands && weaponInHands.Ammo > 0)
+        if (WeaponInHands && WeaponInHands.Ammo > 0)
         {
             if (distance  > 3)
                 TryToAttack(false, boneToAim);   
@@ -187,7 +192,7 @@ public class AttackManager : MonoBehaviour
 
         #region Grab Attack
         // GRAB ATTACK
-        if (grabAttacksList.Count > 0 && weaponInHands == null)
+        if (grabAttacksList.Count > 0 && WeaponInHands == null)
         {
             // IF LOW HP ENEMY NEARBY
             var nearbyEnemy = GameManager.Instance.GetClosestUnit(hc, !playerInput,grabAttacksRange); 
@@ -248,15 +253,15 @@ public class AttackManager : MonoBehaviour
 
     public void TryToThrowWeapon(Vector3 throwTargetPoint)
     {
-        if (weaponInHands == null)
+        if (WeaponInHands == null)
             return;
-        weaponInHands.transform.parent = null;
+        WeaponInHands.transform.parent = null;
         
-        SpawnController.Instance.Interactables.Add(weaponInHands.Interactable);
-        SpawnController.Instance.InteractablesGameObjects.Add(weaponInHands.gameObject);
+        SpawnController.Instance.Interactables.Add(WeaponInHands.Interactable);
+        SpawnController.Instance.InteractablesGameObjects.Add(WeaponInHands.gameObject);
 
-        weaponInHands.Throw(throwTargetPoint);
-        weaponInHands = null;
+        WeaponInHands.Throw(throwTargetPoint);
+        WeaponInHands = null;
     }
 
     GrabAttack ChooseGrabAttack(float healthPercent)
@@ -352,7 +357,7 @@ public class AttackManager : MonoBehaviour
         if (tempAttackList.Count <= 0)
             tempAttackList = new List<Attack>(attackList);
         
-        if (weaponInHands == null)
+        if (WeaponInHands == null)
         {
             int newIndex = -1;
         
@@ -401,14 +406,14 @@ public class AttackManager : MonoBehaviour
         {
             // weapon attack
             // try to shoot if weapon has ammo
-            if (weaponInHands.Ammo > 0)
+            if (WeaponInHands.Ammo > 0)
             {
-                currentAttack = weaponInHands.RangedWeaponAttacks[Random.Range(0, weaponInHands.RangedWeaponAttacks.Count)];   
+                currentAttack = WeaponInHands.RangedWeaponAttacks[Random.Range(0, WeaponInHands.RangedWeaponAttacks.Count)];   
             }
             else
             {
                 // use melee attack
-                currentAttack = weaponInHands.WeaponAttacks[Random.Range(0, weaponInHands.WeaponAttacks.Count)];
+                currentAttack = WeaponInHands.WeaponAttacks[Random.Range(0, WeaponInHands.WeaponAttacks.Count)];
             }
         }
         
@@ -431,10 +436,10 @@ public class AttackManager : MonoBehaviour
         CanMove = currentAttack.CanMoveOnDanger;
         CanRotate = currentAttack.CanRotateOnDanger;
         
-        if (currentAttack.UseAmmo && weaponInHands)
+        if (currentAttack.UseAmmo && WeaponInHands)
         {
-            weaponInHands.Ammo -= 1;
-            weaponInHands.ShotFX(boneToAim, currentAttack.MissChance);
+            WeaponInHands.Ammo -= 1;
+            WeaponInHands.ShotFX(boneToAim, currentAttack.MissChance);
         }
         
         for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
@@ -444,8 +449,8 @@ public class AttackManager : MonoBehaviour
                 part.SetDangerous(true);
         }
 
-        if (weaponInHands)
-            weaponInHands.SetDangerous(true);
+        if (WeaponInHands)
+            WeaponInHands.SetDangerous(true);
 
         yield return new WaitForSeconds(currentAttack.AttackDangerTime);
         
@@ -455,8 +460,8 @@ public class AttackManager : MonoBehaviour
             if (part)
                 part.SetDangerous(false);
         }
-        if (weaponInHands)
-            weaponInHands.SetDangerous(true);
+        if (WeaponInHands)
+            WeaponInHands.SetDangerous(true);
         
         attackReturnCoroutine = StartCoroutine(AttackReturn());
         attackDangerCoroutine = null;
@@ -493,11 +498,14 @@ public class AttackManager : MonoBehaviour
         if (randomCritChance <= critChance * currentAttack.AttackCritChanceScaler)
             resultDamage *= Mathf.RoundToInt(critDamageScaler);
 
+        if (hc.Friends.Contains(partToDamage.HC))
+            resultDamage *= Mathf.RoundToInt(1 - hc.AiInput.Kidness);
+
         damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc);
         
         if (hc.Friends.Contains(partToDamage.HC))
         {
-            if (Random.value < hc.AiInput.Kidness)
+            if (Random.value <= hc.AiInput.Kidness)
             {
                 hc.RemoveEnemy(partToDamage.HC);
             }
@@ -509,6 +517,9 @@ public class AttackManager : MonoBehaviour
     
     public void PickWeapon(Interactable interactable)
     {
+        if (interactable == null || interactable.transform == null || WeaponParentTransform == null)
+            return;
+        
         interactable.transform.position = WeaponParentTransform.position;
         interactable.transform.rotation = WeaponParentTransform.rotation;
         interactable.transform.parent = WeaponParentTransform;
@@ -516,30 +527,30 @@ public class AttackManager : MonoBehaviour
         
         DropWeapon();
         
-        weaponInHands = interactable.WeaponPickUp;
+        WeaponInHands = interactable.WeaponPickUp;
     }
 
     void DropWeapon()
     {
-        if (weaponInHands != null)
+        if (WeaponInHands != null)
         {
-            var weaponToDrop = Instantiate(weaponInHands, weaponInHands.transform.position, weaponInHands.transform.rotation);
+            var weaponToDrop = Instantiate(WeaponInHands, WeaponInHands.transform.position, WeaponInHands.transform.rotation);
             
             GameManager.Instance.SetLayerRecursively(weaponToDrop.gameObject, 9);
             
             weaponToDrop.transform.localScale = Vector3.one;
             weaponToDrop.Interactable.ToggleTriggerCollider(false);
             weaponToDrop.Interactable.ToggleRigidbodyKinematicAndGravity(false, true);
-            DestroyWeapon(weaponInHands);
+            DestroyWeapon(WeaponInHands);
         }
     }
 
     public void DestroyWeapon(Weapon weapon)
     {
-        if (weaponInHands == weapon)
+        if (WeaponInHands == weapon)
         {
-            Destroy(weaponInHands.gameObject);
-            weaponInHands = null;
+            Destroy(WeaponInHands.gameObject);
+            WeaponInHands = null;
         }
     }
 

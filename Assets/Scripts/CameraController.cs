@@ -43,8 +43,8 @@ public class CameraController : MonoBehaviour
             float horizontalAxis = Input.GetAxisRaw("Horizontal");
             float verticalAxis = Input.GetAxisRaw("Vertical");
             
-            var forward = Camera.main.transform.forward;
-            var right = Camera.main.transform.right;
+            var forward = GameManager.Instance.mainCamera.transform.forward;
+            var right = GameManager.Instance.mainCamera.transform.right;
  
             //project forward and right vectors on the horizontal plane (y = 0)
             forward.y = 0f;
@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
             right.Normalize();
             
             Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;
-            targetPosition += movementVector.normalized * cameraMoveSpeed * Time.deltaTime;
+            targetPosition += movementVector.normalized * (cameraMoveSpeed * Time.deltaTime);
         }
         
         parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);

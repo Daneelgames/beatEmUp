@@ -92,6 +92,12 @@ public class InteractionController : MonoBehaviour
                 
                 if (Input.GetButtonDown("Interact") && hc.PlayerInput)
                     Interact(closestInteractable);
+
+                // picks up weapon if has none and if weapon has no owner
+                if (hc.AttackManager.WeaponInHands == null && closestInteractable.WeaponPickUp && closestInteractable.WeaponPickUp.AttackManager == null)
+                {
+                    Interact(closestInteractable);
+                }
             }
             else
             {

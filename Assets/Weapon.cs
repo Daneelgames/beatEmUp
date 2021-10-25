@@ -168,7 +168,7 @@ public class Weapon : MonoBehaviour
             if (SpawnController.Instance.InteractablesGameObjects.Contains(interactable.gameObject))
                 SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
                       
-            if (attackManager)
+            if (AttackManager)
                 AttackManager.DestroyWeapon(this);
         }
     }
@@ -182,7 +182,7 @@ public class Weapon : MonoBehaviour
             {
                 // hit
                 shotParticles.transform.LookAt(boneToAim.transform.position);
-                boneToAim.HC.Damage(rangedWeaponDamage, attackManager.Hc);
+                boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
             }
             else
             {

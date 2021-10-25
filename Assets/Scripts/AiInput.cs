@@ -7,10 +7,25 @@ using Random = UnityEngine.Random;
 
 public class AiInput : MonoBehaviour
 {
+    public bool debugLogs = false;
     public bool inParty = false;
+
+    public enum AggroMode
+    {
+        AggroOnSight, AttackIfAttacked
+    }
+
+    [SerializeField] private AggroMode _aggroMode = AggroMode.AggroOnSight;
+
+    public AggroMode aggroMode
+    {
+        get => _aggroMode;
+        set => _aggroMode = value;
+    }
+
     public enum State
     {
-        Wander, Idle, FollowTarget, Investigate
+        Wander, Idle, FollowTarget, Investigate, MovingOnOrder
     }
 
     [SerializeField] private State state = State.Wander;
@@ -72,9 +87,9 @@ public class AiInput : MonoBehaviour
         
         currentTargetPosition = transform.position;
         
-        if (state == State.Wander)
+        if (aiState == State.Wander)
             Wander();
-        else if (state == State.Idle)
+        else if (aiState == State.Idle)
             Idle();
         
         if (simpleWalker)
@@ -112,15 +127,54 @@ public class AiInput : MonoBehaviour
             alertCoroutine = null;
         }
     }
-    
-    public void SetAggro(HealthController damager)
+
+    void SetAgentDestinationTarget(Vector3 pos)
     {
-        print ("SetAggro");
+        if (agent == null || agent.enabled == false)
+            return;
+        
+        agent.SetDestination(pos);
+    }
+
+    public void SeeEnemy(HealthController closestVisibleEnemy)
+    {
+        if (aggroMode == AggroMode.AggroOnSight)
+        {
+            SetAggro(closestVisibleEnemy); 
+            RotateTowardsClosestEnemy(closestVisibleEnemy);   
+        }
+    }
+
+    public void DamagedByEnemy(HealthController enemy)
+    {
+        if (aggroMode == AggroMode.AttackIfAttacked)
+        {
+            SetAggro(enemy); 
+            RotateTowardsClosestEnemy(enemy);   
+        }
+    }
+
+    public void OrderMove(Vector3 newPos)
+    {
+        StopBehaviourCoroutines();
+        
+        if (moveTowardsOrderTargetCoroutine != null)
+            StopCoroutine(moveTowardsOrderTargetCoroutine);
+        
+        moveTowardsOrderTargetCoroutine = StartCoroutine(MoveToOrderTarget(newPos));
+    }
+
+    private Coroutine moveTowardsOrderTargetCoroutine;
+    
+    void SetAggro(HealthController damager)
+    {
+        if (debugLogs)
+            print ("SetAggro");
         
         if (hc.Friends.Contains(damager) && Random.value < kidness)
             return;
         
-        if (followTargetCoroutine == null && state != State.FollowTarget)
+        if (followTargetCoroutine == null && aiState != State.FollowTarget)
         {
             StopBehaviourCoroutines();
             
@@ -131,7 +185,7 @@ public class AiInput : MonoBehaviour
             else if (damager.AiInput && damager.AiInput.inParty)
                 damager.AddEnemy(hc);
 
-            agent.SetDestination(damager.transform.position);
+            SetAgentDestinationTarget(damager.transform.position);
             
             if (followTargetCoroutine == null)
                 followTargetCoroutine = StartCoroutine(FollowTarget());
@@ -150,7 +204,7 @@ public class AiInput : MonoBehaviour
         if (!alive)
             yield break;
         
-        if (state == State.FollowTarget || state == State.Investigate)
+        if (aiState == State.FollowTarget || aiState == State.Investigate)
             yield break;
         
         StopBehaviourCoroutines();
@@ -158,7 +212,7 @@ public class AiInput : MonoBehaviour
         yield return new WaitForSeconds(distance / 20f);
         
         if (agent && agent.enabled)
-            agent.SetDestination(noiseMakerPos);
+            SetAgentDestinationTarget(noiseMakerPos);
         else
             yield break;
         
@@ -175,7 +229,8 @@ public class AiInput : MonoBehaviour
     private Coroutine alertCoroutine;
     IEnumerator Alert()
     {
-        print("Alert");
+        if (debugLogs)
+            print("Alert");
         alert.gameObject.SetActive(false);
         yield return null;
         
@@ -221,16 +276,15 @@ public class AiInput : MonoBehaviour
     {
         if (inParty == false)
             wanderCoroutine = StartCoroutine(WanderOverTime());
-        else
-            wanderCoroutine = StartCoroutine(WanderWithPlayer());
     }
     
     IEnumerator WanderOverTime()
     {
-        state = State.Wander;
+        aiState = State.Wander;
         currentTargetPosition = NewPositionNearPointOfInterest();
 
-        print ("WanderOverTime");
+        if (debugLogs)
+            print ("WanderOverTime");
         while (true)
         {
             if (Vector3.Distance(transform.position, currentTargetPosition) < stopDistance)
@@ -243,7 +297,7 @@ public class AiInput : MonoBehaviour
 
                     currentTargetPosition = newTargetPosition;
                     if (agent && agent.enabled)
-                        agent.SetDestination(newTargetPosition);   
+                        SetAgentDestinationTarget(newTargetPosition);   
                     else
                         yield break;
                 }
@@ -258,7 +312,7 @@ public class AiInput : MonoBehaviour
             else
             {
                 if (agent && agent.enabled)
-                    agent.SetDestination(currentTargetPosition);
+                    SetAgentDestinationTarget(currentTargetPosition);
                 else
                     yield break;
             }
@@ -266,21 +320,24 @@ public class AiInput : MonoBehaviour
             yield return new WaitForSeconds(updateRate);
         }
     }
-    
-    IEnumerator WanderWithPlayer()
-    {
-        state = State.Wander;
 
-        print ("WanderWithPlayer");
+    IEnumerator MoveToOrderTarget(Vector3 newPos)
+    {
+        aiState = State.MovingOnOrder;
+
+        if (debugLogs)
+            print ("WanderByPlayer");
+
+        currentTargetPosition = newPos;
+        
         while (true)
         {
-            currentTargetPosition = NewPositionNearPointOfInterest();
             float newDistance = Vector3.Distance(transform.position, currentTargetPosition); 
             if (newDistance > stopDistanceAllyToPlayer)
             {
                 if (agent && agent.enabled)
                 {
-                    if (newDistance > runDistanceThreshold)
+                    if (newDistance > runDistanceThreshold && hc.enemiesInSight)
                     {
                         // RUN
                         anim.SetBool(Running, true);
@@ -294,7 +351,7 @@ public class AiInput : MonoBehaviour
                     }
                 
                     agent.isStopped = false;
-                    agent.SetDestination(currentTargetPosition);   
+                    SetAgentDestinationTarget(currentTargetPosition);   
                 }
                 else
                     yield break;
@@ -319,7 +376,7 @@ public class AiInput : MonoBehaviour
 
     IEnumerator Investigate(Vector3 investigationPoint)
     {
-        state = State.Investigate;
+        aiState = State.Investigate;
         // WALK
         anim.SetBool(Running, false);
         agent.speed = walkSpeed;
@@ -332,7 +389,7 @@ public class AiInput : MonoBehaviour
             if (_attackManager.CanMove)
             {
                 agent.isStopped = false;
-                agent.SetDestination(investigationPoint);   
+                SetAgentDestinationTarget(investigationPoint);   
             }
             else
             {
@@ -358,7 +415,7 @@ public class AiInput : MonoBehaviour
     }
     IEnumerator FollowTarget()
     {
-        state = State.FollowTarget;
+        aiState = State.FollowTarget;
 
         while (true)
         {
@@ -383,7 +440,7 @@ public class AiInput : MonoBehaviour
                 }
                 
                 agent.isStopped = false;
-                agent.SetDestination(currentTargetPosition);   
+                SetAgentDestinationTarget(currentTargetPosition);   
             }
             else
             {
@@ -423,7 +480,7 @@ public class AiInput : MonoBehaviour
         HealthController closestEnemy = null;
         for (int i = 0; i < hc.Enemies.Count; i++)
         {
-            if (onlyVisible && hc.VisibleHCs.Contains(hc.Enemies[i]) == false)
+            if (hc.Enemies == null || (onlyVisible && hc.VisibleHCs.Contains(hc.Enemies[i]) == false) || hc.Enemies[i].Health <= 0)
                 continue;
             
             newDistance = Vector3.Distance(transform.position, hc.Enemies[i].transform.position);
@@ -468,38 +525,42 @@ public class AiInput : MonoBehaviour
     
     IEnumerator Ideling()
     {
-        print ("Ideling");
-        state = State.Idle;
+        if (debugLogs)
+            print ("Ideling");
+        aiState = State.Idle;
         yield return new WaitForSeconds(Random.Range(idleTimeMinMax.x, idleTimeMinMax.y));
-        Wander();
-    }
-    
-    IEnumerator MoveTowardsTarget()
-    {
-        yield return new WaitForSeconds(updateRate);
+        
+        if (inParty == false)
+            Wander();
     }
 
-    public void RotateTowardsClosestEnemy(Transform targetTransform)
+    private HealthController currentRotationTargetTransform;
+    private Coroutine rotateTowardsClosestEnemyCoroutine;
+    public void RotateTowardsClosestEnemy(HealthController newRotationTargetHc)
     {
+        if (currentRotationTargetTransform == newRotationTargetHc)
+            return;
+
+        currentRotationTargetTransform = newRotationTargetHc;
+        
         if (rotateTowardsClosestEnemyCoroutine != null)
         {
             StopCoroutine(rotateTowardsClosestEnemyCoroutine);
         }
 
-        rotateTowardsClosestEnemyCoroutine = StartCoroutine(RotateTowardsClosestEnemyCoroutine(targetTransform));
+        rotateTowardsClosestEnemyCoroutine = StartCoroutine(RotateTowardsClosestEnemyCoroutine(newRotationTargetHc));
     }
 
-    private Coroutine rotateTowardsClosestEnemyCoroutine;
     private Quaternion targetRotation = Quaternion.identity;
     private Quaternion targetRotation1 = Quaternion.identity;
-    IEnumerator RotateTowardsClosestEnemyCoroutine(Transform targetTransform)
+    IEnumerator RotateTowardsClosestEnemyCoroutine(HealthController targetHc)
     {
         while (true)
         {
-            if (targetTransform == null)
+            if (targetHc == null || targetHc.Health <= 0)
                 yield break;
             
-            targetRotation1.SetLookRotation(targetTransform.position - transform.position); 
+            targetRotation1.SetLookRotation(targetHc.transform.position - transform.position); 
             targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
             transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
             yield return null;
@@ -517,9 +578,9 @@ public class AiInput : MonoBehaviour
         if (other.gameObject.layer != 7)
             return;
 
-        for (int i = 0; i < hc.Enemies.Count; i++)
+        for (int i = hc.Enemies.Count - 1; i >= 0; i--)
         {
-            if (hc.Enemies[i] == null || hc.Enemies[i].gameObject == null || hc.Enemies[i].Health < 0)
+            if (hc.Enemies[i] == null || hc.Enemies[i].gameObject == null || hc.Enemies[i].Health <= 0 || hc.Friends.Contains(hc.Enemies[i]))
             {
                 hc.RemoveEnemyAt(i);
                 return;   
