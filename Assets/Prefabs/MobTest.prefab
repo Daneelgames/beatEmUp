@@ -6704,19 +6704,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47e0c954deb66a4393f461307c1dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inParty: 0
   state: 1
   kidness: 0.5
   walkSpeed: 4
   runSpeed: 8
   stopDistance: 2
+  stopDistanceAllyToPlayer: 5
   runDistanceThreshold: 5
   looseTargetDistance: 20
   simpleWalker: 1
   idleTimeMinMax: {x: 1, y: 5}
+  attackCooldownMinMax: {x: 0.2, y: 1.5}
   groundMask:
     serializedVersion: 2
     m_Bits: 576
-  attackCooldownMinMax: {x: 0.2, y: 1.5}
   alert: {fileID: 2700809410262813614}
   noiseMaker: {fileID: 467956864760804726}
   hc: {fileID: 1212818265}
@@ -6735,12 +6737,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2fa30289f427945abc08867a171b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttackDamage: 350
+  baseAttackDamage: 100
   critChance: 0.1
   critDamageScaler: 3
   attackList:
   - shotPosition: {fileID: 0}
     useAmmo: 0
+    missChance: 0.5
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -6763,6 +6766,7 @@ MonoBehaviour:
     restoreAttackWeightOnAttackRest: 0.25
   - shotPosition: {fileID: 0}
     useAmmo: 0
+    missChance: 0.5
     canAttackMidAir: 1
     attackDamageScaler: 1.2
     attackCritChanceScaler: 1
@@ -6787,6 +6791,7 @@ MonoBehaviour:
     restoreAttackWeightOnAttackRest: 0.25
   - shotPosition: {fileID: 0}
     useAmmo: 0
+    missChance: 0.5
     canAttackMidAir: 1
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -6940,6 +6945,8 @@ MonoBehaviour:
   runStepNoiseDistance: 10
   makeAttackNoise: 1
   attackNoiseDistance: 10
+  makeShotNoise: 0
+  shotNoiseDistance: 25
   shouts: 1
   shoutNoiseDistance: 20
 --- !u!114 &2695189181210928995
