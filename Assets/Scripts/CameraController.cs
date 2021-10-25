@@ -53,7 +53,7 @@ public class CameraController : MonoBehaviour
             right.Normalize();
             
             Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;
-            targetPosition += movementVector.normalized * cameraMoveSpeed * Time.deltaTime;
+            targetPosition += movementVector.normalized * (cameraMoveSpeed * Time.deltaTime);
         }
         
         parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);
