@@ -7,32 +7,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Transform parent;
     [SerializeField] private Vector2 xMinMax = new Vector2(15, 40);
     [SerializeField] private float distanceInFrontOfCharacter = 3;
     [SerializeField] private float cameraSmooth = 0.75f;
     [SerializeField] private float cameraMoveSpeed = 100;
     [SerializeField] private float cameraTurnSpeed = 500f;
     
-    private Transform parent;
     private Quaternion targetRotation;
     private bool canFollow = false;
     private IEnumerator Start()
     {
-        while (PlayerInput.Instance == null)
+        while (PlayerInput.Instance == null && PartyInputManager.Instance == null)
         {
             yield return null;
         }
 
-        // create parent object 
-        parent = new GameObject().transform;
-        parent.gameObject.name = "CameraParent";
-        parent.transform.rotation = Quaternion.identity;
-        parent.transform.localScale = Vector3.one;
-        parent.transform.position = PlayerInput.Instance.transform.position;
-
-        // set camera as child
-        transform.parent = parent;
-        targetRotation = transform.rotation;
         yield return new WaitForSeconds(1);
         canFollow = true;
     }
@@ -50,27 +40,41 @@ public class CameraController : MonoBehaviour
             targetPosition = PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter;
         else if (PartyInputManager.Instance)
         {
-            float horizontalAxis = Input.GetAxis("Horizontal");
-            float verticalAxis = Input.GetAxis("Vertical");
-            Vector3 movementVector = parent.gameObject.transform.forward * verticalAxis + parent.gameObject.transform.right * horizontalAxis;
-            targetPosition += movementVector.normalized * cameraMoveSpeed;
+            float horizontalAxis = Input.GetAxisRaw("Horizontal");
+            float verticalAxis = Input.GetAxisRaw("Vertical");
+            
+            var forward = Camera.main.transform.forward;
+            var right = Camera.main.transform.right;
+ 
+            //project forward and right vectors on the horizontal plane (y = 0)
+            forward.y = 0f;
+            right.y = 0f;
+            forward.Normalize();    
+            right.Normalize();
+            
+            Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;
+            targetPosition += movementVector.normalized * cameraMoveSpeed * Time.deltaTime;
         }
         
         parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);
-        parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * (cameraTurnSpeed * Time.deltaTime));
 
-        mouseInputY = -Input.GetAxis("Mouse Y");
-
-        if (transform.localEulerAngles.x > xMinMax.y && mouseInputY > 0)
+        if (Input.GetButton("Aim"))
         {
-            mouseInputY = 0;   
-        }
-        else if (transform.localEulerAngles.x < xMinMax.x && mouseInputY < 0)
-            mouseInputY = 0;
-        
-        transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((cameraTurnSpeed / 5) * Time.deltaTime));
+            parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * (cameraTurnSpeed * Time.deltaTime));
 
-        var resultEulerAngles = transform.localEulerAngles;
-        transform.eulerAngles = new Vector3(Mathf.Clamp(resultEulerAngles.x,xMinMax.x,xMinMax.y), transform.eulerAngles.y, transform.eulerAngles.z);
+            mouseInputY = -Input.GetAxis("Mouse Y");
+
+            if (transform.localEulerAngles.x > xMinMax.y && mouseInputY > 0)
+            {
+                mouseInputY = 0;   
+            }
+            else if (transform.localEulerAngles.x < xMinMax.x && mouseInputY < 0)
+                mouseInputY = 0;
+        
+            transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((cameraTurnSpeed / 5) * Time.deltaTime));
+   
+            var resultEulerAngles = transform.localEulerAngles;
+            transform.localEulerAngles = new Vector3(Mathf.Clamp(resultEulerAngles.x,xMinMax.x,xMinMax.y), transform.localEulerAngles.y, transform.localEulerAngles.z);
+        }
     }
 }
