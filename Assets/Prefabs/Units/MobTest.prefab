@@ -6831,6 +6831,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 1212818265}
   - {fileID: 1212818265}
+  enemiesGameObjects: []
   friends: []
   enemiesInSight: 0
 --- !u!114 &1212818261
@@ -6891,7 +6892,7 @@ MonoBehaviour:
   walkSpeed: 4
   runSpeed: 8
   stopDistance: 2
-  stopDistanceAllyToPlayer: 5
+  stopDistanceAllyToPlayer: 2
   runDistanceThreshold: 5
   looseTargetDistance: 20
   simpleWalker: 1
@@ -6900,6 +6901,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 576
+  unitsMask:
+    serializedVersion: 2
+    m_Bits: 128
   alert: {fileID: 2700809410262813614}
   noiseMaker: {fileID: 467956864760804726}
   hc: {fileID: 1212818265}
@@ -7047,7 +7051,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 5757401403179926516}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 1
   m_Height: 2.5
   m_Direction: 1
@@ -7093,7 +7097,7 @@ MonoBehaviour:
   drawFOV: 0
   hc: {fileID: 1212818265}
   eyesTransfom: {fileID: 5578621983223641640}
-  minVisibleBonesToSeeUnit: 4
+  minVisibleBonesToSeeUnit: 2
   resetVisibleUnitsCooldown: 10
   updateDelay: 0.5
   viewRadius: 15

@@ -53,6 +53,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private Vector2 idleTimeMinMax = new Vector2(5, 30);
     [SerializeField] private Vector2 attackCooldownMinMax = new Vector2(0.5f, 3f);
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask unitsMask;
     private float attackCooldownCurrent = 0;
 
     private Vector3 currentTargetPosition;
@@ -82,6 +83,7 @@ public class AiInput : MonoBehaviour
     {
         path = new NavMeshPath();
         Init();
+        StartCoroutine(CapsuleCastAgainstUnits());
     }
 
     public void Init()
@@ -579,7 +581,29 @@ public class AiInput : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator CapsuleCastAgainstUnits()
+    {
+        while (hc.Health > 0)
+        {
+            Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position + transform.forward + Vector3.up * 0.5f, 1.2f, unitsMask);
 
+            for (int i = 0; i < targetsInViewRadius.Length; i++)
+            {
+                if (hc.EnemiesGameObjects.Contains(targetsInViewRadius[i].gameObject))
+                {
+                    attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
+                    _attackManager.TryToAttack(false, null);
+                }
+            }
+            if (inParty)
+                yield return null;
+            else
+                yield return new WaitForSeconds(0.1f);
+        }
+        
+    }
+    
+    /*
     private void OnTriggerStay(Collider other)
     {
         if (!alive)
@@ -609,7 +633,7 @@ public class AiInput : MonoBehaviour
                 return;
             }
         }
-    }
+    }*/
 
 
     public void Death()

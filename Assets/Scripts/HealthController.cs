@@ -49,7 +49,13 @@ public class HealthController : MonoBehaviour
 
     [SerializeField] private List<HealthController> enemies = new List<HealthController>();
     public List<HealthController> Enemies => enemies;
-    
+    [SerializeField] private List<GameObject> enemiesGameObjects = new List<GameObject>();
+    public List<GameObject> EnemiesGameObjects
+    {
+        get { return enemiesGameObjects; }
+        set { enemiesGameObjects = value; }
+    }
+
     [SerializeField] private List<HealthController> friends = new List<HealthController>();
     public List<HealthController> Friends => friends;
     
@@ -204,25 +210,34 @@ public class HealthController : MonoBehaviour
         _attackManager.RestoredFromDamage();
     }
 
-    public void AddEnemy(HealthController damager)
+    public void AddEnemy(HealthController newEnemy)
     {
-        if (damager == null)
+        if (newEnemy == null)
             return;
         
-        if (Enemies.Contains(damager) == false && Friends.Contains(damager) == false)
-            Enemies.Add(damager);
+        if (Enemies.Contains(newEnemy) == false && Friends.Contains(newEnemy) == false)
+        {
+            Enemies.Add(newEnemy);
+            enemiesGameObjects.Add(newEnemy.gameObject);
+        }
     }
 
     public void RemoveEnemyAt(int index)
     {
         if (Enemies.Count > index)
+        {
             Enemies.RemoveAt(index);
+            enemiesGameObjects.RemoveAt(index);
+        }
     }
 
     public void RemoveEnemy(HealthController unit)
     {
         if (Enemies.Contains(unit))
+        {
             Enemies.Remove(unit);
+            enemiesGameObjects.Remove(unit.gameObject);
+        }
     }
 
     public IEnumerator UpdateVisibleTargets(List<Transform> visibleTargets)
@@ -234,7 +249,6 @@ public class HealthController : MonoBehaviour
         BodyPart visibleTargetToAim = null; 
         
         enemiesInSight = false;
-        print("UpdateVisibleTargets, visibleTargets " + visibleTargets.Count);
 
         for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
         {
@@ -257,8 +271,7 @@ public class HealthController : MonoBehaviour
                 }
             }
 
-            print("visibleBonesAmount " + visibleBonesAmount);
-            if (visibleBonesAmount > fieldOfView.MinVisibleBonesToSeeUnit)
+            if (visibleBonesAmount >= fieldOfView.MinVisibleBonesToSeeUnit)
             {
                 if (GameManager.Instance.simpleEnemiesAllies && _aiInput && unit._aiInput)
                 {

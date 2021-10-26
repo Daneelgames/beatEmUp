@@ -104,7 +104,6 @@ public class FieldOfView : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(eyesTransfom.position, viewRadius, targetMask);
-        print("targetsInViewRadius " + targetsInViewRadius.Length);
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
@@ -120,16 +119,13 @@ public class FieldOfView : MonoBehaviour
             // if in viewport
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {           
-                print("2"); 
                 float dstToTarget = Vector3.Distance(eyesTransfom.position, target.position);
 
                 RaycastHit hit;
                 if (Physics.Raycast(eyesTransfom.position,  (target.position - eyesTransfom.position).normalized, out hit, dstToTarget, raycastUnitsAndObstaclesMask))
                 {
-                    print("hit.collider name " + hit.collider.gameObject.name); 
                     if (hit.collider.transform == target)
                     {
-                        print("4");
                         visibleTargets.Add(target);
                     }
                 }

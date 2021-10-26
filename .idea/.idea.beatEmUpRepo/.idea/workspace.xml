@@ -62,9 +62,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SpawnController.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/AiInput.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -127,7 +127,7 @@
       <workItem from="1634907567506" duration="2483000" />
       <workItem from="1634912042804" duration="7100000" />
       <workItem from="1635150001096" duration="6376000" />
-      <workItem from="1635186489988" duration="25553000" />
+      <workItem from="1635186489988" duration="27041000" />
     </task>
     <servers />
   </component>
