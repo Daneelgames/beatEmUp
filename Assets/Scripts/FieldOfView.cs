@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
@@ -103,8 +104,7 @@ public class FieldOfView : MonoBehaviour
     {
         visibleTargets.Clear();
         Collider[] targetsInViewRadius = Physics.OverlapSphere(eyesTransfom.position, viewRadius, targetMask);
-        RaycastHit hit;
-
+        print("targetsInViewRadius " + targetsInViewRadius.Length);
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
@@ -114,23 +114,29 @@ public class FieldOfView : MonoBehaviour
                 continue;
             }
             
+            //print("1");
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             
             // if in viewport
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-            {            
+            {           
+                print("2"); 
                 float dstToTarget = Vector3.Distance(eyesTransfom.position, target.position);
 
-                Physics.Raycast(eyesTransfom.position,  (target.position - eyesTransfom.position).normalized, out hit, dstToTarget, raycastUnitsAndObstaclesMask);
-                
-                if (hit.collider)
+                RaycastHit hit;
+                if (Physics.Raycast(eyesTransfom.position,  (target.position - eyesTransfom.position).normalized, out hit, dstToTarget, raycastUnitsAndObstaclesMask))
                 {
+                    print("hit.collider name " + hit.collider.gameObject.name); 
                     if (hit.collider.transform == target)
+                    {
+                        print("4");
                         visibleTargets.Add(target);
+                    }
                 }
             }
         }
 
+        targetsInViewRadius = null;
         StartCoroutine(hc.UpdateVisibleTargets(visibleTargets));
     }
 

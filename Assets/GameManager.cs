@@ -15,6 +15,16 @@ public class GameManager : MonoBehaviour
     public int navMeshSampleIterations = 10;
 
     public LayerMask groundLayerMask;
+    [SerializeField] private int drawHealthbarsDistance = 30;
+    
+    public bool simpleEnemiesAllies = true;
+
+    public int DrawHealthbarsDistance
+    {
+        get => drawHealthbarsDistance;
+        set => drawHealthbarsDistance = value;
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -45,8 +55,8 @@ public class GameManager : MonoBehaviour
 
     public void AddUnit(HealthController hc)
     {
-        if (units.Contains(hc) == false)
-            units.Add(hc);
+        if (Units.Contains(hc) == false)
+            Units.Add(hc);
     }
     
     public void SetLayerRecursively(GameObject obj, int newLayer)
@@ -89,19 +99,19 @@ public class GameManager : MonoBehaviour
         
         HealthController closestUnit = null;
         
-        for (int i = 0; i < units.Count; i++)
+        for (int i = 0; i < Units.Count; i++)
         {
-            if (units[i] == hcAttacker)
+            if (Units[i] == hcAttacker)
                 continue;
 
-            if (hcAttacker.Enemies.Contains(units[i]) == false && onlyEnemies)
+            if (hcAttacker.Enemies.Contains(Units[i]) == false && onlyEnemies)
                 continue;
 
-            newDistance = Vector3.Distance(hcAttacker.transform.position, units[i].transform.position);
+            newDistance = Vector3.Distance(hcAttacker.transform.position, Units[i].transform.position);
             if (newDistance < distance)
             {
                 distance = newDistance;
-                closestUnit = units[i];
+                closestUnit = Units[i];
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class HealthController : MonoBehaviour
     public BodyPartsManager BodyPartsManager => _bodyPartsManager;
     [SerializeField] private FieldOfView fieldOfView;
     public FieldOfView FieldOfView => fieldOfView;
+    [SerializeField] 
+    private Image healthBar;
 
     [Header("Stats")] 
     [SerializeField] private bool invincible = false;
@@ -67,6 +70,69 @@ public class HealthController : MonoBehaviour
         
         if (_aiInput && _aiInput.inParty)
             PartyInputManager.Instance.AddPartyMember(this);
+
+        if (health != null)
+            StartCoroutine(UpdateHealthbar());
+    }
+
+    IEnumerator UpdateHealthbar()
+    {
+        healthBar.transform.parent.transform.localScale = Vector3.zero;
+        while (health > 0)
+        {
+            float t = 0;
+            while (true)
+            {
+                if (Vector3.Distance(transform.position, GameManager.Instance.mainCamera.transform.position) <=
+                    GameManager.Instance.DrawHealthbarsDistance)
+                {
+                    break;
+                }
+                
+                yield return new WaitForSeconds(1f);
+            }
+            
+            t = 0;
+            while (t < 0.5f)
+            {
+                t += Time.deltaTime;
+
+                healthBar.transform.parent.transform.localScale = Vector3.one * Mathf.Lerp(0f, 1f, t / 0.5f);
+                yield return null;
+            }
+
+            
+            // every frame
+            t = 0;
+            while (true)
+            {
+                healthBar.fillAmount = (health * 1f) / (healthMax * 1f);
+                healthBar.transform.parent.LookAt(GameManager.Instance.mainCamera.transform.position);
+                
+                t++;
+                if (t > 30)
+                {
+                    t = 0;
+                    if (Vector3.Distance(transform.position, GameManager.Instance.mainCamera.transform.position) >
+                        GameManager.Instance.DrawHealthbarsDistance)
+                    {
+                        break;
+                    }
+                }
+                
+                yield return null;
+            }
+            
+            t = 0;
+            while (t < 0.5f)
+            {
+                t += Time.deltaTime;
+
+                healthBar.transform.parent.transform.localScale = Vector3.one * Mathf.Lerp(1f, 0f, t / 0.5f);
+                yield return null;
+            }
+
+        }
     }
     
     public bool Damage(int dmg, HealthController damager)
@@ -168,12 +234,14 @@ public class HealthController : MonoBehaviour
         BodyPart visibleTargetToAim = null; 
         
         enemiesInSight = false;
-        
+        print("UpdateVisibleTargets, visibleTargets " + visibleTargets.Count);
+
         for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
         {
             int visibleBonesAmount = 0;
- 
+
             var unit = GameManager.Instance.Units[i];
+
             if (unit == this || unit.health <= 0)
                 continue;
 
@@ -189,8 +257,23 @@ public class HealthController : MonoBehaviour
                 }
             }
 
+            print("visibleBonesAmount " + visibleBonesAmount);
             if (visibleBonesAmount > fieldOfView.MinVisibleBonesToSeeUnit)
             {
+                if (GameManager.Instance.simpleEnemiesAllies && _aiInput && unit._aiInput)
+                {
+                    if (unit._aiInput.inParty == _aiInput.inParty)
+                    {
+                        if (Friends.Contains(unit) == false)
+                            Friends.Add(unit);
+                    }
+                    else
+                    {
+                        if (Enemies.Contains(unit) == false)
+                            Enemies.Add(unit);
+                    }
+                }
+                
                 if (Enemies.Contains(unit))
                 {
                     newDistance = Vector3.Distance(transform.position, unit.transform.position);
@@ -206,9 +289,7 @@ public class HealthController : MonoBehaviour
                 if (visibleHCs.Contains(unit) == false)
                 {
                     visibleHCs.Add(unit);  
-                     
                 }
-                
             }
 
             t++;

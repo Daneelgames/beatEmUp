@@ -2880,7 +2880,7 @@ GameObject:
   - component: {fileID: 6592121289291070097}
   - component: {fileID: 1243327812}
   m_Layer: 7
-  m_Name: CharacterTest
+  m_Name: CharacterDirectControlTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -76,8 +76,11 @@ public class AiInput : MonoBehaviour
     private Coroutine investigateCoroutine;
     private static readonly int Running = Animator.StringToHash("Running");
 
+    private NavMeshPath path;
+    
     void Start()
     {
+        path = new NavMeshPath();
         Init();
     }
 
@@ -128,12 +131,22 @@ public class AiInput : MonoBehaviour
         }
     }
 
-    void SetAgentDestinationTarget(Vector3 pos)
+
+    void SetAgentDestinationTarget(Vector3 pos, bool expensive)
     {
         if (agent == null || agent.enabled == false)
             return;
+
+        if (Vector3.Distance(GameManager.Instance.mainCamera.transform.position, pos) < 75)
+            expensive = true;
         
-        agent.SetDestination(pos);
+        if (!expensive)
+            agent.SetDestination(pos);
+        else
+        {
+            NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path);
+            agent.SetPath(path);
+        }
     }
 
     public void SeeEnemy(HealthController closestVisibleEnemy)
@@ -185,7 +198,7 @@ public class AiInput : MonoBehaviour
             else if (damager.AiInput && damager.AiInput.inParty)
                 damager.AddEnemy(hc);
 
-            SetAgentDestinationTarget(damager.transform.position);
+            SetAgentDestinationTarget(damager.transform.position, false);
             
             if (followTargetCoroutine == null)
                 followTargetCoroutine = StartCoroutine(FollowTarget());
@@ -212,7 +225,7 @@ public class AiInput : MonoBehaviour
         yield return new WaitForSeconds(distance / 20f);
         
         if (agent && agent.enabled)
-            SetAgentDestinationTarget(noiseMakerPos);
+            SetAgentDestinationTarget(noiseMakerPos, false);
         else
             yield break;
         
@@ -297,7 +310,7 @@ public class AiInput : MonoBehaviour
 
                     currentTargetPosition = newTargetPosition;
                     if (agent && agent.enabled)
-                        SetAgentDestinationTarget(newTargetPosition);   
+                        SetAgentDestinationTarget(newTargetPosition,false);   
                     else
                         yield break;
                 }
@@ -312,7 +325,7 @@ public class AiInput : MonoBehaviour
             else
             {
                 if (agent && agent.enabled)
-                    SetAgentDestinationTarget(currentTargetPosition);
+                    SetAgentDestinationTarget(currentTargetPosition, false);
                 else
                     yield break;
             }
@@ -351,7 +364,7 @@ public class AiInput : MonoBehaviour
                     }
                 
                     agent.isStopped = false;
-                    SetAgentDestinationTarget(currentTargetPosition);   
+                    SetAgentDestinationTarget(currentTargetPosition, true);   
                 }
                 else
                     yield break;
@@ -389,7 +402,7 @@ public class AiInput : MonoBehaviour
             if (_attackManager.CanMove)
             {
                 agent.isStopped = false;
-                SetAgentDestinationTarget(investigationPoint);   
+                SetAgentDestinationTarget(investigationPoint,false);   
             }
             else
             {
@@ -440,7 +453,7 @@ public class AiInput : MonoBehaviour
                 }
                 
                 agent.isStopped = false;
-                SetAgentDestinationTarget(currentTargetPosition);   
+                SetAgentDestinationTarget(currentTargetPosition, false);   
             }
             else
             {
@@ -454,7 +467,7 @@ public class AiInput : MonoBehaviour
 
     Vector3 NewPositionNearPointOfInterest()
     {
-        Vector3 newPos = AiNavigationManager.instance.PointsOfInterest[Random.Range(0, AiNavigationManager.instance.PointsOfInterest.Count)].position + Random.insideUnitSphere * Random.Range(1, 5);
+        Vector3 newPos = AiNavigationManager.instance.GetPointOfInterestForUnit(hc); 
         
         NavMeshHit hit;
         float tries = 5;

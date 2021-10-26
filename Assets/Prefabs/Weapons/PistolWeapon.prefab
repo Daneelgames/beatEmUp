@@ -5023,7 +5023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotRaycastDistance: 100
-  shotNoiseDistance: 100
+  shotNoiseDistance: 66
   rangedWeaponAttacks:
   - shotPosition: {fileID: 5687861141736487641}
     useAmmo: 1

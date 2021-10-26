@@ -13,9 +13,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float cameraSmooth = 0.75f;
     [SerializeField] private float cameraMoveSpeed = 100;
     [SerializeField] private float cameraTurnSpeed = 500f;
+    [SerializeField] private float cameraZoomSpeed = 500f;
     
     private Quaternion targetRotation;
     private bool canFollow = false;
+    
+    private float mouseInputY = 0;
+    private float mouseInputZ = 0;
     private IEnumerator Start()
     {
         while (PlayerInput.Instance == null && PartyInputManager.Instance == null)
@@ -28,7 +32,6 @@ public class CameraController : MonoBehaviour
     }
 
 
-    private float mouseInputY = 0;
     void LateUpdate()
     {
         if (canFollow == false)
@@ -58,12 +61,19 @@ public class CameraController : MonoBehaviour
         
         parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);
 
+        mouseInputZ = Input.GetAxis("Mouse ScrollWheel");
+        Vector3 posTemp = transform.position + transform.forward.normalized * (mouseInputZ * cameraZoomSpeed * Time.deltaTime);
+        posTemp = new Vector3(posTemp.x, Mathf.Clamp(posTemp.y, 10, 40), posTemp.z);
+        transform.position = posTemp;
+
+        float newCameraTurnSpeed = cameraTurnSpeed * Mathf.InverseLerp(10, 40,posTemp.y);
+        
         if (Input.GetButton("Aim"))
         {
-            parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * (cameraTurnSpeed * Time.deltaTime));
+            parent.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * (newCameraTurnSpeed * Time.deltaTime));
 
             mouseInputY = -Input.GetAxis("Mouse Y");
-
+            
             if (transform.localEulerAngles.x > xMinMax.y && mouseInputY > 0)
             {
                 mouseInputY = 0;   
@@ -71,7 +81,7 @@ public class CameraController : MonoBehaviour
             else if (transform.localEulerAngles.x < xMinMax.x && mouseInputY < 0)
                 mouseInputY = 0;
         
-            transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((cameraTurnSpeed / 5) * Time.deltaTime));
+            transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((newCameraTurnSpeed / 5) * Time.deltaTime));
    
             var resultEulerAngles = transform.localEulerAngles;
             transform.localEulerAngles = new Vector3(Mathf.Clamp(resultEulerAngles.x,xMinMax.x,xMinMax.y), transform.localEulerAngles.y, transform.localEulerAngles.z);

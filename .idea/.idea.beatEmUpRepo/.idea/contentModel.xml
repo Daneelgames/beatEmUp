@@ -232,7 +232,6 @@
             </e>
           </e>
         </e>
-        <e p="PartyInputManager.cs" t="Include" />
         <e p="SC Post Effects" t="Include">
           <e p="Editor" t="Include">
             <e p="Editors" t="Include">
@@ -567,11 +566,14 @@
           <e p="InteractionController.cs" t="Include" />
           <e p="NoiseMaker.cs" t="Include" />
           <e p="OneShotSound.cs" t="Include" />
+          <e p="PartyInputManager.cs" t="Include" />
+          <e p="PartyUi.cs" t="Include" />
           <e p="PlayerInput.cs" t="Include" />
           <e p="PlayerUi.cs" t="Include" />
           <e p="SpawnController.cs" t="Include" />
+          <e p="Weapon.cs" t="Include" />
         </e>
-        <e p="Weapon.cs" t="Include" />
+        <e p="WorldStreamer.cs" t="Include" />
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

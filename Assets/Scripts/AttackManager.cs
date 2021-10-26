@@ -481,6 +481,9 @@ public class AttackManager : MonoBehaviour
 
     public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage)
     {
+        if (partToDamage.HC.AiInput && partToDamage.HC.AiInput.inParty && Hc.AiInput && Hc.AiInput.inParty)
+            return false;
+                
         if (currentAttack == null)
             return false;
         

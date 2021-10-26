@@ -182,7 +182,11 @@ public class Weapon : MonoBehaviour
             {
                 // hit
                 shotParticles.transform.LookAt(boneToAim.transform.position);
-                boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
+                
+                if (attackManager)
+                    attackManager.DamageOtherBodyPart(boneToAim, rangedWeaponDamage);
+                else
+                    boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
             }
             else
             {
@@ -200,13 +204,23 @@ public class Weapon : MonoBehaviour
                     {
                         BodyPart part = hit.collider.gameObject.GetComponent<BodyPart>();
                         if (part)
-                            DamageDirectly(part, rangedWeaponDamage);
+                        {
+                            
+                            if (attackManager)
+                                attackManager.DamageOtherBodyPart(part, rangedWeaponDamage);
+                            else
+                                part.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
+                        }
                     }
                 }
             }
         }
         
         SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance);
+        
+        if (shotAu == null)
+            return;
+        
         shotAu.pitch = Random.Range(0.75f, 1.25f);
         shotAu.Play();
         shotParticles.Play();

@@ -14,6 +14,7 @@ public class SpawnController : MonoBehaviour
     public static SpawnController Instance;
 
     private List<AiInput> spawnedAiInputs = new List<AiInput>();
+
     private void Awake()
     {
         Instance = this;
