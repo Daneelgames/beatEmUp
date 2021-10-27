@@ -20,6 +20,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private float resetVisibleUnitsCooldown = 10f;
     [SerializeField] private float updateDelay = 0.25f;
     [SerializeField] private float viewRadius;
+    [SerializeField] private float sixSenseDistance = 2;
     [SerializeField] private float meshResolution;
     [SerializeField] private int edgeResolveIterations = 3;
     public float ViewRadius => viewRadius;
@@ -56,6 +57,8 @@ public class FieldOfView : MonoBehaviour
 
     IEnumerator FindTargetsWithDelay()
     {
+        yield return new WaitForSeconds(0.1f * GameManager.Instance.Units.IndexOf(hc));
+        
         resetVisibleUnitsCooldownCurrent = 0;
         while (true)
         {
@@ -80,7 +83,7 @@ public class FieldOfView : MonoBehaviour
                 
                 resetVisibleUnitsCooldownCurrent = 0;
             }
-            FindVisibleTargets();
+            StartCoroutine(FindVisibleTargets());
         }
     }
 
@@ -100,10 +103,14 @@ public class FieldOfView : MonoBehaviour
         DrawFieldOfView();
     }
 
-    void FindVisibleTargets()
+    IEnumerator FindVisibleTargets()
     {
         visibleTargets.Clear();
+        
         Collider[] targetsInViewRadius = Physics.OverlapSphere(eyesTransfom.position, viewRadius, targetMask);
+
+        int t = 0;
+        
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
             Transform target = targetsInViewRadius[i].transform;
@@ -115,12 +122,13 @@ public class FieldOfView : MonoBehaviour
             
             //print("1");
             Vector3 dirToTarget = (target.position - transform.position).normalized;
-            
-            // if in viewport
-            if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
-            {           
-                float dstToTarget = Vector3.Distance(eyesTransfom.position, target.position);
+            float dstToTarget = Vector3.Distance(eyesTransfom.position, target.position);
 
+            bool canRaycast = dstToTarget <= sixSenseDistance || Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2;
+
+            // if in viewport
+            if (canRaycast)
+            {           
                 RaycastHit hit;
                 if (Physics.Raycast(eyesTransfom.position,  (target.position - eyesTransfom.position).normalized, out hit, dstToTarget, raycastUnitsAndObstaclesMask))
                 {
@@ -128,6 +136,13 @@ public class FieldOfView : MonoBehaviour
                     {
                         visibleTargets.Add(target);
                     }
+                }
+
+                t++;
+                if (t > 5)
+                {
+                    t = 0;
+                    yield return null;   
                 }
             }
         }

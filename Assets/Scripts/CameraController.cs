@@ -61,6 +61,7 @@ public class CameraController : MonoBehaviour
         
         parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);
 
+        /*
         mouseInputZ = Input.GetAxis("Mouse ScrollWheel");
         Vector3 posTemp = transform.position + transform.forward.normalized * (mouseInputZ * cameraZoomSpeed * Time.deltaTime);
         posTemp = new Vector3(posTemp.x, Mathf.Clamp(posTemp.y, 10, 40), posTemp.z);
@@ -81,10 +82,15 @@ public class CameraController : MonoBehaviour
             else if (transform.localEulerAngles.x < xMinMax.x && mouseInputY < 0)
                 mouseInputY = 0;
         
-            transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((newCameraTurnSpeed / 5) * Time.deltaTime));
+            var resultEulerAngles = parent.transform.eulerAngles;
+            resultEulerAngles += new Vector3(mouseInputY, 0, 0) * ((newCameraTurnSpeed / 5) * Time.deltaTime);
+            parent.transform.eulerAngles = resultEulerAngles;
+            
+            //parent.transform.Rotate(new Vector3(mouseInputY, 0, 0) * ((newCameraTurnSpeed / 5) * Time.deltaTime));
    
-            var resultEulerAngles = transform.localEulerAngles;
-            transform.localEulerAngles = new Vector3(Mathf.Clamp(resultEulerAngles.x,xMinMax.x,xMinMax.y), transform.localEulerAngles.y, transform.localEulerAngles.z);
-        }
+            /*
+            var resultEulerAngles = parent.transform.eulerAngles;
+            parent.transform.eulerAngles = new Vector3(Mathf.Clamp(resultEulerAngles.x,xMinMax.x,xMinMax.y), parent.transform.eulerAngles.y, parent.transform.eulerAngles.z);#1#
+        }*/
     }
 }

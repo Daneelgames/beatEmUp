@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
@@ -87,6 +85,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         newRb.velocity = Vector3.zero;
+        newRb.angularVelocity = Vector3.zero;
         SetLayerRecursively(newRb.gameObject, 6);
         if (destroy)
             Destroy(newRb);

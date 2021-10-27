@@ -7,7 +7,15 @@ using UnityEngine;
 public class PartyInputManager : MonoBehaviour
 {
     public static PartyInputManager Instance;
- 
+
+    enum UnitOrder
+    {
+        Move, Attack 
+    }
+
+    private UnitOrder _unitOrder = UnitOrder.Move;
+
+    [SerializeField] private float maxDistanceToClosestUnit = 3;
     [SerializeField] List<HealthController> selectedAllyUnits = new List<HealthController>();
     [SerializeField] List<HealthController> party = new List<HealthController>();
     public List<HealthController> Party
@@ -56,6 +64,34 @@ public class PartyInputManager : MonoBehaviour
             SelectUnit(-1);
         }
 
+        if (Input.GetButtonDown("AttackHotkey"))
+        {
+            _unitOrder = UnitOrder.Attack;
+        }
+
+        if (Input.GetButtonDown("ToggleAggroModeHotkey"))
+        {
+            AiInput.AggroMode newMode = AiInput.AggroMode.AggroOnSight; 
+            for (int i = 0; i < selectedAllyUnits.Count; i++)
+            {
+                if (selectedAllyUnits[i])
+                {
+                    if (i == 0)
+                    {
+                        newMode = selectedAllyUnits[i].AiInput.aggroMode;
+                        if (newMode == AiInput.AggroMode.AggroOnSight)
+                            newMode = AiInput.AggroMode.AttackIfAttacked;
+                        else
+                            newMode = AiInput.AggroMode.AggroOnSight;
+                    }
+                    
+                    selectedAllyUnits[i].AiInput.SetAggroMode(newMode);   
+                }
+            }
+
+            PartyUi.Instance.UpdatePartyAggroMode();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             if (selectedAllyUnits.Count <= 0)
@@ -64,25 +100,49 @@ public class PartyInputManager : MonoBehaviour
             Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
             newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
 
-            if (selectedAllyUnits.Count == 1)
+            switch (_unitOrder)
             {
-                selectedAllyUnits[0].AiInput.OrderMove(newPos);
+                case UnitOrder.Move: 
+                    for (int i = 0; i < selectedAllyUnits.Count; i++)
+                    {
+                        if (selectedAllyUnits[i])
+                            selectedAllyUnits[i].AiInput.OrderMove(newPos);
+                    }   
+                    break;
+                case UnitOrder.Attack:
+                    float distance = 1000;
+                    float newDistance = 0;
+                    HealthController closestUnitToAttack = null;
+                    for (int i = 0; i < GameManager.Instance.Units.Count; i++)
+                    {
+                        var unit = GameManager.Instance.Units[i];
+                        if (unit.AiInput && unit.AiInput.inParty == false)
+                        {
+                            newDistance = Vector3.Distance(unit.transform.position, newPos);
+                            if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)
+                            {
+                                distance = newDistance;
+                                closestUnitToAttack = unit;
+                            }
+                        }
+                    }
+                    for (int i = 0; i < selectedAllyUnits.Count; i++)
+                    {
+                        if (selectedAllyUnits[i])
+                            selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
+                    }   
+                    break;
             }
-            else
-            {
-                int ggg = -1;
-                for (int i = selectedAllyUnits.Count - 1; i >= 0; i--)
-                {
-                    ggg *= -1;
-                    if (selectedAllyUnits[i])
-                        selectedAllyUnits[i].AiInput.OrderMove(newPos + selectedAllyUnits[i].transform.forward * (i * ggg));
-                }   
-            }
+
+            _unitOrder = UnitOrder.Move;
         }
     }
 
     void SelectUnit(int index)
     {
+        if (Party.Count <= 0)
+            return;
+        
         for (int i = 0; i < spawnedUnitSelectedFeedbacks.Count; i++)
         {
             FeedbackOnSelectedUnits(i, null, false);
@@ -99,7 +159,6 @@ public class PartyInputManager : MonoBehaviour
                 
                 if (Party[i] == null || Party[i].Health <= 0)
                 {
-                    Party.RemoveAt(i);
                     continue;
                 }
 
@@ -122,7 +181,6 @@ public class PartyInputManager : MonoBehaviour
                 
                 if (Party[i] == null || Party[i].Health <= 0)
                 {
-                    Party.RemoveAt(i);
                     continue;
                 }
             }

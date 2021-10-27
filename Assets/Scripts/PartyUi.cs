@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class PartyUi : MonoBehaviour
 {
+    public static PartyUi Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+    
     [SerializeField] private List<Text> partyNumbersToSelect = new List<Text>();
     [SerializeField] private RectTransform canvasRect;
     private IEnumerator Start()
@@ -16,6 +23,8 @@ public class PartyUi : MonoBehaviour
         {
             partyNumbersToSelect[i].text = (i + 1).ToString();
         }
+        
+        UpdatePartyAggroMode();
         while (true)
         {
             for (int i = 0; i < PartyInputManager.Instance.Party.Count; i++)
@@ -29,17 +38,37 @@ public class PartyUi : MonoBehaviour
                 }
             }
 
-            for (int i = partyNumbersToSelect.Count - 1; i >= 0; i--)
+            for (int i = 0; i < partyNumbersToSelect.Count; i++)
             {
+                if (partyNumbersToSelect[i].gameObject.activeInHierarchy == false)
+                    continue;
+                
                 if (partyNumbersToSelect.Count > PartyInputManager.Instance.Party.Count ||
                     PartyInputManager.Instance.Party[i].Health <= 0)
                 {
-                    Destroy(partyNumbersToSelect[i].gameObject);
-                    partyNumbersToSelect.RemoveAt(i);
+                    partyNumbersToSelect[i].gameObject.SetActive(false);
                 }
             }
             
             yield return null;
         }
+    }
+
+    public void UpdatePartyAggroMode()
+    {
+        for (int i = 0; i < PartyInputManager.Instance.Party.Count; i++)
+        {
+            switch (PartyInputManager.Instance.Party[i].AiInput.aggroMode)
+            {
+                case AiInput.AggroMode.AggroOnSight:
+                     partyNumbersToSelect[i].color = Color.red;
+                    break;
+                
+                case AiInput.AggroMode.AttackIfAttacked:
+                    partyNumbersToSelect[i].color = Color.blue;
+                    break;
+            }
+            
+        }   
     }
 }

@@ -63,10 +63,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b8a33e8860d014eb3c9b8912dfd603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotRaycastDistance: 100
+  shotNoiseDistance: 100
+  rangedWeaponAttacks: []
+  rangedWeaponDamage: 1000
+  ammo: 0
+  shotParticles: {fileID: 0}
+  shotLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   weaponAttacks:
-  - attackWeight: 2
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
+  - shotPosition: {fileID: 0}
+    useAmmo: 0
+    missChance: 0.5
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -82,8 +91,17 @@ MonoBehaviour:
     canRotateOnReturn: 0
     canSkipReturn: 1
     dangeorusParts: []
+    attackWeight: 2
+    reduceAttackWeightOnRepeat: 0.5
+    restoreAttackWeightOnAttackRest: 0.25
+  eulearsOnThrow: {x: 0, y: 0, z: 0}
+  weaponDamage: 200
+  throwDamage: 200
+  impactNoiseDistance: 10
   throwPower: 50
+  minDistanceToStopThrowFly: 2
   attacksLeft: 2
+  shotAu: {fileID: 0}
   interactable: {fileID: 5405347542776371676}
   rb: {fileID: 6148280074050707155}
 --- !u!135 &5177284745129542451

@@ -151,6 +151,22 @@ public class AiInput : MonoBehaviour
         }
     }
 
+    public void SetAggroMode(AggroMode newMode)
+    {
+        aggroMode = newMode;
+        
+        /*
+        switch (aggroMode)
+        {
+            case AggroMode.AggroOnSight:
+                aggroMode = AggroMode.AttackIfAttacked;                
+                break;
+            case AggroMode.AttackIfAttacked:
+                aggroMode = AggroMode.AggroOnSight;                
+                break;
+        }*/
+    }
+    
     public void SeeEnemy(HealthController closestVisibleEnemy)
     {
         if (aggroMode == AggroMode.AggroOnSight)
@@ -162,13 +178,24 @@ public class AiInput : MonoBehaviour
 
     public void DamagedByEnemy(HealthController enemy)
     {
+        SetAggro(enemy); 
+        RotateTowardsClosestEnemy(enemy);   
+        
+        /*
         if (aggroMode == AggroMode.AttackIfAttacked)
         {
-            SetAggro(enemy); 
-            RotateTowardsClosestEnemy(enemy);   
-        }
+        }*/
     }
 
+    public void OrderAttack(Vector3 newPos, HealthController unit)
+    {
+        StopBehaviourCoroutines();
+        
+        SetAggro(unit);
+        RotateTowardsClosestEnemy(unit);   
+        OrderMove(newPos);
+    }
+    
     public void OrderMove(Vector3 newPos)
     {
         StopBehaviourCoroutines();
@@ -570,11 +597,19 @@ public class AiInput : MonoBehaviour
     private Quaternion targetRotation1 = Quaternion.identity;
     IEnumerator RotateTowardsClosestEnemyCoroutine(HealthController targetHc)
     {
+        float t = 0;
         while (true)
         {
             if (targetHc == null || targetHc.Health <= 0)
                 yield break;
-            
+
+            t += Time.deltaTime;
+            if (t >= 1)
+            {
+                t = 0;
+                if (Vector3.Distance(transform.position, targetHc.transform.position) > looseTargetDistance)
+                    yield break;
+            }
             targetRotation1.SetLookRotation(targetHc.transform.position - transform.position); 
             targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
             transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
@@ -585,16 +620,20 @@ public class AiInput : MonoBehaviour
     {
         while (hc.Health > 0)
         {
-            Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position + transform.forward + Vector3.up * 0.5f, 1.2f, unitsMask);
-
-            for (int i = 0; i < targetsInViewRadius.Length; i++)
+            if (attackCooldownCurrent <= 0)
             {
-                if (hc.EnemiesGameObjects.Contains(targetsInViewRadius[i].gameObject))
+                Collider[] targetsInViewRadius = Physics.OverlapCapsule(transform.position + transform.forward,transform.position + transform.forward + Vector3.up * 2f ,1.5f, unitsMask);
+
+                for (int i = 0; i < targetsInViewRadius.Length; i++)
                 {
-                    attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
-                    _attackManager.TryToAttack(false, null);
-                }
+                    if (hc.EnemiesGameObjects.Contains(targetsInViewRadius[i].gameObject))
+                    {
+                        attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
+                        _attackManager.TryToAttack(false, null);
+                    }
+                }   
             }
+            
             if (inParty)
                 yield return null;
             else

@@ -218,7 +218,7 @@ public class HealthController : MonoBehaviour
         if (Enemies.Contains(newEnemy) == false && Friends.Contains(newEnemy) == false)
         {
             Enemies.Add(newEnemy);
-            enemiesGameObjects.Add(newEnemy.gameObject);
+            EnemiesGameObjects.Add(newEnemy.gameObject);
         }
     }
 
@@ -227,7 +227,7 @@ public class HealthController : MonoBehaviour
         if (Enemies.Count > index)
         {
             Enemies.RemoveAt(index);
-            enemiesGameObjects.RemoveAt(index);
+            EnemiesGameObjects.RemoveAt(index);
         }
     }
 
@@ -236,7 +236,7 @@ public class HealthController : MonoBehaviour
         if (Enemies.Contains(unit))
         {
             Enemies.Remove(unit);
-            enemiesGameObjects.Remove(unit.gameObject);
+            EnemiesGameObjects.Remove(unit.gameObject);
         }
     }
 
@@ -315,9 +315,11 @@ public class HealthController : MonoBehaviour
 
         if (closestVisibleEnemy != null)
         {
-            _attackManager.SeeEnemy(closestVisibleEnemy, visibleTargetToAim);
             if (_aiInput)
             {
+                if (_aiInput.aggroMode == AiInput.AggroMode.AggroOnSight)
+                    _attackManager.SeeEnemy(closestVisibleEnemy, visibleTargetToAim);
+                
                 _aiInput.SeeEnemy(closestVisibleEnemy);
             }
         }
@@ -364,6 +366,8 @@ public class HealthController : MonoBehaviour
         
         if (rb)
         {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             rb.isKinematic = false;
             rb.useGravity = true;   
             
