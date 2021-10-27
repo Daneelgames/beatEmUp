@@ -246,7 +246,6 @@ public class HealthController : MonoBehaviour
 
     public void RemoveEnemy(HealthController unit)
     {
-        print("RemoveEnemy");
         if (Enemies.Contains(unit))
         {
             Enemies.Remove(unit);

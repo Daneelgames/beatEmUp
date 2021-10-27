@@ -134,11 +134,15 @@ public class PartyInputManager : MonoBehaviour
                             }
                         }
                     }
-                    for (int i = 0; i < selectedAllyUnits.Count; i++)
+
+                    if (closestUnitToAttack)
                     {
-                        if (selectedAllyUnits[i] && selectedAllyUnits[i].AiInput)
-                            selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
-                    }   
+                        for (int i = 0; i < selectedAllyUnits.Count; i++)
+                        {
+                            if (selectedAllyUnits[i] && selectedAllyUnits[i].AiInput)
+                                selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
+                        }      
+                    }
                     break;
             }
 

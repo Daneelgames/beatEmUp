@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class InteractionController : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class InteractionController : MonoBehaviour
     IEnumerator UpdateInteraction()
     {
         // pick up the item and put it in a weapon BodyPartsManager.WeaponParentTransform
+        float t = Random.Range(0.001f, 0.1f * GameManager.Instance.Units.IndexOf(hc));
+        yield return new WaitForSeconds(t);
         while (true)
         {
             yield return null;
@@ -127,8 +130,8 @@ public class InteractionController : MonoBehaviour
         }
         else if (interactable.ConsumablePickUp)
         {
-            PartyInventory.Instance.PickUpConsumable(interactable);
-            Destroy(interactable.gameObject);
+            if (hc.AiInput.inParty)
+                PartyInventory.Instance.PickUpConsumable(interactable);
         }
     }
 }
