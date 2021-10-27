@@ -12,6 +12,7 @@
             </e>
           </e>
         </e>
+        <e p="Consumable.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />
         </e>
@@ -232,6 +233,7 @@
             </e>
           </e>
         </e>
+        <e p="PartyInventory.cs" t="Include" />
         <e p="SC Post Effects" t="Include">
           <e p="Editor" t="Include">
             <e p="Editors" t="Include">

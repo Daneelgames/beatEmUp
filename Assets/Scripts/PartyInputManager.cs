@@ -69,6 +69,14 @@ public class PartyInputManager : MonoBehaviour
             _unitOrder = UnitOrder.Attack;
         }
 
+        if (Input.GetButtonDown("UseMedKitHotkey"))
+        {
+            if (PartyInventory.Instance.MedKitsAmount <= 0)
+                return;
+            
+            UseMedKit();
+        }
+
         if (Input.GetButtonDown("ToggleAggroModeHotkey"))
         {
             AiInput.AggroMode newMode = AiInput.AggroMode.AggroOnSight; 
@@ -128,7 +136,7 @@ public class PartyInputManager : MonoBehaviour
                     }
                     for (int i = 0; i < selectedAllyUnits.Count; i++)
                     {
-                        if (selectedAllyUnits[i])
+                        if (selectedAllyUnits[i] && selectedAllyUnits[i].AiInput)
                             selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
                     }   
                     break;
@@ -138,6 +146,33 @@ public class PartyInputManager : MonoBehaviour
         }
     }
 
+    void UseMedKit()
+    {
+        int healthLowest = 100000;
+        HealthController unitWithLowestHp = null;
+        for (int i = 0; i < selectedAllyUnits.Count; i++)
+        {
+            if (selectedAllyUnits[i].Health == selectedAllyUnits[i].HealthMax)
+                continue;
+                
+            if (selectedAllyUnits[i].Health < healthLowest)
+            {
+                healthLowest = selectedAllyUnits[i].Health;
+                unitWithLowestHp = selectedAllyUnits[i];
+            }
+        }
+
+        if (unitWithLowestHp == null)
+        {
+            // dont waste
+            return;
+        }
+
+        unitWithLowestHp.Heal(unitWithLowestHp.HealthMax * 0.66f);
+        PartyInventory.Instance.MedKitsAmount--;
+        PartyUi.Instance.UpdateMedKits();
+    }
+    
     void SelectUnit(int index)
     {
         if (Party.Count <= 0)

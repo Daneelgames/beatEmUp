@@ -240,7 +240,6 @@ public class PlayerInput : MonoBehaviour
                 {
                     if (hc.Enemies[i] == null || hc.Enemies[i].Health <= 0)
                     {
-                        hc.RemoveEnemyAt(i);
                         continue;
                     }
                     float newDistance = Vector3.Distance(hc.Enemies[i].transform.position, transform.position);

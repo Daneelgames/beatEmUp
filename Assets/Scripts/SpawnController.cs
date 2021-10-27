@@ -49,4 +49,13 @@ public class SpawnController : MonoBehaviour
             InteractablesGameObjects.Add(newInteractable.gameObject);
         }
     }
+    
+    public void InteractableDestroyed(Interactable destroyedInteractable)
+    {
+        if (Interactables.Contains(destroyedInteractable))
+        {
+            Interactables.Remove(destroyedInteractable);
+            InteractablesGameObjects.Remove(destroyedInteractable.gameObject);
+        }
+    }
 }

@@ -5010,6 +5010,7 @@ MonoBehaviour:
   rb: {fileID: 1418387029692191165}
   _collider: {fileID: 2990754416440667523}
   weaponPickUp: {fileID: 3461436642942277286}
+  consumablePickUp: {fileID: 0}
 --- !u!114 &3461436642942277286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5023,7 +5024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotRaycastDistance: 100
-  shotNoiseDistance: 66
+  shotNoiseDistance: 50
   rangedWeaponAttacks:
   - shotPosition: {fileID: 5687861141736487641}
     useAmmo: 1

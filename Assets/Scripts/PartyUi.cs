@@ -14,6 +14,7 @@ public class PartyUi : MonoBehaviour
     }
     
     [SerializeField] private List<Text> partyNumbersToSelect = new List<Text>();
+    [SerializeField] private Text medKitsAmountFeedback;
     [SerializeField] private RectTransform canvasRect;
     private IEnumerator Start()
     {
@@ -70,5 +71,10 @@ public class PartyUi : MonoBehaviour
             }
             
         }   
+    }
+
+    public void UpdateMedKits()
+    {
+        medKitsAmountFeedback.text = PartyInventory.Instance.MedKitsAmount + " Medkits";
     }
 }

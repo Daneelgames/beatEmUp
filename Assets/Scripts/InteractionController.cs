@@ -89,12 +89,17 @@ public class InteractionController : MonoBehaviour
                     closestInteractableFeedback.transform.position = closestPoint;
                     closestInteractableFeedbackEmissionModule.rateOverTime = 10;
                 }
-                
+
                 if (Input.GetButtonDown("Interact") && hc.PlayerInput)
                     Interact(closestInteractable);
 
                 // picks up weapon if has none and if weapon has no owner
-                if (hc.AttackManager.WeaponInHands == null && closestInteractable.WeaponPickUp && closestInteractable.WeaponPickUp.AttackManager == null)
+                if (hc.AttackManager.WeaponInHands == null && closestInteractable.WeaponPickUp &&
+                    closestInteractable.WeaponPickUp.AttackManager == null)
+                {
+                    Interact(closestInteractable);
+                }
+                else if (closestInteractable.ConsumablePickUp && closestInteractable.ConsumablePickUp.heal)
                 {
                     Interact(closestInteractable);
                 }
@@ -119,6 +124,11 @@ public class InteractionController : MonoBehaviour
             
             SpawnController.Instance.Interactables.Remove(interactable);
             SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
+        }
+        else if (interactable.ConsumablePickUp)
+        {
+            PartyInventory.Instance.PickUpConsumable(interactable);
+            Destroy(interactable.gameObject);
         }
     }
 }

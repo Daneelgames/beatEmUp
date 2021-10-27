@@ -36,7 +36,12 @@ public class HealthController : MonoBehaviour
     [SerializeField] private int healthMax = 1000;
     [SerializeField] private float damagedAnimationTime = 0.5f;
     private bool damageOnCooldown = false;
-    public int Health => health;
+    public int Health
+    {
+        get => health;
+        set => health = value;
+    }
+
     public int HealthMax => healthMax;
 
     private static readonly int DamagedString = Animator.StringToHash("Damaged");
@@ -52,7 +57,10 @@ public class HealthController : MonoBehaviour
     [SerializeField] private List<GameObject> enemiesGameObjects = new List<GameObject>();
     public List<GameObject> EnemiesGameObjects
     {
-        get { return enemiesGameObjects; }
+        get
+        {
+            return enemiesGameObjects;
+        }
         set { enemiesGameObjects = value; }
     }
 
@@ -77,14 +85,19 @@ public class HealthController : MonoBehaviour
         if (_aiInput && _aiInput.inParty)
             PartyInputManager.Instance.AddPartyMember(this);
 
-        if (health != null)
+        if (healthBar != null)
             StartCoroutine(UpdateHealthbar());
     }
 
+    public void Heal(float hpToAdd)
+    {
+        Health = Mathf.Clamp(Health + Mathf.RoundToInt(hpToAdd), 1, HealthMax);
+    }
+    
     IEnumerator UpdateHealthbar()
     {
         healthBar.transform.parent.transform.localScale = Vector3.zero;
-        while (health > 0)
+        while (Health > 0)
         {
             float t = 0;
             while (true)
@@ -112,7 +125,7 @@ public class HealthController : MonoBehaviour
             t = 0;
             while (true)
             {
-                healthBar.fillAmount = (health * 1f) / (healthMax * 1f);
+                healthBar.fillAmount = (Health * 1f) / (HealthMax * 1f);
                 healthBar.transform.parent.LookAt(GameManager.Instance.mainCamera.transform.position);
                 
                 t++;
@@ -148,7 +161,7 @@ public class HealthController : MonoBehaviour
         if (damageOnCooldown)
             return damaged;
         
-        if (health <= 0)
+        if (Health <= 0)
             return damaged;
 
         if (damager)
@@ -171,10 +184,10 @@ public class HealthController : MonoBehaviour
         if (!invincible)
         {
             damaged = true;
-            health -= dmg;
+            Health -= dmg;
         }
 
-        if (health <= 0)
+        if (Health <= 0)
         {
             damager.RemoveEnemy(this);
             Death(false, true, false, true);
@@ -233,6 +246,7 @@ public class HealthController : MonoBehaviour
 
     public void RemoveEnemy(HealthController unit)
     {
+        print("RemoveEnemy");
         if (Enemies.Contains(unit))
         {
             Enemies.Remove(unit);
@@ -256,7 +270,7 @@ public class HealthController : MonoBehaviour
 
             var unit = GameManager.Instance.Units[i];
 
-            if (unit == this || unit.health <= 0)
+            if (unit == this || unit.Health <= 0)
                 continue;
 
             for (int j = unit.BodyPartsManager.bodyParts.Count - 1; j >= 0; j--)
@@ -283,7 +297,10 @@ public class HealthController : MonoBehaviour
                     else
                     {
                         if (Enemies.Contains(unit) == false)
+                        {
                             Enemies.Add(unit);
+                            EnemiesGameObjects.Add(unit.gameObject);
+                        }
                     }
                 }
                 
@@ -332,7 +349,7 @@ public class HealthController : MonoBehaviour
     
     public void Death(bool onlyDisableAllSystems, bool explode, bool removeRbInstantly, bool removePart)
     {
-        health = 0;
+        Health = 0;
         
         if (playerInput)
             playerInput.Death();
