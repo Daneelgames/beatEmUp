@@ -49,19 +49,35 @@ public class PartyInputManager : MonoBehaviour
     {
         if (Input.GetButtonDown("SelectFirstAlly"))
         {
-            SelectUnit(0);
+            if (Party.Count > 0 && Party[0] != null && Party[0].Health > 0)
+            {
+                SelectUnit(0);
+                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position);   
+            }
         }
         if (Input.GetButtonDown("SelectSecondAlly"))
         {
-            SelectUnit(1);
+            if (Party.Count > 1 && Party[1] != null && Party[1].Health > 0)
+            {
+                SelectUnit(1);
+                CameraController.Instance.MoveCameraToPosition(Party[1].transform.position);   
+            }
         }
         if (Input.GetButtonDown("SelectThirdAlly"))
         {
-            SelectUnit(2);
+            if (Party.Count > 2 && Party[2] != null && Party[2].Health > 0)
+            {
+                SelectUnit(2);
+                CameraController.Instance.MoveCameraToPosition(Party[2].transform.position);   
+            }
         }
         if (Input.GetButtonDown("SelectAllAllies"))
         {
-            SelectUnit(-1);
+            if (Party.Count > 0 && Party[0] != null && Party[0].Health > 0)
+            {
+                SelectUnit(-1);
+                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position);   
+            }
         }
 
         if (Input.GetButtonDown("UseMedKitHotkey"))

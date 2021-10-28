@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController Instance;
     [SerializeField] private Transform parent;
     [SerializeField] private Vector2 xMinMax = new Vector2(15, 40);
     [SerializeField] private Vector2 zMinMax = new Vector2(-150, -10);
@@ -23,6 +24,12 @@ public class CameraController : MonoBehaviour
     private float camParentTargetY = 0;
     private float camTargetZ = 0;
     private Vector3 targetPosition;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+    
     private IEnumerator Start()
     {
         while (PlayerInput.Instance == null && PartyInputManager.Instance == null)
@@ -83,5 +90,10 @@ public class CameraController : MonoBehaviour
         parent.transform.eulerAngles = new Vector3 (camParentTargetX, camParentTargetY, 0.0f);
         // zoom
         transform.localPosition = new Vector3(0, 0, camTargetZ);
+    }
+
+    public void MoveCameraToPosition(Vector3 newPos)
+    {
+        parent.gameObject.transform.position = newPos;
     }
 }
