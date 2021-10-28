@@ -67,16 +67,16 @@ public class CameraController : MonoBehaviour
             right.Normalize();
             
             Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;
-            targetPosition += movementVector.normalized * (cameraMoveSpeed * Time.deltaTime);
+            targetPosition += movementVector.normalized * (cameraMoveSpeed * Time.smoothDeltaTime);
                 
-            camTargetZ += Input.GetAxis("Mouse ScrollWheel") * cameraZoomSpeed * Time.deltaTime;
+            camTargetZ += Input.GetAxis("Mouse ScrollWheel") * cameraZoomSpeed * Time.smoothDeltaTime;
             camTargetZ = Mathf.Clamp(camTargetZ, zMinMax.x, zMinMax.y);
             
             if (Input.GetButton("Aim"))
             {
-                camParentTargetX -= Input.GetAxis("Mouse Y") * cameraTurnSpeed * Time.deltaTime;
+                camParentTargetX -= Input.GetAxis("Mouse Y") * cameraTurnSpeed * Time.smoothDeltaTime;
                 camParentTargetX = Mathf.Clamp (camParentTargetX, xMinMax.x, xMinMax.y);
-                camParentTargetY += Input.GetAxis("Mouse X") * cameraTurnSpeed * Time.deltaTime;
+                camParentTargetY += Input.GetAxis("Mouse X") * cameraTurnSpeed * Time.smoothDeltaTime;
             }
         }
     }
@@ -86,7 +86,7 @@ public class CameraController : MonoBehaviour
         if (canFollow == false)
             return;
         
-        parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.deltaTime);
+        parent.gameObject.transform.position = Vector3.Lerp(parent.gameObject.transform.position, targetPosition, cameraSmooth * Time.smoothDeltaTime);
         parent.transform.eulerAngles = new Vector3 (camParentTargetX, camParentTargetY, 0.0f);
         // zoom
         transform.localPosition = new Vector3(0, 0, camTargetZ);

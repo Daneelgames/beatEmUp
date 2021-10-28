@@ -375,7 +375,8 @@ public class HealthController : MonoBehaviour
             anim.enabled = false;
             return;   
         }
-        
+        StopCoroutine(UpdateHealthbar());
+        healthBar.transform.parent.gameObject.SetActive(false);
         _bodyPartsManager.SetAllPartsColliders();
         
         anim.SetBool(Alive, false);

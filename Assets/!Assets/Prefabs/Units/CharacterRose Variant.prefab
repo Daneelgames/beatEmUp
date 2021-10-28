@@ -433,6 +433,18 @@ PrefabInstance:
       propertyPath: friends.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 467956864760804726, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: shouts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467956864760804726, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: makeShotNoise
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467956864760804726, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: makeStepNoise
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 975511850012398524, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -456,6 +468,10 @@ PrefabInstance:
     - target: {fileID: 2984947846422348196, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: kidness
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984947846422348196, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: looseTargetDistance
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3352698535296856633, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Materials.Array.data[0]

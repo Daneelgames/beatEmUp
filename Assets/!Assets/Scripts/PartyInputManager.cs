@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PartyInputManager : MonoBehaviour
 {
@@ -73,10 +74,17 @@ public class PartyInputManager : MonoBehaviour
         }
         if (Input.GetButtonDown("SelectAllAllies"))
         {
-            if (Party.Count > 0 && Party[0] != null && Party[0].Health > 0)
+            if (Party.Count > 0)
             {
                 SelectUnit(-1);
-                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position);   
+                for (int i = 0; i < Party.Count; i++)
+                {
+                    if (Party[i].Health > 0)
+                    {
+                        CameraController.Instance.MoveCameraToPosition(Party[0].transform.position);
+                        break;
+                    }
+                }   
             }
         }
 
@@ -124,8 +132,32 @@ public class PartyInputManager : MonoBehaviour
                 case UnitOrder.Move: 
                     for (int i = 0; i < selectedAllyUnits.Count; i++)
                     {
+                        Vector3 tempPose = newPos;
                         if (selectedAllyUnits[i])
-                            selectedAllyUnits[i].AiInput.OrderMove(newPos);
+                        {
+                            switch (i)
+                            {
+                                case 0: 
+                                    break;
+                                case 1: 
+                                    tempPose += Vector3.forward * 2;
+                                    break;
+                                case 2: 
+                                    tempPose += Vector3.right * 2;
+                                    break;
+                                case 3: 
+                                    tempPose += Vector3.forward * -2;
+                                    break;
+                                case 4: 
+                                    tempPose += Vector3.right * -2;
+                                    break;
+                                default:
+                                    tempPose += new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+                                    break;
+                            }
+                            
+                            selectedAllyUnits[i].AiInput.OrderMove(tempPose);   
+                        }
                     }   
                     break;
                 case UnitOrder.Attack:

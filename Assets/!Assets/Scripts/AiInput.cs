@@ -91,6 +91,9 @@ public class AiInput : MonoBehaviour
         SpawnController.Instance.AddAiInput(this);
         
         currentTargetPosition = transform.position;
+
+        if (looseTargetDistance < hc.FieldOfView.ViewRadius)
+            looseTargetDistance = hc.FieldOfView.ViewRadius;
         
         if (aiState == State.Wander)
             Wander();
@@ -466,6 +469,7 @@ public class AiInput : MonoBehaviour
             
             currentTargetPosition = GetPositionOfClosestEnemy(true);
             
+            
             if (_attackManager.CanMove)
             {
                 if (Vector3.Distance(transform.position, currentTargetPosition) > runDistanceThreshold)
@@ -533,8 +537,13 @@ public class AiInput : MonoBehaviour
             }
         }
 
+        if (inParty)
+            print(closestEnemy);
+        
         if (closestEnemy != null)
-            newPos = closestEnemy.transform.position;
+        {
+            newPos = closestEnemy.transform.position;   
+        }
         else
         {
             if (followTargetCoroutine != null)
@@ -677,6 +686,11 @@ public class AiInput : MonoBehaviour
 
     public void Death()
     {
+        if (rotateTowardsClosestEnemyCoroutine != null)
+            StopCoroutine(rotateTowardsClosestEnemyCoroutine);
+        
+        rotateTowardsClosestEnemyCoroutine = null;
+        
         StopBehaviourCoroutines();
         alive = false;
     }
