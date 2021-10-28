@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CharacterInfoRose
   m_EditorClassIdentifier: 
   objectName: Rose
-  objectNameAttackedBySomeone: Rose
+  objectDies: Rose dies
+  objectAttacks: Rose attacks
+  objectKills: Rose kills
   objectGetsItem: Rose gets
-  objectUsesItem: Rose uses
-  objectDamaged: Rose is damaged
+  objectIsDamaged: Rose is damaged

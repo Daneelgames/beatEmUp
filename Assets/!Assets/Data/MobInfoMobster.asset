@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MobInfoMobster
   m_EditorClassIdentifier: 
   objectName: Mobster
-  objectNameAttackedBySomeone: Mobster
-  objectFindsItem: Mobster finds
-  objectUsesItem: Mobster uses
-  objectDamaged: Mobster is damaged
+  objectDies: Mobster dies
+  objectAttacks: Mobster attacks
+  objectKills: Mobster kills
+  objectGetsItem: Mobster gets
+  objectIsDamaged: Mobster is damaged

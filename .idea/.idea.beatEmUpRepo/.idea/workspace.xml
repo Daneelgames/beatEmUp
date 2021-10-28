@@ -66,13 +66,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInfoData.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Interactable.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
     </changedPaths>
   </component>
@@ -138,7 +138,7 @@
       <workItem from="1635150001096" duration="6376000" />
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
-      <workItem from="1635431897515" duration="339000" />
+      <workItem from="1635431897515" duration="1907000" />
     </task>
     <servers />
   </component>

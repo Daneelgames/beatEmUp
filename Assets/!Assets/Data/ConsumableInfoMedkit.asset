@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ConsumableInfoMedkit
   m_EditorClassIdentifier: 
   objectName: Medkit
-  objectNameAttackedBySomeone: Medkit
+  objectDies: Medkit dies
+  objectAttacks: 
+  objectKills: Medkit kills
   objectGetsItem: 
-  objectUsesItem: 
-  objectDamaged: Medkit is damaged
+  objectIsDamaged: Medkit is damaged

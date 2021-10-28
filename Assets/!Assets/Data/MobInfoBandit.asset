@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MobInfoBandit
   m_EditorClassIdentifier: 
   objectName: Bandit
-  objectNameAttackedBySomeone: Bandit
-  objectFindsItem: Bandit finds
-  objectUsesItem: Bandit uses
-  objectDamaged: Bandit is damaged
+  objectDies: Bandit dies
+  objectAttacks: Bandit attacks
+  objectKills: Bandit kills
+  objectGetsItem: Bandit gets
+  objectIsDamaged: Bandit is damaged

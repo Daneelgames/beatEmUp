@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WeaponInfoCactus
   m_EditorClassIdentifier: 
   objectName: Cactus
-  objectNameAttackedBySomeone: Cactus
-  objectGetsItem: Joel gets
-  objectUsesItem: 
-  objectDamaged: Cactus is damaged
+  objectDies: Cactus dies
+  objectAttacks: Cactus attacks
+  objectKills: Cactus kills
+  objectGetsItem: Cactus gets
+  objectIsDamaged: Cactus is damaged

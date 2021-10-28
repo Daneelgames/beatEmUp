@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CharacterInfoLloyd
   m_EditorClassIdentifier: 
   objectName: Lloyd
-  objectNameAttackedBySomeone: Lloyd
+  objectDies: Lloyd dies
+  objectAttacks: Lloyd attacks
+  objectKills: Lloyd kills
   objectGetsItem: Lloyd gets
-  objectUsesItem: Lloyd uses
-  objectDamaged: Lloyd is damaged
+  objectIsDamaged: Lloyd is damaged

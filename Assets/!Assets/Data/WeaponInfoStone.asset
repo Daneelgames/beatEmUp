@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WeaponInfoStone
   m_EditorClassIdentifier: 
   objectName: Stone
-  objectNameAttackedBySomeone: Stone
-  objectFindsItem: 
-  objectUsesItem: 
-  objectDamaged: Stone is damaged
+  objectDies: Stone dies
+  objectAttacks: Stone attacks
+  objectKills: Stone kills
+  objectGetsItem: Stone gets
+  objectIsDamaged: Stone is damaged

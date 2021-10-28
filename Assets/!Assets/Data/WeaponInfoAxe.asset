@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WeaponInfoAxe
   m_EditorClassIdentifier: 
   objectName: Axe
-  objectNameAttackedBySomeone: Axe
-  objectFindsItem: 
-  objectUsesItem: 
-  objectDamaged: Axe is damaged
+  objectDies: Axe dies
+  objectAttacks: Axe attacks
+  objectKills: Axe kills
+  objectGetsItem: Axe gets
+  objectIsDamaged: Axe is damaged

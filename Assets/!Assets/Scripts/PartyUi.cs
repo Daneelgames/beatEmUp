@@ -92,4 +92,42 @@ public class PartyUi : MonoBehaviour
         actionFeedbackText.text = resultstring;
         actionFeedbackAnim.SetTrigger(Update);
     }
+
+    public void CharacterDies(HealthController deadCharacter, HealthController damager)
+    {
+        /*
+        if (deadCharacter.AiInput.inParty == false)
+            return;
+            */
+
+        string resultstring = String.Empty;
+        
+        if (damager != null)
+            resultstring = damager.ObjectInfoData.objectKills + " " + deadCharacter.ObjectInfoData.objectName;
+        else
+        {
+            resultstring = deadCharacter.ObjectInfoData.objectDies;
+        }
+
+        actionFeedbackText.text = resultstring;
+        actionFeedbackAnim.SetTrigger(Update);
+    }
+    
+    public void CharacterDamaged(HealthController damagedCharacter, HealthController damager)
+    {
+        if (damagedCharacter.AiInput.inParty == false)
+            return;
+
+        string resultstring = String.Empty;
+        
+        if (damager != null)
+            resultstring = damager.ObjectInfoData.objectAttacks + " " + damagedCharacter.ObjectInfoData.objectName;
+        else
+        {
+            resultstring = damagedCharacter.ObjectInfoData.objectIsDamaged;
+        }
+
+        actionFeedbackText.text = resultstring;
+        actionFeedbackAnim.SetTrigger(Update);
+    }
 }

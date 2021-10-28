@@ -181,6 +181,8 @@ public class HealthController : MonoBehaviour
                 _aiInput.DamagedByEnemy(damager);
         }
         
+        
+        
         if (FieldOfView)
             FieldOfView.DelayCooldown(5);
         
@@ -192,11 +194,13 @@ public class HealthController : MonoBehaviour
 
         if (Health <= 0)
         {
+            PartyUi.Instance.CharacterDies(this, damager);
             damager.RemoveEnemy(this);
             Death(false, true, false, true);
         }
         else
         {
+            PartyUi.Instance.CharacterDamaged(this, damager);
             if (damageAnimCoroutine != null)
             {
                 StopCoroutine(damageAnimCoroutine);

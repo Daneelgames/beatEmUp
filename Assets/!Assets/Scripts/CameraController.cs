@@ -94,6 +94,9 @@ public class CameraController : MonoBehaviour
 
     public void MoveCameraToPosition(Vector3 newPos)
     {
+        if (Vector3.Distance(parent.transform.position, newPos) < 20)
+            return;
+        
         parent.gameObject.transform.position = newPos;
     }
 }

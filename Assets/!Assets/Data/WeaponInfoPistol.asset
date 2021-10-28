@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WeaponInfoPistol
   m_EditorClassIdentifier: 
   objectName: Pistol
-  objectNameAttackedBySomeone: Pistol
-  objectFindsItem: 
-  objectUsesItem: 
-  objectDamaged: Pistol is damaged
+  objectDies: Pistol dies
+  objectAttacks: Pistol attacks
+  objectKills: Pistol kills
+  objectGetsItem: Pistol gets
+  objectIsDamaged: Pistol is damaged
