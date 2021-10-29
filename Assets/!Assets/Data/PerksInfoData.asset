@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2428c777b952f748a291a355419da34, type: 3}
+  m_Name: PerksInfoData
+  m_EditorClassIdentifier: 
+  perks:
+  - perkType: 1
+    perkCost: -1
+    perkAntagonist: 0
+    perkName: Crazy
+    perkDescription: Sudden crying can attract enemies
+  - perkType: 2
+    perkCost: -2
+    perkAntagonist: 4
+    perkName: Weak
+    perkDescription: Bad at melee fights
+  - perkType: 3
+    perkCost: -2
+    perkAntagonist: 5
+    perkName: Squint
+    perkDescription: Bad at shooting
+  - perkType: 4
+    perkCost: 2
+    perkAntagonist: 2
+    perkName: Strong
+    perkDescription: Good at melee fights
+  - perkType: 5
+    perkCost: 2
+    perkAntagonist: 3
+    perkName: Hawkeye
+    perkDescription: Good at shooting
+  - perkType: 6
+    perkCost: 1
+    perkAntagonist: 7
+    perkName: Swift
+    perkDescription: Move faster
+  - perkType: 7
+    perkCost: -1
+    perkAntagonist: 6
+    perkName: Sluggish
+    perkDescription: Move slower
+  - perkType: 8
+    perkCost: 1
+    perkAntagonist: 0
+    perkName: Weapon Lover
+    perkDescription: Weapons break less often
+  - perkType: 9
+    perkCost: -1
+    perkAntagonist: 0
+    perkName: Men Hater
+    perkDescription: Gets nervous around men
+  - perkType: 10
+    perkCost: -1
+    perkAntagonist: 0
+    perkName: Lady Hater
+    perkDescription: Gets nervous around women
+  - perkType: 11
+    perkCost: 1
+    perkAntagonist: 13
+    perkName: Tough
+    perkDescription: Resistance to melee damage
+  - perkType: 12
+    perkCost: 1
+    perkAntagonist: 0
+    perkName: Weasel
+    perkDescription: Better at sneaking
+  - perkType: 13
+    perkCost: 1
+    perkAntagonist: 11
+    perkName: Slick
+    perkDescription: Resistance to ranged damage

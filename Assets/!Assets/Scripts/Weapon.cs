@@ -143,7 +143,7 @@ public class Weapon : MonoBehaviour
                     DamageDirectly(newPartToDamage, throwDamage);
                     AfterAttack(newPartToDamage);
                 }
-                else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage))
+                else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage, false))
                 {
                     attacksLeft--;
                     AfterAttack(newPartToDamage);
@@ -184,7 +184,7 @@ public class Weapon : MonoBehaviour
                 shotParticles.transform.LookAt(boneToAim.transform.position);
                 
                 if (attackManager)
-                    attackManager.DamageOtherBodyPart(boneToAim, rangedWeaponDamage);
+                    attackManager.DamageOtherBodyPart(boneToAim, rangedWeaponDamage, true);
                 else
                     boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
             }
@@ -207,7 +207,7 @@ public class Weapon : MonoBehaviour
                         {
                             
                             if (attackManager)
-                                attackManager.DamageOtherBodyPart(part, rangedWeaponDamage);
+                                attackManager.DamageOtherBodyPart(part, rangedWeaponDamage, true);
                             else
                                 part.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
                         }

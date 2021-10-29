@@ -237,7 +237,7 @@ public class AiInput : MonoBehaviour
             
             if (alertCoroutine != null)
                 return;
-            alertCoroutine = StartCoroutine(Alert()); 
+            alertCoroutine = StartCoroutine(AlertOverTime()); 
         }
     }
 
@@ -267,12 +267,20 @@ public class AiInput : MonoBehaviour
         if (alertCoroutine != null)
             yield break;
         
-        alertCoroutine = StartCoroutine(Alert());
+        alertCoroutine = StartCoroutine(AlertOverTime());
     }
 
 
+    public void Alert()
+    {
+        if (alertCoroutine != null)
+            return;
+        
+        alertCoroutine = StartCoroutine(AlertOverTime());
+    }
+    
     private Coroutine alertCoroutine;
-    IEnumerator Alert()
+    IEnumerator AlertOverTime()
     {
         if (debugLogs)
             print("Alert");
@@ -382,17 +390,18 @@ public class AiInput : MonoBehaviour
             {
                 if (agent && agent.enabled)
                 {
-                    if (newDistance > runDistanceThreshold && hc.enemiesInSight)
+                    if (newDistance > runDistanceThreshold)
                     {
                         // RUN
                         anim.SetBool(Running, true);
-                        agent.speed = runSpeed;
+                        SetNavMeshAgentSpeed(runSpeed);
                     }
                     else
                     {
                         // WALK
                         anim.SetBool(Running, false);
-                        agent.speed = walkSpeed;
+                        SetNavMeshAgentSpeed(walkSpeed);
+                        
                     }
                 
                     agent.isStopped = false;
@@ -404,7 +413,7 @@ public class AiInput : MonoBehaviour
             else
             {
                 anim.SetBool(Running, false);
-                agent.speed = walkSpeed;
+                SetNavMeshAgentSpeed(walkSpeed);
             }
 
             yield return new WaitForSeconds(updateRate);
@@ -424,7 +433,7 @@ public class AiInput : MonoBehaviour
         aiState = State.Investigate;
         // WALK
         anim.SetBool(Running, false);
-        agent.speed = walkSpeed;
+        SetNavMeshAgentSpeed(walkSpeed);
 
         while (true)
         {
@@ -476,13 +485,13 @@ public class AiInput : MonoBehaviour
                 {
                     // RUN
                     anim.SetBool(Running, true);
-                    agent.speed = runSpeed;
+                    SetNavMeshAgentSpeed(runSpeed);
                 }
                 else
                 {
                     // WALK
                     anim.SetBool(Running, false);
-                    agent.speed = walkSpeed;
+                    SetNavMeshAgentSpeed(walkSpeed);
                 }
                 
                 agent.isStopped = false;
@@ -491,7 +500,7 @@ public class AiInput : MonoBehaviour
             else
             {
                 agent.isStopped = true;
-                agent.speed = walkSpeed;
+                SetNavMeshAgentSpeed(walkSpeed);
             }
 
             yield return new WaitForSeconds(updateRate);
@@ -650,38 +659,16 @@ public class AiInput : MonoBehaviour
         }
         
     }
-    
-    /*
-    private void OnTriggerStay(Collider other)
-    {
-        if (!alive)
-            return;
-        
-        if (attackCooldownCurrent > 0)
-            return;
-        
-        if (other.gameObject.layer != 7)
-            return;
 
-        for (int i = hc.Enemies.Count - 1; i >= 0; i--)
-        {
-            if (hc.Enemies[i] == null || hc.Enemies[i].gameObject == null || hc.Enemies[i].Health <= 0 || hc.Friends.Contains(hc.Enemies[i]))
-            {
-                hc.RemoveEnemyAt(i);
-                return;   
-            }
-            
-            if (hc.Enemies[i].gameObject == other.gameObject)
-            {
-                attackCooldownCurrent = Random.Range(attackCooldownMinMax.x, attackCooldownMinMax.y);
-                _attackManager.TryToAttack(false, null);
-                
-                StopBehaviourCoroutines();
-                followTargetCoroutine = StartCoroutine(FollowTarget());
-                return;
-            }
-        }
-    }*/
+    void SetNavMeshAgentSpeed(float newSpeed)
+    {
+        if (hc.CharacterPerksController.Fast)
+            newSpeed *= 1.5f;
+        else if (hc.CharacterPerksController.Slow)
+            newSpeed *= 0.75f;
+        
+        agent.speed = newSpeed;
+    }
 
 
     public void Death()

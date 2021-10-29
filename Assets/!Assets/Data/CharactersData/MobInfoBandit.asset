@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fce0e98cb02ac7b439454e7144f1d2ec, type: 3}
-  m_Name: MobInfoMobster
+  m_Name: MobInfoBandit
   m_EditorClassIdentifier: 
-  objectName: Mobster
-  objectDies: Mobster dies
-  objectAttacks: Mobster attacks
-  objectKills: Mobster kills
-  objectGetsItem: Mobster gets
-  objectIsDamaged: Mobster is damaged
+  sex: 0
+  objectName: Bandit
+  objectDies: Bandit dies
+  objectAttacks: Bandit attacks
+  objectKills: Bandit kills
+  objectGetsItem: Bandit gets
+  objectIsDamaged: Bandit is damaged

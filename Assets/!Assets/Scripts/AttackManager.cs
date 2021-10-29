@@ -479,7 +479,7 @@ public class AttackManager : MonoBehaviour
         CanRotate = true;
     }
 
-    public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage)
+    public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage, bool rangedAttack)
     {
         if (partToDamage.HC.AiInput && partToDamage.HC.AiInput.inParty && Hc.AiInput && Hc.AiInput.inParty)
             return false;
@@ -506,6 +506,21 @@ public class AttackManager : MonoBehaviour
 
         if (partToDamage.HC.AiInput.inParty == false && partToDamage.HC.VisibleHCs.Contains(hc) == false)
             resultDamage *= 2;
+
+        if (rangedAttack)
+        {
+            if (hc.CharacterPerksController.BadShooter)
+                resultDamage /= 2;
+            else if (hc.CharacterPerksController.GoodShooter)
+                resultDamage *= 2;
+        }
+        else // melee
+        {
+            if (hc.CharacterPerksController.BadFighter)
+                resultDamage /= 2;
+            else if (hc.CharacterPerksController.GoodFighter)
+                resultDamage *= 2;
+        }
         
         damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc);
         

@@ -17,7 +17,8 @@ public class HealthController : MonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private AttackManager _attackManager;
     public AttackManager AttackManager => _attackManager;
-
+    [SerializeField] private CharacterPerksController characterPerksController;
+    public CharacterPerksController CharacterPerksController => characterPerksController;
     [SerializeField] private Animator anim;
     public Animator Anim => anim;
 

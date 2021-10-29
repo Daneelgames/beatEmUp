@@ -6776,6 +6776,7 @@ GameObject:
   - component: {fileID: 4369443321332258601}
   - component: {fileID: 467956864760804726}
   - component: {fileID: 2695189181210928995}
+  - component: {fileID: 6217995972828308375}
   m_Layer: 7
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -6817,6 +6818,7 @@ MonoBehaviour:
   _objectInfoData: {fileID: 11400000, guid: 97133e9b5c9d7534989491d72685638d, type: 2}
   characterController: {fileID: 0}
   _attackManager: {fileID: 4792253143275227139}
+  characterPerksController: {fileID: 6217995972828308375}
   anim: {fileID: 919132149555714730}
   _aiInput: {fileID: 2984947846422348196}
   agent: {fileID: 315908125812861007}
@@ -7152,6 +7154,21 @@ MonoBehaviour:
     m_Bits: 512
   interactionDistance: 2
   closestInteractableFeedbackPrefab: {fileID: 9169272506748579682, guid: 7675092e0c658f64a8197376644954d3, type: 3}
+--- !u!114 &6217995972828308375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757401403179926516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813b3d4ef4470ed4c86bc317061edade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkPoints: 1
+  characterPerks: 
+  hc: {fileID: 1212818265}
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,8 @@
             <e p="PartyInputManager.cs" t="Include" />
             <e p="PartyInventory.cs" t="Include" />
             <e p="PartyUi.cs" t="Include" />
+            <e p="PerksInfoData.cs" t="Include" />
+            <e p="PerksManager.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
             <e p="PlayerUi.cs" t="Include" />
             <e p="SpawnController.cs" t="Include" />
@@ -40,6 +42,8 @@
             </e>
           </e>
         </e>
+        <e p="CharacterGenerator.cs" t="Include" />
+        <e p="CharacterPerksController.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />
         </e>
