@@ -14,6 +14,20 @@ public class PerksManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public Perk GetPerkFromPerkType(Perk.PerkType perkType)
+    {
+        for (int i = 0; i < PerksInfoData.perks.Count; i++)
+        {
+            if (PerksInfoData.perks[i].perkType == perkType)
+            {
+                return PerksInfoData.perks[i];
+            }
+        }
+
+        return null;
+        
+    }
 }
 
 [Serializable]

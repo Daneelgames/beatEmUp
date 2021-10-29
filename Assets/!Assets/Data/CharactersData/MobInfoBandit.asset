@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: MobInfoBandit
   m_EditorClassIdentifier: 
   objectName: Bandit
+  objectSpecialDescription: 
+  sexMale: Male
+  sexFemale: Female
+  sexUnknown: Unknown
   objectDies: Bandit dies
   objectAttacks: Bandit attacks
   objectKills: Bandit kills
   objectGetsItem: Bandit gets
   objectIsDamaged: Bandit is damaged
+  weaponLaysInHisHand: lays in his hand

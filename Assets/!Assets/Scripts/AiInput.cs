@@ -270,7 +270,6 @@ public class AiInput : MonoBehaviour
         alertCoroutine = StartCoroutine(AlertOverTime());
     }
 
-
     public void Alert()
     {
         if (alertCoroutine != null)

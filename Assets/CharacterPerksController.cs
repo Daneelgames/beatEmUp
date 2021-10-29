@@ -44,10 +44,10 @@ public class CharacterPerksController : MonoBehaviour
     private Coroutine randomShoutsCoroutine;
     IEnumerator RandomShoutsOnRepeat()
     {
-        hc.AiInput.Alert();
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(5, 30));
+            hc.AiInput.Alert();
         }
     }
     

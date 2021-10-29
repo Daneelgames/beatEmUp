@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: CharacterInfoSnout
   m_EditorClassIdentifier: 
   objectName: Snout
+  objectSpecialDescription: 
+  sexMale: 
+  sexFemale: 
+  sexUnknown: Skeleton
   objectDies: Snout dies
   objectAttacks: Snout attacks
   objectKills: Snout kills
   objectGetsItem: Snout gets
   objectIsDamaged: Snout is damaged
+  weaponLaysInHisHand: lays in his hand

@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce0e98cb02ac7b439454e7144f1d2ec, type: 3}
   m_Name: CharacterInfoRose
   m_EditorClassIdentifier: 
-  sex: 1
   objectName: Rose
+  objectSpecialDescription: 
+  sexMale: 
+  sexFemale: Lady
+  sexUnknown: 
   objectDies: Rose dies
   objectAttacks: Rose attacks
   objectKills: Rose kills
   objectGetsItem: Rose gets
   objectIsDamaged: Rose is damaged
+  weaponLaysInHisHand: lays in her hand
+  healthHigh: Looks alright
+  healthMid: Looks weakened
+  healthLow: Near death

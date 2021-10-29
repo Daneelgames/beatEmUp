@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce0e98cb02ac7b439454e7144f1d2ec, type: 3}
   m_Name: CharacterInfoLloyd
   m_EditorClassIdentifier: 
-  sex: 0
   objectName: Lloyd
+  objectSpecialDescription: 
+  sexMale: Man
+  sexFemale: 
+  sexUnknown: 
   objectDies: Lloyd dies
   objectAttacks: Lloyd attacks
   objectKills: Lloyd kills
   objectGetsItem: Lloyd gets
   objectIsDamaged: Lloyd is damaged
+  weaponLaysInHisHand: lays in his hand

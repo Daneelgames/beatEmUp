@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,10 +19,15 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private RectTransform canvasRect;
     [SerializeField] private Text actionFeedbackText;
     [SerializeField] private Animator actionFeedbackAnim;
+    [SerializeField] private Text observableInfoText;
+    [SerializeField] private Text observableInfoText2;
+    [SerializeField] private Animator observableInfoAnim;
     [SerializeField] private Image cursor;
+    
     public Image Cursor => cursor;
 
     private static readonly int Update = Animator.StringToHash("Update");
+    private static readonly int Active = Animator.StringToHash("Active");
 
     private IEnumerator Start()
     {
@@ -137,5 +143,77 @@ public class PartyUi : MonoBehaviour
 
         actionFeedbackText.text = resultstring;
         actionFeedbackAnim.SetTrigger(Update);
+    }
+
+    public void UpdateObservableInfo(Observable observable)
+    {
+        if (observable == null)
+        {
+            observableInfoAnim.SetBool(Active, false);
+        }
+        else
+        {
+            ObjectInfoData objInfo = null;
+            
+            string nameString = String.Empty;
+            string sexString = String.Empty;
+            string healthString = String.Empty;
+            string perksString = String.Empty;
+            string weaponString = String.Empty;
+
+            if (observable.Interactable)
+            {
+                objInfo = observable.Interactable.ObjectInfoData;   
+            }
+            else if (observable.HealthController)
+            {
+                objInfo = observable.HealthController.ObjectInfoData;
+
+                switch (observable.HealthController._Sex)
+                {
+                    case HealthController.Sex.Unknown:
+                        sexString = objInfo.sexUnknown;
+                        break;
+                    case HealthController.Sex.Male:
+                        sexString = objInfo.sexMale;
+                        break;
+                    case HealthController.Sex.Female:
+                        sexString = objInfo.sexFemale;
+                        break;
+                }
+
+                float healthPercent = observable.HealthController.Health / observable.HealthController.HealthMax;
+                if (healthPercent >= 0.66f)
+                    healthString = objInfo.healthHigh;
+                else if (healthPercent >= 0.33f)
+                    healthString = objInfo.healthMid;
+                else
+                    healthString = objInfo.healthLow;
+                
+                if (observable.HealthController.CharacterPerksController.CharacterPerks.Count > 0)
+                {
+                    var perks = observable.HealthController.CharacterPerksController.CharacterPerks;
+                    for (int i = 0; i < perks.Count; i++)
+                    {
+                        var perk = PerksManager.Instance.GetPerkFromPerkType(perks[i]);
+                        perksString += "\n" + perk.perkName + ": " + perk.perkDescription + ".";
+                    }
+                }
+
+                var weapon = observable.HealthController.AttackManager.WeaponInHands;
+                if (weapon)
+                {
+                    weaponString += " " + weapon.Interactable.ObjectInfoData.objectName + " " + objInfo.weaponLaysInHisHand + ". ";
+                }
+            }
+
+            if (!objInfo)
+                return;
+            nameString = objInfo.objectName + ", " + sexString + ", " + healthString;
+            
+            observableInfoText.text = nameString;
+            observableInfoText2.text = objInfo.objectSpecialDescription + weaponString + perksString;
+            observableInfoAnim.SetBool(Active, true);
+        }
     }
 }

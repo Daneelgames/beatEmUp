@@ -231,13 +231,16 @@ public class PartyInputManager : MonoBehaviour
                 observeCoroutine = null;
             }
             UniversalCursorController.Instance.SetDefaultCursor();
+            PartyUi.Instance.UpdateObservableInfo(null);
         }
     }
 
     private Coroutine observeCoroutine;
+    private Observable lastUpdatedObservable;
     IEnumerator ObserveCoroutine()
     {
         Observable closestObjectWithInfo = null;
+        lastUpdatedObservable = null;
         while (true)
         {
             float distance = 1000;
@@ -246,10 +249,30 @@ public class PartyInputManager : MonoBehaviour
             int t = 0;
             Vector3 mouseWorldPositionTemp = GameManager.Instance.MouseWorldGroundPosition();
             
-            for (int i = 0; i < GameManager.Instance.ObservablesInRunTime.Count; i++)
+            for (int i = GameManager.Instance.ObservablesInRunTime.Count - 1; i >= 0; i--)
             {
+                if (GameManager.Instance.ObservablesInRunTime[i] == null)
+                {
+                    GameManager.Instance.ObservablesInRunTime.RemoveAt(i);
+                    continue;
+                }
+                
+                if (GameManager.Instance.ObservablesInRunTime[i].Interactable && 
+                    GameManager.Instance.ObservablesInRunTime[i].Interactable.WeaponPickUp && 
+                    GameManager.Instance.ObservablesInRunTime[i].Interactable.WeaponPickUp.AttackManager)
+                    continue;
+                if (GameManager.Instance.ObservablesInRunTime[i].HealthController && 
+                    GameManager.Instance.ObservablesInRunTime[i].HealthController.Health <= 0)
+                    continue;
+                
                 newDistance = Vector3.Distance(GameManager.Instance.ObservablesInRunTime[i].transform.position, mouseWorldPositionTemp);
 
+                if (newDistance <= 5 && newDistance < distance)
+                {
+                    distance = newDistance;
+                    closestObjectWithInfo = GameManager.Instance.ObservablesInRunTime[i];
+                }
+                
                 t++;
                 if (t >= 10)
                 {
@@ -257,6 +280,11 @@ public class PartyInputManager : MonoBehaviour
                     mouseWorldPositionTemp = GameManager.Instance.MouseWorldGroundPosition();
                     yield return null;
                 }
+            }
+            if (lastUpdatedObservable != closestObjectWithInfo)
+            {
+                PartyUi.Instance.UpdateObservableInfo(closestObjectWithInfo);
+                lastUpdatedObservable = closestObjectWithInfo;
             }
         }
     }

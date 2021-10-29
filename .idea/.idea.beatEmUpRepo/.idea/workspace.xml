@@ -64,23 +64,23 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/PerksManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/CharacterPerksController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/UniversalCursorController.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Observable.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterPerksController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -146,7 +146,7 @@
       <workItem from="1635150001096" duration="6376000" />
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
-      <workItem from="1635431897515" duration="27322000" />
+      <workItem from="1635431897515" duration="34371000" />
     </task>
     <servers />
   </component>
