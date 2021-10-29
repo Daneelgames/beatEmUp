@@ -439,7 +439,7 @@ public class AttackManager : MonoBehaviour
         if (currentAttack.UseAmmo && WeaponInHands)
         {
             WeaponInHands.Ammo -= 1;
-            WeaponInHands.ShotFX(boneToAim, currentAttack.MissChance);
+            WeaponInHands.ShotFX(boneToAim);
         }
         
         for (var index = currentAttack.dangeorusParts.Count - 1; index >= 0; index--)
@@ -479,7 +479,7 @@ public class AttackManager : MonoBehaviour
         CanRotate = true;
     }
 
-    public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage, bool rangedAttack)
+    public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage, HealthController.DamageType damageType)
     {
         if (partToDamage.HC.AiInput && partToDamage.HC.AiInput.inParty && Hc.AiInput && Hc.AiInput.inParty)
             return false;
@@ -506,15 +506,28 @@ public class AttackManager : MonoBehaviour
 
         if (partToDamage.HC.AiInput.inParty == false && partToDamage.HC.VisibleHCs.Contains(hc) == false)
             resultDamage *= 2;
+        
+        if (hc.CharacterPerksController.CurrentDiscomfort >= 3)
+        {
+            resultDamage = Mathf.RoundToInt(resultDamage * 0.5f);
+        }
+        else if (hc.CharacterPerksController.CurrentDiscomfort >= 2)
+        {
+            resultDamage = Mathf.RoundToInt(resultDamage * 0.75f);
+        }
+        else if (hc.CharacterPerksController.CurrentDiscomfort > 0)
+        {
+            resultDamage = Mathf.RoundToInt(resultDamage * 0.9f);
+        }
 
-        if (rangedAttack)
+        if (damageType == HealthController.DamageType.Ranged)
         {
             if (hc.CharacterPerksController.BadShooter)
-                resultDamage /= 2;
+                resultDamage =  Mathf.RoundToInt(resultDamage / 1.5f);
             else if (hc.CharacterPerksController.GoodShooter)
-                resultDamage *= 2;
+                resultDamage =  Mathf.RoundToInt(resultDamage * 1.5f);
         }
-        else // melee
+        else if (damageType == HealthController.DamageType.Melee) // melee
         {
             if (hc.CharacterPerksController.BadFighter)
                 resultDamage /= 2;
@@ -522,7 +535,7 @@ public class AttackManager : MonoBehaviour
                 resultDamage *= 2;
         }
         
-        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc);
+        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc, damageType);
         
         if (hc.Friends.Contains(partToDamage.HC))
         {
@@ -591,9 +604,6 @@ public class Attack
     [SerializeField] private Transform shotPosition;
     [SerializeField] private bool useAmmo = false;
     public bool UseAmmo => useAmmo;
-    
-    [SerializeField] [Range(0, 1)] private float missChance = 0.5f;
-    public float MissChance => missChance;
     
     [Header("Universal")]
     [SerializeField] private bool canAttackMidAir = false;

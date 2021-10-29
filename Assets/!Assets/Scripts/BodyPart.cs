@@ -58,7 +58,7 @@ public class BodyPart : MonoBehaviour
 
             if (newPartToDamage)
             {
-                _attackManager.DamageOtherBodyPart(newPartToDamage, 0, false);
+                _attackManager.DamageOtherBodyPart(newPartToDamage, 0, HealthController.DamageType.Melee);
                 damagedBodyPartsGameObjects.Add(newPartToDamage.gameObject);
             }
         }

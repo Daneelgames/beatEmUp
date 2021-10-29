@@ -140,21 +140,22 @@ public class Weapon : MonoBehaviour
                 {
                     attacksLeft = 0;
                     SpawnController.Instance.MakeNoise(transform.position, impactNoiseDistance);
-                    DamageDirectly(newPartToDamage, throwDamage);
+                    DamageOnThrow(newPartToDamage, throwDamage);
                     AfterAttack(newPartToDamage);
                 }
-                else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage, false))
+                else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage, HealthController.DamageType.Melee))
                 {
-                    attacksLeft--;
+                    if (attackManager.Hc.CharacterPerksController.WeaponLover != null || Random.value > 0.66f)
+                        attacksLeft--;
                     AfterAttack(newPartToDamage);
                 }
             }
         }
     }
 
-    void DamageDirectly(BodyPart partToDamage, int dmg)
+    void DamageOnThrow(BodyPart partToDamage, int dmg)
     {
-        partToDamage.HC.Damage(dmg, null);
+        partToDamage.HC.Damage(dmg, null, HealthController.DamageType.Throw);
     }
 
     void AfterAttack(BodyPart newPartToDamage)
@@ -173,25 +174,24 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void ShotFX(BodyPart boneToAim, float missChance)
+    public void ShotFX(BodyPart boneToAim)
     {
         if (boneToAim)
         {
-            float r = Random.value;
-            if (r < missChance)
+            if (!ShotMissed())
             {
-                // hit
+                // HIT
                 shotParticles.transform.LookAt(boneToAim.transform.position);
                 
                 if (attackManager)
-                    attackManager.DamageOtherBodyPart(boneToAim, rangedWeaponDamage, true);
+                    attackManager.DamageOtherBodyPart(boneToAim, rangedWeaponDamage, HealthController.DamageType.Ranged);
                 else
-                    boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
+                    boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc, HealthController.DamageType.Ranged);
             }
-            else
+            else // SHOT MISSED TARGET PART
             {
                 // miss
-                Vector3 missPosition = boneToAim.transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                Vector3 missPosition = GetMissShot(boneToAim.transform.position);
                 
                 // RAYCAST
                 RaycastHit hit;
@@ -207,9 +207,9 @@ public class Weapon : MonoBehaviour
                         {
                             
                             if (attackManager)
-                                attackManager.DamageOtherBodyPart(part, rangedWeaponDamage, true);
+                                attackManager.DamageOtherBodyPart(part, rangedWeaponDamage, HealthController.DamageType.Ranged);
                             else
-                                part.HC.Damage(rangedWeaponDamage, AttackManager.Hc);
+                                part.HC.Damage(rangedWeaponDamage, AttackManager.Hc, HealthController.DamageType.Ranged);
                         }
                     }
                 }
@@ -224,5 +224,45 @@ public class Weapon : MonoBehaviour
         shotAu.pitch = Random.Range(0.75f, 1.25f);
         shotAu.Play();
         shotParticles.Play();
+    }
+
+    Vector3 GetMissShot(Vector3 posToAim)
+    {
+        Vector3 newPos = posToAim;
+        
+        float discomfort = attackManager.Hc.CharacterPerksController.CurrentDiscomfort; 
+                
+        newPos += new Vector3(Random.Range(-1f * discomfort, 1f * discomfort), 
+            Random.Range(-1f * discomfort, 1f * discomfort), 
+            Random.Range(-1f * discomfort, 1f * discomfort));
+
+        return newPos;
+    }
+
+    bool ShotMissed()
+    {
+        float hitChance = 0.75f;
+        
+        if (attackManager.Hc.CharacterPerksController.GoodShooter)
+            hitChance = 1f;
+        else if (attackManager.Hc.CharacterPerksController.BadShooter)
+            hitChance = 0.33f;
+
+        float discomfort = attackManager.Hc.CharacterPerksController.CurrentDiscomfort; 
+            
+        if (discomfort >= 3)
+        {
+            hitChance -= 0.3f;
+        }
+        else if (discomfort >= 2)
+        {
+            hitChance -= 0.2f;
+        }
+        else if (discomfort > 0)
+        {
+            hitChance -= 0.1f;
+        }
+
+        return Random.value > hitChance;
     }
 }

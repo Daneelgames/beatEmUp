@@ -22,8 +22,8 @@ public class Perk
     public enum PerkType
     {
         Null, RandomShouts, BadFighter, BadShooter, GoodFighter, GoodShooter, 
-        Fast, Slow, WeaponLover, HateMale, HateFemale, MeleeDamageResistBufff, 
-        CantBeFoundBySixSense, RangedDamageResistBuff
+        Fast, Slow, WeaponLover, ScaredByMen, ScaredByLadies, MeleeDamageResistBuff, 
+        StealthMaster, RangedDamageResistBuff
     }
 
     public PerkType perkType = PerkType.Null;

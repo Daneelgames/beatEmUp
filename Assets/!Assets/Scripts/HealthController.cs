@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class HealthController : MonoBehaviour
 {
+    public enum DamageType
+    {
+        Melee, Ranged, Throw, Explosive
+    }
+    
     [Header("Links")] 
     [SerializeField] private ObjectInfoData _objectInfoData;
     public ObjectInfoData ObjectInfoData => _objectInfoData;
@@ -158,7 +166,7 @@ public class HealthController : MonoBehaviour
         }
     }
     
-    public bool Damage(int dmg, HealthController damager)
+    public bool Damage(int dmg, HealthController damager, DamageType damageType)
     {
         bool damaged = false;
         
@@ -181,11 +189,13 @@ public class HealthController : MonoBehaviour
             if (_aiInput)
                 _aiInput.DamagedByEnemy(damager);
         }
-        
-        
-        
+
         if (FieldOfView)
             FieldOfView.DelayCooldown(5);
+
+        if (damageType == DamageType.Melee && CharacterPerksController.MeleeDamageResistBuff || 
+            damageType == DamageType.Ranged && CharacterPerksController.RangedDamageResistBuff)
+            dmg /= 2;
         
         if (!invincible)
         {
@@ -271,6 +281,8 @@ public class HealthController : MonoBehaviour
         
         enemiesInSight = false;
 
+        float hateDiscomfort = 0;
+        
         for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
         {
             int visibleBonesAmount = 0;
@@ -292,8 +304,22 @@ public class HealthController : MonoBehaviour
                 }
             }
 
-            if (visibleBonesAmount >= fieldOfView.MinVisibleBonesToSeeUnit)
+            int resultMinVisibleBonesToSeeUnit = fieldOfView.MinVisibleBonesToSeeUnit;
+            
+            if (unit.characterPerksController.StealthMaster)
+                resultMinVisibleBonesToSeeUnit += 3;
+            
+            if (visibleBonesAmount >= resultMinVisibleBonesToSeeUnit)
             {
+                if (unit._objectInfoData.sex == ObjectInfoData.Sex.Male && CharacterPerksController.ScaredByMen)
+                {
+                    hateDiscomfort ++;
+                }
+                else if (unit._objectInfoData.sex == ObjectInfoData.Sex.Female && CharacterPerksController.ScaredByLadies)
+                {
+                    hateDiscomfort ++;
+                }
+                
                 if (GameManager.Instance.simpleEnemiesAllies && _aiInput && unit._aiInput)
                 {
                     if (unit._aiInput.inParty == _aiInput.inParty)
@@ -347,6 +373,8 @@ public class HealthController : MonoBehaviour
                 _aiInput.SeeEnemy(closestVisibleEnemy);
             }
         }
+
+        CharacterPerksController.SetDiscomfort(hateDiscomfort);
     }
     
     public void ResetVisibleUnits()

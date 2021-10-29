@@ -15,7 +15,11 @@ public class FieldOfView : MonoBehaviour
 
     [Header("Stats")] 
     [SerializeField] private int minVisibleBonesToSeeUnit = 4;
-    public int MinVisibleBonesToSeeUnit => minVisibleBonesToSeeUnit;
+    public int MinVisibleBonesToSeeUnit
+    {
+        get => minVisibleBonesToSeeUnit;
+        set => minVisibleBonesToSeeUnit = value;
+    }
 
     [SerializeField] private float resetVisibleUnitsCooldown = 10f;
     [SerializeField] private float updateDelay = 0.25f;
@@ -23,16 +27,28 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private float sixSenseDistance = 2;
     [SerializeField] private float meshResolution;
     [SerializeField] private int edgeResolveIterations = 3;
-    public float ViewRadius => viewRadius;
+    public float ViewRadius
+    {
+        get => viewRadius;
+        set => viewRadius = value;
+    }
 
     [SerializeField] [Range(0,360)] private float viewAngle;
-    public float ViewAngle => viewAngle;
+    public float ViewAngle
+    {
+        get => viewAngle;
+        set => viewAngle = value;
+    }
 
     [SerializeField] private LayerMask targetMask;
     [SerializeField] private LayerMask raycastUnitsAndObstaclesMask;
 
     private List<Transform> visibleTargets = new List<Transform>();
-    public List<Transform> VisibleTargets => visibleTargets;
+    public  List<Transform> VisibleTargets
+    {
+        get => visibleTargets;
+        set => visibleTargets = value;
+    }
 
     [SerializeField] MeshFilter viewMeshFilter;
     [SerializeField] private Mesh viewMesh;
@@ -105,7 +121,7 @@ public class FieldOfView : MonoBehaviour
 
     IEnumerator FindVisibleTargets()
     {
-        visibleTargets.Clear();
+        VisibleTargets.Clear();
         
         Collider[] targetsInViewRadius = Physics.OverlapSphere(eyesTransfom.position, viewRadius, targetMask);
 
@@ -137,7 +153,7 @@ public class FieldOfView : MonoBehaviour
                 {
                     if (hit.collider.transform == target)
                     {
-                        visibleTargets.Add(target);
+                        VisibleTargets.Add(target);
                     }
                 }
 

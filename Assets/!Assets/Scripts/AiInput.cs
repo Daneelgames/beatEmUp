@@ -666,6 +666,19 @@ public class AiInput : MonoBehaviour
             newSpeed *= 1.5f;
         else if (hc.CharacterPerksController.Slow)
             newSpeed *= 0.75f;
+
+        if (hc.CharacterPerksController.CurrentDiscomfort >= 3)
+        {
+            newSpeed *= 0.5f;
+        }
+        else if (hc.CharacterPerksController.CurrentDiscomfort >= 2)
+        {
+            newSpeed *= 0.75f;
+        }
+        else if (hc.CharacterPerksController.CurrentDiscomfort > 0)
+        {
+            newSpeed *= 0.9f;
+        }
         
         agent.speed = newSpeed;
     }

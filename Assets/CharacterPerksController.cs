@@ -5,6 +5,13 @@ using UnityEngine;
 public class CharacterPerksController : MonoBehaviour
 {
     [SerializeField] private int perkPoints = 1;
+    [SerializeField] private float currentDiscomfort = 0;
+    public float CurrentDiscomfort
+    {
+        get => currentDiscomfort;
+        set => currentDiscomfort = value;
+    }
+
     public int PerkPoints
     {
         get => perkPoints;
@@ -18,7 +25,6 @@ public class CharacterPerksController : MonoBehaviour
         get => characterPerks;
         set => characterPerks = value;
     }
-
 
     [Header("Links")]
 
@@ -70,22 +76,20 @@ public class CharacterPerksController : MonoBehaviour
          case Perk.PerkType.Slow:
              Slow = true;
              break;
-         
-         // here
          case Perk.PerkType.WeaponLover:
              WeaponLover = true;
              break;
-         case Perk.PerkType.HateMale:
-             HateMale = true;
+         case Perk.PerkType.ScaredByMen:
+             ScaredByMen = true;
              break;
-         case Perk.PerkType.HateFemale:
-             HateFemale = true;
+         case Perk.PerkType.ScaredByLadies:
+             ScaredByLadies = true;
              break;
-         case Perk.PerkType.MeleeDamageResistBufff:
+         case Perk.PerkType.MeleeDamageResistBuff:
              MeleeDamageResistBuff = true;
              break;
-         case Perk.PerkType.CantBeFoundBySixSense:
-             CantBeFoundBySixSense = true;
+         case Perk.PerkType.StealthMaster:
+             StealthMaster = true;
              break;
          case Perk.PerkType.RangedDamageResistBuff:
              RangedDamageResistBuff = true;
@@ -151,18 +155,18 @@ public class CharacterPerksController : MonoBehaviour
         set => weaponLover = value;
     }
     
-    private bool hateMale = false;
-    public bool HateMale
+    private bool _scaredByMen = false;
+    public bool ScaredByMen
     {
-        get => hateMale;
-        set => hateMale = value;
+        get => _scaredByMen;
+        set => _scaredByMen = value;
     }
     
-    private bool hateFemale = false;
-    public bool HateFemale
+    private bool _scaredByLadies = false;
+    public bool ScaredByLadies
     {
-        get => hateFemale;
-        set => hateFemale = value;
+        get => _scaredByLadies;
+        set => _scaredByLadies = value;
     }
     
     private bool meleeDamageResistBuff = false;
@@ -172,11 +176,11 @@ public class CharacterPerksController : MonoBehaviour
         set => meleeDamageResistBuff = value;
     }
     
-    private bool cantBeFoundBySixSense = false;
-    public bool CantBeFoundBySixSense
+    private bool _stealthMaster = false;
+    public bool StealthMaster
     {
-        get => cantBeFoundBySixSense;
-        set => cantBeFoundBySixSense = value;
+        get => _stealthMaster;
+        set => _stealthMaster = value;
     }
     
     private bool rangedDamageResistBuff = false;
@@ -186,4 +190,9 @@ public class CharacterPerksController : MonoBehaviour
         set => rangedDamageResistBuff = value;
     }
     #endregion
+
+    public void SetDiscomfort(float hateDiscomfort)
+    {
+        CurrentDiscomfort = hateDiscomfort;
+    }
 }

@@ -21,9 +21,11 @@ public class FieldOfViewEditor : Editor
 
         Handles.color = Color.red;
         
-        foreach (Transform visibleTargets in fow.VisibleTargets)
+        //for (Transform visibleTargets in fow.VisibleTargets)
+            
+        for (int i = 0; i < fow.VisibleTargets.Count; i++)
         {
-            Handles.DrawLine(fow.transform.position, visibleTargets.position);
+            Handles.DrawLine(fow.transform.position, fow.VisibleTargets[i].position);
         }
     }
 }
