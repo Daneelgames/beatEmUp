@@ -504,6 +504,9 @@ public class AttackManager : MonoBehaviour
         if (hc.Friends.Contains(partToDamage.HC))
             resultDamage *= Mathf.RoundToInt(1 - hc.AiInput.Kidness);
 
+        if (partToDamage.HC.AiInput.inParty == false && partToDamage.HC.VisibleHCs.Contains(hc) == false)
+            resultDamage *= 2;
+        
         damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc);
         
         if (hc.Friends.Contains(partToDamage.HC))

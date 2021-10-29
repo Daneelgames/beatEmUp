@@ -1705,6 +1705,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8728268691935989524, guid: ad7407e9399125743b5c6d8f2a7e25f4, type: 3}
   m_PrefabInstance: {fileID: 46812084}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &48247912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48247913}
+  m_Layer: 0
+  m_Name: PointofInterest (91)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48247913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48247912}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -386.3, y: -0.000015258789, z: 65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 73
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &50883987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1761,7 +1791,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (36)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1773,7 +1803,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52412586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -193.92316, y: 0, z: 0.9521866}
+  m_LocalPosition: {x: -202.72113, y: 0.000030517578, z: -1.0980911}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -2262,7 +2292,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (4)
@@ -2796,7 +2826,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (90)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2826,7 +2856,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (65)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3196,7 +3226,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (37)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3261,7 +3291,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (54)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3273,7 +3303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104587750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -308.29944, y: -0.000015258789, z: 85.43863}
+  m_LocalPosition: {x: -305.8, y: -0.000015258789, z: 75.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -3829,6 +3859,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8728268691935989524, guid: ad7407e9399125743b5c6d8f2a7e25f4, type: 3}
   m_PrefabInstance: {fileID: 134249064}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &143638978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143638979}
+  m_Layer: 0
+  m_Name: PointofInterest (98)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &143638979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143638978}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.7033615, y: 0, z: 140.39801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 80
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &144485624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4181,7 +4241,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (80)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4505,7 +4565,7 @@ PrefabInstance:
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Name
       value: MedKitPickUp (3)
@@ -4573,7 +4633,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (29)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4603,7 +4663,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (64)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -4615,7 +4675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177989397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34.347824, y: 0.000015258789, z: 51.516727}
+  m_LocalPosition: {x: -42.37561, y: -0.000030517578, z: 150.36574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -5091,7 +5151,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (51)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5461,7 +5521,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (19)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5473,7 +5533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215534667}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -121.536026, y: 0, z: 60.045048}
+  m_LocalPosition: {x: -118.38234, y: 0.000030517578, z: 72.87658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -6027,7 +6087,7 @@ PrefabInstance:
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Name
       value: MedKitPickUp (4)
@@ -7742,7 +7802,7 @@ PrefabInstance:
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Name
       value: SmallCactusWeapon (3)
@@ -8273,7 +8333,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (56)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -8285,7 +8345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302178654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -253.33737, y: -0.000015258789, z: 95.31462}
+  m_LocalPosition: {x: -278.15884, y: 0.000030517578, z: 140.30359}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -9372,7 +9432,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (34)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9384,7 +9444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341389164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -171.575, y: 0, z: 44.32981}
+  m_LocalPosition: {x: -164.5745, y: 0, z: 54.9805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -9444,7 +9504,7 @@ PrefabInstance:
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Name
       value: SmallCactusWeapon (1)
@@ -9510,7 +9570,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (10)
@@ -9576,7 +9636,7 @@ PrefabInstance:
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Name
       value: AxeWeapon (1)
@@ -9643,7 +9703,7 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  drawHealthbarsDistance: 70
+  drawHealthbarsDistance: 100
   simpleEnemiesAllies: 1
 --- !u!4 &354986746
 Transform:
@@ -10171,7 +10231,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (5)
@@ -10739,7 +10799,7 @@ PrefabInstance:
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Name
       value: PistolWeapon (2)
@@ -10758,7 +10818,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (75)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10770,7 +10830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435221367}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.4664, y: 0, z: -91.470604}
+  m_LocalPosition: {x: 36.2127, y: 0, z: -150.61877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -10865,7 +10925,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (45)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -11518,7 +11578,7 @@ PrefabInstance:
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Name
       value: SmallCactusWeapon (2)
@@ -14147,9 +14207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c13274e7ba2474cad0065f6cf3940f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 0
   parent: {fileID: 1212608006}
   xMinMax: {x: 20, y: 90}
-  zMinMax: {x: -150, y: -10}
+  zMinMax: {x: -40, y: -10}
   distanceInFrontOfCharacter: 3
   cameraSmooth: 2
   cameraMoveSpeed: 1200
@@ -14258,7 +14319,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (33)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14603,7 +14664,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (59)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14615,7 +14676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560230858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -166.17094, y: -0.000015258789, z: 102.18488}
+  m_LocalPosition: {x: -151.2443, y: 0.000015258789, z: 105.64705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -14633,7 +14694,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (60)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14821,6 +14882,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8728268691935989524, guid: ad7407e9399125743b5c6d8f2a7e25f4, type: 3}
   m_PrefabInstance: {fileID: 572397517}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &572464394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572464395}
+  m_Layer: 0
+  m_Name: PointofInterest (96)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &572464395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572464394}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -194.07968, y: 0, z: -73.21295}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 78
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &573695494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16658,7 +16749,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (26)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -16670,7 +16761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616510546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -239.78474, y: 0, z: 25.432808}
+  m_LocalPosition: {x: -246.24371, y: 0, z: 21.099709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -17363,7 +17454,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (78)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17393,7 +17484,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (48)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17405,7 +17496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653093366}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -267.07797, y: -0.000015258789, z: -33.932163}
+  m_LocalPosition: {x: -268, y: -0.000015258789, z: -88.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -17632,7 +17723,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (25)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -17704,7 +17795,7 @@ PrefabInstance:
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Name
       value: AxeWeapon (3)
@@ -19179,7 +19270,7 @@ PrefabInstance:
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Name
       value: MedKitPickUp (1)
@@ -19289,7 +19380,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (2)
@@ -19612,7 +19703,7 @@ PrefabInstance:
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Name
       value: PistolWeapon (1)
@@ -20832,7 +20923,7 @@ PrefabInstance:
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Name
       value: MedKitPickUp (5)
@@ -21934,7 +22025,7 @@ PrefabInstance:
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Name
       value: AxeWeapon (2)
@@ -22016,7 +22107,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (44)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -22343,8 +22434,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.6402, y: -1.196}
-  m_SizeDelta: {x: 190.39, y: 65.449}
+  m_AnchoredPosition: {x: 5.6401978, y: -10}
+  m_SizeDelta: {x: 190.39, y: 111.009}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &763638763
 MonoBehaviour:
@@ -22383,7 +22474,12 @@ MonoBehaviour:
 
     Mouse wheel - zoom cam
 
-    RMB - Rotate cam'
+    RMB - Rotate cam
+
+    Z
+    - slow mode
+
+    X - fast mode'
 --- !u!222 &763638764
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22768,7 +22864,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (82)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23116,7 +23212,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (62)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23513,7 +23609,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (74)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23525,7 +23621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817647856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.111614, y: 0, z: -88.46487}
+  m_LocalPosition: {x: -82.03035, y: 0, z: -91.64651}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -23543,7 +23639,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (89)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23645,7 +23741,7 @@ PrefabInstance:
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Name
       value: SmallCactusWeapon (6)
@@ -24691,7 +24787,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (53)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24703,7 +24799,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864032125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -324.18692, y: -0.000015258789, z: 60.963333}
+  m_LocalPosition: {x: -329.7, y: -0.000015258789, z: 56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -25602,6 +25698,36 @@ Transform:
   m_Father: {fileID: 895082989}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &896429365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896429366}
+  m_Layer: 0
+  m_Name: PointofInterest (94)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &896429366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896429365}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -72.38904, y: 0, z: -135.63376}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 76
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &897067244
 GameObject:
   m_ObjectHideFlags: 0
@@ -26486,7 +26612,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (39)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -26783,7 +26909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7463085763750475214, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -281.69
+      value: -281.47
       objectReference: {fileID: 0}
     - target: {fileID: 7463085763750475214, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26791,7 +26917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7463085763750475214, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 69.33
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 7463085763750475214, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26824,7 +26950,7 @@ PrefabInstance:
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Name
       value: PistolWeapon
@@ -27395,7 +27521,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (11)
@@ -27419,7 +27545,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (23)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -27431,7 +27557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 975825190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -218.03983, y: 0, z: -12.341424}
+  m_LocalPosition: {x: -241.32849, y: 0.000030517578, z: -12.303837}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -27449,7 +27575,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (76)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -27479,7 +27605,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (50)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -28484,7 +28610,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (66)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -29193,7 +29319,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (24)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30464,7 +30590,7 @@ PrefabInstance:
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Name
       value: PistolWeapon (2)
@@ -30823,7 +30949,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (46)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -30895,7 +31021,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (1)
@@ -31436,7 +31562,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (13)
@@ -31842,7 +31968,7 @@ PrefabInstance:
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 7463085763750475215, guid: 3307af1a8045e964b8327ad4a10452f3, type: 3}
       propertyPath: m_Name
       value: PistolWeapon
@@ -31861,7 +31987,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (61)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -34430,7 +34556,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (63)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -34521,7 +34647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212608005}
   m_LocalRotation: {x: 0.0995374, y: 0.89901763, z: -0.32721558, w: 0.2734768}
-  m_LocalPosition: {x: -292.9, y: -0.000015258789, z: 65.7}
+  m_LocalPosition: {x: -292.9, y: 4.89, z: 65.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 519420032}
@@ -34772,7 +34898,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (57)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -34784,7 +34910,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225960573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -240.88501, y: -0.000015258789, z: 48.51099}
+  m_LocalPosition: {x: -223.11317, y: 0, z: 10.5343895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -34813,7 +34939,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (47)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -34825,7 +34951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229140060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -240.8851, y: -0.000015258789, z: -33.073383}
+  m_LocalPosition: {x: -235.2, y: -0.000015258789, z: -39.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -35842,6 +35968,14 @@ Transform:
   - {fileID: 2132192479}
   - {fileID: 818953782}
   - {fileID: 85357160}
+  - {fileID: 48247913}
+  - {fileID: 1546502644}
+  - {fileID: 1795854384}
+  - {fileID: 896429366}
+  - {fileID: 2038523594}
+  - {fileID: 572464395}
+  - {fileID: 1870306741}
+  - {fileID: 143638979}
   m_Father: {fileID: 1407394844}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35906,7 +36040,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (70)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -35918,7 +36052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278952703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.154968, y: -0.000015258789, z: -67.85402}
+  m_LocalPosition: {x: -27.093613, y: -0.000030517578, z: -98.98123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -35936,7 +36070,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (85)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -36419,7 +36553,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (12)
@@ -36443,7 +36577,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (42)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -36790,7 +36924,7 @@ PrefabInstance:
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Name
       value: SmallCactusWeapon (5)
@@ -36814,7 +36948,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (49)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -36826,7 +36960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335389124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -277.38336, y: -0.000015258789, z: -17.6153}
+  m_LocalPosition: {x: -273.8, y: -0.000015258789, z: -28.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -36867,8 +37001,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -713, y: 404}
-  m_SizeDelta: {x: 500.335, y: 196.416}
+  m_AnchoredPosition: {x: -713, y: 358.41776}
+  m_SizeDelta: {x: 500.335, y: 317.6035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1336742603
 MonoBehaviour:
@@ -37835,7 +37969,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (87)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38198,7 +38332,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (71)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38228,7 +38362,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (27)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -38801,7 +38935,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (30)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -39044,6 +39178,14 @@ MonoBehaviour:
   - {fileID: 2132192479}
   - {fileID: 818953782}
   - {fileID: 85357160}
+  - {fileID: 48247913}
+  - {fileID: 1546502644}
+  - {fileID: 1795854384}
+  - {fileID: 896429366}
+  - {fileID: 2038523594}
+  - {fileID: 572464395}
+  - {fileID: 1870306741}
+  - {fileID: 143638979}
 --- !u!4 &1407394844
 Transform:
   m_ObjectHideFlags: 0
@@ -39261,7 +39403,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (20)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -39273,7 +39415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415541400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -139.03745, y: 0, z: 7.540783}
+  m_LocalPosition: {x: -151.76895, y: 0, z: 3.7835999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -39461,7 +39603,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (68)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40182,7 +40324,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (55)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40552,7 +40694,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (84)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40564,7 +40706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1462761865}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.931702, y: 0.000030517578, z: 98.70041}
+  m_LocalPosition: {x: -47.062775, y: 0, z: 100.27437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -41081,7 +41223,7 @@ PrefabInstance:
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Name
       value: MedKitPickUp (2)
@@ -41191,7 +41333,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (6)
@@ -43241,6 +43383,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8728268691935989524, guid: ad7407e9399125743b5c6d8f2a7e25f4, type: 3}
   m_PrefabInstance: {fileID: 1540574054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1546502643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1546502644}
+  m_Layer: 0
+  m_Name: PointofInterest (92)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1546502644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546502643}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -382.2, y: -0.000015258789, z: -27.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 74
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1551002630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5132111144028484216, guid: 62d88996f2a4f22498268f4ba66bde2b, type: 3}
@@ -43428,7 +43600,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (32)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43440,7 +43612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582933660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -207.66682, y: 0, z: 74.53613}
+  m_LocalPosition: {x: -209.8093, y: 0, z: 67.169655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -43458,7 +43630,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (52)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45390,7 +45562,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (38)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45487,7 +45659,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (22)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45987,7 +46159,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (8)
@@ -46729,7 +46901,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (72)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -47508,7 +47680,7 @@ PrefabInstance:
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1151901633666427245, guid: 24c46ffb76710434284207feab3b1633, type: 3}
       propertyPath: m_Name
       value: SmallCactusWeapon (4)
@@ -47702,7 +47874,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (28)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48244,7 +48416,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (83)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48261,6 +48433,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1270239288}
   m_RootOrder: 65
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1795854383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795854384}
+  m_Layer: 0
+  m_Name: PointofInterest (93)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795854384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795854383}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -297.1, y: -0.000015258789, z: -60.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 75
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1796442916
 PrefabInstance:
@@ -50140,7 +50342,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (3)
@@ -50152,6 +50354,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2408932859045460640, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
   m_PrefabInstance: {fileID: 1865959788}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1870306740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870306741}
+  m_Layer: 0
+  m_Name: PointofInterest (97)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1870306741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870306740}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -211.91162, y: 0, z: -37.885567}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 79
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1882384467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50274,7 +50506,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (35)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -50286,7 +50518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889119957}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -209.43846, y: 0, z: 33.91736}
+  m_LocalPosition: {x: -205.41908, y: 0, z: 43.289455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -50304,7 +50536,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (21)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -50316,7 +50548,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889887243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -146.96375, y: 0, z: 51.586975}
+  m_LocalPosition: {x: -152.84966, y: 0, z: 42.470284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -51407,7 +51639,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (40)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -52293,7 +52525,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (31)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -52305,7 +52537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951263827}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -235.15485, y: 0.000015258789, z: 89.62571}
+  m_LocalPosition: {x: -229.08038, y: 0, z: 118.358505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -52574,7 +52806,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (43)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -52604,7 +52836,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (58)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -52616,7 +52848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963245193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -218.98607, y: -0.000015258789, z: 103.47305}
+  m_LocalPosition: {x: -173.84138, y: 0, z: 121.68793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1270239288}
@@ -53498,7 +53730,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (86)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53528,7 +53760,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (73)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53558,7 +53790,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (18)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53673,7 +53905,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (79)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -53720,6 +53952,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 897067245}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2038523593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2038523594}
+  m_Layer: 0
+  m_Name: PointofInterest (95)
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2038523594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038523593}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -229.27957, y: 0, z: -117.33769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1270239288}
+  m_RootOrder: 77
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2043913315
 PrefabInstance:
@@ -54059,7 +54321,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (69)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -54089,7 +54351,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (77)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -54289,7 +54551,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (81)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -54797,7 +55059,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (9)
@@ -55203,7 +55465,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon (7)
@@ -55799,7 +56061,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (67)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56010,7 +56272,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (88)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56528,7 +56790,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointofInterest (41)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56956,7 +57218,7 @@ PrefabInstance:
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 1337416602170116326, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_Name
       value: MedKitPickUp
@@ -56967,7 +57229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337416602170116327, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.908783
+      value: 21.6
       objectReference: {fileID: 0}
     - target: {fileID: 1337416602170116327, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -56975,7 +57237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1337416602170116327, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.007736
+      value: -23.8
       objectReference: {fileID: 0}
     - target: {fileID: 1337416602170116327, guid: 797a6c6b9c1d53f409c9fedf7510b9f6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -57350,7 +57612,7 @@ PrefabInstance:
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5353110351367758255, guid: dc93dca8373b7e54b8c018e055134fbe, type: 3}
       propertyPath: m_Name
       value: AxeWeapon
@@ -57492,7 +57754,7 @@ PrefabInstance:
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Icon
       value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2408932859045460641, guid: e33177f616a53a44ca9300edaf60cb1e, type: 3}
       propertyPath: m_Name
       value: SmallStoneWeapon

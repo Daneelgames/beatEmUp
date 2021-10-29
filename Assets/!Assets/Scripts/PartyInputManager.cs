@@ -33,6 +33,11 @@ public class PartyInputManager : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
+    }
+
     public void AddPartyMember(HealthController hc)
     {
         if (Party.Contains(hc))
@@ -53,7 +58,7 @@ public class PartyInputManager : MonoBehaviour
             if (Party.Count > 0 && Party[0] != null && Party[0].Health > 0)
             {
                 SelectUnit(0);
-                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position);   
+                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);   
             }
         }
         if (Input.GetButtonDown("SelectSecondAlly"))
@@ -61,7 +66,7 @@ public class PartyInputManager : MonoBehaviour
             if (Party.Count > 1 && Party[1] != null && Party[1].Health > 0)
             {
                 SelectUnit(1);
-                CameraController.Instance.MoveCameraToPosition(Party[1].transform.position);   
+                CameraController.Instance.MoveCameraToPosition(Party[1].transform.position, Party[1].transform);   
             }
         }
         if (Input.GetButtonDown("SelectThirdAlly"))
@@ -69,7 +74,7 @@ public class PartyInputManager : MonoBehaviour
             if (Party.Count > 2 && Party[2] != null && Party[2].Health > 0)
             {
                 SelectUnit(2);
-                CameraController.Instance.MoveCameraToPosition(Party[2].transform.position);   
+                CameraController.Instance.MoveCameraToPosition(Party[2].transform.position, Party[2].transform);   
             }
         }
         if (Input.GetButtonDown("SelectAllAllies"))
@@ -81,7 +86,7 @@ public class PartyInputManager : MonoBehaviour
                 {
                     if (Party[i].Health > 0)
                     {
-                        CameraController.Instance.MoveCameraToPosition(Party[0].transform.position);
+                        CameraController.Instance.MoveCameraToPosition(Party[i].transform.position, Party[i].transform);
                         break;
                     }
                 }   

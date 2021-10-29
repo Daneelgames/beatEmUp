@@ -8,6 +8,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public static CameraController Instance;
+    [SerializeField] private bool canMove = false;
     [SerializeField] private Transform parent;
     [SerializeField] private Vector2 xMinMax = new Vector2(15, 40);
     [SerializeField] private Vector2 zMinMax = new Vector2(-150, -10);
@@ -54,21 +55,24 @@ public class CameraController : MonoBehaviour
             targetPosition = PlayerInput.Instance.transform.position + PlayerInput.Instance.transform.forward * distanceInFrontOfCharacter;
         else if (PartyInputManager.Instance)
         {
-            float horizontalAxis = Input.GetAxisRaw("Horizontal");
-            float verticalAxis = Input.GetAxisRaw("Vertical");
+            if (canMove)
+            {
+                float horizontalAxis = Input.GetAxisRaw("Horizontal");
+                float verticalAxis = Input.GetAxisRaw("Vertical");
             
-            var forward = GameManager.Instance.mainCamera.transform.forward;
-            var right = GameManager.Instance.mainCamera.transform.right;
+                var forward = GameManager.Instance.mainCamera.transform.forward;
+                var right = GameManager.Instance.mainCamera.transform.right;
  
-            //project forward and right vectors on the horizontal plane (y = 0)
-            forward.y = 0f;
-            right.y = 0f;
-            forward.Normalize();    
-            right.Normalize();
+                //project forward and right vectors on the horizontal plane (y = 0)
+                forward.y = 0f;
+                right.y = 0f;
+                forward.Normalize();    
+                right.Normalize();
             
-            Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;
-            targetPosition += movementVector.normalized * (cameraMoveSpeed * Time.smoothDeltaTime);
-                
+                Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;
+                targetPosition += movementVector.normalized * (cameraMoveSpeed * Time.smoothDeltaTime);
+            }
+            
             camTargetZ += Input.GetAxis("Mouse ScrollWheel") * cameraZoomSpeed * Time.smoothDeltaTime;
             camTargetZ = Mathf.Clamp(camTargetZ, zMinMax.x, zMinMax.y);
             
@@ -92,11 +96,12 @@ public class CameraController : MonoBehaviour
         transform.localPosition = new Vector3(0, 0, camTargetZ);
     }
 
-    public void MoveCameraToPosition(Vector3 newPos)
+    public void MoveCameraToPosition(Vector3 newPos, Transform _parent)
     {
-        if (Vector3.Distance(parent.transform.position, newPos) < 20)
-            return;
-        
-        parent.gameObject.transform.position = newPos;
+        parent.gameObject.transform.parent = _parent;
+        if (_parent != null)
+            parent.gameObject.transform.localPosition = Vector3.up * 4;
+        else
+            parent.gameObject.transform.position = newPos;
     }
 }

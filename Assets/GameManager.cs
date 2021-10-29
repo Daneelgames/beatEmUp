@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 3;
         else if (Input.GetButton("SlowMode") && Time.timeScale > 0.5f)
             Time.timeScale = 0.1f;
-        else if (Time.timeScale > 1)
+        else if (Time.timeScale > 1.1f || Time.timeScale < 0.9f)
             Time.timeScale = 1;
         
         if (Input.GetButtonDown("Cancel"))

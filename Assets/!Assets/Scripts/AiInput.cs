@@ -537,7 +537,7 @@ public class AiInput : MonoBehaviour
             }
         }
 
-        if (inParty)
+        if (debugLogs && inParty)
             print(closestEnemy);
         
         if (closestEnemy != null)
