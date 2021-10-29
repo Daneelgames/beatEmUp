@@ -849,8 +849,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -699, y: -407}
-  m_SizeDelta: {x: 582.223, y: 197.752}
+  m_AnchoredPosition: {x: -686.7, y: -369.846}
+  m_SizeDelta: {x: 582.223, y: 303.849}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19842480
 MonoBehaviour:
@@ -52669,8 +52669,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.089905, y: 0.000091552734}
-  m_SizeDelta: {x: 222.89, y: 81.547}
+  m_AnchoredPosition: {x: 6.089905, y: 20.035}
+  m_SizeDelta: {x: 222.89, y: 166.695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925762760
 MonoBehaviour:
@@ -52709,8 +52709,10 @@ MonoBehaviour:
 
     H - heal selected units
 
-    TAB - Select whole
-    party
+    V - observe mode
+
+    TAB
+    - Select whole party
 
     1/2/3 - Select party members'
 --- !u!222 &1925762761

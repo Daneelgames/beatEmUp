@@ -98,9 +98,12 @@ public class CameraController : MonoBehaviour
 
     public void MoveCameraToPosition(Vector3 newPos, Transform _parent)
     {
-        parent.gameObject.transform.parent = _parent;
-        if (_parent != null)
-            parent.gameObject.transform.localPosition = Vector3.up * 4;
+        if(!canMove)
+        {
+            parent.gameObject.transform.parent = _parent;
+            if (_parent != null)
+                parent.gameObject.transform.localPosition = Vector3.up * 4;
+        }
         else
             parent.gameObject.transform.position = newPos;
     }
