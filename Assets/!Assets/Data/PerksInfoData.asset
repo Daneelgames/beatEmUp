@@ -56,13 +56,13 @@ MonoBehaviour:
   - perkType: 9
     perkCost: -1
     perkAntagonist: 0
-    perkName: Men Hater
-    perkDescription: Gets nervous around men
+    perkName: Scared by Men
+    perkDescription: Gets nervous when sees men
   - perkType: 10
     perkCost: -1
     perkAntagonist: 0
-    perkName: Lady Hater
-    perkDescription: Gets nervous around women
+    perkName: Scared by Ladies
+    perkDescription: Gets nervous when sees women
   - perkType: 11
     perkCost: 1
     perkAntagonist: 13

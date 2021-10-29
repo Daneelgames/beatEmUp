@@ -6928,7 +6928,6 @@ MonoBehaviour:
   attackList:
   - shotPosition: {fileID: 0}
     useAmmo: 0
-    missChance: 0.5
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -6951,7 +6950,6 @@ MonoBehaviour:
     restoreAttackWeightOnAttackRest: 0.25
   - shotPosition: {fileID: 0}
     useAmmo: 0
-    missChance: 0.5
     canAttackMidAir: 1
     attackDamageScaler: 1.2
     attackCritChanceScaler: 1
@@ -6976,7 +6974,6 @@ MonoBehaviour:
     restoreAttackWeightOnAttackRest: 0.25
   - shotPosition: {fileID: 0}
     useAmmo: 0
-    missChance: 0.5
     canAttackMidAir: 1
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -7031,7 +7028,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 2
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 1440
   m_StoppingDistance: 2
@@ -7167,6 +7164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkPoints: 1
+  currentDiscomfort: 0
   characterPerks: 
   hc: {fileID: 1212818265}
 --- !u!1 &5922580849658585749

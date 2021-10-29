@@ -32,6 +32,9 @@ public class CharacterPerksController : MonoBehaviour
 
     public void AddPerk(Perk newPerk)
     {
+        if (characterPerks.Contains(newPerk.perkType))
+            return;
+        
         characterPerks.Add(newPerk.perkType);
         PerkPoints -= newPerk.perkCost;
         
