@@ -6777,6 +6777,7 @@ GameObject:
   - component: {fileID: 467956864760804726}
   - component: {fileID: 2695189181210928995}
   - component: {fileID: 6217995972828308375}
+  - component: {fileID: -1577154495707085973}
   m_Layer: 7
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -6815,6 +6816,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea07920a5b447ff48932b57f57365127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sex: 2
+  invincible: 0
+  health: 1000
+  healthMax: 1000
+  damagedAnimationTime: 0.4
   _objectInfoData: {fileID: 11400000, guid: 97133e9b5c9d7534989491d72685638d, type: 2}
   characterController: {fileID: 0}
   _attackManager: {fileID: 4792253143275227139}
@@ -6826,10 +6832,6 @@ MonoBehaviour:
   _bodyPartsManager: {fileID: 1212818261}
   fieldOfView: {fileID: 4369443321332258601}
   healthBar: {fileID: 1975066097511504334}
-  invincible: 0
-  health: 1000
-  healthMax: 1000
-  damagedAnimationTime: 0.4
   enemies: []
   enemiesGameObjects: []
   friends: []
@@ -7167,6 +7169,20 @@ MonoBehaviour:
   currentDiscomfort: 0
   characterPerks: 
   hc: {fileID: 1212818265}
+--- !u!114 &-1577154495707085973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757401403179926516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15861cdf7fbbb8c46a956c3e2b0c9860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthController: {fileID: 1212818265}
+  interactable: {fileID: 0}
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0

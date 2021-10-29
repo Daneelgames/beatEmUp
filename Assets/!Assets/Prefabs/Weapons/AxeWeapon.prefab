@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 2148598824031650502}
   - component: {fileID: 4501130174702667229}
   - component: {fileID: 313402859066669539}
+  - component: {fileID: 5120175758318061030}
   m_Layer: 9
   m_Name: AxeWeapon
   m_TagString: Untagged
@@ -171,7 +172,6 @@ MonoBehaviour:
   weaponAttacks:
   - shotPosition: {fileID: 0}
     useAmmo: 0
-    missChance: 0.5
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -229,6 +229,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17649953, y: 1.8649173, z: 0.7279085}
   m_Center: {x: 0.041904468, y: 0.120135665, z: 0.17571132}
+--- !u!114 &5120175758318061030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353110351367758255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15861cdf7fbbb8c46a956c3e2b0c9860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthController: {fileID: 0}
+  interactable: {fileID: 2316971025488741074}
 --- !u!1001 &8048752038889753571
 PrefabInstance:
   m_ObjectHideFlags: 0

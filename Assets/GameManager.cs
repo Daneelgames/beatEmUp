@@ -19,6 +19,13 @@ public class GameManager : MonoBehaviour
     
     public bool simpleEnemiesAllies = true;
 
+    [SerializeField] private List<Observable> _observablesInRunTime;
+    public List<Observable> ObservablesInRunTime
+    {
+        get => _observablesInRunTime;
+        set => _observablesInRunTime = value;
+    }
+
     public int DrawHealthbarsDistance
     {
         get => drawHealthbarsDistance;
@@ -43,6 +50,7 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
+        
         
         if (Input.GetKey("g") && Input.GetKey("z") && Input.GetKeyDown("r"))
         {

@@ -28,6 +28,7 @@ public class PartyInputManager : MonoBehaviour
     [SerializeField]private GameObject unitSelectedFeedbackPrefab;
     private List<GameObject> spawnedUnitSelectedFeedbacks = new List<GameObject>();
 
+    private bool observeMode = false;
     private void Awake()
     {
         Instance = this;
@@ -60,6 +61,7 @@ public class PartyInputManager : MonoBehaviour
                 SelectUnit(0);
                 CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);   
             }
+            ObserveMode(false);
         }
         if (Input.GetButtonDown("SelectSecondAlly"))
         {
@@ -68,6 +70,7 @@ public class PartyInputManager : MonoBehaviour
                 SelectUnit(1);
                 CameraController.Instance.MoveCameraToPosition(Party[1].transform.position, Party[1].transform);   
             }
+            ObserveMode(false);
         }
         if (Input.GetButtonDown("SelectThirdAlly"))
         {
@@ -76,6 +79,7 @@ public class PartyInputManager : MonoBehaviour
                 SelectUnit(2);
                 CameraController.Instance.MoveCameraToPosition(Party[2].transform.position, Party[2].transform);   
             }
+            ObserveMode(false);
         }
         if (Input.GetButtonDown("SelectAllAllies"))
         {
@@ -91,6 +95,7 @@ public class PartyInputManager : MonoBehaviour
                     }
                 }   
             }
+            ObserveMode(false);
         }
 
         if (Input.GetButtonDown("UseMedKitHotkey"))
@@ -99,8 +104,15 @@ public class PartyInputManager : MonoBehaviour
                 return;
             
             UseMedKit();
+            ObserveMode(false);
         }
 
+
+        if (Input.GetButtonDown("Observe"))
+        {
+            ObserveMode(!observeMode);
+        }
+        
         if (Input.GetButtonDown("ToggleAggroModeHotkey"))
         {
             AiInput.AggroMode newMode = AiInput.AggroMode.AggroOnSight; 
@@ -126,6 +138,8 @@ public class PartyInputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            ObserveMode(false);
+            
             if (selectedAllyUnits.Count <= 0)
                 return;
             
@@ -197,7 +211,56 @@ public class PartyInputManager : MonoBehaviour
             _unitOrder = UnitOrder.Move;
         }
     }
+    
+    public void ObserveMode(bool active)
+    {
+        observeMode = active;
 
+        if (observeMode)
+        {
+            if (observeCoroutine == null)
+                observeCoroutine = StartCoroutine(ObserveCoroutine());
+            
+            UniversalCursorController.Instance.SetObserveCursor();
+        }
+        else
+        {
+            if (observeCoroutine != null)
+            {
+                StopCoroutine(observeCoroutine);
+                observeCoroutine = null;
+            }
+            UniversalCursorController.Instance.SetDefaultCursor();
+        }
+    }
+
+    private Coroutine observeCoroutine;
+    IEnumerator ObserveCoroutine()
+    {
+        Observable closestObjectWithInfo = null;
+        while (true)
+        {
+            float distance = 1000;
+            float newDistance = 0;
+
+            int t = 0;
+            Vector3 mouseWorldPositionTemp = GameManager.Instance.MouseWorldGroundPosition();
+            
+            for (int i = 0; i < GameManager.Instance.ObservablesInRunTime.Count; i++)
+            {
+                newDistance = Vector3.Distance(GameManager.Instance.ObservablesInRunTime[i].transform.position, mouseWorldPositionTemp);
+
+                t++;
+                if (t >= 10)
+                {
+                    t = 0;
+                    mouseWorldPositionTemp = GameManager.Instance.MouseWorldGroundPosition();
+                    yield return null;
+                }
+            }
+        }
+    }
+    
     void UseMedKit()
     {
         int healthLowest = 100000;

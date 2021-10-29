@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7400081433609596052}
   - component: {fileID: 3367447735698455468}
   - component: {fileID: 5860105260144167243}
+  - component: {fileID: -8147325604206033607}
   m_Layer: 9
   m_Name: MedKitPickUp
   m_TagString: Untagged
@@ -184,6 +185,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heal: 1
+--- !u!114 &-8147325604206033607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337416602170116326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15861cdf7fbbb8c46a956c3e2b0c9860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthController: {fileID: 0}
+  interactable: {fileID: 8710784181821746075}
 --- !u!1 &2129509144816158097
 GameObject:
   m_ObjectHideFlags: 0

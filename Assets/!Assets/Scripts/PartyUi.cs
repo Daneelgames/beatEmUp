@@ -18,6 +18,9 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private RectTransform canvasRect;
     [SerializeField] private Text actionFeedbackText;
     [SerializeField] private Animator actionFeedbackAnim;
+    [SerializeField] private Image cursor;
+    public Image Cursor => cursor;
+
     private static readonly int Update = Animator.StringToHash("Update");
 
     private IEnumerator Start()
@@ -59,6 +62,11 @@ public class PartyUi : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        cursor.transform.position = Input.mousePosition;
+    }
+    
     public void UpdatePartyAggroMode()
     {
         for (int i = 0; i < PartyInputManager.Instance.Party.Count; i++)

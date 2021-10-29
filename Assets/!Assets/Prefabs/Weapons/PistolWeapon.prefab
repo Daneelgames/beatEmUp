@@ -5062,6 +5062,7 @@ GameObject:
   - component: {fileID: 1418387029692191165}
   - component: {fileID: 2990754416440667523}
   - component: {fileID: 5274607038351570312}
+  - component: {fileID: 8223663216863531191}
   m_Layer: 9
   m_Name: PistolWeapon
   m_TagString: Untagged
@@ -5122,7 +5123,6 @@ MonoBehaviour:
   rangedWeaponAttacks:
   - shotPosition: {fileID: 5687861141736487641}
     useAmmo: 1
-    missChance: 0.75
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -5150,7 +5150,6 @@ MonoBehaviour:
   weaponAttacks:
   - shotPosition: {fileID: 0}
     useAmmo: 0
-    missChance: 0.5
     canAttackMidAir: 0
     attackDamageScaler: 1
     attackCritChanceScaler: 1
@@ -5304,6 +5303,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8223663216863531191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463085763750475215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15861cdf7fbbb8c46a956c3e2b0c9860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthController: {fileID: 0}
+  interactable: {fileID: 1008715785549633202}
 --- !u!1 &7551638039053152585
 GameObject:
   m_ObjectHideFlags: 0

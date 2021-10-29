@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1486377157215361625}
   - component: {fileID: 1486377157215361630}
   - component: {fileID: 354986749}
+  - component: {fileID: 165544934142657219}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -55,6 +56,7 @@ MonoBehaviour:
     m_Bits: 64
   drawHealthbarsDistance: 100
   simpleEnemiesAllies: 1
+  _observablesInRunTime: []
 --- !u!114 &1486377157215361625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +152,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &165544934142657219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486377157215361626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da194f9b9ee7be04580fe8bd77898ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCursor: {fileID: 21300000, guid: 01b4583e6279f934498a65d5ddcfafb7, type: 3}
+  observeCursor: {fileID: 21300000, guid: a5b65bcbc578bdd4a89f9670b58d0550, type: 3}
 --- !u!1 &1486377158089296143
 GameObject:
   m_ObjectHideFlags: 0
