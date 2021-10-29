@@ -15,6 +15,27 @@ public class HealthController : MonoBehaviour
         Melee, Ranged, Throw, Explosive
     }
     
+    public enum Sex
+    {
+        Male, Female, Unknown 
+    }
+
+    [SerializeField] Sex sex = Sex.Unknown;
+
+    public Sex _Sex
+    {
+        get => sex;
+        set => sex = value;
+    } 
+    
+    [Header("Stats")]
+    [SerializeField] private bool invincible = false;
+    [SerializeField] private int health = 1000;
+    [SerializeField] private int healthMax = 1000;
+    [SerializeField] private float damagedAnimationTime = 0.5f;
+    private bool damageOnCooldown = false;
+    
+    
     [Header("Links")] 
     [SerializeField] private ObjectInfoData _objectInfoData;
     public ObjectInfoData ObjectInfoData => _objectInfoData;
@@ -42,12 +63,6 @@ public class HealthController : MonoBehaviour
     [SerializeField] 
     private Image healthBar;
 
-    [Header("Stats")] 
-    [SerializeField] private bool invincible = false;
-    [SerializeField] private int health = 1000;
-    [SerializeField] private int healthMax = 1000;
-    [SerializeField] private float damagedAnimationTime = 0.5f;
-    private bool damageOnCooldown = false;
     public int Health
     {
         get => health;
@@ -311,11 +326,11 @@ public class HealthController : MonoBehaviour
             
             if (visibleBonesAmount >= resultMinVisibleBonesToSeeUnit)
             {
-                if (unit._objectInfoData.sex == ObjectInfoData.Sex.Male && CharacterPerksController.ScaredByMen)
+                if (unit._Sex == Sex.Male && CharacterPerksController.ScaredByMen)
                 {
                     hateDiscomfort ++;
                 }
-                else if (unit._objectInfoData.sex == ObjectInfoData.Sex.Female && CharacterPerksController.ScaredByLadies)
+                else if (unit._Sex == Sex.Female && CharacterPerksController.ScaredByLadies)
                 {
                     hateDiscomfort ++;
                 }

@@ -418,6 +418,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1212818265, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: sex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212818265, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: health
       value: 2000
       objectReference: {fileID: 0}
@@ -432,6 +436,14 @@ PrefabInstance:
     - target: {fileID: 1212818265, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: friends.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212818265, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: friends.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212818265, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: friends.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 467956864760804726, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: shouts
@@ -519,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5757401403179926516, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Name
-      value: CharacterRose
+      value: CharacterRose Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5926532711273271618, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_RootOrder

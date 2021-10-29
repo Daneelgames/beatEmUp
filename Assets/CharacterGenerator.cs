@@ -13,6 +13,18 @@ public class CharacterGenerator : MonoBehaviour
         int t = 0;
         for (int i = 0; i < unitsToRandomize.Count; i++)
         {
+            if (unitsToRandomize[i].AiInput.inParty == false)
+            {
+                // random sex
+                float r = Random.value;
+                if (r <= 0.4f)
+                    unitsToRandomize[i]._Sex = HealthController.Sex.Female;
+                else if (r <= 0.8f)
+                    unitsToRandomize[i]._Sex = HealthController.Sex.Male;
+                else
+                    unitsToRandomize[i]._Sex = HealthController.Sex.Unknown;
+            }
+                
             ChoosePerksForCharacter(unitsToRandomize[i]);
             
             t++;
