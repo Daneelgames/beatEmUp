@@ -146,7 +146,7 @@ public class PartyInputManager : MonoBehaviour
             for (int i = 0; i < GameManager.Instance.Units.Count; i++)
             {
                 var unit = GameManager.Instance.Units[i];
-                if (unit.AiInput && unit.AiInput.inParty == false)
+                if (unit.Health > 0 && unit.AiInput && unit.AiInput.inParty == false)
                 {
                     newDistance = Vector3.Distance(unit.transform.position, newPos);
                     if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)

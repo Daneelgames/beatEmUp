@@ -105,6 +105,9 @@ public class CameraController : MonoBehaviour
                 parent.gameObject.transform.localPosition = Vector3.up * 4;
         }
         else
-            parent.gameObject.transform.position = newPos;
+        {
+            if (Vector3.Distance(parent.gameObject.transform.position, newPos) > 50)
+                parent.gameObject.transform.position = newPos;
+        }
     }
 }

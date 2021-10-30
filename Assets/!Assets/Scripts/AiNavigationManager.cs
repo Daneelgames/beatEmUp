@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class AiNavigationManager : MonoBehaviour
 {
+    [SerializeField] private float maxDistanceForSearchingNewPoint = 50;
+    
     [SerializeField] private List<HealthController> centerMobs = new List<HealthController>();
     [SerializeField] private List<Transform> pointsOfInterest;
     [SerializeField] private List<Transform> pointsOfInterestDesert;
@@ -21,10 +23,23 @@ public class AiNavigationManager : MonoBehaviour
 
     public Vector3 GetPointOfInterestForUnit(HealthController hc)
     {
-
+        List<Transform> tempPOIs;
         if (centerMobs.Contains(hc))
-            return PointsOfInterest[Random.Range(0, PointsOfInterest.Count)].position + Random.insideUnitSphere * Random.Range(1, 5);
+            tempPOIs = new List<Transform>(PointsOfInterest);
+        else
+            tempPOIs = new List<Transform>(PointsOfInterestDesert);
+
+        for (int i = tempPOIs.Count - 1; i >= 0; i--)
+        {
+            if (Vector3.Distance(tempPOIs[i].position, hc.transform.position) > maxDistanceForSearchingNewPoint)
+            {
+                if (tempPOIs.Count < 2)
+                    return tempPOIs[0].position + Random.insideUnitSphere * Random.Range(1, 5);
+                
+                tempPOIs.RemoveAt(i);
+            }
+        }
         
-        return PointsOfInterestDesert[Random.Range(0, PointsOfInterestDesert.Count)].position + Random.insideUnitSphere * Random.Range(1, 5);
+        return tempPOIs[Random.Range(0, tempPOIs.Count)].position + Random.insideUnitSphere * Random.Range(1, 5);
     }
 }
