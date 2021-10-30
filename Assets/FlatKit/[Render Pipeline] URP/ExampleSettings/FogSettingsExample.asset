@@ -15,7 +15,7 @@ MonoBehaviour:
   useDistance: 1
   distanceGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 0.24999428, b: 0, a: 0.09803922}
+    key0: {r: 0.7169812, g: 0.45011452, b: 0.24012107, a: 0.09803922}
     key1: {r: 1, g: 0.7595606, b: 0.57254905, a: 1}
     key2: {r: 1, g: 0.99326676, b: 0.5707547, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 64379
+    ctime1: 65535
     ctime2: 64379
     ctime3: 0
     ctime4: 0
@@ -42,8 +42,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 3
-  near: 30
-  far: 150
+  near: 50
+  far: 200
   distanceFogIntensity: 1
   useDistanceFogOnSky: 1
   useHeight: 0
