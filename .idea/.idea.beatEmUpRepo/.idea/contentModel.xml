@@ -259,6 +259,7 @@
             </e>
           </e>
         </e>
+        <e p="NavMeshBaker.cs" t="Include" />
         <e p="Observable.cs" t="Include" />
         <e p="TGU Skybox Pack" t="Include">
           <e p="Readme.txt" t="Include" />

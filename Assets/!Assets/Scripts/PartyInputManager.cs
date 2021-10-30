@@ -9,13 +9,6 @@ public class PartyInputManager : MonoBehaviour
 {
     public static PartyInputManager Instance;
 
-    enum UnitOrder
-    {
-        Move, Attack 
-    }
-
-    private UnitOrder _unitOrder = UnitOrder.Move;
-
     [SerializeField] private float maxDistanceToClosestUnit = 3;
     [SerializeField] List<HealthController> selectedAllyUnits = new List<HealthController>();
     [SerializeField] List<HealthController> party = new List<HealthController>();
@@ -113,6 +106,7 @@ public class PartyInputManager : MonoBehaviour
             ObserveMode(!observeMode);
         }
         
+        /*
         if (Input.GetButtonDown("ToggleAggroModeHotkey"))
         {
             AiInput.AggroMode newMode = AiInput.AggroMode.AggroOnSight; 
@@ -134,7 +128,7 @@ public class PartyInputManager : MonoBehaviour
             }
 
             PartyUi.Instance.UpdatePartyAggroMode();
-        }
+        }*/
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -146,69 +140,67 @@ public class PartyInputManager : MonoBehaviour
             Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
             newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
 
-            switch (_unitOrder)
+            float distance = 1000;
+            float newDistance = 0;
+            HealthController closestUnitToAttack = null;
+            for (int i = 0; i < GameManager.Instance.Units.Count; i++)
             {
-                case UnitOrder.Move: 
-                    for (int i = 0; i < selectedAllyUnits.Count; i++)
+                var unit = GameManager.Instance.Units[i];
+                if (unit.AiInput && unit.AiInput.inParty == false)
+                {
+                    newDistance = Vector3.Distance(unit.transform.position, newPos);
+                    if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)
                     {
-                        Vector3 tempPose = newPos;
-                        if (selectedAllyUnits[i])
-                        {
-                            switch (i)
-                            {
-                                case 0: 
-                                    break;
-                                case 1: 
-                                    tempPose += Vector3.forward * 2;
-                                    break;
-                                case 2: 
-                                    tempPose += Vector3.right * 2;
-                                    break;
-                                case 3: 
-                                    tempPose += Vector3.forward * -2;
-                                    break;
-                                case 4: 
-                                    tempPose += Vector3.right * -2;
-                                    break;
-                                default:
-                                    tempPose += new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
-                                    break;
-                            }
-                            
-                            selectedAllyUnits[i].AiInput.OrderMove(tempPose);   
-                        }
-                    }   
-                    break;
-                case UnitOrder.Attack:
-                    float distance = 1000;
-                    float newDistance = 0;
-                    HealthController closestUnitToAttack = null;
-                    for (int i = 0; i < GameManager.Instance.Units.Count; i++)
-                    {
-                        var unit = GameManager.Instance.Units[i];
-                        if (unit.AiInput && unit.AiInput.inParty == false)
-                        {
-                            newDistance = Vector3.Distance(unit.transform.position, newPos);
-                            if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)
-                            {
-                                distance = newDistance;
-                                closestUnitToAttack = unit;
-                            }
-                        }
+                        distance = newDistance;
+                        closestUnitToAttack = unit;
                     }
-
-                    if (closestUnitToAttack)
-                    {
-                        for (int i = 0; i < selectedAllyUnits.Count; i++)
-                        {
-                            if (selectedAllyUnits[i] && selectedAllyUnits[i].AiInput)
-                                selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
-                        }      
-                    }
-                    break;
+                }
             }
 
-            _unitOrder = UnitOrder.Move;
+            if (closestUnitToAttack)
+            {
+                for (int i = 0; i < selectedAllyUnits.Count; i++)
+                {
+                    if (selectedAllyUnits[i] && selectedAllyUnits[i].AiInput)
+                    {
+                        selectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);   
+                        selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
+                    }
+                }      
+            }
+            else
+            {
+                for (int i = 0; i < selectedAllyUnits.Count; i++)
+                {
+                    Vector3 tempPose = newPos;
+                    if (selectedAllyUnits[i])
+                    {
+                        switch (i)
+                        {
+                            case 0: 
+                                break;
+                            case 1: 
+                                tempPose += Vector3.forward * 2;
+                                break;
+                            case 2: 
+                                tempPose += Vector3.right * 2;
+                                break;
+                            case 3: 
+                                tempPose += Vector3.forward * -2;
+                                break;
+                            case 4: 
+                                tempPose += Vector3.right * -2;
+                                break;
+                            default:
+                                tempPose += new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+                                break;
+                        }
+                    
+                        selectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
+                        selectedAllyUnits[i].AiInput.OrderMove(tempPose);   
+                    }
+                }   
+            }
         }
     }
     

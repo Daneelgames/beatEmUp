@@ -75,6 +75,8 @@ public class PartyUi : MonoBehaviour
     
     public void UpdatePartyAggroMode()
     {
+        return;
+        
         for (int i = 0; i < PartyInputManager.Instance.Party.Count; i++)
         {
             switch (PartyInputManager.Instance.Party[i].AiInput.aggroMode)

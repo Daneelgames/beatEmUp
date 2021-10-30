@@ -158,16 +158,6 @@ public class AiInput : MonoBehaviour
     {
         aggroMode = newMode;
         
-        /*
-        switch (aggroMode)
-        {
-            case AggroMode.AggroOnSight:
-                aggroMode = AggroMode.AttackIfAttacked;                
-                break;
-            case AggroMode.AttackIfAttacked:
-                aggroMode = AggroMode.AggroOnSight;                
-                break;
-        }*/
     }
     
     public void SeeEnemy(HealthController closestVisibleEnemy)
@@ -183,11 +173,6 @@ public class AiInput : MonoBehaviour
     {
         SetAggro(enemy); 
         RotateTowardsClosestEnemy(enemy);   
-        
-        /*
-        if (aggroMode == AggroMode.AttackIfAttacked)
-        {
-        }*/
     }
 
     public void OrderAttack(Vector3 newPos, HealthController unit)

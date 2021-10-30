@@ -8189,7 +8189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawFOV: 0
   hc: {fileID: 1212818265}
-  eyesTransfom: {fileID: 0}
+  eyesTransfom: {fileID: 1261236843457751220}
   minVisibleBonesToSeeUnit: 2
   resetVisibleUnitsCooldown: 10
   updateDelay: 0.5
