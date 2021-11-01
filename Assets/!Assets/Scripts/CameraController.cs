@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector2 xMinMax = new Vector2(15, 40);
     [SerializeField] private Vector2 zMinMax = new Vector2(-150, -10);
     [SerializeField] private float distanceInFrontOfCharacter = 3;
+    [SerializeField] private float cameraParentHeight = 4;
     [SerializeField] private float cameraSmooth = 0.75f;
     [SerializeField] private float cameraMoveSpeed = 100;
     [SerializeField] private float cameraTurnSpeed = 500f;
@@ -102,7 +103,7 @@ public class CameraController : MonoBehaviour
         {
             parent.gameObject.transform.parent = _parent;
             if (_parent != null)
-                parent.gameObject.transform.localPosition = Vector3.up * 2;
+                parent.gameObject.transform.localPosition = Vector3.up * cameraParentHeight;
         }
         else
         {

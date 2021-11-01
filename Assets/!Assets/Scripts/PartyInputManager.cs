@@ -74,6 +74,7 @@ public class PartyInputManager : MonoBehaviour
             }
             ObserveMode(false);
         }
+        
         if (Input.GetButtonDown("SelectAllAllies"))
         {
             if (Party.Count > 0)
@@ -165,6 +166,7 @@ public class PartyInputManager : MonoBehaviour
                     {
                         selectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);   
                         selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
+                        PartyUi.Instance.AttackOrderFeedback(newPos);
                     }
                 }      
             }
@@ -195,7 +197,8 @@ public class PartyInputManager : MonoBehaviour
                                 tempPose += new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
                                 break;
                         }
-                    
+
+                        PartyUi.Instance.MoveOrderFeedback(newPos);
                         selectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
                         selectedAllyUnits[i].AiInput.OrderMove(tempPose);   
                     }

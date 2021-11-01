@@ -52,11 +52,12 @@ public class Weapon : MonoBehaviour
         get => attackManager;
         set => attackManager = value;
     }
-
+   
     public void SetNewOwner(AttackManager _attackManager)
     {
         AttackManager = _attackManager;
         ownBodyPartsGameObjects = AttackManager.Hc.BodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects;
+        Interactable.ToggleLight(!attackManager);
     }
     public void SetDangerous(bool _dangerous)
     {

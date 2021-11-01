@@ -22,11 +22,13 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private Text observableInfoText;
     [SerializeField] private Text observableInfoText2;
     [SerializeField] private Animator observableInfoAnim;
+    [SerializeField] private Animator moveOrderFeedbackAnim;
     [SerializeField] private Image cursor;
     
     public Image Cursor => cursor;
 
-    private static readonly int Update = Animator.StringToHash("Update");
+    private static readonly int MoveString = Animator.StringToHash("Move");
+    private static readonly int AttackString = Animator.StringToHash("Attack");
     private static readonly int Active = Animator.StringToHash("Active");
 
     private IEnumerator Start()
@@ -93,6 +95,16 @@ public class PartyUi : MonoBehaviour
         }   
     }
 
+    public void MoveOrderFeedback(Vector3 newPos)
+    {
+        moveOrderFeedbackAnim.SetTrigger(MoveString);
+        moveOrderFeedbackAnim.transform.position = newPos;
+    }
+    public void AttackOrderFeedback(Vector3 newPos)
+    {
+        moveOrderFeedbackAnim.SetTrigger(AttackString);
+        moveOrderFeedbackAnim.transform.position = newPos;
+    }
     public void UpdateMedKits()
     {
         medKitsAmountFeedback.text = PartyInventory.Instance.MedKitsAmount + " Medkits";
@@ -106,7 +118,7 @@ public class PartyUi : MonoBehaviour
 
         string resultstring = hc.ObjectInfoData.objectGetsItem + " " + interactable.ObjectInfoData.objectName;
         actionFeedbackText.text = resultstring;
-        actionFeedbackAnim.SetTrigger(Update);
+        actionFeedbackAnim.SetTrigger(MoveString);
     }
 
     public void CharacterDies(HealthController deadCharacter, HealthController damager)
@@ -126,7 +138,7 @@ public class PartyUi : MonoBehaviour
         }
 
         actionFeedbackText.text = resultstring;
-        actionFeedbackAnim.SetTrigger(Update);
+        actionFeedbackAnim.SetTrigger(MoveString);
     }
     
     public void CharacterDamaged(HealthController damagedCharacter, HealthController damager)
@@ -144,7 +156,7 @@ public class PartyUi : MonoBehaviour
         }
 
         actionFeedbackText.text = resultstring;
-        actionFeedbackAnim.SetTrigger(Update);
+        actionFeedbackAnim.SetTrigger(MoveString);
     }
 
     public void UpdateObservableInfo(Observable observable)

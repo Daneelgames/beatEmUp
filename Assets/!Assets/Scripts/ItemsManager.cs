@@ -15,5 +15,19 @@ public class ItemsManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public bool CanAddAnotherOne(int index, int currentAmount)
+    {
+        if (index >= ItemsDatabase.Items.Count || ItemsDatabase.Items[index] == null)
+        {
+            Debug.LogError("ITEM DATABASE MISSING AN ITEM WITH INDEX " + index);
+            return false;
+        }
+            
+        if (ItemsDatabase.Items[index].maxAmountPerInventory == -1 || currentAmount < ItemsDatabase.Items[index].maxAmountPerInventory)
+            return true;
+            
+        return false;
+    }
 }
 

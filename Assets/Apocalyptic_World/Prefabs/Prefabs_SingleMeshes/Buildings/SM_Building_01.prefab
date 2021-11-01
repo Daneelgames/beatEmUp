@@ -16,7 +16,7 @@ GameObject:
   m_Name: SM_Building_01_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5331305175295777393
@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 5288237950844868329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8348657, y: 0.8348657, z: 0.8348657}
+  m_LocalScale: {x: 0.8348657, y: 0.8348657, z: 0.83486575}
   m_Children:
   - {fileID: 5331305175295777393}
   - {fileID: 7175389145440441881}
@@ -171,7 +171,7 @@ GameObject:
   m_Name: SM_Building_01_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7175389145440441881

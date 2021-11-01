@@ -46,6 +46,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float walkSpeed = 2;
     [SerializeField] private float runSpeed = 4;
     [SerializeField] private float stopDistance = 3;
+    [SerializeField] private float stopDistanceInvestigation = 3;
     [SerializeField] private float stopDistanceAllyToPlayer = 5;
     [SerializeField] private float runDistanceThreshold = 5;
     [SerializeField] private float looseTargetDistance = 20;
@@ -439,9 +440,9 @@ public class AiInput : MonoBehaviour
             if (alive == false)
                 yield break;
             
-            if (Vector3.Distance(transform.position, investigationPoint) <= stopDistance)
+            if (Vector3.Distance(transform.position, investigationPoint) <= stopDistanceInvestigation)
             {
-                if (Random.value > 0.5f)
+                if (Random.value > 0.3f)
                     Idle();
                 else
                     Wander();

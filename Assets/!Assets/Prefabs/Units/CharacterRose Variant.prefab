@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: -0.01170634, y: -0.01170634, z: -0.01170634}
   m_Children: []
   m_Father: {fileID: 518588768476347774}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2707728280254227335
 MeshFilter:
@@ -112,7 +112,7 @@ Transform:
   m_LocalScale: {x: -0.022773817, y: -0.022773817, z: -0.022773817}
   m_Children: []
   m_Father: {fileID: 518588768476347774}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &874004727599314189
 MeshFilter:
@@ -194,7 +194,7 @@ Transform:
   m_LocalScale: {x: -0.017011814, y: -0.017011814, z: -0.017011814}
   m_Children: []
   m_Father: {fileID: 518588768476347774}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &521290137475097537
 MeshFilter:
@@ -276,7 +276,7 @@ Transform:
   m_LocalScale: {x: -0.022773817, y: -0.022773817, z: -0.022773817}
   m_Children: []
   m_Father: {fileID: 518588768476347774}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6765419364745771164
 MeshFilter:
@@ -358,7 +358,7 @@ Transform:
   m_LocalScale: {x: -0.022773817, y: -0.022773817, z: -0.022773817}
   m_Children: []
   m_Father: {fileID: 518588768476347774}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4268106699816785753
 MeshFilter:
@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5757401403179926516, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_Name
-      value: CharacterRose
+      value: CharacterRose Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5926532711273271618, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: m_RootOrder
@@ -601,6 +601,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 79c0f4826a0c0224cbf258754c96e4c7, type: 2}
+    - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: stepsAu
+      value: 
+      objectReference: {fileID: 8805232927216142878}
     - target: {fileID: 6744019107223394889, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: stepsClips.Array.size
       value: 4
@@ -678,5 +682,10 @@ PrefabInstance:
 --- !u!4 &518588768476347774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2261199665141216099, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+  m_PrefabInstance: {fileID: 1752745374544776733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8805232927216142878 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7089079299650208771, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
   m_PrefabInstance: {fileID: 1752745374544776733}
   m_PrefabAsset: {fileID: 0}

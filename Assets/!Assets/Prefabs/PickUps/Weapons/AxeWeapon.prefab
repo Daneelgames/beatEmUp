@@ -42,9 +42,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.5283019, g: 0, b: 0.35963213, a: 1}
-  m_Intensity: 1
-  m_Range: 5
+  m_Color: {r: 1, g: 0.7058534, b: 0, a: 1}
+  m_Intensity: 0.5
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -142,12 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70696dfd68d957d448f82f2a369e8701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indexInDatabase: 1
   interactableOwner: {fileID: 0}
   _objectInfoData: {fileID: 11400000, guid: 99190932d536d0d4291a8aafbdbbf1f2, type: 2}
   rb: {fileID: 4501130174702667229}
   _collider: {fileID: 313402859066669539}
   weaponPickUp: {fileID: 2148598824031650502}
   consumablePickUp: {fileID: 0}
+  light: {fileID: 1112997223159840477}
+  lightPositionOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &2148598824031650502
 MonoBehaviour:
   m_ObjectHideFlags: 0

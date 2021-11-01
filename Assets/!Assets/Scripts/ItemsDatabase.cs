@@ -14,6 +14,9 @@ public class ItemsDatabase : ScriptableObject
 [Serializable]
 public class ItemInDatabase
 {
-    [SerializeField] int itemIndexInDatabase = -1;
-    [SerializeField] private AssetReference itemPickUpReference;
+    public int itemIndexInDatabase = -1;
+    public string itemName;
+    public string itemDescription;
+    public AssetReference itemPickUpReference;
+    public int maxAmountPerInventory = -1;
 }

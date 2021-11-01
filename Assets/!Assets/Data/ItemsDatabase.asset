@@ -14,30 +14,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - itemIndexInDatabase: 0
+    itemName: Med kit
+    itemDescription: If multiple units are selected, it will heal the one with least
+      Health
     itemPickUpReference:
       m_AssetGUID: 797a6c6b9c1d53f409c9fedf7510b9f6
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   - itemIndexInDatabase: 1
+    itemName: Axe
+    itemDescription: Powerful melee weapon
     itemPickUpReference:
       m_AssetGUID: dc93dca8373b7e54b8c018e055134fbe
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   - itemIndexInDatabase: 2
+    itemName: Pistol
+    itemDescription: Ranged weapon. Bullets are short
     itemPickUpReference:
       m_AssetGUID: 3307af1a8045e964b8327ad4a10452f3
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   - itemIndexInDatabase: 3
+    itemName: Cactus
+    itemDescription: Better than nothing
     itemPickUpReference:
       m_AssetGUID: 24c46ffb76710434284207feab3b1633
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
   - itemIndexInDatabase: 4
+    itemName: Stone
+    itemDescription: Can be used for melee attacks
     itemPickUpReference:
       m_AssetGUID: e33177f616a53a44ca9300edaf60cb1e
       m_SubObjectName: 

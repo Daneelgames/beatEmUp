@@ -127,11 +127,13 @@ public class InteractionController : MonoBehaviour
             SpawnController.Instance.Interactables.Remove(interactable);
             SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
 
-                PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
+            hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
+            PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
         }
         else if (interactable.ConsumablePickUp)
         {
             PartyInventory.Instance.PickUpConsumable(hc, interactable);
+            hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
             PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
         }
     }

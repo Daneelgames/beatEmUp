@@ -42,7 +42,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
+  m_Color: {r: 1, g: 0.7058534, b: 0, a: 1}
   m_Intensity: 0.5
   m_Range: 3
   m_SpotAngle: 30
@@ -142,12 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70696dfd68d957d448f82f2a369e8701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indexInDatabase: 4
   interactableOwner: {fileID: 0}
   _objectInfoData: {fileID: 11400000, guid: 24cadda78e50af4449a7cd9b69adb3d3, type: 2}
   rb: {fileID: 6148280074050707155}
   _collider: {fileID: 5177284745129542451}
   weaponPickUp: {fileID: 8571886192795900360}
   consumablePickUp: {fileID: 0}
+  light: {fileID: 1634042009707781259}
+  lightPositionOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &8571886192795900360
 MonoBehaviour:
   m_ObjectHideFlags: 0
