@@ -80,8 +80,8 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiNavigationManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -147,7 +147,7 @@
       <workItem from="1635150001096" duration="6376000" />
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
-      <workItem from="1635431897515" duration="38882000" />
+      <workItem from="1635431897515" duration="40124000" />
     </task>
     <servers />
   </component>

@@ -102,7 +102,7 @@ public class CameraController : MonoBehaviour
         {
             parent.gameObject.transform.parent = _parent;
             if (_parent != null)
-                parent.gameObject.transform.localPosition = Vector3.up * 4;
+                parent.gameObject.transform.localPosition = Vector3.up * 2;
         }
         else
         {

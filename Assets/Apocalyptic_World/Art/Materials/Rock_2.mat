@@ -8,15 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rock_2
-  m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
+  m_Shader: {fileID: 4800000, guid: f7e38193b7f064d7380403618fd8b69e, type: 3}
   m_ShaderKeywords: DR_GRADIENT_ON DR_RIM_ON _CELPRIMARYMODE_SINGLE _NORMALMAP _SPECULAR_SETUP
     _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -90,6 +89,7 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 2.55
+    - _CameraDistanceImpact: 1
     - _CelExtraEnabled: 0
     - _CelNumSteps: 3
     - _CelPrimaryMode: 1
@@ -102,8 +102,8 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FlatRimEdgeSmoothness: 0
-    - _FlatRimLightAlign: 0.084
-    - _FlatRimSize: 0.432
+    - _FlatRimLightAlign: 0
+    - _FlatRimSize: 0.239
     - _FlatSpecularEdgeSmoothness: 1
     - _FlatSpecularSize: 0.7
     - _Flatness: 1
@@ -115,7 +115,7 @@ Material:
     - _GradientCenterX: 0
     - _GradientCenterY: 0
     - _GradientEnabled: 1
-    - _GradientSize: 26.02
+    - _GradientSize: 23.66
     - _LightContribution: 0
     - _LightFalloffSize: 0.0001
     - _LightmapDirectionPitch: 0
@@ -123,12 +123,15 @@ Material:
     - _Metallic: 1
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _OutlineDepthOffset: 0
+    - _OutlineScale: 1
+    - _OutlineWidth: 10
     - _OverrideLightmapDir: 0
     - _Parallax: 0.01
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RimEnabled: 1
-    - _SelfShadingSize: 0.732
+    - _SelfShadingSize: 0.848
     - _SelfShadingSizeExtra: 0.811
     - _ShadowEdgeSize: 0
     - _ShadowEdgeSizeExtra: 0
@@ -154,11 +157,12 @@ Material:
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0, g: 0, b: 0, a: 1}
     - _ColorDimSteps: {r: 0.3773585, g: 0.26016688, b: 0.16197936, a: 1}
-    - _ColorGradient: {r: 0.24705882, g: 0, b: 0.00607412, a: 1}
+    - _ColorGradient: {r: 0.5943396, g: 0.15979885, b: 0.15979885, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0.09433961, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlatSpecularColor: {r: 0.3962264, g: 0.36273104, b: 0.2224101, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
   m_BuildTextureStacks: []
