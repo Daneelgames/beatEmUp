@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1486377157215361630}
   - component: {fileID: 354986749}
   - component: {fileID: 165544934142657219}
+  - component: {fileID: 552011994}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -166,6 +167,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultCursor: {fileID: 21300000, guid: 01b4583e6279f934498a65d5ddcfafb7, type: 3}
   observeCursor: {fileID: 21300000, guid: a5b65bcbc578bdd4a89f9670b58d0550, type: 3}
+--- !u!114 &552011994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486377157215361626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5044754560e8c9649a56b067ae5f93ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemsDatabase: {fileID: 11400000, guid: ea89a736c65e5a64287be4c992836950, type: 2}
 --- !u!1 &1486377158089296143
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,13 +15,21 @@
             <e p="BodyPart.cs" t="Include" />
             <e p="BodyPartsManager.cs" t="Include" />
             <e p="CameraController.cs" t="Include" />
+            <e p="CharacterGenerator.cs" t="Include" />
+            <e p="CharacterInventory.cs" t="Include" />
+            <e p="CharacterPerksController.cs" t="Include" />
             <e p="Consumable.cs" t="Include" />
             <e p="FieldOfView.cs" t="Include" />
             <e p="HealthController.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
             <e p="InteractionController.cs" t="Include" />
+            <e p="ItemsDatabase.cs" t="Include" />
+            <e p="ItemsManager.cs" t="Include" />
+            <e p="NavMeshBaker.cs" t="Include" />
             <e p="NoiseMaker.cs" t="Include" />
+            <e p="NotifyOnDestroy.cs" t="Include" />
             <e p="ObjectInfoData.cs" t="Include" />
+            <e p="Observable.cs" t="Include" />
             <e p="OneShotSound.cs" t="Include" />
             <e p="PartyInputManager.cs" t="Include" />
             <e p="PartyInventory.cs" t="Include" />
@@ -31,10 +39,12 @@
             <e p="PlayerInput.cs" t="Include" />
             <e p="PlayerUi.cs" t="Include" />
             <e p="SpawnController.cs" t="Include" />
+            <e p="UniversalCursorController.cs" t="Include" />
             <e p="Weapon.cs" t="Include" />
             <e p="WorldStreamer.cs" t="Include" />
           </e>
         </e>
+        <e p="AssetSpawner.cs" t="Include" />
         <e p="CartoonBloodFX" t="Include">
           <e p="Source" t="Include">
             <e p="Scripts" t="Include">
@@ -42,8 +52,6 @@
             </e>
           </e>
         </e>
-        <e p="CharacterGenerator.cs" t="Include" />
-        <e p="CharacterPerksController.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />
         </e>
@@ -259,8 +267,6 @@
             </e>
           </e>
         </e>
-        <e p="NavMeshBaker.cs" t="Include" />
-        <e p="Observable.cs" t="Include" />
         <e p="SimpleLowPolyNature" t="Include">
           <e p="Readme.txt" t="Include" />
           <e p="Shaders" t="Include">
@@ -270,7 +276,6 @@
         <e p="TGU Skybox Pack" t="Include">
           <e p="Readme.txt" t="Include" />
         </e>
-        <e p="UniversalCursorController.cs" t="Include" />
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

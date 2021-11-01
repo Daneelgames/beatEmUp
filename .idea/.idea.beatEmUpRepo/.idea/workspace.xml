@@ -19,24 +19,17 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/NavMeshBaker.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Observable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../dontrunRepo/dontrun/Assets/Scripts/ActiveNpcManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CharacterPerksController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/CharacterGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/InteractionController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPart.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BodyPartsManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AnimatorEvents.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/NoiseMaker.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraFollowPlayer.cs" />
       <option value="$PROJECT_DIR$/Assets/Weapon.cs" />
       <option value="$PROJECT_DIR$/Assets/KeyToSelectAllyFeedback.cs" />
       <option value="$PROJECT_DIR$/Assets/PartyInputManager.cs" />
@@ -67,7 +60,6 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/CharacterGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/UniversalCursorController.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
@@ -78,10 +70,17 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/NavMeshBaker.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/ItemsManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterInventory.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" />
+      <option value="$PROJECT_DIR$/Assets/AssetSpawner.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -148,6 +147,7 @@
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
       <workItem from="1635431897515" duration="40124000" />
+      <workItem from="1635771382097" duration="3507000" />
     </task>
     <servers />
   </component>

@@ -70,7 +70,7 @@ public class PartyUi : MonoBehaviour
 
     void LateUpdate()
     {
-        cursor.transform.position = Input.mousePosition;
+        cursor.transform.parent.position = Input.mousePosition;
     }
     
     public void UpdatePartyAggroMode()

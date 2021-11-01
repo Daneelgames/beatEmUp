@@ -152,15 +152,15 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.4056604, g: 0.1485068, b: 0.1014151, a: 1}
+    - _BaseColor: {r: 0.509434, g: 0.28832766, b: 0.24750803, a: 1}
     - _Color: {r: 0.6981132, g: 0.42860967, b: 0.16794232, a: 1}
-    - _ColorDim: {r: 0.5, g: 0.11057327, b: 0.035377353, a: 1}
+    - _ColorDim: {r: 0.4056604, g: 0.22012667, b: 0.18560877, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _ColorGradient: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FlatRimColor: {r: 0.16037738, g: 0.08767603, b: 0.024964407, a: 1}
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

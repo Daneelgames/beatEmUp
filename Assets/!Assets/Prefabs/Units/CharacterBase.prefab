@@ -7871,6 +7871,7 @@ GameObject:
   - component: {fileID: 2695189181210928995}
   - component: {fileID: 6217995972828308375}
   - component: {fileID: -1577154495707085973}
+  - component: {fileID: -2834431716537351534}
   m_Layer: 7
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -8277,6 +8278,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthController: {fileID: 1212818265}
   interactable: {fileID: 0}
+--- !u!114 &-2834431716537351534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5757401403179926516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5e7d9f41eeb0f4e98b304419012d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0
