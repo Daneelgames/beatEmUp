@@ -155,7 +155,7 @@ Material:
     - _SrcBlend: 1
     - _Surface: 0
     - _TextureBlendingMode: 0
-    - _TextureImpact: 0
+    - _TextureImpact: 0.309
     - _UVSec: 0
     - _UnityShadowMode: 0
     - _UnityShadowPower: 0.2

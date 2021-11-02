@@ -26,7 +26,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] private Vector3 eulearsOnThrow = Vector3.zero;
     [SerializeField] private int weaponDamage = 500;
     [SerializeField] private int throwDamage = 500;
-    [SerializeField] private int impactNoiseDistance = 10;
+    [SerializeField] private int impactNoiseDistance = 20;
+    [SerializeField] private int meleeNoiseDistance = 20;
     [SerializeField] private int throwPower = 10;
     [SerializeField] private float minDistanceToStopThrowFly = 2;
     public int ThrowPower => throwPower;
@@ -146,6 +147,8 @@ public class Weapon : MonoBehaviour
                 }
                 else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage, HealthController.DamageType.Melee))
                 {
+                    SpawnController.Instance.MakeNoise(transform.position, meleeNoiseDistance);
+                    
                     if (attackManager.Hc.CharacterPerksController.WeaponLover != null || Random.value > 0.66f)
                         attacksLeft--;
                     AfterAttack(newPartToDamage);

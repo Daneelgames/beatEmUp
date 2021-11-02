@@ -5122,7 +5122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotRaycastDistance: 100
-  shotNoiseDistance: 50
+  shotNoiseDistance: 100
   rangedWeaponAttacks:
   - shotPosition: {fileID: 5687861141736487641}
     useAmmo: 1
@@ -5174,7 +5174,7 @@ MonoBehaviour:
   eulearsOnThrow: {x: 90, y: 0, z: 0}
   weaponDamage: 100
   throwDamage: 500
-  impactNoiseDistance: 10
+  impactNoiseDistance: 20
   throwPower: 50
   minDistanceToStopThrowFly: 2
   attacksLeft: 4

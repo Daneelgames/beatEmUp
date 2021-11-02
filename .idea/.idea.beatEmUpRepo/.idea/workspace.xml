@@ -80,9 +80,9 @@
       <option value="$PROJECT_DIR$/Assets/AssetSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -150,7 +150,7 @@
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
       <workItem from="1635431897515" duration="40124000" />
-      <workItem from="1635771382097" duration="36525000" />
+      <workItem from="1635771382097" duration="36820000" />
     </task>
     <servers />
   </component>

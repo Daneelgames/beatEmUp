@@ -196,7 +196,7 @@ MonoBehaviour:
   eulearsOnThrow: {x: 0, y: 0, z: 0}
   weaponDamage: 200
   throwDamage: 200
-  impactNoiseDistance: 10
+  impactNoiseDistance: 20
   throwPower: 50
   minDistanceToStopThrowFly: 2
   attacksLeft: 2
