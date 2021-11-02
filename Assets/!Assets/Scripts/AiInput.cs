@@ -48,6 +48,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float stopDistance = 3;
     [SerializeField] private float stopDistanceInvestigation = 3;
     [SerializeField] private float stopDistanceAllyToPlayer = 5;
+    [SerializeField] private float stopDistanceFollowTarget = 2;
     [SerializeField] private float runDistanceThreshold = 5;
     [SerializeField] private float looseTargetDistance = 20;
     [SerializeField] private bool simpleWalker = true;
@@ -466,7 +467,8 @@ public class AiInput : MonoBehaviour
             
             if (_attackManager.CanMove)
             {
-                if (Vector3.Distance(transform.position, currentTargetPosition) > runDistanceThreshold)
+                float currentDistance = Vector3.Distance(transform.position, currentTargetPosition); 
+                if (currentDistance > runDistanceThreshold)
                 {
                     // RUN
                     anim.SetBool(Running, true);
@@ -479,8 +481,11 @@ public class AiInput : MonoBehaviour
                     SetNavMeshAgentSpeed(walkSpeed);
                 }
                 
-                agent.isStopped = false;
-                SetAgentDestinationTarget(currentTargetPosition, false);   
+                if (currentDistance > stopDistanceFollowTarget)
+                {
+                    agent.isStopped = false;
+                    SetAgentDestinationTarget(currentTargetPosition, false);
+                }   
             }
             else
             {
