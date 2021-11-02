@@ -29,5 +29,25 @@ public class ItemsManager : MonoBehaviour
             
         return false;
     }
-}
 
+    public void EquipItemFromInventory(HealthController unit, int itemDatabaseIndex)
+    {
+        // if unis is holding weapon already - move it to the inventory
+        
+        unit.AttackManager.DestroyWeaponInHands(unit.AttackManager.WeaponInHands, false);
+        
+        // spawn new weapon from database by index
+        unit.Inventory.CharacterLosesItem(itemDatabaseIndex); // this is needed to prevent duping
+        AssetSpawner.Instance.Spawn(ItemsDatabase.Items[itemDatabaseIndex].itemPickUpReference, unit.transform.position, Quaternion.identity, AssetSpawner.ObjectType.Item, unit);
+        
+        // pick new weapon up in method ProceedNewItem
+    }
+
+    public void ProceedNewItem(GameObject spawnedGO, HealthController interactor)
+    {
+        var newInteractable = spawnedGO.GetComponent<Interactable>();
+        
+        if (interactor && newInteractable)
+            interactor.InteractionController.Interact(newInteractable);
+    }
+}

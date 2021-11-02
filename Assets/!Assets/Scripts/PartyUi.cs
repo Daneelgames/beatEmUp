@@ -305,6 +305,9 @@ public class PartyUi : MonoBehaviour
     {
         PartyInputManager.Instance.SetCursorOverUI(active);
             
+        if (databaseItemIndex == -1)
+            return;
+        
         if (!active)
         {
             observableInfoAnim.SetBool(Active, false);
@@ -315,4 +318,12 @@ public class PartyUi : MonoBehaviour
         observableInfoText2.text = ItemsManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemDescription;
         observableInfoAnim.SetBool(Active, true);
     }
+    
+    public void InventorySlotClicked(int itemDatabaseIndex, Vector3 newPos)
+    {
+        // click shows drop down menu
+        ActionsDropDownMenu.Instance.OpenInventoryItemDropDownMenu(itemDatabaseIndex, newPos);
+    }
+    
+    
 }

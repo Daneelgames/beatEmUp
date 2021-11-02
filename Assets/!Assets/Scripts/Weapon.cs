@@ -171,7 +171,7 @@ public class Weapon : MonoBehaviour
                 SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
                       
             if (AttackManager)
-                AttackManager.DestroyWeapon(this);
+                AttackManager.DestroyWeaponInHands(this, true);
         }
     }
 

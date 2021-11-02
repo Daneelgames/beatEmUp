@@ -124,7 +124,7 @@ public class InteractionController : MonoBehaviour
         }
     }
 
-    void Interact(Interactable interactable)
+    public void Interact(Interactable interactable)
     {
         if(interactable.CanInteract == false)
             return;

@@ -558,9 +558,7 @@ public class AttackManager : MonoBehaviour
         interactable.transform.rotation = WeaponParentTransform.rotation;
         interactable.transform.parent = WeaponParentTransform;
         interactable.WeaponPickUp.SetNewOwner(this);
-        
-        DropWeapon();
-        
+
         WeaponInHands = interactable.WeaponPickUp;
     }
 
@@ -575,14 +573,18 @@ public class AttackManager : MonoBehaviour
             weaponToDrop.transform.localScale = Vector3.one;
             weaponToDrop.Interactable.ToggleTriggerCollider(false);
             weaponToDrop.Interactable.ToggleRigidbodyKinematicAndGravity(false, true);
-            DestroyWeapon(WeaponInHands);
+            DestroyWeaponInHands(WeaponInHands, true);
         }
     }
 
-    public void DestroyWeapon(Weapon weapon)
+    // Weapon removes from inventory
+    public void DestroyWeaponInHands(Weapon weapon, bool removeFromInventory)
     {
         if (WeaponInHands == weapon)
         {
+            if (removeFromInventory)
+                hc.Inventory.CharacterLosesItem(weapon.Interactable.IndexInDatabase);
+            
             Destroy(WeaponInHands.gameObject);
             WeaponInHands = null;
         }

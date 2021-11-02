@@ -24,6 +24,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     maxAmountPerInventory: -1
     itemIcon: {fileID: 21300000, guid: 5b9ad9cd5ac72c84f947c590c7dfc12e, type: 3}
+    itemTypes: 020000000300000004000000
   - itemIndexInDatabase: 1
     itemName: Axe
     itemDescription: Powerful melee weapon
@@ -34,6 +35,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     maxAmountPerInventory: -1
     itemIcon: {fileID: 21300000, guid: eac35266905efd34381692de366606b4, type: 3}
+    itemTypes: 020000000000000004000000
   - itemIndexInDatabase: 2
     itemName: Pistol
     itemDescription: Ranged weapon. Bullets are short
@@ -44,6 +46,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     maxAmountPerInventory: -1
     itemIcon: {fileID: 21300000, guid: 1dffdb428b302ec4dab72c3e2f90c4c3, type: 3}
+    itemTypes: 00000000010000000200000004000000
   - itemIndexInDatabase: 3
     itemName: Cactus
     itemDescription: Better than nothing
@@ -54,6 +57,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     maxAmountPerInventory: -1
     itemIcon: {fileID: 21300000, guid: 8a15be40cd665934ead2793881f4245e, type: 3}
+    itemTypes: 00000000020000000300000004000000
   - itemIndexInDatabase: 4
     itemName: Stone
     itemDescription: Can be used for melee attacks
@@ -64,3 +68,4 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     maxAmountPerInventory: -1
     itemIcon: {fileID: 21300000, guid: 991a545d4e4f8b141bd5947a02d9b980, type: 3}
+    itemTypes: 0000000002000000

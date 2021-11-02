@@ -15,9 +15,21 @@ public class ItemsDatabase : ScriptableObject
 public class ItemInDatabase
 {
     public int itemIndexInDatabase = -1;
+    
     public string itemName;
     public string itemDescription;
     public AssetReference itemPickUpReference;
     public int maxAmountPerInventory = -1;
     public Sprite itemIcon;
+
+    [Header("InventoryUse")] 
+    public List<ItemType> itemTypes = new List<ItemType>();
+    public enum ItemType
+    {
+        MeleeWeapon, RangedWeapon, Throwable, Consumable, Tradable    
+    }
+
+    public string dropDownActionEquip = "Equip";
+    public string dropDownActionConsume = "Consume";
+    public string dropDownActionThrow = "Throw";
 }

@@ -41,10 +41,6 @@ public class CharacterInventory : MonoBehaviour
         }
     }
 
-    public void InventorySlotClicked(int inventorySlotIndex)
-    {
-        
-    }
 }
 
 [Serializable]

@@ -62,6 +62,7 @@ public class PartyInputManager : MonoBehaviour
                 SelectUnit(0);
                 CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
                 PartyUi.Instance.UnitSelected(Party[0]);
+                ActionsDropDownMenu.Instance.CloseDropDownMenu();
             }
             ObserveMode(false);
         }
@@ -72,6 +73,7 @@ public class PartyInputManager : MonoBehaviour
                 SelectUnit(1);
                 CameraController.Instance.MoveCameraToPosition(Party[1].transform.position, Party[1].transform);
                 PartyUi.Instance.UnitSelected(Party[1]);
+                ActionsDropDownMenu.Instance.CloseDropDownMenu();
             }
             ObserveMode(false);
         }
@@ -82,6 +84,7 @@ public class PartyInputManager : MonoBehaviour
                 SelectUnit(2);
                 CameraController.Instance.MoveCameraToPosition(Party[2].transform.position, Party[2].transform);
                 PartyUi.Instance.UnitSelected(Party[2]);
+                ActionsDropDownMenu.Instance.CloseDropDownMenu();
             }
             ObserveMode(false);
         }
@@ -100,6 +103,7 @@ public class PartyInputManager : MonoBehaviour
                     }
                 }   
                 PartyUi.Instance.UnitSelected(SelectedAllyUnits[0]);
+                ActionsDropDownMenu.Instance.CloseDropDownMenu();
             }
             ObserveMode(false);
         }
@@ -111,12 +115,14 @@ public class PartyInputManager : MonoBehaviour
             
             UseMedKit();
             ObserveMode(false);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
         }
 
 
         if (Input.GetButtonDown("Observe"))
         {
             ObserveMode(!observeMode);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
         }
         
         if (Input.GetButtonDown("Inventory"))
@@ -125,6 +131,7 @@ public class PartyInputManager : MonoBehaviour
                 return;
             
             PartyUi.Instance.ToggleInventoryUI(SelectedAllyUnits[0]);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
         }
         
         /*
@@ -157,6 +164,7 @@ public class PartyInputManager : MonoBehaviour
                 return;
             
             ObserveMode(false);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
             
             if (SelectedAllyUnits.Count <= 0)
                 return;

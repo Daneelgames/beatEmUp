@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class SpawnController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SpawnController : MonoBehaviour
     public static SpawnController Instance;
 
     private List<AiInput> spawnedAiInputs = new List<AiInput>();
+    
 
     private void Awake()
     {

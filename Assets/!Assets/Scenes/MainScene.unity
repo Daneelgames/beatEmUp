@@ -17123,23 +17123,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8728268691935989524, guid: ad7407e9399125743b5c6d8f2a7e25f4, type: 3}
   m_PrefabInstance: {fileID: 548035301}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &552011993 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1486377157215361626, guid: ca5a802e3f167f848b7263b696974e12, type: 3}
-  m_PrefabInstance: {fileID: 1486377157033406626}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &552011994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552011993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4d4884a63f9be54e9c3291c785bbedf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &560230858
 GameObject:
   m_ObjectHideFlags: 0
@@ -67627,10 +67610,6 @@ PrefabInstance:
     - target: {fileID: 3885544775627633733, guid: 105b50b3daefa1e498a3334d50afd71e, type: 3}
       propertyPath: m_Name
       value: PartyControls
-      objectReference: {fileID: 0}
-    - target: {fileID: 3885544776042877624, guid: 105b50b3daefa1e498a3334d50afd71e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 105b50b3daefa1e498a3334d50afd71e, type: 3}
