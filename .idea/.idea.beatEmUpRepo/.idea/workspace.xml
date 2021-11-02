@@ -26,13 +26,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/DetailsOnGroundController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/UiButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/PartyUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon.cs" />
       <option value="$PROJECT_DIR$/Assets/WorldStreamer.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
@@ -52,10 +51,8 @@
       <option value="$PROJECT_DIR$/Assets/PerksManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/UniversalCursorController.cs" />
-      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Observable.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" />
@@ -74,14 +71,18 @@
       <option value="$PROJECT_DIR$/Assets/DetailsOnGroundController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterInventoryUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Interactable.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInventory.cs" />
-      <option value="$PROJECT_DIR$/Assets/CharacterInventoryUi.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -149,7 +150,7 @@
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
       <workItem from="1635431897515" duration="40124000" />
-      <workItem from="1635771382097" duration="23176000" />
+      <workItem from="1635771382097" duration="29908000" />
     </task>
     <servers />
   </component>

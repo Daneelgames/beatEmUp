@@ -549,7 +549,7 @@ public class AttackManager : MonoBehaviour
     }
 
     
-    public void PickWeapon(Interactable interactable)
+    public void TakeWeaponInHands(Interactable interactable)
     {
         if (interactable == null || interactable.transform == null || WeaponParentTransform == null)
             return;

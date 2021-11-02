@@ -58,4 +58,21 @@ public class SpawnController : MonoBehaviour
             InteractablesGameObjects.Remove(destroyedInteractable.gameObject);
         }
     }
+
+    public Interactable GetClosestInteractable(Vector3 newPos, float maxDistance)
+    {
+        Interactable closest = null;
+
+        
+        for (int i = 0; i < _interactables.Count; i++)
+        {
+            float newDistance = Vector3.Distance(newPos, _interactables[i].transform.position);
+            if (newDistance <= maxDistance)
+            {
+                maxDistance = newDistance;
+                closest = _interactables[i];
+            }
+        }
+        return closest;
+    }
 }

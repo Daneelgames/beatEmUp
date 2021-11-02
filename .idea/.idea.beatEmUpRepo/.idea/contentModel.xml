@@ -278,6 +278,7 @@
         <e p="TGU Skybox Pack" t="Include">
           <e p="Readme.txt" t="Include" />
         </e>
+        <e p="UiButton.cs" t="Include" />
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

@@ -7921,6 +7921,7 @@ MonoBehaviour:
   characterController: {fileID: 0}
   inventory: {fileID: -2834431716537351534}
   _attackManager: {fileID: 4792253143275227139}
+  _interactionController: {fileID: 2695189181210928995}
   characterPerksController: {fileID: 6217995972828308375}
   anim: {fileID: 919132149555714730}
   _aiInput: {fileID: 2984947846422348196}
@@ -8293,7 +8294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5e7d9f41eeb0f4e98b304419012d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsInInventories: []
+  itemsInInventory: []
 --- !u!1 &5922580849658585749
 GameObject:
   m_ObjectHideFlags: 0

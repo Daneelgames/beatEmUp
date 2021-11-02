@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,6 +22,7 @@ public class InteractionController : MonoBehaviour
 
     private Collider[] interactableColliders;
 
+    private Interactable interactableToInteract;
     private bool aiming = false;
     void Start()
     {
@@ -44,7 +46,11 @@ public class InteractionController : MonoBehaviour
         closestInteractableFeedbackEmissionModule.rateOverTime = 0;
         aiming = false;
     }
-    
+
+    public void SetInteractableToInteract(Interactable newInteractable)
+    {
+        interactableToInteract = newInteractable;
+    }
 
     IEnumerator UpdateInteraction()
     {
@@ -96,15 +102,18 @@ public class InteractionController : MonoBehaviour
                 if (Input.GetButtonDown("Interact") && hc.PlayerInput)
                     Interact(closestInteractable);
 
-                // picks up weapon if has none and if weapon has no owner
-                if (hc.AttackManager.WeaponInHands == null && closestInteractable.WeaponPickUp &&
-                    closestInteractable.WeaponPickUp.AttackManager == null)
+                if (interactableToInteract != null && interactableToInteract == closestInteractable)
                 {
-                    Interact(closestInteractable);
-                }
-                else if (closestInteractable.ConsumablePickUp && closestInteractable.ConsumablePickUp.heal)
-                {
-                    Interact(closestInteractable);
+                    // picks up weapon if has none and if weapon has no owner
+                    if (closestInteractable.WeaponPickUp &&
+                        closestInteractable.WeaponPickUp.AttackManager == null)
+                    {
+                        Interact(closestInteractable);
+                    }
+                    else if (closestInteractable.ConsumablePickUp && closestInteractable.ConsumablePickUp.heal)
+                    {
+                        Interact(closestInteractable);
+                    }   
                 }
             }
             else
@@ -125,7 +134,7 @@ public class InteractionController : MonoBehaviour
             interactable.CanInteract = false;
             interactable.ToggleTriggerCollider(true);
             interactable.ToggleRigidbodyKinematicAndGravity(true, false);
-            hc.AttackManager.PickWeapon(interactable);
+            
             GameManager.Instance.SetLayerRecursively(interactable.gameObject, 7);
             
             SpawnController.Instance.Interactables.Remove(interactable);
@@ -133,11 +142,18 @@ public class InteractionController : MonoBehaviour
 
             hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
             PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
+            
+            if (hc.AttackManager.WeaponInHands == null)
+                hc.AttackManager.TakeWeaponInHands(interactable);
+            else
+            {
+                Destroy(interactable.gameObject);
+            }
         }
         else if (interactable.ConsumablePickUp)
         {
             interactable.CanInteract = false;
-            PartyInventory.Instance.PickUpConsumable(hc, interactable);
+            PartyInventory.Instance.PickUpInteractable(hc, interactable);
             hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
             PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
         }

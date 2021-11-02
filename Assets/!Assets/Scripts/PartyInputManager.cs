@@ -28,13 +28,15 @@ public class PartyInputManager : MonoBehaviour
     private List<GameObject> spawnedUnitSelectedFeedbacks = new List<GameObject>();
 
     private bool observeMode = false;
+    private bool cursorOverUI = false;
     private void Awake()
     {
         Instance = this;
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(1f);
         CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
     }
 
@@ -151,6 +153,9 @@ public class PartyInputManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (cursorOverUI)
+                return;
+            
             ObserveMode(false);
             
             if (SelectedAllyUnits.Count <= 0)
@@ -159,9 +164,9 @@ public class PartyInputManager : MonoBehaviour
             Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
             newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
 
+            HealthController closestUnitToAttack = null;
             float distance = 1000;
             float newDistance = 0;
-            HealthController closestUnitToAttack = null;
             for (int i = 0; i < GameManager.Instance.Units.Count; i++)
             {
                 var unit = GameManager.Instance.Units[i];
@@ -177,21 +182,24 @@ public class PartyInputManager : MonoBehaviour
             }
 
             if (closestUnitToAttack)
-            {
+            { 
+                // ATTACK ORDER
                 for (int i = 0; i < SelectedAllyUnits.Count; i++)
                 {
                     if (SelectedAllyUnits[i] && SelectedAllyUnits[i].AiInput)
                     {
-                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);   
+                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);
                         SelectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
                         PartyUi.Instance.AttackOrderFeedback(newPos);
                     }
-                }      
+                }
             }
             else
             {
                 for (int i = 0; i < SelectedAllyUnits.Count; i++)
                 {
+                    Interactable interactableToInteract = SpawnController.Instance.GetClosestInteractable(newPos, SelectedAllyUnits[i].InteractionController.interactionDistance);
+
                     Vector3 tempPose = newPos;
                     if (SelectedAllyUnits[i])
                     {
@@ -216,9 +224,18 @@ public class PartyInputManager : MonoBehaviour
                                 break;
                         }
 
-                        PartyUi.Instance.MoveOrderFeedback(newPos);
                         SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
-                        SelectedAllyUnits[i].AiInput.OrderMove(tempPose);   
+                        if (interactableToInteract == null)
+                        {
+                            PartyUi.Instance.MoveOrderFeedback(newPos);
+                        }
+                        else
+                        {
+                            PartyUi.Instance.InteractOrderFeedback(interactableToInteract);
+                            SelectedAllyUnits[i].InteractionController.SetInteractableToInteract(interactableToInteract);
+                        }
+                        
+                        SelectedAllyUnits[i].AiInput.OrderMove(tempPose);
                     }
                 }   
             }
@@ -396,5 +413,10 @@ public class PartyInputManager : MonoBehaviour
             spawnedUnitSelectedFeedbacks[index].transform.position = parent.position;
         spawnedUnitSelectedFeedbacks[index].transform.parent = parent;
         spawnedUnitSelectedFeedbacks[index].SetActive(active);
+    }
+
+    public void SetCursorOverUI(bool _cursorOverUI)
+    {
+        cursorOverUI = _cursorOverUI;
     }
 }

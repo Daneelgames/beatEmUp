@@ -18,25 +18,25 @@ public class PartyInventory : MonoBehaviour
         Instance = this;
     }
 
-    private Coroutine pickConsumableCoroutine;
-    public void PickUpConsumable(HealthController hc, Interactable consumableInteractable)
+    private Coroutine pickInteractableCoroutine;
+    public void PickUpInteractable(HealthController hc, Interactable interactable)
     {
-        if ((hc && hc.AiInput.inParty == false) || pickConsumableCoroutine != null)
+        if ((hc && hc.AiInput.inParty == false) || pickInteractableCoroutine != null)
             return;
 
-        pickConsumableCoroutine = StartCoroutine(PickConsumableWithDelay(consumableInteractable));
+        pickInteractableCoroutine = StartCoroutine(PickInteractableWithDelay(interactable));
     }
 
-    IEnumerator PickConsumableWithDelay(Interactable consumableInteractable)
+    IEnumerator PickInteractableWithDelay(Interactable interactable)
     {
         yield return new WaitForSeconds(0.1f);
         
-        if (consumableInteractable.ConsumablePickUp.heal)
+        if (interactable.IndexInDatabase == 0)
         {
             MedKitsAmount++;   
             PartyUi.Instance.UpdateMedKits();
         }
-        Destroy(consumableInteractable.gameObject);
-        pickConsumableCoroutine = null;
+        Destroy(interactable.gameObject);
+        pickInteractableCoroutine = null;
     }
 }

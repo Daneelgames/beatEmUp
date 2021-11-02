@@ -24,7 +24,12 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private Text observableInfoText2;
     [SerializeField] private Animator observableInfoAnim;
     [SerializeField] private Animator moveOrderFeedbackAnim;
+    
+    [Header("Cursor")]
     [SerializeField] private Image cursor;
+    [SerializeField] private Sprite arrowSprite;
+    [SerializeField] private Sprite pickItemSprite;
+    [SerializeField] private List<SpriteRenderer> moveOrderFeedbackImages;
     public Image Cursor => cursor;
 
     [Header("Prefabs")] 
@@ -100,13 +105,29 @@ public class PartyUi : MonoBehaviour
         }   
     }
 
+    void SetOrderSprite(Sprite spr)
+    {
+        for (int i = 0; i < moveOrderFeedbackImages.Count; i++)
+        {
+            moveOrderFeedbackImages[i].sprite = spr;
+        }
+    }
+    
     public void MoveOrderFeedback(Vector3 newPos)
     {
+        SetOrderSprite(arrowSprite);
         moveOrderFeedbackAnim.SetTrigger(MoveString);
         moveOrderFeedbackAnim.transform.position = newPos;
     }
+    public void InteractOrderFeedback(Interactable interactable)
+    {
+        SetOrderSprite(pickItemSprite);
+        moveOrderFeedbackAnim.SetTrigger(MoveString);
+        moveOrderFeedbackAnim.transform.position = interactable.transform.position;
+    }
     public void AttackOrderFeedback(Vector3 newPos)
     {
+        SetOrderSprite(arrowSprite);
         moveOrderFeedbackAnim.SetTrigger(AttackString);
         moveOrderFeedbackAnim.transform.position = newPos;
     }
@@ -278,5 +299,20 @@ public class PartyUi : MonoBehaviour
         {
             spawnedInventoryUIs[0].UpdateInventoryUI(unit);
         }
+    }
+
+    public void SelectInventorySlot(bool active, int databaseItemIndex)
+    {
+        PartyInputManager.Instance.SetCursorOverUI(active);
+            
+        if (!active)
+        {
+            observableInfoAnim.SetBool(Active, false);
+            return;
+        }
+        
+        observableInfoText.text = ItemsManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemName;
+        observableInfoText2.text = ItemsManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemDescription;
+        observableInfoAnim.SetBool(Active, true);
     }
 }

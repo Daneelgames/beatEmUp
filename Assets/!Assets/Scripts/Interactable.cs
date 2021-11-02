@@ -58,11 +58,6 @@ public class Interactable : MonoBehaviour
             light.SetActive(active);
     }
 
-    private void OnDestroy()
-    {
-        SpawnController.Instance.InteractableDestroyed(this);
-    }
-
     public bool CanBeInteractedBy(HealthController hc)
     {
         bool canBeInteracted = true;
@@ -81,5 +76,12 @@ public class Interactable : MonoBehaviour
     {
         rb.isKinematic = kinematic;
         rb.useGravity = gravity;
+    }
+
+    private void OnDestroy()
+    {
+        SpawnController.Instance.InteractableDestroyed(this);
+        if (light)
+            Destroy(light);
     }
 }

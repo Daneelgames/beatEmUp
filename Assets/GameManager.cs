@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         
         for (int i = 0; i < Units.Count; i++)
         {
-            if (Units[i] == hcAttacker)
+            if (Units[i] == hcAttacker || Units[i].Health <= 0)
                 continue;
 
             if (hcAttacker.Enemies.Contains(Units[i]) == false && onlyEnemies)
@@ -160,4 +160,5 @@ public class GameManager : MonoBehaviour
         
         return closestPosition;
     }
+    
 }

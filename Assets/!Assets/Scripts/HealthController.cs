@@ -50,7 +50,10 @@ public class HealthController : MonoBehaviour
     
     [SerializeField] private AttackManager _attackManager;
     public AttackManager AttackManager => _attackManager;
-    
+
+    [SerializeField] private InteractionController _interactionController;
+    public InteractionController InteractionController => _interactionController;
+
     [SerializeField] private CharacterPerksController characterPerksController;
     public CharacterPerksController CharacterPerksController => characterPerksController;
     [SerializeField] private Animator anim;
