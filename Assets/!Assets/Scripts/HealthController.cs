@@ -229,7 +229,10 @@ public class HealthController : MonoBehaviour
         if (Health <= 0)
         {
             PartyUi.Instance.CharacterDies(this, damager);
-            damager.RemoveEnemy(this);
+           
+            if (damager)
+                damager.RemoveEnemy(this);
+            
             Death(false, true, false, true);
         }
         else

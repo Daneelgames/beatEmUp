@@ -15,7 +15,7 @@ public class UiButton : MonoBehaviour
         // THIS SHIT IS BAD
 
         int newIndex = -1;
-        if (inventorySlotIndex != -1)
+        if (inventorySlotIndex != -1 && PartyInputManager.Instance.SelectedAllyUnits[0].Inventory.ItemsInInventory.Count > inventorySlotIndex)
             newIndex = PartyInputManager.Instance.SelectedAllyUnits[0].Inventory.ItemsInInventory[inventorySlotIndex].itemIndex;
         PartyUi.Instance.SelectInventorySlot(true, newIndex);
     }
@@ -24,7 +24,7 @@ public class UiButton : MonoBehaviour
     {
         // THIS SHIT IS BAD
         int newIndex = -1;
-        if (inventorySlotIndex != -1)
+        if (inventorySlotIndex != -1 && PartyInputManager.Instance.SelectedAllyUnits[0].Inventory.ItemsInInventory.Count > inventorySlotIndex)
             newIndex = PartyInputManager.Instance.SelectedAllyUnits[0].Inventory.ItemsInInventory[inventorySlotIndex].itemIndex;
         PartyUi.Instance.SelectInventorySlot(false, newIndex);
     }

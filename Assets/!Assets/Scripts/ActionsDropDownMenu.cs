@@ -10,7 +10,7 @@ public class ActionsDropDownMenu : MonoBehaviour
 
     enum ActionWithItem
     {
-        Equip, Consume, Throw
+        Equip, Consume, Throw, Drop
     }
 
     private List<ActionWithItem> actionWithItemsCurrent = new List<ActionWithItem>();
@@ -26,6 +26,7 @@ public class ActionsDropDownMenu : MonoBehaviour
         bool equipItem = false;
         bool consumeItem = false; 
         bool throwItem = false;
+        bool dropItem = false;
         
         actionWithItemsCurrent.Clear();
         transform.position = newPos;
@@ -73,6 +74,15 @@ public class ActionsDropDownMenu : MonoBehaviour
                     continue;
                 }  
             }
+            if (!dropItem)
+            {
+                // DROP
+                dropItem = true;
+                actionWithItemsCurrent.Add(ActionWithItem.Drop);
+                actionTexts[i].transform.parent.gameObject.SetActive(true);
+                actionTexts[i].text = item.dropDownActionDrop;
+                continue;
+            }
             
             actionTexts[i].transform.parent.gameObject.SetActive(false);
         }
@@ -103,6 +113,10 @@ public class ActionsDropDownMenu : MonoBehaviour
                 
                 case ActionWithItem.Throw:
                     
+                    break;
+                
+                case ActionWithItem.Drop:
+                    ItemsManager.Instance.DropItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], currentItemDatabaseIndex);
                     break;
             }
         }

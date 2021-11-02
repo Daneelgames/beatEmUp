@@ -23,20 +23,15 @@
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../dontrunRepo/dontrun/Assets/Scripts/ActiveNpcManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/DetailsOnGroundController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ActivateRigidbodyOnNoise.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/DamageOnContact.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/UiButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/AiNavigationManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Interactable.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SpawnController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Consumable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerInput.cs" />
@@ -67,22 +62,27 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterInventoryUi.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Interactable.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInventory.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/ActionsDropDownMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/AssetSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/DamageOnContact.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/ActivateRigidbodyOnNoise.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ActionsDropDownMenu.cs" />
+      <option value="$PROJECT_DIR$/Assets/ThrowArcRenderer.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInventory.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -150,7 +150,7 @@
       <workItem from="1635186489988" duration="27065000" />
       <workItem from="1635337095651" duration="23891000" />
       <workItem from="1635431897515" duration="40124000" />
-      <workItem from="1635771382097" duration="36820000" />
+      <workItem from="1635771382097" duration="47135000" />
     </task>
     <servers />
   </component>

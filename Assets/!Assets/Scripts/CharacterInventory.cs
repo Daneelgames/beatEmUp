@@ -36,6 +36,8 @@ public class CharacterInventory : MonoBehaviour
                 ItemsInInventory[i].amount--;
                 if (ItemsInInventory[i].amount <= 0)
                     ItemsInInventory.RemoveAt(i);
+
+                PartyUi.Instance.UpdateCharacterInventory();
                 return;
             }
         }

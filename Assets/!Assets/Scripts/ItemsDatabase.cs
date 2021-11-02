@@ -32,4 +32,5 @@ public class ItemInDatabase
     public string dropDownActionEquip = "Equip";
     public string dropDownActionConsume = "Consume";
     public string dropDownActionThrow = "Throw";
+    public string dropDownActionDrop = "Drop";
 }

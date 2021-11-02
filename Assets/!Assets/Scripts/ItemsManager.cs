@@ -42,6 +42,28 @@ public class ItemsManager : MonoBehaviour
         
         // pick new weapon up in method ProceedNewItem
     }
+    
+    public void DropItemFromInventory(HealthController unit, int itemDatabaseIndex)
+    {
+        AssetSpawner.Instance.Spawn(ItemsDatabase.Items[itemDatabaseIndex].itemPickUpReference, unit.transform.position + Vector3.up * 1.5f, Quaternion.identity, AssetSpawner.ObjectType.Item, null);
+        
+        // if unis is holding weapon - Destroy it
+        if (unit.AttackManager.WeaponInHands && unit.AttackManager.WeaponInHands.Interactable.IndexInDatabase == itemDatabaseIndex)
+        {
+            for (int i = 0; i < unit.Inventory.ItemsInInventory.Count; i++)
+            {
+                if (unit.Inventory.ItemsInInventory[i].itemIndex == itemDatabaseIndex &&
+                    unit.Inventory.ItemsInInventory[i].amount == 1)
+                {
+                    // single weapon
+                    unit.AttackManager.DestroyWeaponInHands(unit.AttackManager.WeaponInHands, true);
+                    return;
+                }
+            }
+        }
+        // lose item if it wasnt that single weapon in hands
+        unit.Inventory.CharacterLosesItem(itemDatabaseIndex);
+    }
 
     public void ProceedNewItem(GameObject spawnedGO, HealthController interactor)
     {

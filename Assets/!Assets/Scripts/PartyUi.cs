@@ -152,6 +152,12 @@ public class PartyUi : MonoBehaviour
         }
     }
 
+    public void UpdateCharacterInventory()
+    {
+        if (spawnedInventoryUIs.Count > 0 && spawnedInventoryUIs[0] != null && spawnedInventoryUIs[0].gameObject.activeInHierarchy)
+            spawnedInventoryUIs[0].UpdateInventoryUI(PartyInputManager.Instance.SelectedAllyUnits[0]);
+    }
+
     public void CharacterDies(HealthController deadCharacter, HealthController damager)
     {
         /*

@@ -7,26 +7,27 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rock_2
-  m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
-  m_ShaderKeywords: DR_GRADIENT_ON DR_RIM_ON _CELPRIMARYMODE_SINGLE _NORMALMAP _SPECULAR_SETUP
-    _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
+  m_Name: ThrowArcMaterial
+  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: ebfda2444ce67bd4599f897bcecf09f1, type: 3}
-        m_Scale: {x: 0.5, y: 0.5}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 0.5, y: 0.5}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CelCurveTexture:
         m_Texture: {fileID: 0}
@@ -53,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d644c824e68292c4f82479ee7c94bdbf, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -86,87 +87,101 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 0
-    - _BumpScale: 2.55
-    - _CameraDistanceImpact: 1
+    - _BlendOp: 0
+    - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
     - _CelExtraEnabled: 0
     - _CelNumSteps: 3
     - _CelPrimaryMode: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorMode: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0.1
+    - _DstBlend: 10
     - _EnvironmentReflections: 1
-    - _FlatRimEdgeSmoothness: 0
-    - _FlatRimLightAlign: 0
-    - _FlatRimSize: 0.342
+    - _FlatRimEdgeSmoothness: 0.5
+    - _FlatRimLightAlign: 0.705
+    - _FlatRimSize: 0.781
     - _FlatSpecularEdgeSmoothness: 1
-    - _FlatSpecularSize: 0.7
+    - _FlatSpecularSize: 0.66
     - _Flatness: 1
     - _FlatnessExtra: 1
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.327
+    - _Glossiness: 1
     - _GlossyReflections: 1
     - _GradientAngle: 0
     - _GradientCenterX: 0
     - _GradientCenterY: 0
-    - _GradientEnabled: 1
-    - _GradientSize: 23.66
+    - _GradientEnabled: 0
+    - _GradientSize: 10
     - _LightContribution: 0
     - _LightFalloffSize: 0.0001
     - _LightmapDirectionPitch: 0
     - _LightmapDirectionYaw: 0
-    - _Metallic: 1
-    - _Mode: 0
+    - _Metallic: 0
+    - _Mode: 1
     - _OcclusionStrength: 1
-    - _OutlineDepthOffset: 0
-    - _OutlineScale: 1
-    - _OutlineWidth: 10
     - _OverrideLightmapDir: 0
-    - _Parallax: 0.01
+    - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimEnabled: 1
-    - _SelfShadingSize: 0.848
-    - _SelfShadingSizeExtra: 0.811
-    - _ShadowEdgeSize: 0
-    - _ShadowEdgeSizeExtra: 0
-    - _Smoothness: 0.212
+    - _RimEnabled: 0
+    - _SampleGI: 0
+    - _SelfShadingSize: 1
+    - _SelfShadingSizeExtra: 0.6
+    - _ShadowEdgeSize: 0.05
+    - _ShadowEdgeSizeExtra: 0.05
+    - _Smoothness: 1
+    - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecularEnabled: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Surface: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _TextureBlendingMode: 0
-    - _TextureImpact: 0.265
+    - _TextureImpact: 1
     - _UVSec: 0
-    - _UnityShadowMode: 0
-    - _UnityShadowPower: 0.2
+    - _UnityShadowMode: 1
+    - _UnityShadowPower: 1
     - _UnityShadowSharpness: 1
     - _VertexColorsEnabled: 0
-    - _WorkflowMode: 0
-    - _ZWrite: 1
+    - _WorkflowMode: 1
+    - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.32831082, g: 0.24532752, b: 0.3490566, a: 1}
-    - _Color: {r: 0.83971167, g: 0.9599356, b: 0.9622642, a: 1}
-    - _ColorDim: {r: 0.11282564, g: 0.10012461, b: 0.2830189, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 0.89019614, g: 0.5803922, b: 0.37254903, a: 1}
+    - _ColorDim: {r: 0.9150943, g: 0.7523433, b: 0.64315593, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
-    - _ColorDimExtra: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorDimSteps: {r: 0.3773585, g: 0.26016688, b: 0.16197936, a: 1}
-    - _ColorGradient: {r: 0.5013145, g: 0.4094874, b: 0.8113208, a: 1}
+    - _ColorDimExtra: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _ColorGradient: {r: 0.5137255, g: 0.45098042, b: 0.40784317, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlatRimColor: {r: 0.04915477, g: 0.04685831, b: 0.122641504, a: 1}
-    - _FlatSpecularColor: {r: 0.3962264, g: 0.36273104, b: 0.2224101, a: 1}
+    - _FlatRimColor: {r: 0.5137255, g: 0.45098042, b: 0.40784317, a: 1}
+    - _FlatSpecularColor: {r: 0.31132078, g: 0.27768528, b: 0.2569865, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
+    - _UnityShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7355401828297194585
+--- !u!114 &6862281120249163185
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

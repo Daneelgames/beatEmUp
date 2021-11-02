@@ -7,9 +7,11 @@
       <e p="Assets" t="Include">
         <e p="!Assets" t="Include">
           <e p="Scripts" t="Include">
+            <e p="ActionsDropDownMenu.cs" t="Include" />
             <e p="AiInput.cs" t="Include" />
             <e p="AiNavigationManager.cs" t="Include" />
             <e p="AnimatorEvents.cs" t="Include" />
+            <e p="AssetSpawner.cs" t="Include" />
             <e p="AttackManager.cs" t="Include" />
             <e p="AudioManager.cs" t="Include" />
             <e p="BodyPart.cs" t="Include" />
@@ -17,8 +19,11 @@
             <e p="CameraController.cs" t="Include" />
             <e p="CharacterGenerator.cs" t="Include" />
             <e p="CharacterInventory.cs" t="Include" />
+            <e p="CharacterInventoryUi.cs" t="Include" />
             <e p="CharacterPerksController.cs" t="Include" />
             <e p="Consumable.cs" t="Include" />
+            <e p="DamageOnContact.cs" t="Include" />
+            <e p="DetailsOnGroundController.cs" t="Include" />
             <e p="FieldOfView.cs" t="Include" />
             <e p="HealthController.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
@@ -39,13 +44,13 @@
             <e p="PlayerInput.cs" t="Include" />
             <e p="PlayerUi.cs" t="Include" />
             <e p="SpawnController.cs" t="Include" />
+            <e p="UiButton.cs" t="Include" />
             <e p="UniversalCursorController.cs" t="Include" />
             <e p="Weapon.cs" t="Include" />
             <e p="WorldStreamer.cs" t="Include" />
           </e>
         </e>
-        <e p="ActionsDropDownMenu.cs" t="Include" />
-        <e p="AssetSpawner.cs" t="Include" />
+        <e p="ActivateRigidbodyOnNoise.cs" t="Include" />
         <e p="CartoonBloodFX" t="Include">
           <e p="Source" t="Include">
             <e p="Scripts" t="Include">
@@ -53,8 +58,6 @@
             </e>
           </e>
         </e>
-        <e p="CharacterInventoryUi.cs" t="Include" />
-        <e p="DetailsOnGroundController.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />
         </e>
@@ -279,7 +282,6 @@
         <e p="TGU Skybox Pack" t="Include">
           <e p="Readme.txt" t="Include" />
         </e>
-        <e p="UiButton.cs" t="Include" />
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />

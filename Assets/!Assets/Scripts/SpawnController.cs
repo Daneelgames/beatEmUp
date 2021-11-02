@@ -15,7 +15,7 @@ public class SpawnController : MonoBehaviour
     public static SpawnController Instance;
 
     private List<AiInput> spawnedAiInputs = new List<AiInput>();
-    
+    private List<ActivateRigidbodyOnNoise> _activateRigidbodyOnNoises = new List<ActivateRigidbodyOnNoise>();
 
     private void Awake()
     {
@@ -25,6 +25,11 @@ public class SpawnController : MonoBehaviour
     public void AddAiInput(AiInput newAi)
     {
         spawnedAiInputs.Add(newAi);
+    }
+
+    public void AddActivateRigidbodyOnNoise(ActivateRigidbodyOnNoise newActivateRigidbodyOnNoise)
+    {
+        _activateRigidbodyOnNoises.Add(newActivateRigidbodyOnNoise);
     }
 
     public void MakeNoise(Vector3 noiseMakerPos, float maxDistance)
@@ -39,6 +44,14 @@ public class SpawnController : MonoBehaviour
             if (newDistance <= maxDistance)
             {
                 StartCoroutine(spawnedAiInputs[i].HeardNoise(noiseMakerPos, newDistance));
+            }
+        }
+
+        for (int i = 0; i < _activateRigidbodyOnNoises.Count; i++)
+        {
+            if (Vector3.Distance(noiseMakerPos, _activateRigidbodyOnNoises[i].transform.position) <= maxDistance)
+            {
+                _activateRigidbodyOnNoises[i].ActivateRigidbody();
             }
         }
     }
