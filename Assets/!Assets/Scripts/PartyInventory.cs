@@ -31,7 +31,6 @@ public class PartyInventory : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         
-        print("Pick Up");
         if (consumableInteractable.ConsumablePickUp.heal)
         {
             MedKitsAmount++;   

@@ -5,37 +5,37 @@ using UnityEngine;
 
 public class CharacterInventory : MonoBehaviour
 {
-    [SerializeField] private List<ItemInInventory> itemsInInventories;
+    [SerializeField] private List<ItemInInventory> itemsInInventory;
 
-    public List<ItemInInventory> ItemsInInventories
+    public List<ItemInInventory> ItemsInInventory
     {
-        get => itemsInInventories;
-        set => itemsInInventories = value;
+        get => itemsInInventory;
+        set => itemsInInventory = value;
     }
 
     public void CharacterPicksUpItem(int itemIndex)
     {
-        for (int i = 0; i < ItemsInInventories.Count; i++)
+        for (int i = 0; i < ItemsInInventory.Count; i++)
         {
-            if (ItemsInInventories[i].itemIndex == itemIndex && ItemsManager.Instance.CanAddAnotherOne(ItemsInInventories[i].itemIndex, ItemsInInventories[i].amount))
+            if (ItemsInInventory[i].itemIndex == itemIndex && ItemsManager.Instance.CanAddAnotherOne(ItemsInInventory[i].itemIndex, ItemsInInventory[i].amount))
             {
-                ItemsInInventories[i].amount++;
+                ItemsInInventory[i].amount++;
                 return;
             }
         }
         
-        ItemsInInventories.Add(new ItemInInventory(itemIndex, 1));
+        ItemsInInventory.Add(new ItemInInventory(itemIndex, 1));
     }
 
     public void CharacterLosesItem(int itemIndex)
     {
-        for (int i = 0; i < ItemsInInventories.Count; i++)
+        for (int i = 0; i < ItemsInInventory.Count; i++)
         {
-            if (ItemsInInventories[i].itemIndex == itemIndex && ItemsManager.Instance.CanAddAnotherOne(ItemsInInventories[i].itemIndex, ItemsInInventories[i].amount))
+            if (ItemsInInventory[i].itemIndex == itemIndex && ItemsManager.Instance.CanAddAnotherOne(ItemsInInventory[i].itemIndex, ItemsInInventory[i].amount))
             {
-                ItemsInInventories[i].amount--;
-                if (ItemsInInventories[i].amount <= 0)
-                    ItemsInInventories.RemoveAt(i);
+                ItemsInInventory[i].amount--;
+                if (ItemsInInventory[i].amount <= 0)
+                    ItemsInInventory.RemoveAt(i);
                 return;
             }
         }

@@ -42,7 +42,7 @@ public class HealthController : MonoBehaviour
 
     private PlayerInput playerInput;
     public PlayerInput PlayerInput => playerInput;
-
+    [SerializeField] private Canvas canvas;
     [SerializeField] private CharacterController characterController;
     
     [SerializeField] private CharacterInventory inventory;
@@ -158,7 +158,7 @@ public class HealthController : MonoBehaviour
             while (true)
             {
                 healthBar.fillAmount = (Health * 1f) / (HealthMax * 1f);
-                healthBar.transform.parent.LookAt(GameManager.Instance.mainCamera.transform.position);
+                canvas.transform.LookAt(GameManager.Instance.mainCamera.transform.position);
                 
                 t++;
                 if (t > 30)

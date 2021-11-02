@@ -52,6 +52,7 @@
             </e>
           </e>
         </e>
+        <e p="CharacterInventoryUi.cs" t="Include" />
         <e p="DetailsOnGroundController.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />

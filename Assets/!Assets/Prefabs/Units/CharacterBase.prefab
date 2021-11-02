@@ -7917,6 +7917,7 @@ MonoBehaviour:
   healthMax: 1000
   damagedAnimationTime: 0.4
   _objectInfoData: {fileID: 11400000, guid: 97133e9b5c9d7534989491d72685638d, type: 2}
+  canvas: {fileID: 4698293244062374759}
   characterController: {fileID: 0}
   inventory: {fileID: -2834431716537351534}
   _attackManager: {fileID: 4792253143275227139}
@@ -7990,6 +7991,7 @@ MonoBehaviour:
   walkSpeed: 4
   runSpeed: 8
   stopDistance: 2
+  stopDistanceInvestigation: 3
   stopDistanceAllyToPlayer: 2
   runDistanceThreshold: 5
   looseTargetDistance: 20

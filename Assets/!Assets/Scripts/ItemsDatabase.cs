@@ -19,4 +19,5 @@ public class ItemInDatabase
     public string itemDescription;
     public AssetReference itemPickUpReference;
     public int maxAmountPerInventory = -1;
+    public Sprite itemIcon;
 }

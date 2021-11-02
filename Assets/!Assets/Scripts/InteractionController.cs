@@ -117,8 +117,12 @@ public class InteractionController : MonoBehaviour
 
     void Interact(Interactable interactable)
     {
+        if(interactable.CanInteract == false)
+            return;
+        
         if (interactable.WeaponPickUp)
         {
+            interactable.CanInteract = false;
             interactable.ToggleTriggerCollider(true);
             interactable.ToggleRigidbodyKinematicAndGravity(true, false);
             hc.AttackManager.PickWeapon(interactable);
@@ -132,6 +136,7 @@ public class InteractionController : MonoBehaviour
         }
         else if (interactable.ConsumablePickUp)
         {
+            interactable.CanInteract = false;
             PartyInventory.Instance.PickUpConsumable(hc, interactable);
             hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
             PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);

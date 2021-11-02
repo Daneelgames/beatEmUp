@@ -11,6 +11,12 @@ public class PartyInputManager : MonoBehaviour
 
     [SerializeField] private float maxDistanceToClosestUnit = 3;
     [SerializeField] List<HealthController> selectedAllyUnits = new List<HealthController>();
+    public List<HealthController> SelectedAllyUnits
+    {
+        get => selectedAllyUnits;
+        set => selectedAllyUnits = value;
+    } 
+    
     [SerializeField] List<HealthController> party = new List<HealthController>();
     public List<HealthController> Party
     {
@@ -52,7 +58,8 @@ public class PartyInputManager : MonoBehaviour
             if (Party.Count > 0 && Party[0] != null && Party[0].Health > 0)
             {
                 SelectUnit(0);
-                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);   
+                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
+                PartyUi.Instance.UnitSelected(Party[0]);
             }
             ObserveMode(false);
         }
@@ -61,7 +68,8 @@ public class PartyInputManager : MonoBehaviour
             if (Party.Count > 1 && Party[1] != null && Party[1].Health > 0)
             {
                 SelectUnit(1);
-                CameraController.Instance.MoveCameraToPosition(Party[1].transform.position, Party[1].transform);   
+                CameraController.Instance.MoveCameraToPosition(Party[1].transform.position, Party[1].transform);
+                PartyUi.Instance.UnitSelected(Party[1]);
             }
             ObserveMode(false);
         }
@@ -70,7 +78,8 @@ public class PartyInputManager : MonoBehaviour
             if (Party.Count > 2 && Party[2] != null && Party[2].Health > 0)
             {
                 SelectUnit(2);
-                CameraController.Instance.MoveCameraToPosition(Party[2].transform.position, Party[2].transform);   
+                CameraController.Instance.MoveCameraToPosition(Party[2].transform.position, Party[2].transform);
+                PartyUi.Instance.UnitSelected(Party[2]);
             }
             ObserveMode(false);
         }
@@ -88,6 +97,7 @@ public class PartyInputManager : MonoBehaviour
                         break;
                     }
                 }   
+                PartyUi.Instance.UnitSelected(SelectedAllyUnits[0]);
             }
             ObserveMode(false);
         }
@@ -105,6 +115,14 @@ public class PartyInputManager : MonoBehaviour
         if (Input.GetButtonDown("Observe"))
         {
             ObserveMode(!observeMode);
+        }
+        
+        if (Input.GetButtonDown("Inventory"))
+        {
+            if (SelectedAllyUnits.Count <= 0)
+                return;
+            
+            PartyUi.Instance.ToggleInventoryUI(SelectedAllyUnits[0]);
         }
         
         /*
@@ -135,7 +153,7 @@ public class PartyInputManager : MonoBehaviour
         {
             ObserveMode(false);
             
-            if (selectedAllyUnits.Count <= 0)
+            if (SelectedAllyUnits.Count <= 0)
                 return;
             
             Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
@@ -160,22 +178,22 @@ public class PartyInputManager : MonoBehaviour
 
             if (closestUnitToAttack)
             {
-                for (int i = 0; i < selectedAllyUnits.Count; i++)
+                for (int i = 0; i < SelectedAllyUnits.Count; i++)
                 {
-                    if (selectedAllyUnits[i] && selectedAllyUnits[i].AiInput)
+                    if (SelectedAllyUnits[i] && SelectedAllyUnits[i].AiInput)
                     {
-                        selectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);   
-                        selectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
+                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);   
+                        SelectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
                         PartyUi.Instance.AttackOrderFeedback(newPos);
                     }
                 }      
             }
             else
             {
-                for (int i = 0; i < selectedAllyUnits.Count; i++)
+                for (int i = 0; i < SelectedAllyUnits.Count; i++)
                 {
                     Vector3 tempPose = newPos;
-                    if (selectedAllyUnits[i])
+                    if (SelectedAllyUnits[i])
                     {
                         switch (i)
                         {
@@ -199,8 +217,8 @@ public class PartyInputManager : MonoBehaviour
                         }
 
                         PartyUi.Instance.MoveOrderFeedback(newPos);
-                        selectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
-                        selectedAllyUnits[i].AiInput.OrderMove(tempPose);   
+                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
+                        SelectedAllyUnits[i].AiInput.OrderMove(tempPose);   
                     }
                 }   
             }
@@ -288,15 +306,15 @@ public class PartyInputManager : MonoBehaviour
     {
         int healthLowest = 100000;
         HealthController unitWithLowestHp = null;
-        for (int i = 0; i < selectedAllyUnits.Count; i++)
+        for (int i = 0; i < SelectedAllyUnits.Count; i++)
         {
-            if (selectedAllyUnits[i].Health == selectedAllyUnits[i].HealthMax)
+            if (SelectedAllyUnits[i].Health == SelectedAllyUnits[i].HealthMax)
                 continue;
                 
-            if (selectedAllyUnits[i].Health < healthLowest)
+            if (SelectedAllyUnits[i].Health < healthLowest)
             {
-                healthLowest = selectedAllyUnits[i].Health;
-                unitWithLowestHp = selectedAllyUnits[i];
+                healthLowest = SelectedAllyUnits[i].Health;
+                unitWithLowestHp = SelectedAllyUnits[i];
             }
         }
 
@@ -324,7 +342,7 @@ public class PartyInputManager : MonoBehaviour
         if (index == -1)
         {
             // select all units
-            selectedAllyUnits.Clear();
+            SelectedAllyUnits.Clear();
             for (int i = Party.Count - 1; i >= 0; i--)
             {
                 if (i >= Party.Count)
@@ -335,17 +353,17 @@ public class PartyInputManager : MonoBehaviour
                     continue;
                 }
 
-                selectedAllyUnits.Add(Party[i]);
+                SelectedAllyUnits.Add(Party[i]);
             }
 
-            for (int i = 0; i < selectedAllyUnits.Count; i++)
+            for (int i = 0; i < SelectedAllyUnits.Count; i++)
             {
-                FeedbackOnSelectedUnits(i, selectedAllyUnits[i].transform, true);
+                FeedbackOnSelectedUnits(i, SelectedAllyUnits[i].transform, true);
             }
         }
         else if (Party.Count > index)
         {
-            selectedAllyUnits.Clear();
+            SelectedAllyUnits.Clear();
             
             for (int i = Party.Count - 1; i >= 0; i--)
             {
@@ -359,9 +377,9 @@ public class PartyInputManager : MonoBehaviour
             }
             
             if (Party[index] && Party[index].Health > 0)
-                selectedAllyUnits.Add(Party[index]);
+                SelectedAllyUnits.Add(Party[index]);
             
-            FeedbackOnSelectedUnits(0, selectedAllyUnits[0].transform, true);
+            FeedbackOnSelectedUnits(0, SelectedAllyUnits[0].transform, true);
         }
     }
 

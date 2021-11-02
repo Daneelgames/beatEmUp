@@ -196,7 +196,7 @@ RectTransform:
   m_Children:
   - {fileID: 3885544775945024544}
   m_Father: {fileID: 3885544776691140458}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -366,6 +366,7 @@ MonoBehaviour:
   observableInfoAnim: {fileID: 3885544777073423481}
   moveOrderFeedbackAnim: {fileID: 2060074113135451634}
   cursor: {fileID: 3885544775945024547}
+  characterInventoryUiPrefab: {fileID: 7698392693223967550, guid: d4fedd3ba5ab1824793f5137afcdc3da, type: 3}
 --- !u!114 &3885544775627633737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,7 +705,7 @@ GameObject:
   - component: {fileID: 3885544776123829981}
   - component: {fileID: 3885544776123829978}
   m_Layer: 5
-  m_Name: ActionFeedbackFone
+  m_Name: ActionFeedbackBc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -722,12 +723,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3885544777122316170}
-  m_Father: {fileID: 3885544777193091913}
-  m_RootOrder: 4
+  m_Father: {fileID: 3885544776691140458}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 701.6742, y: 0}
+  m_AnchoredPosition: {x: -221.17, y: 0}
   m_SizeDelta: {x: 361.33, y: 202.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3885544776123829980
@@ -1063,6 +1064,7 @@ RectTransform:
   - {fileID: 3885544777105516451}
   - {fileID: 3885544776443077477}
   - {fileID: 3885544776889596382}
+  - {fileID: 3885544776123829983}
   - {fileID: 3885544777193091913}
   - {fileID: 3885544777073423476}
   - {fileID: 3885544775551313944}
@@ -1407,7 +1409,7 @@ RectTransform:
   - {fileID: 3885544777122397055}
   - {fileID: 3885544775624355636}
   m_Father: {fileID: 3885544776691140458}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1562,7 +1564,7 @@ GameObject:
   - component: {fileID: 3885544777122316173}
   - component: {fileID: 3885544777122316172}
   m_Layer: 5
-  m_Name: ActionFeedback
+  m_Name: ActionFeedbackText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1815,9 +1817,8 @@ RectTransform:
   - {fileID: 3885544776466424592}
   - {fileID: 3885544775771805669}
   - {fileID: 3885544776042877627}
-  - {fileID: 3885544776123829983}
   m_Father: {fileID: 3885544776691140458}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

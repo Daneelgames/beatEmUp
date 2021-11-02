@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ExternalPropertyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,6 +31,12 @@ public class Interactable : MonoBehaviour
     [SerializeField] private GameObject light;
     [SerializeField] private Vector3 lightPositionOffset = new Vector3(0, 2, 0);
 
+    private bool canInteract = true;
+        public bool CanInteract
+    {
+        get { return canInteract; }
+        set { canInteract = value; }
+    }
     IEnumerator Start()
     {
         SpawnController.Instance.AddInteractable(this);

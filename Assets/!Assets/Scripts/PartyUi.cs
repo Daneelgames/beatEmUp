@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 
 public class PartyUi : MonoBehaviour
@@ -24,12 +25,16 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private Animator observableInfoAnim;
     [SerializeField] private Animator moveOrderFeedbackAnim;
     [SerializeField] private Image cursor;
-    
     public Image Cursor => cursor;
+
+    [Header("Prefabs")] 
+    [SerializeField] private CharacterInventoryUi characterInventoryUiPrefab;
+    private List<CharacterInventoryUi> spawnedInventoryUIs = new List<CharacterInventoryUi>();
 
     private static readonly int MoveString = Animator.StringToHash("Move");
     private static readonly int AttackString = Animator.StringToHash("Attack");
     private static readonly int Active = Animator.StringToHash("Active");
+    private static readonly int Update = Animator.StringToHash("Update");
 
     private IEnumerator Start()
     {
@@ -112,13 +117,18 @@ public class PartyUi : MonoBehaviour
 
     public void CharacterPicksUpInteractable(HealthController hc, Interactable interactable)
     {
-        
         if (hc.AiInput.inParty == false)
             return;
 
         string resultstring = hc.ObjectInfoData.objectGetsItem + " " + interactable.ObjectInfoData.objectName;
         actionFeedbackText.text = resultstring;
-        actionFeedbackAnim.SetTrigger(MoveString);
+        actionFeedbackAnim.SetTrigger(Update);
+
+        if (PartyInputManager.Instance.SelectedAllyUnits.Contains(hc))
+        {
+            if (spawnedInventoryUIs.Count > 0 && spawnedInventoryUIs[0] != null && spawnedInventoryUIs[0].gameObject.activeInHierarchy)
+                spawnedInventoryUIs[0].UpdateInventoryUI(hc);
+        }
     }
 
     public void CharacterDies(HealthController deadCharacter, HealthController damager)
@@ -228,6 +238,45 @@ public class PartyUi : MonoBehaviour
             observableInfoText.text = nameString;
             observableInfoText2.text = objInfo.objectSpecialDescription + weaponString + perksString;
             observableInfoAnim.SetBool(Active, true);
+        }
+    }
+
+    public void ToggleInventoryUI(HealthController unit)
+    {
+        if (unit == null || unit.Inventory == null)
+            return;
+        
+        CharacterInventoryUi inventoryUiToOpen = null;
+
+        for (int i = 0; i < spawnedInventoryUIs.Count; i++)
+        {
+            if (spawnedInventoryUIs[i].gameObject.activeInHierarchy == false)
+            {
+                inventoryUiToOpen = spawnedInventoryUIs[i];
+            }
+            else if (spawnedInventoryUIs[i].Unit == unit)
+            {
+                spawnedInventoryUIs[i].gameObject.SetActive(false);
+                return;
+            }
+        }
+
+        if (inventoryUiToOpen == null)
+        {
+            inventoryUiToOpen = Instantiate(characterInventoryUiPrefab, canvasRect);
+        }
+        
+        inventoryUiToOpen.transform.SetSiblingIndex(3);
+        inventoryUiToOpen.gameObject.SetActive(true);
+        inventoryUiToOpen.UpdateInventoryUI(unit);
+        spawnedInventoryUIs.Add(inventoryUiToOpen);
+    }
+
+    public void UnitSelected(HealthController unit)
+    {
+        if (spawnedInventoryUIs.Count > 0 && spawnedInventoryUIs[0] != null && spawnedInventoryUIs[0].gameObject.activeInHierarchy)
+        {
+            spawnedInventoryUIs[0].UpdateInventoryUI(unit);
         }
     }
 }
