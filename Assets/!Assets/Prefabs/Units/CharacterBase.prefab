@@ -7994,6 +7994,7 @@ MonoBehaviour:
   stopDistance: 2
   stopDistanceInvestigation: 3
   stopDistanceAllyToPlayer: 2
+  stopDistanceFollowTarget: 2
   runDistanceThreshold: 5
   looseTargetDistance: 20
   simpleWalker: 1
@@ -8026,6 +8027,7 @@ MonoBehaviour:
   baseAttackDamage: 100
   critChance: 0.1
   critDamageScaler: 3
+  throwDistance: 25
   attackList:
   - shotPosition: {fileID: 0}
     useAmmo: 0
@@ -8198,7 +8200,7 @@ MonoBehaviour:
   minVisibleBonesToSeeUnit: 2
   resetVisibleUnitsCooldown: 10
   updateDelay: 0.5
-  viewRadius: 20
+  viewRadius: 50
   sixSenseDistance: 2
   meshResolution: 1
   edgeResolveIterations: 3
@@ -8208,7 +8210,7 @@ MonoBehaviour:
     m_Bits: 128
   raycastUnitsAndObstaclesMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1216
   viewMeshFilter: {fileID: 158685165846845973}
   viewMesh: {fileID: 0}
   edgeDistanceThreshold: 0.5

@@ -100,7 +100,9 @@ public class Weapon : MonoBehaviour
             StopCoroutine(thrownCoroutine);
 
         Rigidbody.useGravity = true;
-
+        
+        if (attackManager == null)
+            SetDangerous(false);
     }
 
     void OnCollisionEnter(Collision other)
@@ -108,6 +110,7 @@ public class Weapon : MonoBehaviour
         if (thrownCoroutine != null && other.collider.gameObject.layer == 6)
         {
             StopThrowFly();
+            SpawnController.Instance.MakeNoise(transform.position, impactNoiseDistance);
         }
     }
     

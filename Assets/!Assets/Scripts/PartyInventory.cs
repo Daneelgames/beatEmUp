@@ -19,15 +19,16 @@ public class PartyInventory : MonoBehaviour
     }
 
     private Coroutine pickInteractableCoroutine;
+
     public void PickUpInteractable(HealthController hc, Interactable interactable)
     {
         if ((hc && hc.AiInput.inParty == false) || pickInteractableCoroutine != null)
             return;
 
-        pickInteractableCoroutine = StartCoroutine(PickInteractableWithDelay(interactable));
+        pickInteractableCoroutine = StartCoroutine(PickInteractableWithDelay(hc, interactable));
     }
 
-    IEnumerator PickInteractableWithDelay(Interactable interactable)
+    IEnumerator PickInteractableWithDelay(HealthController hc, Interactable interactable)
     {
         yield return new WaitForSeconds(0.1f);
         
@@ -36,7 +37,28 @@ public class PartyInventory : MonoBehaviour
             MedKitsAmount++;   
             PartyUi.Instance.UpdateMedKits();
         }
-        Destroy(interactable.gameObject);
+        
+        if (interactable.WeaponPickUp)
+        {
+            interactable.ToggleTriggerCollider(true);
+            interactable.ToggleRigidbodyKinematicAndGravity(true, false);
+            
+            GameManager.Instance.SetLayerRecursively(interactable.gameObject, 7);
+            
+            SpawnController.Instance.Interactables.Remove(interactable);
+            SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
+            
+            if (hc && hc.AttackManager.WeaponInHands == null)
+                hc.AttackManager.TakeWeaponInHands(interactable);
+            else
+            {
+                Destroy(interactable.gameObject);
+            }
+        }
+        else
+        {
+            Destroy(interactable.gameObject);   
+        }
         pickInteractableCoroutine = null;
     }
 }

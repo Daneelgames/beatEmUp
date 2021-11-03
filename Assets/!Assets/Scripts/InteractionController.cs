@@ -129,33 +129,9 @@ public class InteractionController : MonoBehaviour
         if(interactable.CanInteract == false)
             return;
         
-        if (interactable.WeaponPickUp)
-        {
-            interactable.CanInteract = false;
-            interactable.ToggleTriggerCollider(true);
-            interactable.ToggleRigidbodyKinematicAndGravity(true, false);
-            
-            GameManager.Instance.SetLayerRecursively(interactable.gameObject, 7);
-            
-            SpawnController.Instance.Interactables.Remove(interactable);
-            SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
-
-            hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
-            PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
-            
-            if (hc.AttackManager.WeaponInHands == null)
-                hc.AttackManager.TakeWeaponInHands(interactable);
-            else
-            {
-                Destroy(interactable.gameObject);
-            }
-        }
-        else if (interactable.ConsumablePickUp)
-        {
-            interactable.CanInteract = false;
-            PartyInventory.Instance.PickUpInteractable(hc, interactable);
-            hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
-            PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
-        }
+        interactable.CanInteract = false;
+        hc.Inventory.CharacterPicksUpItem(interactable.IndexInDatabase);
+        PartyUi.Instance.CharacterPicksUpInteractable(hc,interactable);
+        PartyInventory.Instance.PickUpInteractable(hc, interactable);
     }
 }

@@ -12,6 +12,13 @@ public class AttackManager : MonoBehaviour
     [SerializeField] private int baseAttackDamage = 10;
     [SerializeField] [Range(0,1)] private float critChance = 0.1f;
     [SerializeField] [Range(1,10)] private float critDamageScaler = 3;
+    [SerializeField] private float throwDistance = 15;
+    public float ThrowDistance
+    {
+        get => throwDistance;
+        set => throwDistance = value;
+    } 
+
 
     [SerializeField] private List<Attack> attackList = new List<Attack>();
     List<Attack> tempAttackList = new List<Attack>();
@@ -580,7 +587,7 @@ public class AttackManager : MonoBehaviour
     // Weapon removes from inventory
     public void DestroyWeaponInHands(Weapon weapon, bool removeFromInventory)
     {
-        if (WeaponInHands == weapon)
+        if (WeaponInHands && WeaponInHands == weapon)
         {
             if (removeFromInventory)
                 hc.Inventory.CharacterLosesItem(weapon.Interactable.IndexInDatabase);

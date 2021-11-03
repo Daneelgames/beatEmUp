@@ -15,6 +15,13 @@ public class ActionsDropDownMenu : MonoBehaviour
 
     private List<ActionWithItem> actionWithItemsCurrent = new List<ActionWithItem>();
     private int currentItemDatabaseIndex = -1;
+
+    public int CurrentItemDatabaseIndex
+    {
+        get => currentItemDatabaseIndex;
+        set => currentItemDatabaseIndex = value;
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -30,7 +37,7 @@ public class ActionsDropDownMenu : MonoBehaviour
         
         actionWithItemsCurrent.Clear();
         transform.position = newPos;
-        currentItemDatabaseIndex = itemDatabaseIndex;
+        CurrentItemDatabaseIndex = itemDatabaseIndex;
         
         var item = ItemsManager.Instance.ItemsDatabase.Items[itemDatabaseIndex];
         for (int i = 0; i < actionTexts.Count; i++)
@@ -93,30 +100,42 @@ public class ActionsDropDownMenu : MonoBehaviour
         for (int i = 0; i < actionTexts.Count; i++)
             actionTexts[i].transform.parent.gameObject.SetActive(false);
         
-        currentItemDatabaseIndex = -1;
+        CurrentItemDatabaseIndex = -1;
     }
 
     public void ActionClicked(int actionIndex)
     {
-        
         if (actionWithItemsCurrent.Count > actionIndex)
         {
             switch (actionWithItemsCurrent[actionIndex])
             {
                 case ActionWithItem.Equip:
-                    ItemsManager.Instance.EquipItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], currentItemDatabaseIndex);
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+
+                    ItemsManager.Instance.EquipItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Consume:
-                    
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    PartyInputManager.Instance.ConsumeItem(currentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Throw:
+                    /*
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    */
                     
+                    PartyInputManager.Instance.ThrowMode(true, currentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Drop:
-                    ItemsManager.Instance.DropItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], currentItemDatabaseIndex);
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    
+                    ItemsManager.Instance.DropItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
                     break;
             }
         }

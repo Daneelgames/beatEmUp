@@ -25,7 +25,7 @@ public class AiInput : MonoBehaviour
 
     public enum State
     {
-        Wander, Idle, FollowTarget, Investigate, MovingOnOrder
+        Wander, Idle, FollowTarget, Investigate, MovingOnOrder, MovingToThrow
     }
 
     [SerializeField] private State state = State.Wander;
@@ -106,7 +106,7 @@ public class AiInput : MonoBehaviour
             StartCoroutine(SimpleWalker());   
     }
 
-    void StopBehaviourCoroutines()
+    public void StopBehaviourCoroutines()
     {
         if (wanderCoroutine != null)
         {
@@ -136,6 +136,17 @@ public class AiInput : MonoBehaviour
             StopCoroutine(alertCoroutine);
             alertCoroutine = null;
         }
+        if (moveTowardsOrderTargetCoroutine != null)
+        {
+            StopCoroutine(moveTowardsOrderTargetCoroutine);
+            moveTowardsOrderTargetCoroutine = null;
+        }
+        
+        if (throwCoroutine != null)
+        {
+            StopCoroutine(throwCoroutine);
+            throwCoroutine = null;
+        }
     }
 
 
@@ -144,6 +155,10 @@ public class AiInput : MonoBehaviour
         if (agent == null || agent.enabled == false)
             return;
 
+        /*
+        if (inParty)
+            print("SetAgentDestinationTarget; pos " + pos);*/
+        
         if (Vector3.Distance(GameManager.Instance.mainCamera.transform.position, pos) < 75)
             expensive = true;
         
@@ -177,6 +192,43 @@ public class AiInput : MonoBehaviour
         RotateTowardsClosestEnemy(enemy);   
     }
 
+    public void OrderThrow(Vector3 newPos, int itemIndex)
+    {
+        StopBehaviourCoroutines();
+        if (throwCoroutine != null)
+            StopCoroutine(throwCoroutine);
+        
+        throwCoroutine = StartCoroutine(ThrowOrder(newPos, itemIndex));
+    }
+
+    private Coroutine throwCoroutine;
+    IEnumerator ThrowOrder(Vector3 targetPos, int itemIndex)
+    {
+        state = State.MovingToThrow;
+        // get selected item index in inventory
+        // get throw distance
+        float throwDistance = hc.AttackManager.ThrowDistance;
+        float newDistance = Vector3.Distance(hc.transform.position, targetPos);
+                
+        while (newDistance > throwDistance)
+        {
+            StopAgent(false);
+            //print("UNIT WALKS CLOSER TO THROW!");
+            SetNavMeshAgentSpeed(runSpeed);
+            SetAgentDestinationTarget(targetPos, inParty);
+            yield return new WaitForSeconds(0.5f);
+            
+            newDistance = Vector3.Distance(hc.transform.position, targetPos);
+        }
+        
+        print("UNIT THROWS!");
+        SetAgentDestinationTarget(transform.position, false);
+        
+        ItemsManager.Instance.ThrowItemFromInventory(hc, itemIndex, targetPos);
+        throwCoroutine = null;
+        Idle();
+    }
+    
     public void OrderAttack(Vector3 newPos, HealthController unit)
     {
         StopBehaviourCoroutines();
@@ -320,6 +372,7 @@ public class AiInput : MonoBehaviour
     IEnumerator WanderOverTime()
     {
         aiState = State.Wander;
+        StopAgent(false);
         currentTargetPosition = NewPositionNearPointOfInterest();
 
         if (debugLogs)
@@ -362,6 +415,7 @@ public class AiInput : MonoBehaviour
 
     IEnumerator MoveToOrderTarget(Vector3 newPos)
     {
+        StopAgent(false);
         aiState = State.MovingOnOrder;
 
         if (debugLogs)
@@ -406,7 +460,7 @@ public class AiInput : MonoBehaviour
         }
     }
 
-    void Idle()
+    public void Idle()
     {
         if (idleCoroutine != null)
             StopCoroutine(idleCoroutine);
@@ -416,6 +470,7 @@ public class AiInput : MonoBehaviour
 
     IEnumerator Investigate(Vector3 investigationPoint)
     {
+        StopAgent(false);
         aiState = State.Investigate;
         // WALK
         anim.SetBool(Running, false);
@@ -457,6 +512,7 @@ public class AiInput : MonoBehaviour
     {
         aiState = State.FollowTarget;
 
+        StopAgent(false);
         while (true)
         {
             if (alive == false)
@@ -572,12 +628,19 @@ public class AiInput : MonoBehaviour
         }
         return newPos;
     }
+
+    void StopAgent(bool isStopped)
+    {
+        agent.isStopped = isStopped;
+    }
     
     IEnumerator Ideling()
     {
         if (debugLogs)
             print ("Ideling");
         aiState = State.Idle;
+        StopAgent(true);
+        
         yield return new WaitForSeconds(Random.Range(idleTimeMinMax.x, idleTimeMinMax.y));
         
         if (inParty == false)
@@ -676,6 +739,7 @@ public class AiInput : MonoBehaviour
 
     public void Death()
     {
+        StopAgent(true);
         if (rotateTowardsClosestEnemyCoroutine != null)
             StopCoroutine(rotateTowardsClosestEnemyCoroutine);
         

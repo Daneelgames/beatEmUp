@@ -58,6 +58,7 @@
             </e>
           </e>
         </e>
+        <e p="DrawThrowArc.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />
         </e>

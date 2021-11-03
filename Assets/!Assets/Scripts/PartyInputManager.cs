@@ -11,6 +11,7 @@ public class PartyInputManager : MonoBehaviour
 
     [SerializeField] private float maxDistanceToClosestUnit = 3;
     [SerializeField] List<HealthController> selectedAllyUnits = new List<HealthController>();
+    private int currentThrowItemDatabaseIndex = -1;
     public List<HealthController> SelectedAllyUnits
     {
         get => selectedAllyUnits;
@@ -28,6 +29,7 @@ public class PartyInputManager : MonoBehaviour
     private List<GameObject> spawnedUnitSelectedFeedbacks = new List<GameObject>();
 
     private bool observeMode = false;
+    private bool throwMode = false;
     private bool cursorOverUI = false;
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class PartyInputManager : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitForSeconds(1f);
-        CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
+        SelectUnit(0);
     }
 
     public void AddPartyMember(HealthController hc)
@@ -57,36 +59,15 @@ public class PartyInputManager : MonoBehaviour
     {
         if (Input.GetButtonDown("SelectFirstAlly"))
         {
-            if (Party.Count > 0 && Party[0] != null && Party[0].Health > 0)
-            {
-                SelectUnit(0);
-                CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
-                PartyUi.Instance.UnitSelected(Party[0]);
-                ActionsDropDownMenu.Instance.CloseDropDownMenu();
-            }
-            ObserveMode(false);
+            SelectUnit(0);
         }
         if (Input.GetButtonDown("SelectSecondAlly"))
         {
-            if (Party.Count > 1 && Party[1] != null && Party[1].Health > 0)
-            {
-                SelectUnit(1);
-                CameraController.Instance.MoveCameraToPosition(Party[1].transform.position, Party[1].transform);
-                PartyUi.Instance.UnitSelected(Party[1]);
-                ActionsDropDownMenu.Instance.CloseDropDownMenu();
-            }
-            ObserveMode(false);
+            SelectUnit(1);
         }
         if (Input.GetButtonDown("SelectThirdAlly"))
         {
-            if (Party.Count > 2 && Party[2] != null && Party[2].Health > 0)
-            {
-                SelectUnit(2);
-                CameraController.Instance.MoveCameraToPosition(Party[2].transform.position, Party[2].transform);
-                PartyUi.Instance.UnitSelected(Party[2]);
-                ActionsDropDownMenu.Instance.CloseDropDownMenu();
-            }
-            ObserveMode(false);
+            SelectUnit(2);
         }
         
         if (Input.GetButtonDown("SelectAllAllies"))
@@ -106,23 +87,16 @@ public class PartyInputManager : MonoBehaviour
                 ActionsDropDownMenu.Instance.CloseDropDownMenu();
             }
             ObserveMode(false);
+            ThrowMode(false, -1);
         }
 
-        if (Input.GetButtonDown("UseMedKitHotkey"))
-        {
-            if (PartyInventory.Instance.MedKitsAmount <= 0)
-                return;
-            
-            UseMedKit();
-            ObserveMode(false);
-            ActionsDropDownMenu.Instance.CloseDropDownMenu();
-        }
 
 
         if (Input.GetButtonDown("Observe"))
         {
             ObserveMode(!observeMode);
             ActionsDropDownMenu.Instance.CloseDropDownMenu();
+            ThrowMode(false, -1);
         }
         
         if (Input.GetButtonDown("Inventory"))
@@ -132,6 +106,7 @@ public class PartyInputManager : MonoBehaviour
             
             PartyUi.Instance.ToggleInventoryUI(SelectedAllyUnits[0]);
             ActionsDropDownMenu.Instance.CloseDropDownMenu();
+            ThrowMode(false, -1);
         }
         
         /*
@@ -172,83 +147,143 @@ public class PartyInputManager : MonoBehaviour
             Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
             newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
 
-            HealthController closestUnitToAttack = null;
-            float distance = 1000;
-            float newDistance = 0;
-            for (int i = 0; i < GameManager.Instance.Units.Count; i++)
+            if (throwMode == false)
             {
-                var unit = GameManager.Instance.Units[i];
-                if (unit.Health > 0 && unit.AiInput && unit.AiInput.inParty == false)
-                {
-                    newDistance = Vector3.Distance(unit.transform.position, newPos);
-                    if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)
-                    {
-                        distance = newDistance;
-                        closestUnitToAttack = unit;
-                    }
-                }
-            }
-
-            if (closestUnitToAttack)
-            { 
-                // ATTACK ORDER
-                for (int i = 0; i < SelectedAllyUnits.Count; i++)
-                {
-                    if (SelectedAllyUnits[i] && SelectedAllyUnits[i].AiInput)
-                    {
-                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);
-                        SelectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
-                        PartyUi.Instance.AttackOrderFeedback(newPos);
-                    }
-                }
+                DefaultOrder(newPos);
             }
             else
             {
-                for (int i = 0; i < SelectedAllyUnits.Count; i++)
-                {
-                    Interactable interactableToInteract = SpawnController.Instance.GetClosestInteractable(newPos, SelectedAllyUnits[i].InteractionController.interactionDistance);
-
-                    Vector3 tempPose = newPos;
-                    if (SelectedAllyUnits[i])
-                    {
-                        switch (i)
-                        {
-                            case 0: 
-                                break;
-                            case 1: 
-                                tempPose += Vector3.forward * 2;
-                                break;
-                            case 2: 
-                                tempPose += Vector3.right * 2;
-                                break;
-                            case 3: 
-                                tempPose += Vector3.forward * -2;
-                                break;
-                            case 4: 
-                                tempPose += Vector3.right * -2;
-                                break;
-                            default:
-                                tempPose += new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
-                                break;
-                        }
-
-                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
-                        if (interactableToInteract == null)
-                        {
-                            PartyUi.Instance.MoveOrderFeedback(newPos);
-                        }
-                        else
-                        {
-                            PartyUi.Instance.InteractOrderFeedback(interactableToInteract);
-                            SelectedAllyUnits[i].InteractionController.SetInteractableToInteract(interactableToInteract);
-                        }
-                        
-                        SelectedAllyUnits[i].AiInput.OrderMove(tempPose);
-                    }
-                }   
+                SelectedAllyUnits[0].AiInput.OrderThrow(newPos, currentThrowItemDatabaseIndex);
+                ThrowMode(false, -1);
             }
         }
     }
+
+    public void ConsumeItem(int itemDatabaseIndex)
+    {
+        int healthLowest = 100000;
+        HealthController unitWithLowestHp = null;
+        for (int i = 0; i < SelectedAllyUnits.Count; i++)
+        {
+            if (SelectedAllyUnits[i].Health == SelectedAllyUnits[i].HealthMax)
+                continue;
+                
+            if (SelectedAllyUnits[i].Health < healthLowest)
+            {
+                healthLowest = SelectedAllyUnits[i].Health;
+                unitWithLowestHp = SelectedAllyUnits[i];
+            }
+        }
+
+        if (unitWithLowestHp == null)
+        {
+            // dont waste
+            return;
+        }
+
+        unitWithLowestHp.Heal(unitWithLowestHp.HealthMax * 0.66f);
+        PartyInventory.Instance.MedKitsAmount--;
+        PartyUi.Instance.UpdateMedKits();
+        
+        ObserveMode(false);
+        ActionsDropDownMenu.Instance.CloseDropDownMenu();
+        ThrowMode(false, -1);
+    }
+
+    void DefaultOrder(Vector3 newPos)
+    {
+        HealthController closestUnitToAttack = null;
+        float distance = 1000;
+        float newDistance = 0;
+        for (int i = 0; i < GameManager.Instance.Units.Count; i++)
+        {
+            var unit = GameManager.Instance.Units[i];
+            if (unit.Health > 0 && unit.AiInput && unit.AiInput.inParty == false)
+            {
+                newDistance = Vector3.Distance(unit.transform.position, newPos);
+                if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)
+                {
+                    distance = newDistance;
+                    closestUnitToAttack = unit;
+                }
+            }
+        }
+
+        if (closestUnitToAttack)
+        { 
+            // ATTACK ORDER
+            for (int i = 0; i < SelectedAllyUnits.Count; i++)
+            {
+                if (SelectedAllyUnits[i] && SelectedAllyUnits[i].AiInput)
+                {
+                    SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AggroOnSight);
+                    SelectedAllyUnits[i].AiInput.OrderAttack(newPos, closestUnitToAttack);
+                    PartyUi.Instance.AttackOrderFeedback(newPos);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < SelectedAllyUnits.Count; i++)
+            {
+                Interactable interactableToInteract = SpawnController.Instance.GetClosestInteractable(newPos, SelectedAllyUnits[i].InteractionController.interactionDistance);
+
+                Vector3 tempPose = newPos;
+                if (SelectedAllyUnits[i])
+                {
+                    switch (i)
+                    {
+                        case 0: 
+                            break;
+                        case 1: 
+                            tempPose += Vector3.forward * 2;
+                            break;
+                        case 2: 
+                            tempPose += Vector3.right * 2;
+                            break;
+                        case 3: 
+                            tempPose += Vector3.forward * -2;
+                            break;
+                        case 4: 
+                            tempPose += Vector3.right * -2;
+                            break;
+                        default:
+                            tempPose += new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+                            break;
+                    }
+
+                    SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
+                    if (interactableToInteract == null)
+                    {
+                        PartyUi.Instance.MoveOrderFeedback(newPos);
+                    }
+                    else
+                    {
+                        PartyUi.Instance.InteractOrderFeedback(interactableToInteract);
+                        SelectedAllyUnits[i].InteractionController.SetInteractableToInteract(interactableToInteract);
+                    }
+                    
+                    SelectedAllyUnits[i].AiInput.OrderMove(tempPose);
+                }
+            }   
+        }
+    }
+
+    public void ThrowMode(bool active, int itemIndex)
+    {
+        currentThrowItemDatabaseIndex = itemIndex;
+        throwMode = active;
+
+        if (throwMode)
+        {
+            UniversalCursorController.Instance.SetThrowCursor();
+        }
+        else if (!observeMode)
+        {
+            UniversalCursorController.Instance.SetDefaultCursor();
+        }
+    }
+
     
     public void ObserveMode(bool active)
     {
@@ -272,7 +307,6 @@ public class PartyInputManager : MonoBehaviour
             PartyUi.Instance.UpdateObservableInfo(null);
         }
     }
-
     private Coroutine observeCoroutine;
     private Observable lastUpdatedObservable;
     IEnumerator ObserveCoroutine()
@@ -327,38 +361,16 @@ public class PartyInputManager : MonoBehaviour
         }
     }
     
-    void UseMedKit()
-    {
-        int healthLowest = 100000;
-        HealthController unitWithLowestHp = null;
-        for (int i = 0; i < SelectedAllyUnits.Count; i++)
-        {
-            if (SelectedAllyUnits[i].Health == SelectedAllyUnits[i].HealthMax)
-                continue;
-                
-            if (SelectedAllyUnits[i].Health < healthLowest)
-            {
-                healthLowest = SelectedAllyUnits[i].Health;
-                unitWithLowestHp = SelectedAllyUnits[i];
-            }
-        }
-
-        if (unitWithLowestHp == null)
-        {
-            // dont waste
-            return;
-        }
-
-        unitWithLowestHp.Heal(unitWithLowestHp.HealthMax * 0.66f);
-        PartyInventory.Instance.MedKitsAmount--;
-        PartyUi.Instance.UpdateMedKits();
-    }
     
     void SelectUnit(int index)
     {
         if (Party.Count <= 0)
             return;
         
+        ActionsDropDownMenu.Instance.CloseDropDownMenu();
+        ObserveMode(false);
+        ThrowMode(false, -1);
+
         for (int i = 0; i < spawnedUnitSelectedFeedbacks.Count; i++)
         {
             FeedbackOnSelectedUnits(i, null, false);
@@ -366,6 +378,8 @@ public class PartyInputManager : MonoBehaviour
         
         if (index == -1)
         {
+            CameraController.Instance.MoveCameraToPosition(Party[0].transform.position, Party[0].transform);
+            PartyUi.Instance.UnitSelected(Party[0]);
             // select all units
             SelectedAllyUnits.Clear();
             for (int i = Party.Count - 1; i >= 0; i--)
@@ -388,6 +402,11 @@ public class PartyInputManager : MonoBehaviour
         }
         else if (Party.Count > index)
         {
+            if (Party.Count <= index || Party[index] == null || Party[index].Health <= 0)
+                return;
+            
+            CameraController.Instance.MoveCameraToPosition(Party[index].transform.position, Party[index].transform);
+            PartyUi.Instance.UnitSelected(Party[index]);
             SelectedAllyUnits.Clear();
             
             for (int i = Party.Count - 1; i >= 0; i--)

@@ -196,10 +196,11 @@ MonoBehaviour:
   eulearsOnThrow: {x: 0, y: 0, z: 0}
   weaponDamage: 200
   throwDamage: 200
-  impactNoiseDistance: 20
+  impactNoiseDistance: 50
+  meleeNoiseDistance: 20
   throwPower: 50
   minDistanceToStopThrowFly: 2
-  attacksLeft: 2
+  attacksLeft: 5
   shotAu: {fileID: 0}
   interactable: {fileID: 5405347542776371676}
   rb: {fileID: 6148280074050707155}

@@ -22,9 +22,14 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    maxAmountPerInventory: -1
+    maxAmountPerInventory: 3
     itemIcon: {fileID: 21300000, guid: 5b9ad9cd5ac72c84f947c590c7dfc12e, type: 3}
-    itemTypes: 020000000300000004000000
+    objectInfoData: {fileID: 11400000, guid: 38bd1dfe5d7bf36499d4b20a8dcfbe79, type: 2}
+    itemTypes: 00000000020000000300000004000000
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop
   - itemIndexInDatabase: 1
     itemName: Axe
     itemDescription: Powerful melee weapon
@@ -33,9 +38,14 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    maxAmountPerInventory: -1
+    maxAmountPerInventory: 1
     itemIcon: {fileID: 21300000, guid: eac35266905efd34381692de366606b4, type: 3}
-    itemTypes: 020000000000000004000000
+    objectInfoData: {fileID: 11400000, guid: 99190932d536d0d4291a8aafbdbbf1f2, type: 2}
+    itemTypes: 000000000200000004000000
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop
   - itemIndexInDatabase: 2
     itemName: Pistol
     itemDescription: Ranged weapon. Bullets are short
@@ -44,20 +54,30 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    maxAmountPerInventory: -1
+    maxAmountPerInventory: 2
     itemIcon: {fileID: 21300000, guid: 1dffdb428b302ec4dab72c3e2f90c4c3, type: 3}
+    objectInfoData: {fileID: 11400000, guid: b703c68081326f34d930b0de54abd7ea, type: 2}
     itemTypes: 00000000010000000200000004000000
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop
   - itemIndexInDatabase: 3
     itemName: Cactus
     itemDescription: Better than nothing
     itemPickUpReference:
-      m_AssetGUID: 24c46ffb76710434284207feab3b1633
+      m_AssetGUID: 850a959ec33486b44b031adf2d9a2d3a
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    maxAmountPerInventory: -1
+    maxAmountPerInventory: 2
     itemIcon: {fileID: 21300000, guid: 8a15be40cd665934ead2793881f4245e, type: 3}
+    objectInfoData: {fileID: 0}
     itemTypes: 00000000020000000300000004000000
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop
   - itemIndexInDatabase: 4
     itemName: Stone
     itemDescription: Can be used for melee attacks
@@ -66,6 +86,27 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-    maxAmountPerInventory: -1
+    maxAmountPerInventory: 3
     itemIcon: {fileID: 21300000, guid: 991a545d4e4f8b141bd5947a02d9b980, type: 3}
+    objectInfoData: {fileID: 11400000, guid: 24cadda78e50af4449a7cd9b69adb3d3, type: 2}
     itemTypes: 0000000002000000
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop
+  - itemIndexInDatabase: 5
+    itemName: Mr Cactus
+    itemDescription: Good weapon
+    itemPickUpReference:
+      m_AssetGUID: f632c3295424cf04e9a202d1b683139a
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    maxAmountPerInventory: 1
+    itemIcon: {fileID: 21300000, guid: 3dd18b57aea30a44e8afa4817d0d0f71, type: 3}
+    objectInfoData: {fileID: 11400000, guid: 333dc17784291e8488280e85b48a63f9, type: 2}
+    itemTypes: 0000000002000000
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop

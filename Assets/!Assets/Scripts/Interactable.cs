@@ -78,6 +78,16 @@ public class Interactable : MonoBehaviour
         rb.useGravity = gravity;
     }
 
+    public void Throw(Vector3 throwOrigin, Vector3 throwTargetPos)
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        //rb.AddForceAtPosition((throwTargetPos - throwOrigin) * 5, throwOrigin, ForceMode.Impulse);
+        
+        if (WeaponPickUp)
+            WeaponPickUp.Throw(throwTargetPos);
+    }
+    
     private void OnDestroy()
     {
         SpawnController.Instance.InteractableDestroyed(this);

@@ -37,6 +37,14 @@ MonoBehaviour:
     m_Address: PickUps/Weapons/PistolWeapon.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 850a959ec33486b44b031adf2d9a2d3a
+    m_Address: Assets/!Assets/Data/WeaponsData/WeaponInfoCactusSmall.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f632c3295424cf04e9a202d1b683139a
+    m_Address: Assets/!Assets/Prefabs/PickUps/Weapons/BigCactusWeapon (8).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e5ca865fef4f74d8a72d25108092ce, type: 2}
   m_SchemaSet:

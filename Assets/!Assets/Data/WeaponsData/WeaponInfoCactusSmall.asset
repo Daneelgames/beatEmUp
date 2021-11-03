@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fce0e98cb02ac7b439454e7144f1d2ec, type: 3}
-  m_Name: WeaponInfoCactus
+  m_Name: WeaponInfoCactusSmall
   m_EditorClassIdentifier: 
   objectName: Cactus
   objectDies: Cactus dies

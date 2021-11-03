@@ -271,7 +271,13 @@ public class PartyUi : MonoBehaviour
     public void ToggleInventoryUI(HealthController unit)
     {
         if (unit == null || unit.Inventory == null)
+        {
+            for (int i = 0; i < spawnedInventoryUIs.Count; i++)
+            {
+                spawnedInventoryUIs[i].gameObject.SetActive(false);
+            }
             return;
+        }
         
         CharacterInventoryUi inventoryUiToOpen = null;
 

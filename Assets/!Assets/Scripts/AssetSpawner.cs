@@ -27,7 +27,7 @@ public class AssetSpawner : MonoBehaviour
         Instance = this;
     }
     
-    public void Spawn(AssetReference assetReference, Vector3 newPos, Quaternion newRot, ObjectType objType, HealthController interactor)
+    public void Spawn(AssetReference assetReference, Vector3 newPos, Quaternion newRot, ObjectType objType, HealthController interactorHc, HealthController throwerHc, Vector3 throwTargetPos)
     {
         if (assetReference.RuntimeKeyIsValid() == false)
         {
@@ -37,7 +37,7 @@ public class AssetSpawner : MonoBehaviour
         {
             if (asyncOperationHandles[assetReference].IsDone) // if exists and loaded
             {
-                SpawnFromLoadedReference(assetReference, newPos, newRot, objType, interactor);
+                SpawnFromLoadedReference(assetReference, newPos, newRot, objType, interactorHc, throwerHc, throwTargetPos);
             }
             else // if exists and not loaded
                 EnqueueSpawnForAfterInitialization(assetReference, newPos);
@@ -46,7 +46,7 @@ public class AssetSpawner : MonoBehaviour
         }
         
         // if not exists
-        LoadAndSpawn(assetReference, newPos, newRot, objType, interactor);
+        LoadAndSpawn(assetReference, newPos, newRot, objType, interactorHc, throwerHc, throwTargetPos);
     }
 
     
@@ -57,25 +57,25 @@ public class AssetSpawner : MonoBehaviour
         queuedSpawnRequests[assetReference].Enqueue(newPos);
     }
     
-    void LoadAndSpawn(AssetReference assetReference, Vector3 newPos, Quaternion newRot, ObjectType objectType, HealthController interactor)
+    void LoadAndSpawn(AssetReference assetReference, Vector3 newPos, Quaternion newRot, ObjectType objectType, HealthController interactor, HealthController throwerHc, Vector3 throwTargetPos)
     {
         var op = Addressables.LoadAssetAsync<GameObject>(assetReference);
         asyncOperationHandles[assetReference] = op;
         op.Completed += (operation) =>
         {
-            SpawnFromLoadedReference(assetReference, newPos, newRot, objectType, interactor);
+            SpawnFromLoadedReference(assetReference, newPos, newRot, objectType, interactor, throwerHc, throwTargetPos);
             if (queuedSpawnRequests.ContainsKey(assetReference))
             {
                 while (queuedSpawnRequests[assetReference]?.Any() == true)
                 {
                     var position = queuedSpawnRequests[assetReference].Dequeue();
-                    SpawnFromLoadedReference(assetReference, position, newRot, objectType, interactor);
+                    SpawnFromLoadedReference(assetReference, position, newRot, objectType, interactor, throwerHc, throwTargetPos);
                 }
             }
         };
     }
     
-    void SpawnFromLoadedReference(AssetReference assetReference, Vector3 newPos, Quaternion newRot,  ObjectType objectType, HealthController interactor)
+    void SpawnFromLoadedReference(AssetReference assetReference, Vector3 newPos, Quaternion newRot,  ObjectType objectType, HealthController interactor, HealthController throwerHc, Vector3 throwTargetPos)
     {
         assetReference.InstantiateAsync(newPos, Quaternion.identity).Completed 
             += (asyncOperationHandle) =>
@@ -93,7 +93,7 @@ public class AssetSpawner : MonoBehaviour
                 }
                 else if (objectType == ObjectType.Item)
                 {
-                    ItemsManager.Instance.ProceedNewItem(spawnedGO, interactor);
+                    ItemsManager.Instance.ProceedNewItem(spawnedGO, interactor, throwerHc, throwTargetPos);
                 }
             
                 var notify = asyncOperationHandle.Result.AddComponent<NotifyOnDestroy>();

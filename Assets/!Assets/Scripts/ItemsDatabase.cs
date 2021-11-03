@@ -22,6 +22,8 @@ public class ItemInDatabase
     public int maxAmountPerInventory = -1;
     public Sprite itemIcon;
 
+    public ObjectInfoData objectInfoData;
+    
     [Header("InventoryUse")] 
     public List<ItemType> itemTypes = new List<ItemType>();
     public enum ItemType
