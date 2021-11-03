@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4815789630187837824}
+  minimumDistanceToActivate: 30
 --- !u!1 &4815789631046499301
 GameObject:
   m_ObjectHideFlags: 0

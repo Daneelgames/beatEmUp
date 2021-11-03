@@ -42,7 +42,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: f632c3295424cf04e9a202d1b683139a
-    m_Address: Assets/!Assets/Prefabs/PickUps/Weapons/BigCactusWeapon (8).prefab
+    m_Address: Weapons/BigCactusWeapon.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

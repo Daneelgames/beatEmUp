@@ -53,12 +53,11 @@ public class ItemsManager : MonoBehaviour
 
     public void ThrowItemFromInventory(HealthController unit, int itemDatabaseIndex, Vector3 throwTargetPos)
     {
-        print(itemDatabaseIndex);
         AssetSpawner.Instance.Spawn(ItemsDatabase.Items[itemDatabaseIndex].itemPickUpReference, 
             unit.transform.position + Vector3.up * 1.5f, Quaternion.identity, 
             AssetSpawner.ObjectType.Item, null, unit, throwTargetPos);
         RemoveItemFromCharacter(unit, itemDatabaseIndex);
-    }
+    }           
 
     void RemoveItemFromCharacter(HealthController unit, int itemDatabaseIndex)
     {

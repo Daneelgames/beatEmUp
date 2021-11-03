@@ -221,7 +221,6 @@ public class AiInput : MonoBehaviour
             newDistance = Vector3.Distance(hc.transform.position, targetPos);
         }
         
-        print("UNIT THROWS!");
         SetAgentDestinationTarget(transform.position, false);
         
         ItemsManager.Instance.ThrowItemFromInventory(hc, itemIndex, targetPos);
@@ -631,7 +630,8 @@ public class AiInput : MonoBehaviour
 
     void StopAgent(bool isStopped)
     {
-        agent.isStopped = isStopped;
+        if (agent && agent.enabled)
+            agent.isStopped = isStopped;
     }
     
     IEnumerator Ideling()

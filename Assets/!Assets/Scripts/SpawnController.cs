@@ -49,7 +49,8 @@ public class SpawnController : MonoBehaviour
 
         for (int i = 0; i < _activateRigidbodyOnNoises.Count; i++)
         {
-            if (Vector3.Distance(noiseMakerPos, _activateRigidbodyOnNoises[i].transform.position) <= maxDistance)
+            float newDistance = Vector3.Distance(noiseMakerPos, _activateRigidbodyOnNoises[i].transform.position);
+            if (newDistance <= maxDistance && newDistance <= _activateRigidbodyOnNoises[i].minimumDistanceToActivate)
             {
                 _activateRigidbodyOnNoises[i].ActivateRigidbody();
             }

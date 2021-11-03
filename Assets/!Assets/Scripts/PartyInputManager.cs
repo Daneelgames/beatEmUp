@@ -163,17 +163,8 @@ public class PartyInputManager : MonoBehaviour
     {
         int healthLowest = 100000;
         HealthController unitWithLowestHp = null;
-        for (int i = 0; i < SelectedAllyUnits.Count; i++)
-        {
-            if (SelectedAllyUnits[i].Health == SelectedAllyUnits[i].HealthMax)
-                continue;
-                
-            if (SelectedAllyUnits[i].Health < healthLowest)
-            {
-                healthLowest = SelectedAllyUnits[i].Health;
-                unitWithLowestHp = SelectedAllyUnits[i];
-            }
-        }
+        if (SelectedAllyUnits[0].Health < SelectedAllyUnits[0].HealthMax)
+            unitWithLowestHp = SelectedAllyUnits[0]; 
 
         if (unitWithLowestHp == null)
         {
@@ -181,7 +172,18 @@ public class PartyInputManager : MonoBehaviour
             return;
         }
 
-        unitWithLowestHp.Heal(unitWithLowestHp.HealthMax * 0.66f);
+        for (int i = 0; i < SelectedAllyUnits[0].Inventory.ItemsInInventory.Count; i++)
+        {
+            if (SelectedAllyUnits[0].Inventory.ItemsInInventory[i].itemIndex == itemDatabaseIndex &&
+                SelectedAllyUnits[0].Inventory.ItemsInInventory[i].amount <= 0)
+            {
+                // no items
+                return;
+            }
+        }
+
+        unitWithLowestHp.Heal(ItemsManager.Instance.ItemsDatabase.Items[itemDatabaseIndex].restoreHpOnConsume);
+        SelectedAllyUnits[0].Inventory.CharacterLosesItem(itemDatabaseIndex);
         PartyInventory.Instance.MedKitsAmount--;
         PartyUi.Instance.UpdateMedKits();
         

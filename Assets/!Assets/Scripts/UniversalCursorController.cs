@@ -23,17 +23,14 @@ public class UniversalCursorController : MonoBehaviour
 
     public void SetDefaultCursor()
     {
-        print("SetDefaultCursor");
         PartyUi.Instance.Cursor.sprite = defaultCursor;
     }
     public void SetObserveCursor()
     {
-        print("SetObserveCursor");
         PartyUi.Instance.Cursor.sprite = observeCursor;
     }
     public void SetThrowCursor()
     {
-        print("SetThrowCursor");
         PartyUi.Instance.Cursor.sprite = throwCursor;
     }
 }

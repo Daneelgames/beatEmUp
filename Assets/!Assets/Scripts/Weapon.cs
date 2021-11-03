@@ -62,12 +62,14 @@ public class Weapon : MonoBehaviour
     }
     public void SetDangerous(bool _dangerous)
     {
+        print("SetDangerous " + _dangerous);
         dangerous = _dangerous; 
         damagedBodyPartsGameObjects.Clear();    
     }
 
     public void Throw(Vector3 throwTargetPoint)
     {
+        StopThrowFly();
         AttackManager = null;
         transform.localEulerAngles = eulearsOnThrow;
         Interactable.ToggleTriggerCollider(false);
@@ -75,7 +77,6 @@ public class Weapon : MonoBehaviour
         GameManager.Instance.SetLayerRecursively(gameObject,9);
         SetDangerous(true);
         
-        StopThrowFly();
         
         thrownCoroutine = StartCoroutine(Thrown(throwTargetPoint));
     }

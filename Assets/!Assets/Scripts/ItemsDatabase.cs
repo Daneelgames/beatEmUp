@@ -31,6 +31,7 @@ public class ItemInDatabase
         MeleeWeapon, RangedWeapon, Throwable, Consumable, Tradable    
     }
 
+    public int restoreHpOnConsume = 500;
     public string dropDownActionEquip = "Equip";
     public string dropDownActionConsume = "Consume";
     public string dropDownActionThrow = "Throw";
