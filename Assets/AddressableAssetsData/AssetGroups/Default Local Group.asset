@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: Weapons/BigCactusWeapon.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 3f79a76bb7cd9f24e865422132b586e0
+    m_Address: Weapons/BombWeapon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8e5ca865fef4f74d8a72d25108092ce, type: 2}
   m_SchemaSet:

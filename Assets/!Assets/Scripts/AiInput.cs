@@ -9,6 +9,7 @@ public class AiInput : MonoBehaviour
 {
     public bool debugLogs = false;
     public bool inParty = false;
+    public bool ally = false;
 
     public enum AggroMode
     {
@@ -35,11 +36,16 @@ public class AiInput : MonoBehaviour
         get => state;
         set => state = value;
     }
-    
+
     [Header("Stats")] 
-    [SerializeField] [Range(0f, 1f)] private float kidness = 0.5f;
+    [SerializeField] private float aggroDistance = 30;
+    public float AggroDistance => aggroDistance;
+    
+    [SerializeField]
+    [Range(0f, 1f)] private float kidness = 0.5f;
     public float Kidness => kidness;
 
+    [SerializeField]
     private bool hears = true;
     public bool Hears => hears;
     float updateRate = 0.5f;
@@ -177,12 +183,19 @@ public class AiInput : MonoBehaviour
         
     }
     
-    public void SeeEnemy(HealthController closestVisibleEnemy)
+    public void SeeEnemy(HealthController closestVisibleEnemy, float distanceToEnemy)
     {
         if (aggroMode == AggroMode.AggroOnSight)
         {
-            SetAggro(closestVisibleEnemy); 
-            RotateTowardsClosestEnemy(closestVisibleEnemy);   
+            if (distanceToEnemy <= aggroDistance)
+            {
+                SetAggro(closestVisibleEnemy);
+                RotateTowardsClosestEnemy(closestVisibleEnemy);   
+            }
+            else
+            {
+                StartCoroutine(HeardNoise(closestVisibleEnemy.transform.position, distanceToEnemy));
+            }   
         }
     }
 

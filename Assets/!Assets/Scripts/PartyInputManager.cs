@@ -153,7 +153,9 @@ public class PartyInputManager : MonoBehaviour
             }
             else
             {
-                SelectedAllyUnits[0].AiInput.OrderThrow(newPos, currentThrowItemDatabaseIndex);
+                if (SelectedAllyUnits[0].Health > 0)
+                    SelectedAllyUnits[0].AiInput.OrderThrow(newPos, currentThrowItemDatabaseIndex);
+                
                 ThrowMode(false, -1);
             }
         }
@@ -183,7 +185,11 @@ public class PartyInputManager : MonoBehaviour
         }
 
         unitWithLowestHp.Heal(ItemsManager.Instance.ItemsDatabase.Items[itemDatabaseIndex].restoreHpOnConsume);
-        SelectedAllyUnits[0].Inventory.CharacterLosesItem(itemDatabaseIndex);
+        if (SelectedAllyUnits[0].AttackManager.WeaponInHands && SelectedAllyUnits[0].AttackManager.WeaponInHands.Interactable.IndexInDatabase == itemDatabaseIndex)
+            SelectedAllyUnits[0].AttackManager.DestroyWeaponInHands(SelectedAllyUnits[0].AttackManager.WeaponInHands, true);
+        else
+            SelectedAllyUnits[0].Inventory.CharacterLosesItem(itemDatabaseIndex);
+        
         PartyInventory.Instance.MedKitsAmount--;
         PartyUi.Instance.UpdateMedKits();
         
@@ -200,7 +206,7 @@ public class PartyInputManager : MonoBehaviour
         for (int i = 0; i < GameManager.Instance.Units.Count; i++)
         {
             var unit = GameManager.Instance.Units[i];
-            if (unit.Health > 0 && unit.AiInput && unit.AiInput.inParty == false)
+            if (unit.Health > 0 && unit.AiInput && unit.AiInput.ally == false)
             {
                 newDistance = Vector3.Distance(unit.transform.position, newPos);
                 if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)

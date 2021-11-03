@@ -5121,8 +5121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61b8a33e8860d014eb3c9b8912dfd603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotRaycastDistance: 100
-  shotNoiseDistance: 100
   rangedWeaponAttacks:
   - shotPosition: {fileID: 5687861141736487641}
     useAmmo: 1
@@ -5144,6 +5142,8 @@ MonoBehaviour:
     attackWeight: 1
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
+  shotRaycastDistance: 20
+  shotNoiseDistance: 75
   rangedWeaponDamage: 300
   ammo: 5
   shotParticles: {fileID: 2891489604020056583}
@@ -5173,12 +5173,14 @@ MonoBehaviour:
     restoreAttackWeightOnAttackRest: 0.25
   eulearsOnThrow: {x: 90, y: 0, z: 0}
   weaponDamage: 100
-  throwDamage: 500
-  impactNoiseDistance: 50
   meleeNoiseDistance: 20
-  throwPower: 50
-  minDistanceToStopThrowFly: 2
   attacksLeft: 4
+  destroyOnThrowCollision: 0
+  throwDamage: 500
+  throwPower: 50
+  throwImpactNoiseDistance: 20
+  minDistanceToStopThrowFly: 2
+  spawnOnDeath: {fileID: 0}
   shotAu: {fileID: 5274607038351570312}
   interactable: {fileID: 1008715785549633202}
   rb: {fileID: 1418387029692191165}

@@ -167,7 +167,7 @@ public class FieldOfView : MonoBehaviour
         }
 
         targetsInViewRadius = null;
-        StartCoroutine(hc.UpdateVisibleTargets(visibleTargets));
+        StartCoroutine(hc.UpdateVisibleTargets(VisibleTargets));
     }
 
     void DrawFieldOfView()

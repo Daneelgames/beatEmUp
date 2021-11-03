@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6148280074050707155}
   - component: {fileID: -5348215071510428674}
   m_Layer: 9
-  m_Name: SmallStoneWeapon
+  m_Name: StoneWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -189,11 +189,11 @@ public class HealthController : MonoBehaviour
         }
     }
     
-    public bool Damage(int dmg, HealthController damager, DamageType damageType)
+    public bool Damage(int dmg, HealthController damager, DamageType damageType, bool ignoreCooldown)
     {
         bool damaged = false;
         
-        if (damageOnCooldown)
+        if (!ignoreCooldown && damageOnCooldown)
             return damaged;
         
         if (Health <= 0)
@@ -348,7 +348,24 @@ public class HealthController : MonoBehaviour
                 
                 if (GameManager.Instance.simpleEnemiesAllies && _aiInput && unit._aiInput)
                 {
-                    if (unit._aiInput.inParty == _aiInput.inParty)
+                    if ((!unit._aiInput.ally && _aiInput.ally) ||
+                        (unit._aiInput.ally && !_aiInput.ally))
+                    {
+                        if (Enemies.Contains(unit) == false)
+                        {
+                            Enemies.Add(unit);
+                            EnemiesGameObjects.Add(unit.gameObject);
+                        }
+                    }
+                    else
+                    {
+                        if (Friends.Contains(unit) == false)
+                            Friends.Add(unit);
+                    }
+                    
+                    /*
+                    if ((unit._aiInput.inParty == false && _aiInput.inParty == false) || 
+                        (unit._aiInput.inParty == true && _aiInput.inParty == false))
                     {
                         if (Friends.Contains(unit) == false)
                             Friends.Add(unit);
@@ -360,7 +377,7 @@ public class HealthController : MonoBehaviour
                             Enemies.Add(unit);
                             EnemiesGameObjects.Add(unit.gameObject);
                         }
-                    }
+                    }*/
                 }
                 
                 if (Enemies.Contains(unit))
@@ -396,7 +413,7 @@ public class HealthController : MonoBehaviour
                 if (_aiInput.aggroMode == AiInput.AggroMode.AggroOnSight)
                     _attackManager.SeeEnemy(closestVisibleEnemy, visibleTargetToAim);
                 
-                _aiInput.SeeEnemy(closestVisibleEnemy);
+                _aiInput.SeeEnemy(closestVisibleEnemy, distance);
             }
         }
 

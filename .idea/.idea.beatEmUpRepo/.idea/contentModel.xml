@@ -274,6 +274,7 @@
             </e>
           </e>
         </e>
+        <e p="RandomizeAudio.cs" t="Include" />
         <e p="SimpleLowPolyNature" t="Include">
           <e p="Readme.txt" t="Include" />
           <e p="Shaders" t="Include">

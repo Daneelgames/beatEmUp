@@ -7988,6 +7988,7 @@ MonoBehaviour:
   inParty: 0
   _aggroMode: 0
   state: 1
+  aggroDistance: 30
   kidness: 0.5
   walkSpeed: 4
   runSpeed: 8
@@ -8027,7 +8028,7 @@ MonoBehaviour:
   baseAttackDamage: 100
   critChance: 0.1
   critDamageScaler: 3
-  throwDistance: 25
+  throwDistance: 30
   attackList:
   - shotPosition: {fileID: 0}
     useAmmo: 0

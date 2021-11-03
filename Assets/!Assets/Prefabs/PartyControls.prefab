@@ -496,8 +496,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.089905, y: 7.426}
-  m_SizeDelta: {x: 222.89, y: 131.077}
+  m_AnchoredPosition: {x: 6.089905, y: -0.82405853}
+  m_SizeDelta: {x: 222.89, y: 107.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3885544775852281528
 CanvasRenderer:
@@ -534,18 +534,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 71
-    m_Alignment: 6
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'H - heal selected units
+  m_Text: 'Tab - Inventory
 
     V - observe mode
-
-    TAB - Select whole
-    party
 
     1/2/3 - Select party members'
 --- !u!1 &3885544775945024545
@@ -1034,10 +1031,10 @@ MonoBehaviour:
 
     RMB - Rotate cam
 
-    Z
-    - slow mode
+    Left
+    Shift - fast mode
 
-    X - fast mode'
+    left Ctrl - slow mode'
 --- !u!1 &3885544776691140459
 GameObject:
   m_ObjectHideFlags: 0

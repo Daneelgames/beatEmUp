@@ -48,7 +48,7 @@ public class PartyInventory : MonoBehaviour
             SpawnController.Instance.Interactables.Remove(interactable);
             SpawnController.Instance.InteractablesGameObjects.Remove(interactable.gameObject);
             
-            if (hc && hc.AttackManager.WeaponInHands == null)
+            if (hc && hc.AttackManager.WeaponInHands == null && interactable.ConsumablePickUp == null)
                 hc.AttackManager.TakeWeaponInHands(interactable);
             else
             {

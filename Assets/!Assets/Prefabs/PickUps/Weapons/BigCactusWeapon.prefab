@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70696dfd68d957d448f82f2a369e8701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexInDatabase: 3
+  indexInDatabase: 5
   interactableOwner: {fileID: 0}
   _objectInfoData: {fileID: 11400000, guid: 333dc17784291e8488280e85b48a63f9, type: 2}
   rb: {fileID: 5638186419654965160}

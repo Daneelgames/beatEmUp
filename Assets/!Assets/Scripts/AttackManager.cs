@@ -167,7 +167,7 @@ public class AttackManager : MonoBehaviour
         float distance = Vector3.Distance(transform.position, hc.transform.position);
         if (WeaponInHands && WeaponInHands.Ammo > 0)
         {
-            if (distance  > 3)
+            if (distance  > 3 && distance <= hc.AiInput.AggroDistance)
                 TryToAttack(false, boneToAim);   
         }
         else if (distance <= 3)
@@ -542,7 +542,7 @@ public class AttackManager : MonoBehaviour
                 resultDamage *= 2;
         }
         
-        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc, damageType);
+        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc, damageType, hc.AiInput.inParty);
         
         if (hc.Friends.Contains(partToDamage.HC))
         {
@@ -592,7 +592,9 @@ public class AttackManager : MonoBehaviour
             if (removeFromInventory)
                 hc.Inventory.CharacterLosesItem(weapon.Interactable.IndexInDatabase);
             
-            Destroy(WeaponInHands.gameObject);
+            if (weaponInHands)
+                Destroy(WeaponInHands.gameObject);
+            
             WeaponInHands = null;
         }
     }

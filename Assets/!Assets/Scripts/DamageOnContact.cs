@@ -9,8 +9,23 @@ public class DamageOnContact : MonoBehaviour
     [SerializeField] private int dmg = 1000;
     private List<GameObject> damagedBodyPartsGameObjects = new List<GameObject>();
 
+
+    [Tooltip("If -1 than time doesnt matter")]
+    [SerializeField] private float dangerousTime = -1f;
+
+    private bool dangerous = true;
     IEnumerator Start()
     {
+        if (dangerousTime > -1)
+        {
+            dangerous = true;
+            yield return new WaitForSeconds(dangerousTime);
+            dangerous = false;
+        }
+        else
+        {
+            dangerous = true;
+        }
         while (true)
         {
             yield return new WaitForSeconds(1f);
@@ -20,22 +35,17 @@ public class DamageOnContact : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (rb.velocity.magnitude > minVelocityToDamage)
-        {
-            if (other.gameObject.layer != 7)
-                return;
-            
-            if (damagedBodyPartsGameObjects.Contains(other.gameObject))
-            {
-                return;
-            }
-            damagedBodyPartsGameObjects.Add(other.gameObject);
-            var newPartToDamage = other.gameObject.GetComponent<BodyPart>();
+        if (!dangerous) return;
+        if (other.gameObject.layer != 7) return;
+        if (rb && rb.velocity.magnitude < minVelocityToDamage) return;
+        if (damagedBodyPartsGameObjects.Contains(other.gameObject)) return;
+        
+        damagedBodyPartsGameObjects.Add(other.gameObject);
+        var newPartToDamage = other.gameObject.GetComponent<BodyPart>();
 
-            if (newPartToDamage)
-            {
-                newPartToDamage.HC.Damage(dmg, null, HealthController.DamageType.Explosive);
-            }
+        if (newPartToDamage)
+        {
+            newPartToDamage.HC.Damage(dmg, null, HealthController.DamageType.Explosive, true);
         }
     }
 }

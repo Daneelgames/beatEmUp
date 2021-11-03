@@ -5,10 +5,10 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Ranged")] 
-    [SerializeField] private float shotRaycastDistance = 100;
-    [SerializeField] private float shotNoiseDistance = 100;
     [SerializeField] private List<Attack> rangedWeaponAttacks = new List<Attack>();
     public List<Attack> RangedWeaponAttacks => rangedWeaponAttacks;
+    [SerializeField] private float shotRaycastDistance = 100;
+    [SerializeField] private float shotNoiseDistance = 100;
     [SerializeField] private int rangedWeaponDamage = 1000;
     [SerializeField] private int ammo = 0;
     [SerializeField] private ParticleSystem shotParticles;
@@ -25,17 +25,21 @@ public class Weapon : MonoBehaviour
     public List<Attack> WeaponAttacks => weaponAttacks;
     [SerializeField] private Vector3 eulearsOnThrow = Vector3.zero;
     [SerializeField] private int weaponDamage = 500;
-    [SerializeField] private int throwDamage = 500;
-    [SerializeField] private int impactNoiseDistance = 20;
     [SerializeField] private int meleeNoiseDistance = 20;
-    [SerializeField] private int throwPower = 10;
-    [SerializeField] private float minDistanceToStopThrowFly = 2;
-    public int ThrowPower => throwPower;
     [SerializeField] private int attacksLeft = 3;
     
     private bool dangerous = false;
 
+    [Header("Throw")] 
+    [SerializeField] private bool destroyOnThrowCollision = false;
+    [SerializeField] private int throwDamage = 500;
+    [SerializeField] private int throwPower = 10;
+    [SerializeField] private int throwImpactNoiseDistance = 20;
+    [SerializeField] private float minDistanceToStopThrowFly = 2;
+    public int ThrowPower => throwPower;
+    
     [Header("Links")] 
+    [SerializeField] private GameObject spawnOnDeath;
     [SerializeField] private AudioSource shotAu;
     [SerializeField] Interactable interactable;
     [SerializeField] Rigidbody rb;
@@ -62,7 +66,6 @@ public class Weapon : MonoBehaviour
     }
     public void SetDangerous(bool _dangerous)
     {
-        print("SetDangerous " + _dangerous);
         dangerous = _dangerous; 
         damagedBodyPartsGameObjects.Clear();    
     }
@@ -76,8 +79,7 @@ public class Weapon : MonoBehaviour
         Interactable.ToggleRigidbodyKinematicAndGravity(false, true); 
         GameManager.Instance.SetLayerRecursively(gameObject,9);
         SetDangerous(true);
-        
-        
+
         thrownCoroutine = StartCoroutine(Thrown(throwTargetPoint));
     }
 
@@ -111,7 +113,12 @@ public class Weapon : MonoBehaviour
         if (thrownCoroutine != null && other.collider.gameObject.layer == 6)
         {
             StopThrowFly();
-            SpawnController.Instance.MakeNoise(transform.position, impactNoiseDistance);
+            SpawnController.Instance.MakeNoise(transform.position, throwImpactNoiseDistance);
+
+            if (destroyOnThrowCollision)
+            {
+                DestroyWeapon();
+            }
         }
     }
     
@@ -145,9 +152,14 @@ public class Weapon : MonoBehaviour
                 if (AttackManager == null)
                 {
                     attacksLeft = 0;
-                    SpawnController.Instance.MakeNoise(transform.position, impactNoiseDistance);
+                    SpawnController.Instance.MakeNoise(transform.position, throwImpactNoiseDistance);
                     DamageOnThrow(newPartToDamage, throwDamage);
                     AfterAttack(newPartToDamage);
+                    
+                    if (destroyOnThrowCollision)
+                    {
+                        DestroyWeapon();
+                    }
                 }
                 else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage, HealthController.DamageType.Melee))
                 {
@@ -163,7 +175,7 @@ public class Weapon : MonoBehaviour
 
     void DamageOnThrow(BodyPart partToDamage, int dmg)
     {
-        partToDamage.HC.Damage(dmg, null, HealthController.DamageType.Throw);
+        partToDamage.HC.Damage(dmg, null, HealthController.DamageType.Throw, true);
     }
 
     void AfterAttack(BodyPart newPartToDamage)
@@ -179,6 +191,10 @@ public class Weapon : MonoBehaviour
                       
             if (AttackManager)
                 AttackManager.DestroyWeaponInHands(this, true);
+            else
+            {
+                DestroyWeapon();
+            }
         }
     }
 
@@ -194,7 +210,7 @@ public class Weapon : MonoBehaviour
                 if (attackManager)
                     attackManager.DamageOtherBodyPart(boneToAim, rangedWeaponDamage, HealthController.DamageType.Ranged);
                 else
-                    boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc, HealthController.DamageType.Ranged);
+                    boneToAim.HC.Damage(rangedWeaponDamage, AttackManager.Hc, HealthController.DamageType.Ranged, true);
             }
             else // SHOT MISSED TARGET PART
             {
@@ -217,7 +233,7 @@ public class Weapon : MonoBehaviour
                             if (attackManager)
                                 attackManager.DamageOtherBodyPart(part, rangedWeaponDamage, HealthController.DamageType.Ranged);
                             else
-                                part.HC.Damage(rangedWeaponDamage, AttackManager.Hc, HealthController.DamageType.Ranged);
+                                part.HC.Damage(rangedWeaponDamage, AttackManager.Hc, HealthController.DamageType.Ranged, true);
                         }
                     }
                 }
@@ -272,5 +288,13 @@ public class Weapon : MonoBehaviour
         }
 
         return Random.value > hitChance;
+    }
+
+    void DestroyWeapon()
+    {
+        if (spawnOnDeath)
+            Instantiate(spawnOnDeath, transform.position, Quaternion.identity);
+        
+        Destroy(gameObject);
     }
 }
