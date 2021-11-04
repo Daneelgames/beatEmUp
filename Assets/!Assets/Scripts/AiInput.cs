@@ -312,6 +312,7 @@ public class AiInput : MonoBehaviour
         else
             yield break;
         
+        StopBehaviourCoroutines();
         investigateCoroutine = StartCoroutine(Investigate(noiseMakerPos));
         
         
@@ -377,6 +378,8 @@ public class AiInput : MonoBehaviour
 
     void Wander()
     {
+        StopBehaviourCoroutines();
+        
         if (inParty == false)
             wanderCoroutine = StartCoroutine(WanderOverTime());
     }
@@ -474,6 +477,8 @@ public class AiInput : MonoBehaviour
 
     public void Idle()
     {
+        StopBehaviourCoroutines();
+        
         if (idleCoroutine != null)
             StopCoroutine(idleCoroutine);
                     
@@ -495,12 +500,15 @@ public class AiInput : MonoBehaviour
             
             if (_attackManager.CanMove)
             {
-                agent.isStopped = false;
+                if (agent.enabled)
+                    agent.isStopped = false;
+                
                 SetAgentDestinationTarget(investigationPoint,false);   
             }
             else
             {
-                agent.isStopped = true;
+                if (agent.enabled)
+                    agent.isStopped = true;
             }
 
             yield return new WaitForSeconds(updateRate);

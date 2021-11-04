@@ -1,39 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CharacterGenerator : MonoBehaviour
 {
-    public List<HealthController> unitsToRandomize = new List<HealthController>();
+    public static CharacterGenerator Instance;
 
-    IEnumerator Start()
+    private void Awake()
     {
-        // GENERATE SIMPLE UNITS FOR NOW
-        
-        int t = 0;
-        for (int i = 0; i < unitsToRandomize.Count; i++)
+        Instance = this;
+    }
+
+    public void GenerateUnit(HealthController hc)
+    {
+        if (hc.AiInput.inParty == false)
         {
-            if (unitsToRandomize[i].AiInput.inParty == false)
-            {
-                // random sex
-                float r = Random.value;
-                if (r <= 0.4f)
-                    unitsToRandomize[i]._Sex = HealthController.Sex.Female;
-                else if (r <= 0.8f)
-                    unitsToRandomize[i]._Sex = HealthController.Sex.Male;
-                else
-                    unitsToRandomize[i]._Sex = HealthController.Sex.Unknown;
-            }
-                
-            ChoosePerksForCharacter(unitsToRandomize[i]);
-            
-            t++;
-            if (t >= 10)
-            {
-                t = 0;
-                yield return null;
-            }
+            // random sex
+            float r = Random.value;
+            if (r <= 0.4f)
+                hc._Sex = HealthController.Sex.Female;
+            else if (r <= 0.8f)
+                hc._Sex = HealthController.Sex.Male;
+            else
+                hc._Sex = HealthController.Sex.Unknown;
         }
+                
+        ChoosePerksForCharacter(hc);
     }
 
     void ChoosePerksForCharacter(HealthController character)

@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
             TogglePause();
         }
         
-        
         if (Input.GetKey("g") && Input.GetKey("z") && Input.GetKeyDown("r"))
         {
             SceneManager.LoadScene(0);
@@ -70,6 +69,8 @@ public class GameManager : MonoBehaviour
     {
         if (Units.Contains(hc) == false)
             Units.Add(hc);
+
+        CharacterGenerator.Instance.GenerateUnit(hc);
     }
     
     public void SetLayerRecursively(GameObject obj, int newLayer)

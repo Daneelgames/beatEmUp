@@ -33,7 +33,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInfoData.cs" />
@@ -55,7 +54,6 @@
       <option value="$PROJECT_DIR$/Assets/DetailsOnGroundController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterInventoryUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/ActionsDropDownMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/AssetSpawner.cs" />
@@ -82,8 +80,10 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -152,7 +152,9 @@
       <workItem from="1635337095651" duration="23891000" />
       <workItem from="1635431897515" duration="40124000" />
       <workItem from="1635771382097" duration="47210000" />
-      <workItem from="1635938322739" duration="22548000" />
+      <workItem from="1635938322739" duration="22597000" />
+      <workItem from="1636032845204" duration="189000" />
+      <workItem from="1636033053013" duration="544000" />
     </task>
     <servers />
   </component>
