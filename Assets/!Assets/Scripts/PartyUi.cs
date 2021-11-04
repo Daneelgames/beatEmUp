@@ -36,6 +36,12 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private CharacterInventoryUi characterInventoryUiPrefab;
     private List<CharacterInventoryUi> spawnedInventoryUIs = new List<CharacterInventoryUi>();
 
+    public List<CharacterInventoryUi> SpawnedInventoryUIs
+    {
+        get{return spawnedInventoryUIs;}
+        set{spawnedInventoryUIs = value;}
+    }
+
     private static readonly int MoveString = Animator.StringToHash("Move");
     private static readonly int AttackString = Animator.StringToHash("Attack");
     private static readonly int Active = Animator.StringToHash("Active");
@@ -147,15 +153,15 @@ public class PartyUi : MonoBehaviour
 
         if (PartyInputManager.Instance.SelectedAllyUnits.Contains(hc))
         {
-            if (spawnedInventoryUIs.Count > 0 && spawnedInventoryUIs[0] != null && spawnedInventoryUIs[0].gameObject.activeInHierarchy)
-                spawnedInventoryUIs[0].UpdateInventoryUI(hc);
+            if (SpawnedInventoryUIs.Count > 0 && SpawnedInventoryUIs[0] != null && SpawnedInventoryUIs[0].gameObject.activeInHierarchy)
+                SpawnedInventoryUIs[0].UpdateInventoryUI(hc);
         }
     }
 
     public void UpdateCharacterInventory()
     {
-        if (spawnedInventoryUIs.Count > 0 && spawnedInventoryUIs[0] != null && spawnedInventoryUIs[0].gameObject.activeInHierarchy)
-            spawnedInventoryUIs[0].UpdateInventoryUI(PartyInputManager.Instance.SelectedAllyUnits[0]);
+        if (SpawnedInventoryUIs.Count > 0 && SpawnedInventoryUIs[0] != null && SpawnedInventoryUIs[0].gameObject.activeInHierarchy)
+            SpawnedInventoryUIs[0].UpdateInventoryUI(PartyInputManager.Instance.SelectedAllyUnits[0]);
     }
 
     public void CharacterDies(HealthController deadCharacter, HealthController damager)
@@ -272,24 +278,24 @@ public class PartyUi : MonoBehaviour
     {
         if (unit == null || unit.Inventory == null)
         {
-            for (int i = 0; i < spawnedInventoryUIs.Count; i++)
+            for (int i = 0; i < SpawnedInventoryUIs.Count; i++)
             {
-                spawnedInventoryUIs[i].gameObject.SetActive(false);
+                SpawnedInventoryUIs[i].gameObject.SetActive(false);
             }
             return;
         }
         
         CharacterInventoryUi inventoryUiToOpen = null;
 
-        for (int i = 0; i < spawnedInventoryUIs.Count; i++)
+        for (int i = 0; i < SpawnedInventoryUIs.Count; i++)
         {
-            if (spawnedInventoryUIs[i].gameObject.activeInHierarchy == false)
+            if (SpawnedInventoryUIs[i].gameObject.activeInHierarchy == false)
             {
-                inventoryUiToOpen = spawnedInventoryUIs[i];
+                inventoryUiToOpen = SpawnedInventoryUIs[i];
             }
-            else if (spawnedInventoryUIs[i].Unit == unit)
+            else if (SpawnedInventoryUIs[i].Unit == unit)
             {
-                spawnedInventoryUIs[i].gameObject.SetActive(false);
+                SpawnedInventoryUIs[i].gameObject.SetActive(false);
                 return;
             }
         }
@@ -302,14 +308,14 @@ public class PartyUi : MonoBehaviour
         inventoryUiToOpen.transform.SetSiblingIndex(3);
         inventoryUiToOpen.gameObject.SetActive(true);
         inventoryUiToOpen.UpdateInventoryUI(unit);
-        spawnedInventoryUIs.Add(inventoryUiToOpen);
+        SpawnedInventoryUIs.Add(inventoryUiToOpen);
     }
 
     public void UnitSelected(HealthController unit)
     {
-        if (spawnedInventoryUIs.Count > 0 && spawnedInventoryUIs[0] != null && spawnedInventoryUIs[0].gameObject.activeInHierarchy)
+        if (SpawnedInventoryUIs.Count > 0 && SpawnedInventoryUIs[0] != null && SpawnedInventoryUIs[0].gameObject.activeInHierarchy)
         {
-            spawnedInventoryUIs[0].UpdateInventoryUI(unit);
+            SpawnedInventoryUIs[0].UpdateInventoryUI(unit);
         }
     }
 

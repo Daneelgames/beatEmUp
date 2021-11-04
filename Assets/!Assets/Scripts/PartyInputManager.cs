@@ -107,6 +107,8 @@ public class PartyInputManager : MonoBehaviour
             PartyUi.Instance.ToggleInventoryUI(SelectedAllyUnits[0]);
             ActionsDropDownMenu.Instance.CloseDropDownMenu();
             ThrowMode(false, -1);
+            if (PartyUi.Instance.SpawnedInventoryUIs.Count <= 0 || PartyUi.Instance.SpawnedInventoryUIs[0].gameObject.activeInHierarchy == false)
+                SetCursorOverUI(false);
         }
         
         /*

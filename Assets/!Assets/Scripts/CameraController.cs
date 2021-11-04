@@ -34,22 +34,23 @@ public class CameraController : MonoBehaviour
     
     private IEnumerator Start()
     {
+        camParentTargetX = Mathf.Clamp (camParentTargetX, xMinMax.x, xMinMax.y);
         while (PlayerInput.Instance == null && PartyInputManager.Instance == null)
         {
             yield return null;
         }
 
-        camParentTargetX = parent.transform.localPosition.x;
-        camParentTargetY = parent.transform.localPosition.y;
+        camParentTargetX = parent.transform.eulerAngles.x;
+        camParentTargetY = parent.transform.eulerAngles.y;
         camTargetZ = transform.localPosition.z;
         yield return new WaitForSeconds(1);
+        camParentTargetX = Mathf.Clamp (camParentTargetX, xMinMax.x, xMinMax.y);
         canFollow = true;
     }
 
     void Update()
     {
         // input & calculations
-        
         targetPosition = parent.gameObject.transform.position;
         
         if (PlayerInput.Instance)
@@ -60,6 +61,12 @@ public class CameraController : MonoBehaviour
             {
                 float horizontalAxis = Input.GetAxisRaw("Horizontal");
                 float verticalAxis = Input.GetAxisRaw("Vertical");
+
+                if (Input.GetButton("MoveCamera"))
+                {
+                    horizontalAxis = Input.GetAxis("Mouse X") * 5;
+                    verticalAxis = Input.GetAxis("Mouse Y") * 5;
+                }
             
                 var forward = GameManager.Instance.mainCamera.transform.forward;
                 var right = GameManager.Instance.mainCamera.transform.right;
@@ -77,7 +84,7 @@ public class CameraController : MonoBehaviour
             camTargetZ += Input.GetAxis("Mouse ScrollWheel") * cameraZoomSpeed * Time.smoothDeltaTime;
             camTargetZ = Mathf.Clamp(camTargetZ, zMinMax.x, zMinMax.y);
             
-            if (Input.GetButton("Aim"))
+            if (Input.GetButton("RotateCamera"))
             {
                 camParentTargetX -= Input.GetAxis("Mouse Y") * cameraTurnSpeed * Time.smoothDeltaTime;
                 camParentTargetX = Mathf.Clamp (camParentTargetX, xMinMax.x, xMinMax.y);
