@@ -11,8 +11,34 @@ public class AiInput : MonoBehaviour
     public bool inParty = false;
     public bool ally = false;
 
-    [Header("Follow the Leader behaviour")] 
+    [Header("Follow the Leader behaviour")] [SerializeField]
+    private bool leader = false;
+    public bool Leader { get => leader; set => leader = value; }
+    
     [SerializeField] private HealthController leaderToFollow;
+    public HealthController LeaderToFollow
+    {
+        get => leaderToFollow;
+        set => leaderToFollow = value;
+    }
+    
+    [SerializeField] private bool canCreateGroupOnRuntime = true;
+
+    public bool CanCreateGroupOnRuntime
+    {
+        get => canCreateGroupOnRuntime;
+        set => canCreateGroupOnRuntime = value;
+    } 
+
+    [SerializeField] private bool canJoinGroupOnRuntime = true;
+    public bool CanJoinGroupOnRuntime { get => canJoinGroupOnRuntime; set => canJoinGroupOnRuntime = value; } 
+    [SerializeField] List<HealthController> followersCurrent = new List<HealthController>();
+    [SerializeField] int followersAmountMax = 5;
+
+    public List<HealthController> FollowersCurrent { get => followersCurrent; set => followersCurrent = value; }
+
+    public int FollowersAmountMax { get => followersAmountMax; set => followersAmountMax = value; }
+    
 
     [SerializeField] private float maxDistanceFromLeader = 50;
     [SerializeField] private float followLeaderUpdateDelay = 0.5f;

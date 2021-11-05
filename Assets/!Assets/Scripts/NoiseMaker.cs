@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NoiseMaker : MonoBehaviour
 {
+    public HealthController hc;
+    
     public bool makeStepNoise = false;
     public float walkStepNoiseDistance = 1;
     public float runStepNoiseDistance = 10;
@@ -20,14 +22,14 @@ public class NoiseMaker : MonoBehaviour
         if (!makeStepNoise)
             return;
         
-        SpawnController.Instance.MakeNoise(transform.position, walkStepNoiseDistance);
+        SpawnController.Instance.MakeNoise(transform.position, walkStepNoiseDistance, hc);
     }
     public void RunStepNoise()
     {
         if (!makeStepNoise)
             return;
         
-        SpawnController.Instance.MakeNoise(transform.position, runStepNoiseDistance);
+        SpawnController.Instance.MakeNoise(transform.position, runStepNoiseDistance, hc);
     }
 
     public void AttackNoise()
@@ -35,14 +37,14 @@ public class NoiseMaker : MonoBehaviour
         if (!makeAttackNoise)
             return;
         
-        SpawnController.Instance.MakeNoise(transform.position, attackNoiseDistance);
+        SpawnController.Instance.MakeNoise(transform.position, attackNoiseDistance, hc);
     }
     public void ShotNoise()
     {
         if (!makeAttackNoise)
             return;
         
-        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance);
+        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance, hc);
     }
     
     public void ShoutNoise()
@@ -50,6 +52,6 @@ public class NoiseMaker : MonoBehaviour
         if (!shouts)
             return;
         
-        SpawnController.Instance.MakeNoise(transform.position, shoutNoiseDistance);
+        SpawnController.Instance.MakeNoise(transform.position, shoutNoiseDistance, hc);
     }
 }

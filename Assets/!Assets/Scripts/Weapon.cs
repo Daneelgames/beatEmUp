@@ -113,7 +113,7 @@ public class Weapon : MonoBehaviour
         if (thrownCoroutine != null && other.collider.gameObject.layer == 6)
         {
             StopThrowFly();
-            SpawnController.Instance.MakeNoise(transform.position, throwImpactNoiseDistance);
+            SpawnController.Instance.MakeNoise(transform.position, throwImpactNoiseDistance, null);
 
             if (destroyOnThrowCollision)
             {
@@ -152,7 +152,7 @@ public class Weapon : MonoBehaviour
                 if (AttackManager == null)
                 {
                     attacksLeft = 0;
-                    SpawnController.Instance.MakeNoise(transform.position, throwImpactNoiseDistance);
+                    SpawnController.Instance.MakeNoise(transform.position, throwImpactNoiseDistance, null);
                     DamageOnThrow(newPartToDamage, throwDamage);
                     AfterAttack(newPartToDamage);
                     
@@ -163,7 +163,7 @@ public class Weapon : MonoBehaviour
                 }
                 else if (AttackManager.DamageOtherBodyPart(newPartToDamage, weaponDamage, HealthController.DamageType.Melee))
                 {
-                    SpawnController.Instance.MakeNoise(transform.position, meleeNoiseDistance);
+                    SpawnController.Instance.MakeNoise(transform.position, meleeNoiseDistance, attackManager.Hc);
                     
                     if (attackManager.Hc.CharacterPerksController.WeaponLover != null || Random.value > 0.66f)
                         attacksLeft--;
@@ -239,8 +239,9 @@ public class Weapon : MonoBehaviour
                 }
             }
         }
-        
-        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance);
+
+        var hc = attackManager.Hc;
+        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance, attackManager.Hc);
         
         if (shotAu == null)
             return;

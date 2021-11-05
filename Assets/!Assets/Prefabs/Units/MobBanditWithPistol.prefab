@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: idleTimeMinMax.y
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2984947846422348196, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: maxDistanceFromLeader
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4369443321332258601, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: viewAngle
       value: 90

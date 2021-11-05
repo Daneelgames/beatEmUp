@@ -23,7 +23,6 @@
             <e p="CharacterPerksController.cs" t="Include" />
             <e p="Consumable.cs" t="Include" />
             <e p="DamageOnContact.cs" t="Include" />
-            <e p="DetailsOnGroundController.cs" t="Include" />
             <e p="FieldOfView.cs" t="Include" />
             <e p="HealthController.cs" t="Include" />
             <e p="Interactable.cs" t="Include" />
@@ -481,6 +480,58 @@
             <e p="Editor" t="Include">
               <e p="CFXEasyEditor.cs" t="Include" />
             </e>
+          </e>
+        </e>
+        <e p="MeshBrush" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="Michroma" t="Include">
+              <e p="OFL.txt" t="Include" />
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Classes" t="Include">
+              <e p="Components" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="FavouriteTemplates.xml" t="Include" />
+                  <e p="MeshBrushEditor.cs" t="Include" />
+                  <e p="SaveCombinedMeshEditor.cs" t="Include" />
+                </e>
+                <e p="Examples" t="Include">
+                  <e p="RuntimeExample.cs" t="Include" />
+                </e>
+                <e p="MeshBrush.cs" t="Include" />
+                <e p="MeshBrushParent.cs" t="Include" />
+                <e p="SaveCombinedMesh.cs" t="Include" />
+              </e>
+              <e p="Data" t="Include">
+                <e p="EditorIcons.cs" t="Include" />
+              </e>
+              <e p="Utilities" t="Include">
+                <e p="CombineUtility.cs" t="Include" />
+                <e p="FavouriteTemplatesUtility.cs" t="Include" />
+                <e p="MeshTransformationUtility.cs" t="Include" />
+                <e p="TemplateMigrationUtility.cs" t="Include" />
+                <e p="VectorClampingUtility.cs" t="Include" />
+              </e>
+              <e p="Wizards" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="EditRangeLimitsWizard.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Enums" t="Include">
+              <e p="BrushMode.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Templates" t="Include">
+            <e p="Examples" t="Include">
+              <e p="Scale Curve Example 1.xml" t="Include" />
+              <e p="Scale Curve Example 2.xml" t="Include" />
+              <e p="Stroke Alignment Example.xml" t="Include" />
+              <e p="Terrain Example.xml" t="Include" />
+              <e p="Test Asteroid Example.xml" t="Include" />
+            </e>
+            <e p="Readme.txt" t="Include" />
           </e>
         </e>
         <e p="RandomizeAudio.cs" t="Include" />

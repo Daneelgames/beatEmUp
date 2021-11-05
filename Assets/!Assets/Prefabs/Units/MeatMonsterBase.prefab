@@ -101,16 +101,26 @@ MonoBehaviour:
   collider: {fileID: 3496487033709356491}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
   - {fileID: 179122716562391307}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &3496487033709356491
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -232,16 +242,26 @@ MonoBehaviour:
   collider: {fileID: 27461975}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &27461975
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -357,16 +377,26 @@ MonoBehaviour:
   collider: {fileID: 3126910359421254714}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
   - {fileID: 654044097898575078}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &3126910359421254714
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -565,16 +595,26 @@ MonoBehaviour:
   collider: {fileID: 9146596730680068102}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
   - {fileID: 787700990254785570}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &9146596730680068102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -691,16 +731,26 @@ MonoBehaviour:
   collider: {fileID: 1147915038}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &1147915038
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -899,16 +949,26 @@ MonoBehaviour:
   collider: {fileID: 114851540121854589}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2757094158265427970}
 --- !u!136 &114851540121854589
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1264,16 +1324,26 @@ MonoBehaviour:
   collider: {fileID: 3603298971399532873}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
   - {fileID: 1863050974971469894}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &3603298971399532873
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6447,16 +6517,26 @@ MonoBehaviour:
   collider: {fileID: 1456332750882964968}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
   - {fileID: 2289079629362020250}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &1456332750882964968
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6655,16 +6735,26 @@ MonoBehaviour:
   collider: {fileID: 5834656468650381250}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
   - {fileID: 2467949884166158450}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &5834656468650381250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6907,16 +6997,26 @@ MonoBehaviour:
   collider: {fileID: 768080547260391764}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!136 &768080547260391764
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7196,16 +7296,26 @@ MonoBehaviour:
   collider: {fileID: 3400530905073357189}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
   - {fileID: 4287829686783808575}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &3400530905073357189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7586,16 +7696,26 @@ MonoBehaviour:
   collider: {fileID: 706820808280700457}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
   - {fileID: 4620975222171282763}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &706820808280700457
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7712,16 +7832,26 @@ MonoBehaviour:
   collider: {fileID: 5512405265385952150}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
   - {fileID: 4932460002820577424}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &5512405265385952150
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7943,16 +8073,26 @@ MonoBehaviour:
   collider: {fileID: 2475636135702558776}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
   - {fileID: 5728637855925523102}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &2475636135702558776
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8068,16 +8208,26 @@ MonoBehaviour:
   victimTargetTransform: {fileID: 6896825304418148940}
   bodyParts:
   - {fileID: 27461976}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1147915039}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5828345155642049722}
+  - {fileID: 6690067052314238546}
+  - {fileID: 4557387216552591348}
+  - {fileID: 2711946829304909112}
+  - {fileID: 7907303303258973674}
+  - {fileID: 1638481263260797084}
+  - {fileID: 4089403831784251051}
+  - {fileID: 1651980422048452005}
+  - {fileID: 542307943739487955}
+  - {fileID: 8156028184184316891}
+  - {fileID: 8694907156550816159}
+  - {fileID: 3250577974632415865}
+  - {fileID: 2225826752930840827}
+  - {fileID: 3748795824026971209}
+  - {fileID: 7319396029926686062}
+  - {fileID: 6886332746480302978}
+  - {fileID: 8098026168278756319}
+  - {fileID: 663631756038422498}
+  - {fileID: 3882559259867081177}
   removableParts:
   - {fileID: 0}
   - {fileID: 0}
@@ -8105,6 +8255,14 @@ MonoBehaviour:
   debugLogs: 0
   inParty: 0
   ally: 0
+  leader: 0
+  leaderToFollow: {fileID: 0}
+  canCreateGroupOnRuntime: 1
+  canJoinGroupOnRuntime: 0
+  followersCurrent: []
+  followersAmountMax: 5
+  maxDistanceFromLeader: 50
+  followLeaderUpdateDelay: 0.5
   _aggroMode: 0
   state: 1
   aggroDistance: 30
@@ -8167,54 +8325,14 @@ MonoBehaviour:
     canRotateOnReturn: 0
     canSkipReturn: 1
     dangeorusParts:
-    - {fileID: 0}
-    - {fileID: 0}
-    attackWeight: 2
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
-  - shotPosition: {fileID: 0}
-    useAmmo: 0
-    canAttackMidAir: 1
-    attackDamageScaler: 1.2
-    attackCritChanceScaler: 1
-    attackAnimationTriggerName: Attack1
-    attackSwingTime: 0.33
-    attackDangerTime: 0.825
-    attackReturnTime: 0.25
-    canMoveOnSwing: 1
-    canMoveOnDanger: 0
-    canMoveOnReturn: 0
-    canRotateOnSwing: 1
-    canRotateOnDanger: 0
-    canRotateOnReturn: 1
-    canSkipReturn: 0
-    dangeorusParts:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    attackWeight: 1
-    reduceAttackWeightOnRepeat: 0.5
-    restoreAttackWeightOnAttackRest: 0.25
-  - shotPosition: {fileID: 0}
-    useAmmo: 0
-    canAttackMidAir: 1
-    attackDamageScaler: 1
-    attackCritChanceScaler: 1
-    attackAnimationTriggerName: Attack2
-    attackSwingTime: 0.25
-    attackDangerTime: 0.25
-    attackReturnTime: 0.1
-    canMoveOnSwing: 1
-    canMoveOnDanger: 1
-    canMoveOnReturn: 1
-    canRotateOnSwing: 1
-    canRotateOnDanger: 0
-    canRotateOnReturn: 0
-    canSkipReturn: 1
-    dangeorusParts:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 3250577974632415865}
+    - {fileID: 2225826752930840827}
+    - {fileID: 3748795824026971209}
+    - {fileID: 7319396029926686062}
+    - {fileID: 6886332746480302978}
+    - {fileID: 8098026168278756319}
+    - {fileID: 663631756038422498}
+    - {fileID: 3882559259867081177}
     attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
@@ -8347,6 +8465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa1e500a81033f429023daba06d1ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hc: {fileID: 0}
   makeStepNoise: 1
   walkStepNoiseDistance: 1
   runStepNoiseDistance: 10
@@ -8770,16 +8889,26 @@ MonoBehaviour:
   collider: {fileID: 1338598788005272564}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
   - {fileID: 6845768870687619465}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &1338598788005272564
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9060,16 +9189,26 @@ MonoBehaviour:
   collider: {fileID: 7748551760474329887}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
   - {fileID: 7046369698321600149}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &7748551760474329887
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9344,16 +9483,26 @@ MonoBehaviour:
   collider: {fileID: 436021326509964738}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
   - {fileID: 7986478719762311405}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &436021326509964738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9470,16 +9619,26 @@ MonoBehaviour:
   collider: {fileID: 8075400491852241348}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
   - {fileID: 8233927265433104962}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &8075400491852241348
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9596,16 +9755,26 @@ MonoBehaviour:
   collider: {fileID: 2167057789725121750}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
   - {fileID: 8464425814769869685}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &2167057789725121750
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9722,16 +9891,26 @@ MonoBehaviour:
   collider: {fileID: 3361502973519830429}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
+  - {fileID: 8919119497731365961}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
   - {fileID: 8910738486886657209}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &3361502973519830429
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9847,16 +10026,26 @@ MonoBehaviour:
   collider: {fileID: 5615365786086317999}
   ownBodyPartsGameObjects:
   - {fileID: 585258594367684314}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1029143299534692903}
+  - {fileID: 2289079629362020250}
+  - {fileID: 2467949884166158450}
   - {fileID: 8919119497731365961}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7046369698321600149}
+  - {fileID: 8464425814769869685}
+  - {fileID: 787700990254785570}
+  - {fileID: 4287829686783808575}
+  - {fileID: 6845768870687619465}
+  - {fileID: 1863050974971469894}
+  - {fileID: 8910738486886657209}
+  - {fileID: 654044097898575078}
+  - {fileID: 4620975222171282763}
+  - {fileID: 8233927265433104962}
+  - {fileID: 4932460002820577424}
+  - {fileID: 179122716562391307}
+  - {fileID: 7986478719762311405}
+  - {fileID: 5728637855925523102}
+  - {fileID: 1300102917378140538}
+  - {fileID: 2757094158265427970}
 --- !u!136 &5615365786086317999
 CapsuleCollider:
   m_ObjectHideFlags: 0

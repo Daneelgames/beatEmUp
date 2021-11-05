@@ -8,6 +8,9 @@ public class CharacterGenerator : MonoBehaviour
 {
     public static CharacterGenerator Instance;
 
+    [Header("Squads")]
+    public bool generateSquads = true;
+
     private void Awake()
     {
         Instance = this;
@@ -28,6 +31,50 @@ public class CharacterGenerator : MonoBehaviour
         }
                 
         ChoosePerksForCharacter(hc);
+
+        // generate squads of allies
+        if (generateSquads)
+        {
+            bool squadFound = false;
+            for (int i = 0; i < GameManager.Instance.Units.Count; i++)
+            {
+                var newHc = GameManager.Instance.Units[i];
+                if (newHc == hc)
+                    continue;
+                
+                if (newHc.AiInput.ally != hc.AiInput.ally)
+                    continue;
+
+                if (hc.AiInput.CanJoinGroupOnRuntime)
+                {
+                    if (newHc.AiInput.Leader || newHc.AiInput.CanCreateGroupOnRuntime)
+                    {
+                        if (newHc.AiInput.FollowersCurrent.Count < newHc.AiInput.FollowersAmountMax)
+                        {
+                            squadFound = true;
+                            SetLeader(newHc, hc);
+                        }
+                    }
+                }
+            }
+
+            if (squadFound == false && hc.AiInput.CanCreateGroupOnRuntime)
+            {
+                SetLeader(hc, null);
+            }
+        }
+    }
+
+    void SetLeader(HealthController leader, HealthController follower)
+    {
+        leader.AiInput.Leader = true;
+        if (follower)
+        {
+            if (leader.AiInput.FollowersCurrent.Contains(follower) == false)
+                leader.AiInput.FollowersCurrent.Add(follower);
+            
+            follower.AiInput.LeaderToFollow = leader;
+        }
     }
 
     void ChoosePerksForCharacter(HealthController character)

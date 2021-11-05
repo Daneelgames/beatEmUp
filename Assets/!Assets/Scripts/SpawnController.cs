@@ -32,11 +32,11 @@ public class SpawnController : MonoBehaviour
         _activateRigidbodyOnNoises.Add(newActivateRigidbodyOnNoise);
     }
 
-    public void MakeNoise(Vector3 noiseMakerPos, float maxDistance)
+    public void MakeNoise(Vector3 noiseMakerPos, float maxDistance, HealthController noiseMaker)
     {
         for (int i = 0; i < spawnedAiInputs.Count; i++)
         {
-            if (spawnedAiInputs[i].Hears == false)
+            if (spawnedAiInputs[i].Hears == false || (noiseMaker && noiseMaker.AiInput.ally == spawnedAiInputs[i].ally))
                 continue;
             
             float newDistance = Vector3.Distance(noiseMakerPos, spawnedAiInputs[i].transform.position);
