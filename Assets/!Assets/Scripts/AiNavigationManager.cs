@@ -11,6 +11,7 @@ public class AiNavigationManager : MonoBehaviour
     [SerializeField] private List<HealthController> centerMobs = new List<HealthController>();
     [SerializeField] private List<Transform> pointsOfInterest;
     [SerializeField] private List<Transform> pointsOfInterestDesert;
+    [SerializeField] private List<Transform> pointsOfInterestAllies;
     public static AiNavigationManager instance;
 
     private void Awake()
@@ -20,12 +21,15 @@ public class AiNavigationManager : MonoBehaviour
 
     public List<Transform> PointsOfInterest => pointsOfInterest;
     public List<Transform> PointsOfInterestDesert => pointsOfInterestDesert;
+    public List<Transform> PointsOfInterestAllies => pointsOfInterestAllies;
 
     public Vector3 GetPointOfInterestForUnit(HealthController hc)
     {
         List<Transform> tempPOIs;
         if (centerMobs.Contains(hc))
             tempPOIs = new List<Transform>(PointsOfInterest);
+        else if (hc.AiInput.ally)
+            tempPOIs = new List<Transform>(PointsOfInterestAllies);
         else
             tempPOIs = new List<Transform>(PointsOfInterestDesert);
 

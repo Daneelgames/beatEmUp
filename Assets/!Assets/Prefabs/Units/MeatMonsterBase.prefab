@@ -8171,8 +8171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sex: 2
   invincible: 0
-  health: 2000
-  healthMax: 2000
+  health: 3000
+  healthMax: 3000
   damagedAnimationTime: 0.25
   _objectInfoData: {fileID: 11400000, guid: 97133e9b5c9d7534989491d72685638d, type: 2}
   canvas: {fileID: 4698293244062374759}
@@ -8256,7 +8256,7 @@ MonoBehaviour:
   inParty: 0
   ally: 0
   leader: 0
-  leaderToFollow: {fileID: 0}
+  leaderToFollow: {fileID: 1212818265}
   canCreateGroupOnRuntime: 1
   canJoinGroupOnRuntime: 0
   followersCurrent: []

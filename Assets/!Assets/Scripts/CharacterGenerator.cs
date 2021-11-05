@@ -45,7 +45,7 @@ public class CharacterGenerator : MonoBehaviour
                 if (newHc.AiInput.ally != hc.AiInput.ally)
                     continue;
 
-                if (hc.AiInput.CanJoinGroupOnRuntime)
+                if (hc.AiInput.CanJoinGroupOnRuntime && newHc.AiInput.LeaderToFollow == null)
                 {
                     if (newHc.AiInput.Leader || newHc.AiInput.CanCreateGroupOnRuntime)
                     {
@@ -58,7 +58,7 @@ public class CharacterGenerator : MonoBehaviour
                 }
             }
 
-            if (squadFound == false && hc.AiInput.CanCreateGroupOnRuntime)
+            if (squadFound == false && hc.AiInput.CanCreateGroupOnRuntime && hc.AiInput.LeaderToFollow == null)
             {
                 SetLeader(hc, null);
             }

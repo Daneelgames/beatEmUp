@@ -16,6 +16,8 @@ ShaderVariantCollection:
   - first: {fileID: 4800000, guid: 6dceba3ab2a25594b980289e43dd1984, type: 3}
     second:
       variants:
+      - keywords: 
+        passType: 0
       - keywords: _NORMALMAP
         passType: 0
   - first: {fileID: 4800000, guid: 594cca956ebd9a843b504d2bea92e06f, type: 3}

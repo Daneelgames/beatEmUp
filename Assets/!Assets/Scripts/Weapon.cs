@@ -241,7 +241,7 @@ public class Weapon : MonoBehaviour
         }
 
         var hc = attackManager.Hc;
-        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance, attackManager.Hc);
+        SpawnController.Instance.MakeNoise(transform.position, shotNoiseDistance, null);
         
         if (shotAu == null)
             return;

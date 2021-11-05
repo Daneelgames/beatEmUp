@@ -324,10 +324,6 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7089079299650208771, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
-      propertyPath: rolloffMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7089079299650208771, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
       value: 0.02
       objectReference: {fileID: 0}

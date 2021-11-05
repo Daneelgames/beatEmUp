@@ -171,7 +171,7 @@ public class AiInput : MonoBehaviour
                 {
                     StopBehaviourCoroutines();
                     SetNavMeshAgentSpeed(runSpeed);
-                    SetAgentDestinationTarget(leaderToFollow.transform.position, false);
+                    SetAgentDestinationTarget(NewPositionNearLeader() , false);
                 }
             }
             yield return new WaitForSeconds(followLeaderUpdateDelay);
@@ -460,7 +460,8 @@ public class AiInput : MonoBehaviour
             print ("WanderOverTime");
         while (true)
         {
-            if (Vector3.Distance(transform.position, currentTargetPosition) < stopDistance)
+            float distance = Vector3.Distance(transform.position, currentTargetPosition); 
+            if (distance < stopDistance)
             {
                 if (Random.value < 0.5)
                 {
@@ -485,7 +486,14 @@ public class AiInput : MonoBehaviour
             else
             {
                 if (agent && agent.enabled)
+                {
+                    if (distance < runDistanceThreshold)
+                        SetNavMeshAgentSpeed(walkSpeed);
+                    else
+                        SetNavMeshAgentSpeed(runSpeed);
+                    
                     SetAgentDestinationTarget(currentTargetPosition, false);
+                }
                 else
                     yield break;
             }
@@ -657,6 +665,24 @@ public class AiInput : MonoBehaviour
         }
         return newPos;
     }
+    Vector3 NewPositionNearLeader()
+    {
+        Vector3 newPos = LeaderToFollow.transform.position + Random.insideUnitSphere * 5; 
+        
+        NavMeshHit hit;
+        float tries = 5;
+        while (tries > 0)
+        {
+            NavMesh.SamplePosition(newPos, out hit, 10, groundMask);
+            if (hit.hit)
+            {
+                newPos = hit.position;
+                break;
+            }
+            tries--;
+        }
+        return newPos;
+    }
     
     Vector3 GetPositionOfClosestEnemy(bool onlyVisible)
     {
@@ -665,9 +691,15 @@ public class AiInput : MonoBehaviour
         float distance = 1000;
         float newDistance = 0;
         HealthController closestEnemy = null;
-        for (int i = 0; i < hc.Enemies.Count; i++)
+        for (int i = hc.Enemies.Count - 1; i >= 0; i--)
         {
-            if (hc.Enemies == null || (onlyVisible && hc.VisibleHCs.Contains(hc.Enemies[i]) == false) || hc.Enemies[i].Health <= 0)
+            if (hc.Enemies[i].Health <= 0)
+            {
+                hc.RemoveEnemyAt(i);
+                continue;
+            }
+            
+            if (hc.Enemies == null || (onlyVisible && hc.VisibleHCs.Contains(hc.Enemies[i]) == false))
                 continue;
             
             newDistance = Vector3.Distance(transform.position, hc.Enemies[i].transform.position);

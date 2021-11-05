@@ -21,6 +21,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ActivateRigidbodyOnNoise.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShufflePositionForObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/DamageOnContact.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" root0="FORCE_HIGHLIGHTING" />
@@ -33,8 +34,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/CameraController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/PerksManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
@@ -45,7 +44,6 @@
       <option value="$PROJECT_DIR$/Assets/CharacterPerksController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/NavMeshBaker.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/ItemsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterInventory.cs" />
@@ -81,9 +79,12 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/NoiseMaker.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterGenerator.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PlayerInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/ShufflePositionForObjects.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -155,7 +156,7 @@
       <workItem from="1635938322739" duration="22597000" />
       <workItem from="1636032845204" duration="189000" />
       <workItem from="1636033053013" duration="2781000" />
-      <workItem from="1636103376549" duration="6445000" />
+      <workItem from="1636103376549" duration="12687000" />
     </task>
     <servers />
   </component>

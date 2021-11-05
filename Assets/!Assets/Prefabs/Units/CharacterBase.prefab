@@ -597,7 +597,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -6392,7 +6392,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -7986,10 +7986,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugLogs: 0
   inParty: 0
+  ally: 0
+  leader: 0
+  leaderToFollow: {fileID: 0}
+  canCreateGroupOnRuntime: 1
+  canJoinGroupOnRuntime: 1
+  followersCurrent: []
+  followersAmountMax: 5
+  maxDistanceFromLeader: 50
+  followLeaderUpdateDelay: 0.5
   _aggroMode: 0
   state: 1
   aggroDistance: 30
   kidness: 0.5
+  hears: 1
   walkSpeed: 4
   runSpeed: 8
   stopDistance: 2
@@ -8227,6 +8237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa1e500a81033f429023daba06d1ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hc: {fileID: 0}
   makeStepNoise: 0
   walkStepNoiseDistance: 1
   runStepNoiseDistance: 10
@@ -8352,7 +8363,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
