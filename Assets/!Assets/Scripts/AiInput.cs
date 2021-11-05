@@ -15,6 +15,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private HealthController leaderToFollow;
 
     [SerializeField] private float maxDistanceFromLeader = 50;
+    [SerializeField] private float followLeaderUpdateDelay = 0.5f;
     
     public enum AggroMode
     {
@@ -139,14 +140,15 @@ public class AiInput : MonoBehaviour
         {
             if (leaderToFollow)
             {
-                if (Vector3.Distance(transform.position, leaderToFollow.transform.position) >= maxDistanceFromLeader)
+                float distance = Vector3.Distance(transform.position, leaderToFollow.transform.position); 
+                if (distance >= maxDistanceFromLeader)
                 {
                     StopBehaviourCoroutines();
                     SetNavMeshAgentSpeed(runSpeed);
                     SetAgentDestinationTarget(leaderToFollow.transform.position, false);
                 }
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(followLeaderUpdateDelay);
         }
     }
     

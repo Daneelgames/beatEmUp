@@ -23,3 +23,8 @@ MonoBehaviour:
     modifiedDate: 11/05/2021 13:12:55.723
     isOriginalInstanced: 1
     extensionCode: 
+  - name: FlatKit/Stylized Surface
+    instancedShader: {fileID: 4800000, guid: 594cca956ebd9a843b504d2bea92e06f, type: 3}
+    modifiedDate: 11/05/2021 13:28:04.239
+    isOriginalInstanced: 0
+    extensionCode: 

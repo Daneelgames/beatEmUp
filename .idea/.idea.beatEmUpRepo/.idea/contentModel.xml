@@ -129,6 +129,7 @@
                 <e p="TerrainLitPasses_DR.hlsl" t="Include" />
               </e>
               <e p="StylizedSurface.shader" t="Include" />
+              <e p="StylizedSurface_GPUI.shader" t="Include" />
               <e p="StylizedSurfaceOutline.shader" t="Include" />
               <e p="Terrain.shader" t="Include" />
             </e>
@@ -243,6 +244,214 @@
           <e p="Read_me.txt" t="Include" />
         </e>
         <e p="GameManager.cs" t="Include" />
+        <e p="GPUInstancer" t="Include">
+          <e p="Demos" t="Include">
+            <e p="_SharedResources" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="ColorPicker.cs" t="Include" />
+                <e p="FPController.cs" t="Include" />
+                <e p="FPS.cs" t="Include" />
+                <e p="GrassMowerController.cs" t="Include" />
+                <e p="ShieldImpact.cs" t="Include" />
+                <e p="SpaceshipCameraRig.cs" t="Include" />
+                <e p="SpaceshipController.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="ImpactShield.shader" t="Include" />
+              </e>
+            </e>
+            <e p="AddModifyTerrainsRuntime" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="TerrainGenerator.cs" t="Include" />
+              </e>
+            </e>
+            <e p="AddRemoveInstances" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="AddRemoveInstances.cs" t="Include" />
+              </e>
+            </e>
+            <e p="AddRuntimeCreatedGameObjects" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="AddRuntimeCreatedGameObjects.cs" t="Include" />
+              </e>
+            </e>
+            <e p="ColorVariations" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="ColorVariations.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="ColorVariationShader_GPUI.shader" t="Include" />
+              </e>
+            </e>
+            <e p="CustomComputeShader" t="Include">
+              <e p="Resources" t="Include">
+                <e p="GPUIBoids.compute" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="BoidController.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Demo_Packages_SRP-Readme.txt" t="Include" />
+            <e p="DetailInstancing" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="DetailDemoSceneController.cs" t="Include" />
+              </e>
+            </e>
+            <e p="PrefabInstancing" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="AstroidGenerator.cs" t="Include" />
+                <e p="SpaceshipMobileController.cs" t="Include" />
+                <e p="SpaceshipMobileJoystick.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="AsteroidHaze_GPUI.shader" t="Include" />
+              </e>
+            </e>
+            <e p="PrefabsWithoutGameObjects" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="PrefabsWithoutGameObjects.cs" t="Include" />
+              </e>
+            </e>
+            <e p="ShaderGraphVariations" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="ShaderGraphVariationsController.cs" t="Include" />
+              </e>
+            </e>
+            <e p="TreeInstancing" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="TreeDemoSceneController.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="GPUInstancer.asmdef" t="Include" />
+          <e p="PrototypeData" t="Include">
+            <e p="Shaders" t="Include">
+              <e p="Lit_GPUI.shader" t="Include" />
+            </e>
+          </e>
+          <e p="Readme.txt" t="Include" />
+          <e p="Resources" t="Include">
+            <e p="Compute" t="Include">
+              <e p="CSArgsBuffer.compute" t="Include" />
+              <e p="CSBillboard.compute" t="Include" />
+              <e p="CSInstancedBufferToTexture.compute" t="Include" />
+              <e p="CSInstancedCameraCalculationKernel.compute" t="Include" />
+              <e p="CSInstancedCameraCalculationKernelVR.compute" t="Include" />
+              <e p="CSInstancedComputeBufferSetDataPartialKernel.compute" t="Include" />
+              <e p="CSInstancedRenderingGrassInstantiationKernel.compute" t="Include" />
+              <e p="CSInstancedRenderingVisibilityKernel.compute" t="Include" />
+              <e p="CSInstancedRenderingVisibilityKernelVulkan.compute" t="Include" />
+              <e p="CSRuntimeModification.compute" t="Include" />
+              <e p="CSTextureUtils.compute" t="Include" />
+              <e p="CSTreeInstantiationKernel.compute" t="Include" />
+              <e p="Include" t="Include">
+                <e p="Camera.compute" t="Include" />
+                <e p="Collider.compute" t="Include" />
+                <e p="Culling.compute" t="Include" />
+                <e p="CullingVR.compute" t="Include" />
+                <e p="DataModel.compute" t="Include" />
+                <e p="Matrix.compute" t="Include" />
+                <e p="Params.compute" t="Include" />
+                <e p="PlatformDefines.compute" t="Include" />
+                <e p="Random.compute" t="Include" />
+                <e p="Terrain.compute" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="API" t="Include">
+              <e p="GPUInstancerAPI.cs" t="Include" />
+            </e>
+            <e p="Core" t="Include">
+              <e p="Contract" t="Include">
+                <e p="GPUInstancerCell.cs" t="Include" />
+                <e p="GPUInstancerManager.cs" t="Include" />
+                <e p="GPUInstancerPrototype.cs" t="Include" />
+                <e p="GPUInstancerTerrainManager.cs" t="Include" />
+              </e>
+              <e p="DataModel" t="Include">
+                <e p="GPUInstancerBillboardAtlasBindings.cs" t="Include" />
+                <e p="GPUInstancerCameraData.cs" t="Include" />
+                <e p="GPUInstancerConstants.cs" t="Include" />
+                <e p="GPUInstancerDetailCell.cs" t="Include" />
+                <e p="GPUInstancerDetailPrototype.cs" t="Include" />
+                <e p="GPUInstancerEventType.cs" t="Include" />
+                <e p="GPUInstancerPrefabCell.cs" t="Include" />
+                <e p="GPUInstancerPrefabPrototype.cs" t="Include" />
+                <e p="GPUInstancerRuntimeData.cs" t="Include" />
+                <e p="GPUInstancerSettings.cs" t="Include" />
+                <e p="GPUInstancerSettingsExtention.cs" t="Include" />
+                <e p="GPUInstancerShaderBindings.cs" t="Include" />
+                <e p="GPUInstancerShaderBindingsExtention.cs" t="Include" />
+                <e p="GPUInstancerSpatialPartitioningData.cs" t="Include" />
+                <e p="GPUInstancerTerrainSettings.cs" t="Include" />
+                <e p="GPUInstancerTreePrototype.cs" t="Include" />
+                <e p="GPUInstancerTreeType.cs" t="Include" />
+              </e>
+              <e p="Static" t="Include">
+                <e p="GPUInstancerUtility.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Editor" t="Include">
+              <e p="Extention" t="Include">
+                <e p="GPUInstancerBillboardExtention.cs" t="Include" />
+              </e>
+              <e p="GPUInstancer.Editor.asmdef" t="Include" />
+              <e p="GPUInstancerDefines.cs" t="Include" />
+              <e p="GPUInstancerDetailManagerEditor.cs" t="Include" />
+              <e p="GPUInstancerEditor.cs" t="Include" />
+              <e p="GPUInstancerEditorConstants.cs" t="Include" />
+              <e p="GPUInstancerManagerEditor.cs" t="Include" />
+              <e p="GPUInstancerPathLocator.cs" t="Include" />
+              <e p="GPUInstancerPrefabEditor.cs" t="Include" />
+              <e p="GPUInstancerPrefabManagerEditor.cs" t="Include" />
+              <e p="GPUInstancerPreviewDrawer.cs" t="Include" />
+              <e p="GPUInstancerTerrainProxyEditor.cs" t="Include" />
+              <e p="GPUInstancerTreeManagerEditor.cs" t="Include" />
+              <e p="Integration" t="Include">
+                <e p="GPUInstancerGaiaExtension.cs" t="Include" />
+              </e>
+              <e p="PackageImporter" t="Include">
+                <e p="GPUIPackageImporter.cs" t="Include" />
+                <e p="GPUIPackageImporterData.cs" t="Include" />
+                <e p="GPUIPackageImporterImportedData.cs" t="Include" />
+              </e>
+              <e p="Tools" t="Include">
+                <e p="GPUInstancerMultiAddWindow.cs" t="Include" />
+                <e p="GPUInstancerPrefabImporterWindow.cs" t="Include" />
+                <e p="GPUInstancerPrefabReplacerWindow.cs" t="Include" />
+              </e>
+            </e>
+            <e p="FlyCamera.cs" t="Include" />
+            <e p="GPUInstancerCameraHandler.cs" t="Include" />
+            <e p="GPUInstancerDetailManager.cs" t="Include" />
+            <e p="GPUInstancerDrawCallColorDebugger.cs" t="Include" />
+            <e p="GPUInstancerEditorSimulator.cs" t="Include" />
+            <e p="GPUInstancerFloatingOriginHandler.cs" t="Include" />
+            <e p="GPUInstancerGUIInfo.cs" t="Include" />
+            <e p="GPUInstancerHiZOcclusionGenerator.cs" t="Include" />
+            <e p="GPUInstancerInstanceRemover.cs" t="Include" />
+            <e p="GPUInstancerLODColorDebugger.cs" t="Include" />
+            <e p="GPUInstancerModificationCollider.cs" t="Include" />
+            <e p="GPUInstancerPrefab.cs" t="Include" />
+            <e p="GPUInstancerPrefabListRuntimeHandler.cs" t="Include" />
+            <e p="GPUInstancerPrefabManager.cs" t="Include" />
+            <e p="GPUInstancerPrefabRuntimeHandler.cs" t="Include" />
+            <e p="GPUInstancerTerrainProxy.cs" t="Include" />
+            <e p="GPUInstancerTerrainRuntimeHandler.cs" t="Include" />
+            <e p="GPUInstancerTreeManager.cs" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="Include" t="Include">
+              <e p="GPUIBillboardInclude.cginc" t="Include" />
+              <e p="GPUIFloat4VariationInclude.cginc" t="Include" />
+              <e p="GPUInstancerInclude.cginc" t="Include" />
+              <e p="GPUIPlatformDependent.cginc" t="Include" />
+              <e p="GPUIShaderGraphInclude.cginc" t="Include" />
+              <e p="GPUIStandardInclude.cginc" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="JMO Assets" t="Include">
           <e p="Cartoon FX" t="Include">
             <e p="CartoonFX Free.txt" t="Include" />
@@ -286,6 +495,8 @@
         </e>
       </e>
       <e p="beatEmUpRepo.sln" t="IncludeFlat" />
+      <e p="GPUInstancer.csproj" t="IncludeRecursive" />
+      <e p="GPUInstancer.Editor.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\Bin" t="ExcludeRecursive" />
