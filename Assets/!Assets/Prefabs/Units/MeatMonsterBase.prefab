@@ -8229,15 +8229,17 @@ MonoBehaviour:
   - {fileID: 663631756038422498}
   - {fileID: 3882559259867081177}
   removableParts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1147915039}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2711946829304909112}
+  - {fileID: 7907303303258973674}
+  - {fileID: 1651980422048452005}
+  - {fileID: 542307943739487955}
+  - {fileID: 3250577974632415865}
+  - {fileID: 2225826752930840827}
+  - {fileID: 3748795824026971209}
+  - {fileID: 6886332746480302978}
+  - {fileID: 8098026168278756319}
+  - {fileID: 663631756038422498}
   bloodSfx: {fileID: 3042827937223044910, guid: 5bc71a68c838b244ba809a832214db88, type: 3}
   victimTestGameObject: {fileID: 0}
 --- !u!114 &2984947846422348196

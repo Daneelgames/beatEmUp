@@ -17,7 +17,7 @@ public class CharacterInventory : MonoBehaviour
     {
         for (int i = 0; i < ItemsInInventory.Count; i++)
         {
-            if (ItemsInInventory[i].itemIndex == itemIndex && ItemsManager.Instance.CanAddAnotherOne(ItemsInInventory[i].itemIndex, ItemsInInventory[i].amount))
+            if (ItemsInInventory[i].itemIndex == itemIndex && ItemsDatabaseManager.Instance.CanAddAnotherOne(ItemsInInventory[i].itemIndex, ItemsInInventory[i].amount))
             {
                 ItemsInInventory[i].amount++;
                 return;

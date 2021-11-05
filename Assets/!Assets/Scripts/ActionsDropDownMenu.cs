@@ -39,7 +39,7 @@ public class ActionsDropDownMenu : MonoBehaviour
         transform.position = newPos;
         CurrentItemDatabaseIndex = itemDatabaseIndex;
         
-        var item = ItemsManager.Instance.ItemsDatabase.Items[itemDatabaseIndex];
+        var item = ItemsDatabaseManager.Instance.ItemsDatabase.Items[itemDatabaseIndex];
         for (int i = 0; i < actionTexts.Count; i++)
         {
             if (!equipItem)
@@ -113,7 +113,7 @@ public class ActionsDropDownMenu : MonoBehaviour
                     PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
                     PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
 
-                    ItemsManager.Instance.EquipItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
+                    ItemsDatabaseManager.Instance.EquipItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Consume:
@@ -135,7 +135,7 @@ public class ActionsDropDownMenu : MonoBehaviour
                     PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
                     PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
                     
-                    ItemsManager.Instance.DropItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
+                    ItemsDatabaseManager.Instance.DropItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
                     break;
             }
         }

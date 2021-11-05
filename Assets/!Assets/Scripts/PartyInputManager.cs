@@ -57,6 +57,18 @@ public class PartyInputManager : MonoBehaviour
 
     void GetInput()
     {
+        if (Input.GetButtonDown("Skill0"))
+        {
+            SkillsDatabaseManager.Instance.SkillSelected(0);
+        }
+        if (Input.GetButtonDown("Skill1"))
+        {
+            SkillsDatabaseManager.Instance.SkillSelected(1);
+        }
+        if (Input.GetButtonDown("Skill2"))
+        {
+            SkillsDatabaseManager.Instance.SkillSelected(2);
+        }
         if (Input.GetButtonDown("SelectFirstAlly"))
         {
             SelectUnit(0);
@@ -186,7 +198,7 @@ public class PartyInputManager : MonoBehaviour
             }
         }
 
-        unitWithLowestHp.Heal(ItemsManager.Instance.ItemsDatabase.Items[itemDatabaseIndex].restoreHpOnConsume);
+        unitWithLowestHp.Heal(ItemsDatabaseManager.Instance.ItemsDatabase.Items[itemDatabaseIndex].restoreHpOnConsume);
         if (SelectedAllyUnits[0].AttackManager.WeaponInHands && SelectedAllyUnits[0].AttackManager.WeaponInHands.Interactable.IndexInDatabase == itemDatabaseIndex)
             SelectedAllyUnits[0].AttackManager.DestroyWeaponInHands(SelectedAllyUnits[0].AttackManager.WeaponInHands, true);
         else

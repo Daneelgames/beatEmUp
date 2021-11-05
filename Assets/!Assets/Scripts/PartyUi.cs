@@ -32,6 +32,9 @@ public class PartyUi : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> moveOrderFeedbackImages;
     public Image Cursor => cursor;
 
+    [Header("ActiveSkills")] 
+    [SerializeField] private List<Button> activeSkillsButtons = new List<Button>();
+
     [Header("Prefabs")] 
     [SerializeField] private CharacterInventoryUi characterInventoryUiPrefab;
     private List<CharacterInventoryUi> spawnedInventoryUIs = new List<CharacterInventoryUi>();
@@ -252,7 +255,7 @@ public class PartyUi : MonoBehaviour
                     var perks = observable.HealthController.CharacterPerksController.CharacterPerks;
                     for (int i = 0; i < perks.Count; i++)
                     {
-                        var perk = PerksManager.Instance.GetPerkFromPerkType(perks[i]);
+                        var perk = PerksDatabaseManager.Instance.GetPerkFromPerkType(perks[i]);
                         perksString += "\n" + perk.perkName + ": " + perk.perkDescription + ".";
                     }
                 }
@@ -316,6 +319,23 @@ public class PartyUi : MonoBehaviour
         if (SpawnedInventoryUIs.Count > 0 && SpawnedInventoryUIs[0] != null && SpawnedInventoryUIs[0].gameObject.activeInHierarchy)
         {
             SpawnedInventoryUIs[0].UpdateInventoryUI(unit);
+            UpdateSkillsIcons(unit);
+        }
+    }
+    
+    void UpdateSkillsIcons(HealthController unit)
+    {
+        for (int i = 0; i < activeSkillsButtons.Count; i++)
+        {
+            if (i >= unit.CharacterSkillsController.CharacterSkills.Count)
+            {
+                activeSkillsButtons[i].gameObject.SetActive(false);
+                continue;
+            }
+
+            var skill = SkillsDatabaseManager.Instance.GetSkillFromPerkType(unit.CharacterSkillsController
+                .CharacterSkills[i]);
+            activeSkillsButtons[i].image.sprite = skill.skillIcon;
         }
     }
 
@@ -332,8 +352,8 @@ public class PartyUi : MonoBehaviour
             return;
         }
         
-        observableInfoText.text = ItemsManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemName;
-        observableInfoText2.text = ItemsManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemDescription;
+        observableInfoText.text = ItemsDatabaseManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemName;
+        observableInfoText2.text = ItemsDatabaseManager.Instance.ItemsDatabase.Items[databaseItemIndex].itemDescription;
         observableInfoAnim.SetBool(Active, true);
     }
     

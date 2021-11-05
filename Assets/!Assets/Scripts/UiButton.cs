@@ -10,6 +10,9 @@ public class UiButton : MonoBehaviour
     [Header("ACTION")] [SerializeField]
     private int actionIndex = -1;
     
+    [Header("SKILL")] [SerializeField]
+    private int skillIndex = -1;
+    
     public void SelectButton()
     {
         // THIS SHIT IS BAD
@@ -39,6 +42,10 @@ public class UiButton : MonoBehaviour
         else if (actionIndex >= 0)
         {
             ActionsDropDownMenu.Instance.ActionClicked(actionIndex);
+        }
+        else if (skillIndex >= 0)
+        {
+            SkillsDatabaseManager.Instance.SkillSelected(skillIndex);
         }
         else
         {

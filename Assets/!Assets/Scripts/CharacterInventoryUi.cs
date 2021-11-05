@@ -66,7 +66,7 @@ public class CharacterInventoryUi : MonoBehaviour
                 continue;
             }
 
-            var newItem = ItemsManager.Instance.ItemsDatabase.Items[Unit.Inventory.ItemsInInventory[i].itemIndex];
+            var newItem = ItemsDatabaseManager.Instance.ItemsDatabase.Items[Unit.Inventory.ItemsInInventory[i].itemIndex];
             _slotUis[i].itemIcon.sprite = newItem.itemIcon;
             if (Unit.Inventory.ItemsInInventory[i].amount == 1)
                 _slotUis[i].amount.text = String.Empty;

@@ -32,10 +32,10 @@ public class CharacterPerksController : MonoBehaviour
 
     public void AddPerk(Perk newPerk)
     {
-        if (characterPerks.Contains(newPerk.perkType))
+        if (CharacterPerks.Contains(newPerk.perkType))
             return;
         
-        characterPerks.Add(newPerk.perkType);
+        CharacterPerks.Add(newPerk.perkType);
         PerkPoints -= newPerk.perkCost;
         
         StartPerkEffect(newPerk);

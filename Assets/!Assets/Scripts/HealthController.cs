@@ -56,6 +56,8 @@ public class HealthController : MonoBehaviour
 
     [SerializeField] private CharacterPerksController characterPerksController;
     public CharacterPerksController CharacterPerksController => characterPerksController;
+    [SerializeField] private CharacterSkillsController characterSkillsController;
+    public CharacterSkillsController CharacterSkillsController => characterSkillsController;
     [SerializeField] private Animator anim;
     public Animator Anim => anim;
 

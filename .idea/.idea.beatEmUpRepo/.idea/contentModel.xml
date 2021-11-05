@@ -28,7 +28,7 @@
             <e p="Interactable.cs" t="Include" />
             <e p="InteractionController.cs" t="Include" />
             <e p="ItemsDatabase.cs" t="Include" />
-            <e p="ItemsManager.cs" t="Include" />
+            <e p="ItemsDatabaseManager.cs" t="Include" />
             <e p="NavMeshBaker.cs" t="Include" />
             <e p="NoiseMaker.cs" t="Include" />
             <e p="NotifyOnDestroy.cs" t="Include" />
@@ -38,10 +38,11 @@
             <e p="PartyInputManager.cs" t="Include" />
             <e p="PartyInventory.cs" t="Include" />
             <e p="PartyUi.cs" t="Include" />
+            <e p="PerksDatabaseManager.cs" t="Include" />
             <e p="PerksInfoData.cs" t="Include" />
-            <e p="PerksManager.cs" t="Include" />
             <e p="PlayerInput.cs" t="Include" />
             <e p="PlayerUi.cs" t="Include" />
+            <e p="SkillsInfoData.cs" t="Include" />
             <e p="SpawnController.cs" t="Include" />
             <e p="UiButton.cs" t="Include" />
             <e p="UniversalCursorController.cs" t="Include" />
@@ -57,6 +58,7 @@
             </e>
           </e>
         </e>
+        <e p="CharacterSkillsController.cs" t="Include" />
         <e p="DrawThrowArc.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="FieldOfViewEditor.cs" t="Include" />
@@ -542,6 +544,7 @@
             <e p="SimpleWater.shader" t="Include" />
           </e>
         </e>
+        <e p="SkillsDatabaseManager.cs" t="Include" />
         <e p="TGU Skybox Pack" t="Include">
           <e p="Readme.txt" t="Include" />
         </e>

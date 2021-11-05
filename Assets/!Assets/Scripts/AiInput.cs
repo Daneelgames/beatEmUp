@@ -302,7 +302,7 @@ public class AiInput : MonoBehaviour
         
         SetAgentDestinationTarget(transform.position, false);
         
-        ItemsManager.Instance.ThrowItemFromInventory(hc, itemIndex, targetPos);
+        ItemsDatabaseManager.Instance.ThrowItemFromInventory(hc, itemIndex, targetPos);
         throwCoroutine = null;
         Idle();
     }

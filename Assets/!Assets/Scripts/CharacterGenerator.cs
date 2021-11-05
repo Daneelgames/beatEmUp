@@ -85,9 +85,9 @@ public class CharacterGenerator : MonoBehaviour
         {
             List<Perk> perksTemp = new List<Perk>();
             
-            for (int i = 0; i < PerksManager.Instance.PerksInfoData.perks.Count; i++)
+            for (int i = 0; i < PerksDatabaseManager.Instance.PerksInfoData.perks.Count; i++)
             {
-                var perk = PerksManager.Instance.PerksInfoData.perks[i];
+                var perk = PerksDatabaseManager.Instance.PerksInfoData.perks[i];
                 if (perk.perkType == Perk.PerkType.RandomShouts && character.AiInput.inParty == false)
                 {
                     if (Random.value > 0.1f)

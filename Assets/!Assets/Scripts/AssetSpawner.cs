@@ -93,7 +93,7 @@ public class AssetSpawner : MonoBehaviour
                 }
                 else if (objectType == ObjectType.Item)
                 {
-                    ItemsManager.Instance.ProceedNewItem(spawnedGO, interactor, throwerHc, throwTargetPos);
+                    ItemsDatabaseManager.Instance.ProceedNewItem(spawnedGO, interactor, throwerHc, throwTargetPos);
                 }
             
                 var notify = asyncOperationHandle.Result.AddComponent<NotifyOnDestroy>();

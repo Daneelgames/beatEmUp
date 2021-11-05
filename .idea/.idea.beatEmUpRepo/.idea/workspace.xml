@@ -19,28 +19,23 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CharacterSkillsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../dontrunRepo/dontrun/Assets/Scripts/ActiveNpcManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ActivateRigidbodyOnNoise.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShufflePositionForObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/DamageOnContact.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../dontrunRepo/dontrun/Assets/Scripts/ActiveNpcManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/SkillsInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/RandomizeAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/PerksManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Editor/FieldOfViewEditor.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
-      <option value="$PROJECT_DIR$/Assets/UniversalCursorController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Observable.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterPerksController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/NavMeshBaker.cs" />
@@ -54,7 +49,6 @@
       <option value="$PROJECT_DIR$/Assets/ActionsDropDownMenu.cs" />
       <option value="$PROJECT_DIR$/Assets/AssetSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/ThrowArcRenderer.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/DrawThrowArc.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AssetSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Interactable.cs" />
@@ -71,10 +65,7 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/NoiseMaker.cs" />
@@ -85,6 +76,17 @@
       <option value="$PROJECT_DIR$/Assets/ShufflePositionForObjects.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Leveling.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabaseManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterSkillsController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SkillsInfoData.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterPerksController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksDatabaseManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -157,6 +159,7 @@
       <workItem from="1636032845204" duration="189000" />
       <workItem from="1636033053013" duration="2781000" />
       <workItem from="1636103376549" duration="12687000" />
+      <workItem from="1636133659580" duration="6994000" />
     </task>
     <servers />
   </component>
