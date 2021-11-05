@@ -11,6 +11,11 @@ public class AiInput : MonoBehaviour
     public bool inParty = false;
     public bool ally = false;
 
+    [Header("Follow the Leader behaviour")] 
+    [SerializeField] private HealthController leaderToFollow;
+
+    [SerializeField] private float maxDistanceFromLeader = 50;
+    
     public enum AggroMode
     {
         AggroOnSight, AttackIfAttacked
@@ -74,6 +79,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Animator anim;
 
+    [Header("Private logic")]
     private bool moving = false;
     private bool alive = true;
     
@@ -86,6 +92,10 @@ public class AiInput : MonoBehaviour
     private static readonly int Running = Animator.StringToHash("Running");
 
     private NavMeshPath path;
+    
+    private Quaternion targetRotation = Quaternion.identity;
+    private Quaternion targetRotation1 = Quaternion.identity;
+    private HealthController currentTargetRotationHc;
     
     void Start()
     {
@@ -109,9 +119,37 @@ public class AiInput : MonoBehaviour
             Idle();
         
         if (simpleWalker)
-            StartCoroutine(SimpleWalker());   
+            StartCoroutine(SimpleWalker());
+
+        StartCoroutine(DistanceToLeader());
     }
 
+    IEnumerator DistanceToLeader()
+    {
+        while (GameManager.Instance.Units.Contains(hc) == false)
+        {
+            yield return null;
+        }
+
+        for (int i = 0; i < GameManager.Instance.Units.IndexOf(hc); i++)
+        {
+            yield return null;
+        }
+        while (true)
+        {
+            if (leaderToFollow)
+            {
+                if (Vector3.Distance(transform.position, leaderToFollow.transform.position) >= maxDistanceFromLeader)
+                {
+                    StopBehaviourCoroutines();
+                    SetNavMeshAgentSpeed(runSpeed);
+                    SetAgentDestinationTarget(leaderToFollow.transform.position, false);
+                }
+            }
+            yield return new WaitForSeconds(1);
+        }
+    }
+    
     public void StopBehaviourCoroutines()
     {
         if (wanderCoroutine != null)
@@ -685,24 +723,23 @@ public class AiInput : MonoBehaviour
         rotateTowardsClosestEnemyCoroutine = StartCoroutine(RotateTowardsClosestEnemyCoroutine(newRotationTargetHc));
     }
 
-    private Quaternion targetRotation = Quaternion.identity;
-    private Quaternion targetRotation1 = Quaternion.identity;
     IEnumerator RotateTowardsClosestEnemyCoroutine(HealthController targetHc)
     {
         float t = 0;
+        currentTargetRotationHc = targetHc;
         while (true)
         {
-            if (targetHc == null || targetHc.Health <= 0)
+            if (currentTargetRotationHc == null || currentTargetRotationHc.Health <= 0)
                 yield break;
 
             t += Time.deltaTime;
             if (t >= 1)
             {
                 t = 0;
-                if (Vector3.Distance(transform.position, targetHc.transform.position) > looseTargetDistance)
+                if (Vector3.Distance(transform.position, currentTargetRotationHc.transform.position) > looseTargetDistance)
                     yield break;
             }
-            targetRotation1.SetLookRotation(targetHc.transform.position - transform.position); 
+            targetRotation1.SetLookRotation(currentTargetRotationHc.transform.position - transform.position); 
             targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
             transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
             yield return null;
