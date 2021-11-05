@@ -52,7 +52,6 @@
       <option value="$PROJECT_DIR$/Assets/CharacterInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" />
       <option value="$PROJECT_DIR$/Assets/DetailsOnGroundController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterInventoryUi.cs" />
       <option value="$PROJECT_DIR$/Assets/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/ActionsDropDownMenu.cs" />
@@ -60,7 +59,6 @@
       <option value="$PROJECT_DIR$/Assets/ThrowArcRenderer.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/DrawThrowArc.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AssetSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Interactable.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
@@ -78,11 +76,13 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
     </changedPaths>
   </component>
@@ -154,7 +154,8 @@
       <workItem from="1635771382097" duration="47210000" />
       <workItem from="1635938322739" duration="22597000" />
       <workItem from="1636032845204" duration="189000" />
-      <workItem from="1636033053013" duration="544000" />
+      <workItem from="1636033053013" duration="2781000" />
+      <workItem from="1636103376549" duration="1700000" />
     </task>
     <servers />
   </component>
