@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CharacterSkillsController : MonoBehaviour
 {
-    [SerializeField] private List<Skill.SkillType> characterSkills = new List<Skill.SkillType>();
+    [SerializeField] private List<Skill> characterSkills = new List<Skill>();
 
-    public List<Skill.SkillType> CharacterSkills
+    public List<Skill> CharacterSkills
     {
         get => characterSkills;
         set => characterSkills = value;

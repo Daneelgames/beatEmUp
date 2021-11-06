@@ -13,6 +13,9 @@ public class SkillsDatabaseManager : MonoBehaviour
         get => _skillsInfoData;
     }
 
+    private HealthController currentCaster;
+    private Skill currentSkill;
+    
     private void Awake()
     {
         Instance = this;
@@ -31,8 +34,30 @@ public class SkillsDatabaseManager : MonoBehaviour
         return null;
     }
 
-    public void SkillSelected(int index)
+    public void UnselectSkill()
     {
-        print("SELECTED SKILL " + index);
+        SkillsUi.Instance.StopAllAiming();
+    }
+    
+    public void SkillSelected(HealthController caster, Skill skill)
+    {
+        UnselectSkill();
+        currentCaster = caster;
+        currentSkill = skill;
+        
+        switch (skill.skill)
+        {
+            case Skill.SkillType.DashAttack:
+
+                if (SkillsUi.Instance.State == SkillsUi.SkillsUiState.AimDirectional)
+                {
+                    SkillsUi.Instance.StopAllAiming();
+                    currentCaster = null;
+                    currentSkill = null;
+                }
+                
+                SkillsUi.Instance.AimDirectionalSkill(caster, skill);
+                break;
+        }
     }
 }

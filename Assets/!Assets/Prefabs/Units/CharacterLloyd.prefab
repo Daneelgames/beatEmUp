@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[0]
@@ -22,6 +22,38 @@ PrefabInstance:
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[2]
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].skill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].skillIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 81a12d62f637141468a42abdc2e5ead7, type: 3}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].skillName
+      value: Razor
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].actionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].energyCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].maxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].cooldownTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].skillDescription
+      value: 'Dash through multiple units '
       objectReference: {fileID: 0}
     - target: {fileID: 1212818265, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: sex

@@ -45,7 +45,7 @@ public class UiButton : MonoBehaviour
         }
         else if (skillIndex >= 0)
         {
-            SkillsDatabaseManager.Instance.SkillSelected(skillIndex);
+            SkillsDatabaseManager.Instance.SkillSelected(PartyInputManager.Instance.SelectedAllyUnits[0], PartyInputManager.Instance.SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[skillIndex]);
         }
         else
         {

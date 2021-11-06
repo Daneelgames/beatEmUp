@@ -333,8 +333,7 @@ public class PartyUi : MonoBehaviour
                 continue;
             }
 
-            var skill = SkillsDatabaseManager.Instance.GetSkillFromPerkType(unit.CharacterSkillsController
-                .CharacterSkills[i]);
+            var skill = unit.CharacterSkillsController.CharacterSkills[i];
             activeSkillsButtons[i].image.sprite = skill.skillIcon;
         }
     }
@@ -362,6 +361,7 @@ public class PartyUi : MonoBehaviour
         // click shows drop down menu
         ActionsDropDownMenu.Instance.OpenInventoryItemDropDownMenu(itemDatabaseIndex, newPos);
     }
+    
     
     
 }

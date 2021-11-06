@@ -7924,6 +7924,7 @@ MonoBehaviour:
   _attackManager: {fileID: 4792253143275227139}
   _interactionController: {fileID: 2695189181210928995}
   characterPerksController: {fileID: 6217995972828308375}
+  characterSkillsController: {fileID: -9055645553939308815}
   anim: {fileID: 919132149555714730}
   _aiInput: {fileID: 2984947846422348196}
   agent: {fileID: 315908125812861007}
@@ -8295,7 +8296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a4c96011632d64298198e390d42213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSkills: 
+  characterSkills: []
 --- !u!114 &-1577154495707085973
 MonoBehaviour:
   m_ObjectHideFlags: 0

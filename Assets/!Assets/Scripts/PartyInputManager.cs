@@ -59,15 +59,15 @@ public class PartyInputManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Skill0"))
         {
-            SkillsDatabaseManager.Instance.SkillSelected(0);
+            SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[0]);
         }
         if (Input.GetButtonDown("Skill1"))
         {
-            SkillsDatabaseManager.Instance.SkillSelected(1);
+            SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[1]);
         }
         if (Input.GetButtonDown("Skill2"))
         {
-            SkillsDatabaseManager.Instance.SkillSelected(2);
+            SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[2]);
         }
         if (Input.GetButtonDown("SelectFirstAlly"))
         {
@@ -161,7 +161,11 @@ public class PartyInputManager : MonoBehaviour
             Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
             newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
 
-            if (throwMode == false)
+            if (SkillsUi.Instance.State != SkillsUi.SkillsUiState.Null)
+            {
+                
+            }
+            else if (throwMode == false)
             {
                 DefaultOrder(newPos);
             }
@@ -386,6 +390,7 @@ public class PartyInputManager : MonoBehaviour
     
     void SelectUnit(int index)
     {
+        SkillsDatabaseManager.Instance.UnselectSkill();
         if (Party.Count <= 0)
             return;
         

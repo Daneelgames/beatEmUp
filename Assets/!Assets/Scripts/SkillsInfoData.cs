@@ -26,4 +26,6 @@ public class Skill
     public float actionTime = 3;
     public int cooldownTime = 15;
     public int energyCost = 10;
+
+    public float maxDistance = 10;
 }
