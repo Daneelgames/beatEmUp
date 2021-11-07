@@ -12,6 +12,8 @@
       <Path>Library/PackageCache/com.unity.2d.spriteshape@6.0.1</Path>
       <Path>Library/PackageCache/com.unity.2d.tilemap.extras@2.2.0</Path>
       <Path>Library/PackageCache/com.unity.2d.tilemap@1.0.0</Path>
+      <Path>Library/PackageCache/com.unity.addressables@1.18.19</Path>
+      <Path>Library/PackageCache/com.unity.ai.navigation@1.0.0-exp.4</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.9.0</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.6</Path>
       <Path>Library/PackageCache/com.unity.ide.rider@3.0.7</Path>
@@ -51,8 +53,10 @@
       <Path>Library/PackageCache/com.unity.modules.vr@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.modules.wind@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.modules.xr@1.0.0</Path>
+      <Path>Library/PackageCache/com.unity.postprocessing@2.3.0</Path>
       <Path>Library/PackageCache/com.unity.render-pipelines.core@11.0.0</Path>
       <Path>Library/PackageCache/com.unity.render-pipelines.universal@11.0.0</Path>
+      <Path>Library/PackageCache/com.unity.scriptablebuildpipeline@1.19.2</Path>
       <Path>Library/PackageCache/com.unity.shadergraph@11.0.0</Path>
       <Path>Library/PackageCache/com.unity.test-framework@1.1.29</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@3.0.6</Path>

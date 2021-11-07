@@ -30,34 +30,39 @@ public class SkillsDatabaseManager : MonoBehaviour
                 return SkillsInfoData.skills[i];
             }
         }
-
         return null;
     }
 
     public void UnselectSkill()
     {
         SkillsUi.Instance.StopAllAiming();
+        if (currentCaster)
+            currentCaster.CharacterSkillsController.SetCurrentSkill(null);
     }
     
     public void SkillSelected(HealthController caster, Skill skill)
     {
-        UnselectSkill();
+        //UnselectSkill();
         currentCaster = caster;
         currentSkill = skill;
+        
+        if (caster == null)
+            return;
+        
+        currentCaster.CharacterSkillsController.SetCurrentSkill(skill);
         
         switch (skill.skill)
         {
             case Skill.SkillType.DashAttack:
-
                 if (SkillsUi.Instance.State == SkillsUi.SkillsUiState.AimDirectional)
                 {
-                    SkillsUi.Instance.StopAllAiming();
+                    UnselectSkill();
+                    currentCaster.CharacterSkillsController.SetCurrentSkill(null);
                     currentCaster = null;
                     currentSkill = null;
                 }
-                
                 SkillsUi.Instance.AimDirectionalSkill(caster, skill);
-                break;
+            break;
         }
     }
 }

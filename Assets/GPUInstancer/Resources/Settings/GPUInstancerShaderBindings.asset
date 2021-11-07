@@ -18,11 +18,6 @@ MonoBehaviour:
     modifiedDate: 11/05/2021 13:12:55.721
     isOriginalInstanced: 0
     extensionCode: 
-  - name: GPUInstancer/AsteroidHaze_GPUI_SG
-    instancedShader: {fileID: -6465566751694194690, guid: 08c40a79c7e26b644bc2be84c3a0e2d1, type: 3}
-    modifiedDate: 11/05/2021 13:12:55.723
-    isOriginalInstanced: 1
-    extensionCode: 
   - name: FlatKit/Stylized Surface
     instancedShader: {fileID: 4800000, guid: 594cca956ebd9a843b504d2bea92e06f, type: 3}
     modifiedDate: 11/05/2021 13:28:04.239

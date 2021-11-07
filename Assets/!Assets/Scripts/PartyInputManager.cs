@@ -59,15 +59,25 @@ public class PartyInputManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Skill0"))
         {
-            SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[0]);
+            if (SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills.Count > 0)
+                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0],
+                    SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[0]);
+            else
+                SkillsDatabaseManager.Instance.UnselectSkill();
         }
         if (Input.GetButtonDown("Skill1"))
         {
-            SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[1]);
+            if (SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills.Count > 1)
+                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[1]);
+            else
+                SkillsDatabaseManager.Instance.UnselectSkill();
         }
         if (Input.GetButtonDown("Skill2"))
         {
-            SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[2]);
+            if (SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills.Count > 2)
+                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[2]);
+            else
+                SkillsDatabaseManager.Instance.UnselectSkill();
         }
         if (Input.GetButtonDown("SelectFirstAlly"))
         {
@@ -101,8 +111,6 @@ public class PartyInputManager : MonoBehaviour
             ObserveMode(false);
             ThrowMode(false, -1);
         }
-
-
 
         if (Input.GetButtonDown("Observe"))
         {
@@ -163,7 +171,7 @@ public class PartyInputManager : MonoBehaviour
 
             if (SkillsUi.Instance.State != SkillsUi.SkillsUiState.Null)
             {
-                
+                SelectedAllyUnits[0].CharacterSkillsController.UseSkill();
             }
             else if (throwMode == false)
             {

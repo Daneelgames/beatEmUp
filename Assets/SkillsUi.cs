@@ -49,7 +49,7 @@ public class SkillsUi : MonoBehaviour
             StopCoroutine(updateDirectionalSkill);
             directionalSkillLineRenderer.positionCount = 0;
         }
-
+        print("StopAllAiming");
         State = SkillsUiState.Null;
     }
     
