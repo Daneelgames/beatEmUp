@@ -36,7 +36,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ObjectInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/NavMeshBaker.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/ItemsManager.cs" />
@@ -87,6 +86,7 @@
       <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterBodyPartVariants.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -160,7 +160,8 @@
       <workItem from="1636033053013" duration="2781000" />
       <workItem from="1636103376549" duration="12687000" />
       <workItem from="1636133659580" duration="6994000" />
-      <workItem from="1636225376567" duration="7598000" />
+      <workItem from="1636225376567" duration="8248000" />
+      <workItem from="1636308592163" duration="1064000" />
     </task>
     <servers />
   </component>

@@ -58,6 +58,7 @@
             </e>
           </e>
         </e>
+        <e p="CharacterBodyPartVariants.cs" t="Include" />
         <e p="CharacterSkillsController.cs" t="Include" />
         <e p="DrawThrowArc.cs" t="Include" />
         <e p="Editor" t="Include">
