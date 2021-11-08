@@ -124,7 +124,6 @@ public class AiInput : MonoBehaviour
     private Quaternion targetRotation = Quaternion.identity;
     private Quaternion targetRotation1 = Quaternion.identity;
     private HealthController currentTargetRotationHc;
-    
     void Start()
     {
         path = new NavMeshPath();
@@ -221,7 +220,6 @@ public class AiInput : MonoBehaviour
             throwCoroutine = null;
         }
     }
-
 
     void SetAgentDestinationTarget(Vector3 pos, bool expensive)
     {
@@ -320,12 +318,16 @@ public class AiInput : MonoBehaviour
     
     public void OrderMove(Vector3 newPos)
     {
+        if (ally && !inParty)
+            print("OrderMove");
+
         StopBehaviourCoroutines();
         
         if (rotateTowardsClosestEnemyCoroutine != null)
         {
             StopCoroutine(rotateTowardsClosestEnemyCoroutine);
             rotateTowardsClosestEnemyCoroutine = null;
+            currentTargetRotationHc = null;
         }
         
         if (moveTowardsOrderTargetCoroutine != null)
@@ -338,8 +340,8 @@ public class AiInput : MonoBehaviour
     
     void SetAggro(HealthController damager)
     {
-        if (debugLogs)
-            print ("SetAggro");
+        if (ally && !inParty)
+            print("SetAggro");
         
         if (hc.Friends.Contains(damager) && Random.value < kidness)
             return;
@@ -455,6 +457,9 @@ public class AiInput : MonoBehaviour
 
     void Wander()
     {
+        if (ally && !inParty)
+            print("Wander");
+        
         StopBehaviourCoroutines();
         
         if (inParty == false)
@@ -469,6 +474,7 @@ public class AiInput : MonoBehaviour
 
         if (debugLogs)
             print ("WanderOverTime");
+        
         while (true)
         {
             float distance = Vector3.Distance(transform.position, currentTargetPosition); 
@@ -481,6 +487,7 @@ public class AiInput : MonoBehaviour
                     newTargetPosition =  NewPositionNearPointOfInterest();
 
                     currentTargetPosition = newTargetPosition;
+                    
                     if (agent && agent.enabled)
                         SetAgentDestinationTarget(newTargetPosition,false);   
                     else
@@ -562,6 +569,9 @@ public class AiInput : MonoBehaviour
 
     public void Idle()
     {
+        if (ally && !inParty)
+            print("Wander");
+
         StopBehaviourCoroutines();
         
         if (idleCoroutine != null)
@@ -624,7 +634,6 @@ public class AiInput : MonoBehaviour
                 yield break;
             
             currentTargetPosition = GetPositionOfClosestEnemy(true);
-            
             
             if (_attackManager.CanMove)
             {
@@ -698,6 +707,8 @@ public class AiInput : MonoBehaviour
     Vector3 GetPositionOfClosestEnemy(bool onlyVisible)
     {
         Vector3 newPos = transform.position;
+        if (currentTargetRotationHc != null && currentTargetRotationHc.Health > 0)
+            newPos = currentTargetRotationHc.transform.position;
         
         float distance = 1000;
         float newDistance = 0;
@@ -730,16 +741,6 @@ public class AiInput : MonoBehaviour
         }
         else
         {
-            if (followTargetCoroutine != null)
-            {
-                StopCoroutine(followTargetCoroutine);
-                followTargetCoroutine = null;
-            }
-            if (investigateCoroutine != null)
-            {
-                StopCoroutine(investigateCoroutine);
-                investigateCoroutine = null;
-            }
             Wander();
         }
         
@@ -777,32 +778,28 @@ public class AiInput : MonoBehaviour
             Wander();
     }
 
-    private HealthController currentRotationTargetTransform;
     private Coroutine rotateTowardsClosestEnemyCoroutine;
     public void RotateTowardsClosestEnemy(HealthController newRotationTargetHc)
     {
-        if (currentRotationTargetTransform == newRotationTargetHc)
+        if (currentTargetRotationHc == newRotationTargetHc)
             return;
 
-        currentRotationTargetTransform = newRotationTargetHc;
+        currentTargetRotationHc = newRotationTargetHc;
         
         if (rotateTowardsClosestEnemyCoroutine != null)
         {
             StopCoroutine(rotateTowardsClosestEnemyCoroutine);
         }
 
-        rotateTowardsClosestEnemyCoroutine = StartCoroutine(RotateTowardsClosestEnemyCoroutine(newRotationTargetHc));
+        rotateTowardsClosestEnemyCoroutine = StartCoroutine(RotateTowardsClosestEnemyCoroutine());
     }
 
-    IEnumerator RotateTowardsClosestEnemyCoroutine(HealthController targetHc)
+    IEnumerator RotateTowardsClosestEnemyCoroutine()
     {
         bool canRotate = false;
         float t = 0;
-        currentTargetRotationHc = targetHc;
         while (true)
         {
-            canRotate = false;
-            
             if (currentTargetRotationHc == null || currentTargetRotationHc.Health <= 0)
             {
                 rotateTowardsClosestEnemyCoroutine = null;
@@ -817,16 +814,21 @@ public class AiInput : MonoBehaviour
                 if (distance > looseTargetDistance)
                 {
                     rotateTowardsClosestEnemyCoroutine = null;
+                    canRotate = false;
                     yield break;
                 }
-                else if (distance <= rotateToTargetMaxDistance)
+                
+                if (distance <= rotateToTargetMaxDistance)
                     canRotate = true;
+                else
+                    canRotate = false;
             }
             targetRotation1.SetLookRotation(currentTargetRotationHc.transform.position - transform.position); 
             targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
             
             if (canRotate)
                 transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
+            
             yield return null;
         }
     }

@@ -8,7 +8,6 @@ public class SpawnController : MonoBehaviour
 {
     [SerializeField] private List<Interactable> _interactables;
     [SerializeField] private List<GameObject> _interactablesGameObjects;
-
     public List<Interactable> Interactables => _interactables;
     public List<GameObject> InteractablesGameObjects => _interactablesGameObjects;
 

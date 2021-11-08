@@ -547,6 +547,7 @@
         </e>
         <e p="SkillsDatabaseManager.cs" t="Include" />
         <e p="SkillsUi.cs" t="Include" />
+        <e p="SpawnUnitsForTest.cs" t="Include" />
         <e p="TGU Skybox Pack" t="Include">
           <e p="Readme.txt" t="Include" />
         </e>
