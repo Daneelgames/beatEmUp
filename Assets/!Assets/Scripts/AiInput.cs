@@ -11,8 +11,8 @@ public class AiInput : MonoBehaviour
     public bool inParty = false;
     public bool ally = false;
 
-    [Header("Follow the Leader behaviour")] [SerializeField]
-    private bool leader = false;
+    [Header("Follow the Leader behaviour")] 
+    [SerializeField] private bool leader = false;
     public bool Leader { get => leader; set => leader = value; }
     
     [SerializeField] private HealthController leaderToFollow;
@@ -89,6 +89,7 @@ public class AiInput : MonoBehaviour
     [SerializeField] private float stopDistanceFollowTarget = 2;
     [SerializeField] private float runDistanceThreshold = 5;
     [SerializeField] private float looseTargetDistance = 20;
+    [SerializeField] private float rotateToTargetMaxDistance = 10;
     [SerializeField] private bool simpleWalker = true;
     [SerializeField] private Vector2 idleTimeMinMax = new Vector2(5, 30);
     [SerializeField] private Vector2 attackCooldownMinMax = new Vector2(0.5f, 3f);
@@ -320,6 +321,12 @@ public class AiInput : MonoBehaviour
     public void OrderMove(Vector3 newPos)
     {
         StopBehaviourCoroutines();
+        
+        if (rotateTowardsClosestEnemyCoroutine != null)
+        {
+            StopCoroutine(rotateTowardsClosestEnemyCoroutine);
+            rotateTowardsClosestEnemyCoroutine = null;
+        }
         
         if (moveTowardsOrderTargetCoroutine != null)
             StopCoroutine(moveTowardsOrderTargetCoroutine);
@@ -789,23 +796,37 @@ public class AiInput : MonoBehaviour
 
     IEnumerator RotateTowardsClosestEnemyCoroutine(HealthController targetHc)
     {
+        bool canRotate = false;
         float t = 0;
         currentTargetRotationHc = targetHc;
         while (true)
         {
+            canRotate = false;
+            
             if (currentTargetRotationHc == null || currentTargetRotationHc.Health <= 0)
+            {
+                rotateTowardsClosestEnemyCoroutine = null;
                 yield break;
+            }
 
             t += Time.deltaTime;
             if (t >= 1)
             {
                 t = 0;
-                if (Vector3.Distance(transform.position, currentTargetRotationHc.transform.position) > looseTargetDistance)
+                float distance = Vector3.Distance(transform.position, currentTargetRotationHc.transform.position); 
+                if (distance > looseTargetDistance)
+                {
+                    rotateTowardsClosestEnemyCoroutine = null;
                     yield break;
+                }
+                else if (distance <= rotateToTargetMaxDistance)
+                    canRotate = true;
             }
             targetRotation1.SetLookRotation(currentTargetRotationHc.transform.position - transform.position); 
             targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
-            transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
+            
+            if (canRotate)
+                transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);
             yield return null;
         }
     }
@@ -863,9 +884,10 @@ public class AiInput : MonoBehaviour
     {
         StopAgent(true);
         if (rotateTowardsClosestEnemyCoroutine != null)
+        {
             StopCoroutine(rotateTowardsClosestEnemyCoroutine);
-        
-        rotateTowardsClosestEnemyCoroutine = null;
+            rotateTowardsClosestEnemyCoroutine = null;
+        }
         
         StopBehaviourCoroutines();
         alive = false;

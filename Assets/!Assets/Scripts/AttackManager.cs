@@ -193,7 +193,7 @@ public class AttackManager : MonoBehaviour
         // MELEE
         if (currentAttack != null && !currentAttack.CanSkipReturn && attackReturnCoroutine != null)
         {
-            print("currentAttack != null");
+            //print("currentAttack != null");
             return;
         }
 
