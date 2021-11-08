@@ -227,18 +227,19 @@ public class AiInput : MonoBehaviour
         if (agent == null || agent.enabled == false)
             return;
 
+        currentTargetPosition = pos;
         /*
         if (inParty)
             print("SetAgentDestinationTarget; pos " + pos);*/
         
-        if (Vector3.Distance(GameManager.Instance.mainCamera.transform.position, pos) < 75)
+        if (Vector3.Distance(GameManager.Instance.mainCamera.transform.position, currentTargetPosition) < 75)
             expensive = true;
         
         if (!expensive)
-            agent.SetDestination(pos);
+            agent.SetDestination(currentTargetPosition);
         else
         {
-            NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path);
+            NavMesh.CalculatePath(transform.position, currentTargetPosition, NavMesh.AllAreas, path);
             agent.SetPath(path);
         }
     }

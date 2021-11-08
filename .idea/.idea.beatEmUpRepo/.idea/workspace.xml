@@ -84,10 +84,10 @@
       <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterBodyPartVariants.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -164,6 +164,7 @@
       <workItem from="1636225376567" duration="8248000" />
       <workItem from="1636308592163" duration="1064000" />
       <workItem from="1636318500822" duration="1167000" />
+      <workItem from="1636364401325" duration="193000" />
     </task>
     <servers />
   </component>
