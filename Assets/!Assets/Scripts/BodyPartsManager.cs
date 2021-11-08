@@ -89,4 +89,12 @@ public class BodyPartsManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("SaveGlobalScaleAfterReparenting")]
+    public void SaveGlobalScaleAfterReparenting()
+    {
+        foreach (var part in bodyParts)
+        {
+            part.SaveGlobalScaleAfterReparenting();
+        }
+    }
 }

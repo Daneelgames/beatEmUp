@@ -438,7 +438,10 @@ public class AiInput : MonoBehaviour
             else
                 attackCooldownCurrent = 0;
             
-            yield return new WaitForSeconds(0.25f);
+            if (!inParty)
+                yield return new WaitForSeconds(0.25f);
+            else
+                yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -521,7 +524,7 @@ public class AiInput : MonoBehaviour
                 {
                     if (newDistance > runDistanceThreshold)
                     {
-                        // RUN
+                        // RUN  
                         anim.SetBool(Running, true);
                         SetNavMeshAgentSpeed(runSpeed);
                     }

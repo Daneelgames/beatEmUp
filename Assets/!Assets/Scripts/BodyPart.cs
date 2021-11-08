@@ -18,8 +18,14 @@ public class BodyPart : MonoBehaviour
     [SerializeField] private List<GameObject> ownBodyPartsGameObjects = new List<GameObject>();
     public List<GameObject> OwnBodyPartsGameObjects => ownBodyPartsGameObjects;
 
+    [SerializeField]
     Vector3 globalScaleAfterReparenting = new Vector3(30, 30, 30);
     public Vector3 GlobalScaleAfterReparenting => globalScaleAfterReparenting;
+
+    public void SaveGlobalScaleAfterReparenting()
+    {
+        globalScaleAfterReparenting = transform.lossyScale;
+    }
     public void SetOwnBodyParts(List<BodyPart> tempList, AttackManager attackManager, HealthController _hc)
     {
         ownBodyPartsGameObjects.Clear();

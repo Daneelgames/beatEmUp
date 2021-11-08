@@ -1077,6 +1077,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.39548117, y: 0.3954812, z: 0.39548132}
 --- !u!1 &1391542183524712274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1209,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: -0.3954814, y: 0.39548126, z: 0.39548135}
 --- !u!1 &1431665717731749557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,6 +1827,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: -0.39548117, y: 0.39548114, z: 0.39548126}
 --- !u!1 &2071659133221601872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7335,6 +7338,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.18892941, y: 0.18892941, z: 0.18892944}
 --- !u!65 &3877576722961562455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7854,6 +7858,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: -0.3954813, y: 0.39548123, z: 0.39548135}
 --- !u!1 &2656235879391447159
 GameObject:
   m_ObjectHideFlags: 0
@@ -8167,6 +8172,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.32172912, y: 0.3217291, z: 0.32172948}
 --- !u!65 &2083658448208660697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8711,6 +8717,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.32172918, y: 0.32172906, z: 0.3217295}
 --- !u!65 &1670929937909446931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9974,6 +9981,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.3954812, y: 0.3954812, z: 0.3954813}
 --- !u!1 &5678299260061032854
 GameObject:
   m_ObjectHideFlags: 0
@@ -10124,6 +10132,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.32172915, y: 0.3217291, z: 0.3217295}
 --- !u!65 &7547658320550307749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10359,8 +10368,9 @@ MonoBehaviour:
     canRotateOnReturn: 0
     canSkipReturn: 1
     dangeorusParts:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 5782979162540119273}
+    - {fileID: 8936407071317932631}
+    - {fileID: 3316050835803475519}
     attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
@@ -10381,10 +10391,12 @@ MonoBehaviour:
     canRotateOnReturn: 1
     canSkipReturn: 0
     dangeorusParts:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 3849524077946664064}
+    - {fileID: 4559929688922593913}
+    - {fileID: 1080051719809265701}
+    - {fileID: 1923396629780601829}
+    - {fileID: 8617985457271834682}
+    - {fileID: 8830051600645056314}
     attackWeight: 1
     reduceAttackWeightOnRepeat: 0.5
     restoreAttackWeightOnAttackRest: 0.25
@@ -10405,7 +10417,7 @@ MonoBehaviour:
     canRotateOnReturn: 0
     canSkipReturn: 1
     dangeorusParts:
-    - {fileID: 0}
+    - {fileID: 3849524077946664064}
     - {fileID: 0}
     attackWeight: 2
     reduceAttackWeightOnRepeat: 0.5
@@ -10952,6 +10964,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: -0.3217291, y: 0.32172903, z: 0.32172948}
 --- !u!65 &7037315189112751545
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11113,6 +11126,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: -0.32172906, y: 0.321729, z: 0.32172942}
 --- !u!65 &3533817138635816715
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11573,6 +11587,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: -0.32172912, y: 0.3217291, z: 0.32172948}
 --- !u!65 &6813284684368538984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11717,6 +11732,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.39548117, y: 0.39548114, z: 0.3954813}
 --- !u!1 &6538733358610016181
 GameObject:
   m_ObjectHideFlags: 0
@@ -12770,6 +12786,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.5091298, y: 0.50912976, z: 0.5091298}
 --- !u!65 &1429224901134253225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13236,6 +13253,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.41511127, y: 0.41511124, z: 0.4151113}
 --- !u!65 &5990465857864603909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14224,6 +14242,7 @@ MonoBehaviour:
   - {fileID: 1391542183524712274}
   - {fileID: 2596312701866487044}
   - {fileID: 2067427408651020357}
+  globalScaleAfterReparenting: {x: 0.5091298, y: 0.50912976, z: 0.5091298}
 --- !u!65 &1016369751147393337
 BoxCollider:
   m_ObjectHideFlags: 0
