@@ -34,36 +34,43 @@ public class SkillsUi : MonoBehaviour
 
     public void AimDirectionalSkill(HealthController caster, Skill directionalSkill)
     {
-        if (updateDirectionalSkill != null)
-            StopCoroutine(updateDirectionalSkill);
+        if (updateDirectionalSkillCoroutine != null)
+            StopCoroutine(updateDirectionalSkillCoroutine);
 
         State = SkillsUiState.AimDirectional;
-        updateDirectionalSkill = StartCoroutine(UpdateDirectionalSkill(caster, directionalSkill));   
+        updateDirectionalSkillCoroutine = StartCoroutine(UpdateDirectionalSkill(caster, directionalSkill));   
     }
 
     public void StopAllAiming()
     {
-        if (updateDirectionalSkill != null)
+        if (updateDirectionalSkillCoroutine != null)
         {
-            StopCoroutine(updateDirectionalSkill);
+            StopCoroutine(updateDirectionalSkillCoroutine);
         }
         directionalSkillLineRenderer.positionCount = 0; 
         State = SkillsUiState.Null;
     }
     
-    private Coroutine updateDirectionalSkill;
+    private Coroutine updateDirectionalSkillCoroutine;
 
     IEnumerator UpdateDirectionalSkill(HealthController caster, Skill skill)
     {
+        if (caster == null)
+        {
+            updateDirectionalSkillCoroutine = null;
+            yield break;
+        }
         directionalSkillLineRenderer.positionCount = 2;
         while (true)
         {
             var targetPos = GameManager.Instance.MouseWorldGroundPosition();
+            float curDistance = Vector3.Distance(caster.transform.position, targetPos);
+            curDistance = Mathf.Clamp(curDistance, skill.minDistance, skill.maxDistance);
             Vector3 direction = targetPos - caster.transform.position;
-            Vector3 point_C = caster.transform.position + (direction.normalized * skill.maxDistance);
+            Vector3 point_C = caster.transform.position + (direction.normalized * curDistance);
             
             directionalSkillAimPositions[0] = caster.transform.position;
-            directionalSkillAimPositions[1] = point_C;
+            directionalSkillAimPositions[1] = new Vector3(point_C.x, 0, point_C.z);
             directionalSkillLineRenderer.SetPositions(directionalSkillAimPositions);
             yield return null;
         }

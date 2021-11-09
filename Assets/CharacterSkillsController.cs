@@ -7,9 +7,7 @@ public class CharacterSkillsController : MonoBehaviour
 {
     [SerializeField] private List<Skill> characterSkills = new List<Skill>();
     private Skill currentSkill;
-    
     [SerializeField] private HealthController hc;
-    [SerializeField] private Collider dashCollider;
     
     public List<Skill> CharacterSkills
     {
@@ -51,31 +49,33 @@ public class CharacterSkillsController : MonoBehaviour
         float t = 0;
         Vector3 startPos = transform.position;
         
-        dashCollider.gameObject.SetActive(true);
+        float dist = Vector3.Distance(startPos, targetPos);
+        float timeRaw = Mathf.InverseLerp(newSkill.minDistance, newSkill.maxDistance, dist);
+        float timeResult = timeRaw * newSkill.actionTime + newSkill.actionTimeMin;
+        timeResult = Mathf.Clamp(timeResult, newSkill.actionTimeMin, newSkill.actionTime);
+        
+        print("dist: " + dist + "; rawTime: " + timeRaw + "; _time: " + timeResult);
         
         NavMeshAgent agent = hc.Agent;
         hc.AiInput.StopAgent(true);
         agent.enabled = false;
         
-        /*
         Rigidbody rb = hc.Rb;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rb.isKinematic = false;
-        */
-        while (t < newSkill.actionTime)
+
+        while (t < timeResult)
         {
-            //rb.velocity = (targetPos - startPos).normalized * newSkill.skillPower;
             t += Time.fixedDeltaTime;
-            transform.position = Vector3.Lerp(startPos, targetPos, t / newSkill.actionTime);
+            transform.position = Vector3.Lerp(startPos, targetPos, t / timeResult);
             yield return new WaitForFixedUpdate();
         }
         
-        /*
         rb.velocity = Vector3.zero;
         rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-        rb.isKinematic = true;*/
+        rb.isKinematic = true;
+        
         agent.enabled = true;
-        dashCollider.gameObject.SetActive(false);
         dashAttackCoroutine = null;
     }
 }

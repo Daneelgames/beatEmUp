@@ -24,9 +24,11 @@ public class Skill
     public string skillDescription = "Unknown";
     public Sprite skillIcon;
     public float actionTime = 3;
+    public float actionTimeMin = 0.1f;
     public int cooldownTime = 15;
     public int energyCost = 10;
 
+    public float minDistance = 2;
     public float maxDistance = 10;
 
     [Header("This value means differentThing for different Skills")]
