@@ -35,7 +35,6 @@ public class HealthController : MonoBehaviour
     [SerializeField] private float damagedAnimationTime = 0.5f;
     private bool damageOnCooldown = false;
     
-    
     [Header("Links")] 
     [SerializeField] private ObjectInfoData _objectInfoData;
     public ObjectInfoData ObjectInfoData => _objectInfoData;
@@ -65,7 +64,9 @@ public class HealthController : MonoBehaviour
     public AiInput AiInput => _aiInput;
 
     [SerializeField] private NavMeshAgent agent;
+    public NavMeshAgent Agent => agent;
     [SerializeField] private Rigidbody rb;
+    public Rigidbody Rb => rb;
     [SerializeField] private BodyPartsManager _bodyPartsManager;
     public BodyPartsManager BodyPartsManager => _bodyPartsManager;
     [SerializeField] private FieldOfView fieldOfView;
@@ -103,6 +104,9 @@ public class HealthController : MonoBehaviour
 
     [SerializeField] private List<HealthController> friends = new List<HealthController>();
     public List<HealthController> Friends => friends;
+    
+    private List<HealthController> visibleEnemiesHCs = new List<HealthController>();
+    public List<HealthController> VisibleEnemiesHCs => visibleEnemiesHCs;
     
     private List<HealthController> visibleHCs = new List<HealthController>();
     public List<HealthController> VisibleHCs => visibleHCs;
@@ -203,10 +207,10 @@ public class HealthController : MonoBehaviour
 
         if (damager)
         {
-            if (visibleHCs.Contains(damager) == false &&
+            if (VisibleHCs.Contains(damager) == false &&
                 Vector3.Distance(transform.position, damager.transform.position) < 10)
             {
-                visibleHCs.Add(damager);
+                VisibleHCs.Add(damager);
             }
         
             AddEnemy(damager);
@@ -308,6 +312,7 @@ public class HealthController : MonoBehaviour
         BodyPart visibleTargetToAim = null; 
         
         enemiesInSight = false;
+        VisibleEnemiesHCs.Clear();
 
         float hateDiscomfort = 0;
         
@@ -350,8 +355,7 @@ public class HealthController : MonoBehaviour
                 
                 if (GameManager.Instance.simpleEnemiesAllies && _aiInput && unit._aiInput)
                 {
-                    if ((!unit._aiInput.ally && _aiInput.ally) ||
-                        (unit._aiInput.ally && !_aiInput.ally))
+                    if (unit._aiInput.ally != _aiInput.ally)
                     {
                         if (Enemies.Contains(unit) == false)
                         {
@@ -364,26 +368,14 @@ public class HealthController : MonoBehaviour
                         if (Friends.Contains(unit) == false)
                             Friends.Add(unit);
                     }
-                    
-                    /*
-                    if ((unit._aiInput.inParty == false && _aiInput.inParty == false) || 
-                        (unit._aiInput.inParty == true && _aiInput.inParty == false))
-                    {
-                        if (Friends.Contains(unit) == false)
-                            Friends.Add(unit);
-                    }
-                    else
-                    {
-                        if (Enemies.Contains(unit) == false)
-                        {
-                            Enemies.Add(unit);
-                            EnemiesGameObjects.Add(unit.gameObject);
-                        }
-                    }*/
                 }
                 
                 if (Enemies.Contains(unit))
                 {
+                    if (VisibleEnemiesHCs.Contains(unit) == false)
+                    {
+                        VisibleEnemiesHCs.Add(unit);  
+                    }
                     newDistance = Vector3.Distance(transform.position, unit.transform.position);
                     if (newDistance < distance)
                     {
@@ -394,9 +386,9 @@ public class HealthController : MonoBehaviour
                     }
                 }
                 
-                if (visibleHCs.Contains(unit) == false)
+                if (VisibleHCs.Contains(unit) == false)
                 {
-                    visibleHCs.Add(unit);  
+                    VisibleHCs.Add(unit);  
                 }
             }
 
@@ -424,7 +416,7 @@ public class HealthController : MonoBehaviour
     
     public void ResetVisibleUnits()
     {
-        visibleHCs.Clear();
+        VisibleHCs.Clear();
     }
     
     public void Death(bool onlyDisableAllSystems, bool explode, bool removeRbInstantly, bool removePart)
@@ -461,7 +453,7 @@ public class HealthController : MonoBehaviour
         {
             StartCoroutine(_bodyPartsManager.RemovePart(false));   
         }
-        
+
         if (rb)
         {
             rb.velocity = Vector3.zero;

@@ -93,9 +93,10 @@ public class GameManager : MonoBehaviour
         
         Vector3 startVel = newRb.velocity;
         Vector3 startAngularVel = newRb.angularVelocity;
+        var grav = Physics.gravity;
         while (t < time)
         {
-            newRb.velocity = Vector3.Lerp(startVel, Vector3.zero, t/time);
+            newRb.velocity = Vector3.Lerp(startVel, Vector3.zero + grav, t/time);
             newRb.angularVelocity = Vector3.Lerp(startAngularVel, Vector3.zero, t/time);
             t += Time.deltaTime;
             yield return null;

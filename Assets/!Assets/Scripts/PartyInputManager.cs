@@ -9,7 +9,7 @@ public class PartyInputManager : MonoBehaviour
 {
     public static PartyInputManager Instance;
 
-    [SerializeField] private float maxDistanceToClosestUnit = 3;
+    [SerializeField] private float enemyDistanceToAttackOnClickThreshold = 3;
     [SerializeField] List<HealthController> selectedAllyUnits = new List<HealthController>();
     private int currentThrowItemDatabaseIndex = -1;
     public List<HealthController> SelectedAllyUnits
@@ -131,30 +131,6 @@ public class PartyInputManager : MonoBehaviour
                 SetCursorOverUI(false);
         }
         
-        /*
-        if (Input.GetButtonDown("ToggleAggroModeHotkey"))
-        {
-            AiInput.AggroMode newMode = AiInput.AggroMode.AggroOnSight; 
-            for (int i = 0; i < selectedAllyUnits.Count; i++)
-            {
-                if (selectedAllyUnits[i])
-                {
-                    if (i == 0)
-                    {
-                        newMode = selectedAllyUnits[i].AiInput.aggroMode;
-                        if (newMode == AiInput.AggroMode.AggroOnSight)
-                            newMode = AiInput.AggroMode.AttackIfAttacked;
-                        else
-                            newMode = AiInput.AggroMode.AggroOnSight;
-                    }
-                    
-                    selectedAllyUnits[i].AiInput.SetAggroMode(newMode);   
-                }
-            }
-
-            PartyUi.Instance.UpdatePartyAggroMode();
-        }*/
-
         if (Input.GetMouseButtonDown(0))
         {
             if (cursorOverUI)
@@ -171,7 +147,7 @@ public class PartyInputManager : MonoBehaviour
 
             if (SkillsUi.Instance.State != SkillsUi.SkillsUiState.Null)
             {
-                SelectedAllyUnits[0].CharacterSkillsController.UseSkill();
+                SelectedAllyUnits[0].CharacterSkillsController.UseSkill(SkillsUi.Instance.GetAimTargetPosition(newPos));
             }
             else if (throwMode == false)
             {
@@ -235,7 +211,7 @@ public class PartyInputManager : MonoBehaviour
             if (unit.Health > 0 && unit.AiInput && unit.AiInput.ally == false)
             {
                 newDistance = Vector3.Distance(unit.transform.position, newPos);
-                if (newDistance <= maxDistanceToClosestUnit && newDistance <= distance)
+                if (newDistance <= enemyDistanceToAttackOnClickThreshold && newDistance <= distance)
                 {
                     distance = newDistance;
                     closestUnitToAttack = unit;

@@ -166,6 +166,13 @@ public class AiInput : MonoBehaviour
         {
             if (leaderToFollow)
             {
+                if (leaderToFollow.Health > 0)
+                {
+                    leaderToFollow = null;
+                    Wander();
+                    yield break;
+                }
+                
                 float distance = Vector3.Distance(transform.position, leaderToFollow.transform.position); 
                 if (distance >= maxDistanceFromLeader)
                 {
@@ -227,9 +234,6 @@ public class AiInput : MonoBehaviour
             return;
 
         currentTargetPosition = pos;
-        /*
-        if (inParty)
-            print("SetAgentDestinationTarget; pos " + pos);*/
         
         if (Vector3.Distance(GameManager.Instance.mainCamera.transform.position, currentTargetPosition) < 75)
             expensive = true;
@@ -340,7 +344,7 @@ public class AiInput : MonoBehaviour
     
     void SetAggro(HealthController damager)
     {
-        if (ally && !inParty)
+        if (debugLogs && ally && !inParty)
             print("SetAggro");
         
         if (hc.Friends.Contains(damager) && Random.value < kidness)
@@ -413,7 +417,7 @@ public class AiInput : MonoBehaviour
             print("Alert");
         alert.gameObject.SetActive(false);
         yield return null;
-        
+            
         if (noiseMaker)
             noiseMaker.ShoutNoise();
         
@@ -457,7 +461,7 @@ public class AiInput : MonoBehaviour
 
     void Wander()
     {
-        if (ally && !inParty)
+        if (debugLogs && ally && !inParty)
             print("Wander");
         
         StopBehaviourCoroutines();
@@ -472,12 +476,12 @@ public class AiInput : MonoBehaviour
         StopAgent(false);
         currentTargetPosition = NewPositionNearPointOfInterest();
 
-        if (debugLogs)
-            print ("WanderOverTime");
-        
         while (true)
         {
             float distance = Vector3.Distance(transform.position, currentTargetPosition); 
+            if (debugLogs)
+                print ("WanderOverTime; distance " + distance);
+            
             if (distance < stopDistance)
             {
                 if (Random.value < 0.5)
@@ -506,9 +510,15 @@ public class AiInput : MonoBehaviour
                 if (agent && agent.enabled)
                 {
                     if (distance < runDistanceThreshold)
+                    {
                         SetNavMeshAgentSpeed(walkSpeed);
+                        anim.SetBool(Running, false);
+                    }
                     else
+                    {
                         SetNavMeshAgentSpeed(runSpeed);
+                        anim.SetBool(Running, true);
+                    }
                     
                     SetAgentDestinationTarget(currentTargetPosition, false);
                 }
@@ -569,8 +579,8 @@ public class AiInput : MonoBehaviour
 
     public void Idle()
     {
-        if (ally && !inParty)
-            print("Wander");
+        if (debugLogs && ally && !inParty)
+            print("Idle");
 
         StopBehaviourCoroutines();
         
@@ -625,6 +635,8 @@ public class AiInput : MonoBehaviour
     }
     IEnumerator FollowTarget()
     {
+        if (debugLogs)
+            print ("FollowTarget");
         aiState = State.FollowTarget;
 
         StopAgent(false);
@@ -709,6 +721,8 @@ public class AiInput : MonoBehaviour
         Vector3 newPos = transform.position;
         if (currentTargetRotationHc != null && currentTargetRotationHc.Health > 0)
             newPos = currentTargetRotationHc.transform.position;
+        else if (hc.VisibleEnemiesHCs.Count > 0)
+            newPos = hc.VisibleEnemiesHCs[Random.Range(0, hc.VisibleEnemiesHCs.Count)].transform.position;
         
         float distance = 1000;
         float newDistance = 0;
@@ -731,9 +745,6 @@ public class AiInput : MonoBehaviour
                 closestEnemy = hc.Enemies[i];
             }
         }
-
-        if (debugLogs && inParty)
-            print(closestEnemy);
         
         if (closestEnemy != null)
         {
@@ -755,11 +766,14 @@ public class AiInput : MonoBehaviour
                 break;
             }
             tries--;
+            
+            if (tries <= 0 && debugLogs)
+                print("CAN'T FIND POSITION NEAR CLOSEST ENEMY");
         }
         return newPos;
     }
 
-    void StopAgent(bool isStopped)
+    public void StopAgent(bool isStopped)
     {
         if (agent && agent.enabled)
             agent.isStopped = isStopped;
@@ -814,7 +828,6 @@ public class AiInput : MonoBehaviour
                 if (distance > looseTargetDistance)
                 {
                     rotateTowardsClosestEnemyCoroutine = null;
-                    canRotate = false;
                     yield break;
                 }
                 
@@ -823,8 +836,12 @@ public class AiInput : MonoBehaviour
                 else
                     canRotate = false;
             }
+            
+            if (debugLogs)
+                print("RotateTowardsClosestEnemyCoroutine; canRotate " + canRotate);
+            
             targetRotation1.SetLookRotation(currentTargetRotationHc.transform.position - transform.position); 
-            targetRotation = Quaternion.Lerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
+            targetRotation = Quaternion.Slerp(transform.rotation, targetRotation1, 10 * Time.deltaTime);
             
             if (canRotate)
                 transform.localEulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);

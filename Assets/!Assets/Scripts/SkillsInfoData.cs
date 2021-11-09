@@ -28,4 +28,7 @@ public class Skill
     public int energyCost = 10;
 
     public float maxDistance = 10;
+
+    [Header("This value means differentThing for different Skills")]
+    public float skillPower = 10;
 }

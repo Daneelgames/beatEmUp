@@ -17,9 +17,11 @@ MonoBehaviour:
     skillName: Razor
     skillDescription: 'Dash through multiple units '
     skillIcon: {fileID: 21300000, guid: 81a12d62f637141468a42abdc2e5ead7, type: 3}
-    actionTime: 1
+    actionTime: 0.5
     cooldownTime: 15
     energyCost: 10
+    maxDistance: 10
+    skillPower: 30
   - skill: 2
     skillName: Slog
     skillDescription: Slow down units in area
@@ -27,6 +29,8 @@ MonoBehaviour:
     actionTime: 10
     cooldownTime: 20
     energyCost: 5
+    maxDistance: 10
+    skillPower: 10
   - skill: 3
     skillName: Flowers
     skillDescription: 'Plant them and they will heal your '
@@ -34,3 +38,5 @@ MonoBehaviour:
     actionTime: 90
     cooldownTime: 60
     energyCost: 20
+    maxDistance: 10
+    skillPower: 10

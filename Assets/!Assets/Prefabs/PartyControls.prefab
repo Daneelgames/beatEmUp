@@ -1435,8 +1435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6b50e64fab97d4094e098335221d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistanceToClosestUnit: 6
-  selectedAllyUnits: []
+  enemyDistanceToAttackOnClickThreshold: 3
+  selectedAllyUnits:
+  - {fileID: 0}
   party: []
   unitSelectedFeedbackPrefab: {fileID: 7432755659007802563, guid: c45846fd236e6004a80cb78f0a93bd72, type: 3}
 --- !u!114 &3885544775627633734
@@ -1499,6 +1500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbaf5c02147a6fc48a52ed5335538f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   directionalSkillLineRenderer: {fileID: 400702511}
 --- !u!1 &3885544775771805666
 GameObject:
@@ -2920,7 +2922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3885544777193091913
 RectTransform:
   m_ObjectHideFlags: 0

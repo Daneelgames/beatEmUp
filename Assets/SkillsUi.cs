@@ -36,10 +36,9 @@ public class SkillsUi : MonoBehaviour
     {
         if (updateDirectionalSkill != null)
             StopCoroutine(updateDirectionalSkill);
-        
+
         State = SkillsUiState.AimDirectional;
-        
-        updateDirectionalSkill = StartCoroutine(UpdateDirectionalSkill(caster, directionalSkill));
+        updateDirectionalSkill = StartCoroutine(UpdateDirectionalSkill(caster, directionalSkill));   
     }
 
     public void StopAllAiming()
@@ -47,9 +46,8 @@ public class SkillsUi : MonoBehaviour
         if (updateDirectionalSkill != null)
         {
             StopCoroutine(updateDirectionalSkill);
-            directionalSkillLineRenderer.positionCount = 0;
         }
-        //print("StopAllAiming");
+        directionalSkillLineRenderer.positionCount = 0; 
         State = SkillsUiState.Null;
     }
     
@@ -68,6 +66,17 @@ public class SkillsUi : MonoBehaviour
             directionalSkillAimPositions[1] = point_C;
             directionalSkillLineRenderer.SetPositions(directionalSkillAimPositions);
             yield return null;
+        }
+    }
+
+    public Vector3 GetAimTargetPosition(Vector3 mouseTargetPos)
+    {
+        switch (State) 
+        { 
+            case SkillsUiState.AimDirectional: return directionalSkillAimPositions[1]; 
+            case SkillsUiState.AimAOE: return mouseTargetPos;
+            
+            default: return mouseTargetPos;
         }
     }
 }

@@ -60,9 +60,13 @@ public class SkillsDatabaseManager : MonoBehaviour
                     currentCaster.CharacterSkillsController.SetCurrentSkill(null);
                     currentCaster = null;
                     currentSkill = null;
+                    
+                    SkillsUi.Instance.AimDirectionalSkill(null, null);
                 }
-                SkillsUi.Instance.AimDirectionalSkill(caster, skill);
-            break;
+                else
+                    SkillsUi.Instance.AimDirectionalSkill(caster, skill);
+                
+                break;
         }
     }
 }
