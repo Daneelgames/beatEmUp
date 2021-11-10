@@ -47,7 +47,6 @@ public class SkillsUi : MonoBehaviour
 
     public void StopAllAiming()
     {
-        print("StopAllAiming");
         if (updateDirectionalSkillCoroutine != null)
         {
             StopCoroutine(updateDirectionalSkillCoroutine);

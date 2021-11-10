@@ -77,8 +77,6 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiNavigationManager.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
@@ -88,6 +86,8 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SkillsInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -167,7 +167,7 @@
       <workItem from="1636364401325" duration="4596000" />
       <workItem from="1636400607583" duration="2805000" />
       <workItem from="1636453885410" duration="15722000" />
-      <workItem from="1636543428134" duration="12643000" />
+      <workItem from="1636543428134" duration="13904000" />
     </task>
     <servers />
   </component>

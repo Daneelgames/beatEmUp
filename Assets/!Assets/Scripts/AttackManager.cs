@@ -522,7 +522,13 @@ public class AttackManager : MonoBehaviour
         bool damagedSuccessfully = false;
         
         damagedHCs.Add(partToDamage.HC);
-        var newParticle = Instantiate(HitParticle,partToDamage.Collider.bounds.center, Quaternion.identity);
+        
+        if (partToDamage.Collider)
+        {
+            // Hit Particle
+            Instantiate(HitParticle, partToDamage.Collider.bounds.center, Quaternion.identity);
+        }
+        
         int resultDamage = Mathf.RoundToInt((baseAttackDamage + additionalWeaponDamage) * dmgScalerByCurrentAttack);
         float randomCritChance = Random.value;
         int _criticalDamage = 0;

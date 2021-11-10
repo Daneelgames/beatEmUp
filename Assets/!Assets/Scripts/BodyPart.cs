@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BodyPart : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class BodyPart : MonoBehaviour
     Vector3 globalScaleAfterReparenting = new Vector3(30, 30, 30);
     public Vector3 GlobalScaleAfterReparenting => globalScaleAfterReparenting;
 
+    private List<GameObject> gameObjectsOnStay = new List<GameObject>();
     private void Awake()
     {
         SpawnController.Instance.AddBodyPartTransform(transform, HC);
@@ -45,19 +47,27 @@ public class BodyPart : MonoBehaviour
 
     public void SetDangerous(bool _dangerous)
     {
-        dangerous = _dangerous;
         damagedBodyPartsGameObjects.Clear();
+        dangerous = _dangerous;
+
+        if (dangerous && gameObjectsOnStay.Count > 0)
+        {
+            // damage gameObjectsOnStay
+            for (int i = gameObjectsOnStay.Count - 1; i >= 0; i--)
+            {
+                if (gameObjectsOnStay[i] == null)
+                {
+                    gameObjectsOnStay.RemoveAt(i);
+                    continue;
+                }
+                
+                DamageHcByPartTransform(gameObjectsOnStay[i].transform);
+            }
+        }
     }
-    
-    //private void OnTriggerStay(Collider other)
+
     private void OnTriggerEnter(Collider other)
     {
-        // need to add this object to a list
-        // which then will be attacked when part becomes dangerous 
-
-        if (!dangerous)
-            return;
-
         if (other.gameObject.layer != 7)
             return;
             
@@ -70,12 +80,40 @@ public class BodyPart : MonoBehaviour
             return;
         }
         
+        if (!dangerous)
+        {
+            // need to add this object to a list gameObjectsOnStay
+            // which then will be attacked when part becomes dangerous 
+            gameObjectsOnStay.Add(other.gameObject);
+            return;
+        }
+        
+        // else - damage it right away
+        DamageHcByPartTransform(other.transform);
+        
+        /*
         var newPartToDamage = other.gameObject.GetComponent<BodyPart>();
-
         if (newPartToDamage)
         {
             _attackManager.DamageOtherBodyPart(newPartToDamage, 0, HealthController.DamageType.Melee);
             damagedBodyPartsGameObjects.Add(newPartToDamage.gameObject);
+        }*/
+    }
+
+    void DamageHcByPartTransform(Transform part)
+    {
+        HealthController hcToDamage = SpawnController.Instance.GetHcByBodyPartTransform(part.transform);
+        if (hcToDamage)
+        {
+            _attackManager.DamageOtherBodyPart(hcToDamage.BodyPartsManager.bodyParts[Random.Range(0, hcToDamage.BodyPartsManager.bodyParts.Count)],
+                0, HealthController.DamageType.Melee);
+            damagedBodyPartsGameObjects.Add(part.gameObject);
         }
+    }
+
+    void OnTriggerExit(Collider coll)
+    {
+        if (gameObjectsOnStay.Contains(coll.gameObject))
+            gameObjectsOnStay.Remove(coll.gameObject);
     }
 }
