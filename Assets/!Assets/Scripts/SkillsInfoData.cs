@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "NewSkillsDatabase", menuName = "ScriptableObjects/SkillsDatabase", order = 1)]
 public class SkillsInfoData : ScriptableObject
@@ -31,6 +32,8 @@ public class Skill
     public float minDistance = 2;
     public float maxDistance = 10;
 
+    
     [Header("This value means differentThing for different Skills")]
-    public float skillPower = 10;
+    [Header("RN it's added to attackManager base dmg as an additional weapon dmg")]
+    public float skillPower = 200;
 }

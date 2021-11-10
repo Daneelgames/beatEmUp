@@ -147,7 +147,7 @@ public class PartyInputManager : MonoBehaviour
 
             if (SkillsUi.Instance.State != SkillsUi.SkillsUiState.Null)
             {
-                SelectedAllyUnits[0].CharacterSkillsController.UseSkill(SkillsUi.Instance.GetAimTargetPosition(newPos));
+                SelectedAllyUnits[0].CharacterSkillsController.PerformSkill(SkillsUi.Instance.GetAimTargetPosition(newPos));
             }
             else if (throwMode == false)
             {

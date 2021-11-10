@@ -22,6 +22,11 @@ public class BodyPart : MonoBehaviour
     Vector3 globalScaleAfterReparenting = new Vector3(30, 30, 30);
     public Vector3 GlobalScaleAfterReparenting => globalScaleAfterReparenting;
 
+    private void Awake()
+    {
+        SpawnController.Instance.AddBodyPartTransform(transform, HC);
+    }
+
     public void SaveGlobalScaleAfterReparenting()
     {
         globalScaleAfterReparenting = transform.lossyScale;
@@ -41,32 +46,36 @@ public class BodyPart : MonoBehaviour
     public void SetDangerous(bool _dangerous)
     {
         dangerous = _dangerous;
-        damagedBodyPartsGameObjects.Clear();    
+        damagedBodyPartsGameObjects.Clear();
     }
     
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (dangerous)
-        {
-            if (other.gameObject.layer != 7)
-                return;
-            
-            if (ownBodyPartsGameObjects.Contains(other.gameObject))
-            {
-                return;
-            }
-            if (damagedBodyPartsGameObjects.Contains(other.gameObject))
-            {
-                return;
-            }
-            
-            var newPartToDamage = other.gameObject.GetComponent<BodyPart>();
+        // need to add this object to a list
+        // which then will be attacked when part becomes dangerous 
 
-            if (newPartToDamage)
-            {
-                _attackManager.DamageOtherBodyPart(newPartToDamage, 0, HealthController.DamageType.Melee);
-                damagedBodyPartsGameObjects.Add(newPartToDamage.gameObject);
-            }
+        if (!dangerous)
+            return;
+
+        if (other.gameObject.layer != 7)
+            return;
+            
+        if (ownBodyPartsGameObjects.Contains(other.gameObject))
+        {
+            return;
+        }
+        if (damagedBodyPartsGameObjects.Contains(other.gameObject))
+        {
+            return;
+        }
+        
+        var newPartToDamage = other.gameObject.GetComponent<BodyPart>();
+
+        if (newPartToDamage)
+        {
+            _attackManager.DamageOtherBodyPart(newPartToDamage, 0, HealthController.DamageType.Melee);
+            damagedBodyPartsGameObjects.Add(newPartToDamage.gameObject);
         }
     }
 }

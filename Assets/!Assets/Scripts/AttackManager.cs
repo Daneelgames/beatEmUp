@@ -19,7 +19,6 @@ public class AttackManager : MonoBehaviour
         set => throwDistance = value;
     } 
 
-
     [SerializeField] private List<Attack> attackList = new List<Attack>();
     List<Attack> tempAttackList = new List<Attack>();
     
@@ -176,9 +175,11 @@ public class AttackManager : MonoBehaviour
         }
     }
     
-    
     public void TryToAttack(bool playerInput, BodyPart boneToAim)
     {
+        if (hc.CharacterSkillsController && hc.CharacterSkillsController.PerformingSkill != null && hc.CharacterSkillsController.PerformingSkill.skill != Skill.SkillType.Null)
+            return;
+        
         if (currentGrabAttack != null)
         {
             if (grabAttacksList.Count > 0)
@@ -252,12 +253,17 @@ public class AttackManager : MonoBehaviour
             return;
         }
         // clear the list of attacked units from previous attack 
-        damagedHCs.Clear();
+        ClearDamaged();
         // If not attacking, start new attack
         ChooseAttack();
         attackSwingCoroutine = StartCoroutine(AttackSwing(boneToAim));
     }
 
+    public void ClearDamaged()
+    {
+        damagedHCs.Clear();
+    }
+    
     public void TryToThrowWeapon(Vector3 throwTargetPoint)
     {
         if (WeaponInHands == null)
@@ -488,11 +494,27 @@ public class AttackManager : MonoBehaviour
 
     public bool DamageOtherBodyPart(BodyPart partToDamage, int additionalWeaponDamage, HealthController.DamageType damageType)
     {
+        // FRIENDLY FIRE
+        /*
         if (partToDamage.HC.AiInput && partToDamage.HC.AiInput.inParty && Hc.AiInput && Hc.AiInput.inParty)
-            return false;
-                
+            return false;*/
+
+        float dmgScalerByCurrentAttack = 1;
+        float critChanceScalerByCurrentAttack = 1;
         if (currentAttack == null)
-            return false;
+        {
+            if (hc.CharacterSkillsController && hc.CharacterSkillsController.PerformingSkill.skill != Skill.SkillType.Null)
+            {
+                additionalWeaponDamage = Mathf.RoundToInt(hc.CharacterSkillsController.PerformingSkill.skillPower);
+            }
+            else
+                return false;
+        }
+        else
+        {
+            dmgScalerByCurrentAttack = currentAttack.AttackDamageScaler;
+            critChanceScalerByCurrentAttack = currentAttack.AttackCritChanceScaler;
+        }
         
         if (damagedHCs.Contains(partToDamage.HC))
             return false;
@@ -501,11 +523,11 @@ public class AttackManager : MonoBehaviour
         
         damagedHCs.Add(partToDamage.HC);
         var newParticle = Instantiate(HitParticle,partToDamage.Collider.bounds.center, Quaternion.identity);
-        int resultDamage = Mathf.RoundToInt((baseAttackDamage + additionalWeaponDamage) * currentAttack.AttackDamageScaler);
+        int resultDamage = Mathf.RoundToInt((baseAttackDamage + additionalWeaponDamage) * dmgScalerByCurrentAttack);
         float randomCritChance = Random.value;
         int _criticalDamage = 0;
         
-        if (randomCritChance <= critChance * currentAttack.AttackCritChanceScaler)
+        if (randomCritChance <= critChance * critChanceScalerByCurrentAttack)
             resultDamage *= Mathf.RoundToInt(critDamageScaler);
 
         if (hc.Friends.Contains(partToDamage.HC))

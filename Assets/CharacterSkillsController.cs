@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,19 +9,28 @@ public class CharacterSkillsController : MonoBehaviour
     [SerializeField] private List<Skill> characterSkills = new List<Skill>();
     private Skill currentSkill;
     [SerializeField] private HealthController hc;
-    
-    public List<Skill> CharacterSkills
+
+    private Skill performingSkill;
+    public Skill PerformingSkill
     {
-        get => characterSkills;
-        set => characterSkills = value;
+        get {return performingSkill;}
+        set {performingSkill = value;}
     }
+
+    public List<Skill> CharacterSkills { get => characterSkills; set => characterSkills = value; }
+    
+    private Coroutine dashAttackCoroutine;
+    private static readonly int Dash = Animator.StringToHash("Dash");
+
+    [Header("Particles")]
+    [SerializeField] ParticleSystem dashParticles;
 
     public void SetCurrentSkill(Skill skill)
     {
         currentSkill = skill;
     }
 
-    public void UseSkill(Vector3 targetPos)
+    public void PerformSkill(Vector3 targetPos)
     {
         bool skillUsed = false;
         
@@ -43,9 +53,16 @@ public class CharacterSkillsController : MonoBehaviour
         }
     }
 
-    private Coroutine dashAttackCoroutine;
     IEnumerator DashAttack(Skill newSkill, Vector3 targetPos)
     {
+        PerformingSkill = newSkill;
+        hc.AiInput.StopBehaviourCoroutines();
+        hc.AiInput.SetAnimatorParameterBySkill(Dash, true);
+        hc.BodyPartsManager.SetAllBodyPartsDangerous(true);
+        hc.AttackManager.ClearDamaged();
+
+        dashParticles.Play(true);
+        
         float t = 0;
         Vector3 startPos = transform.position;
         
@@ -54,11 +71,11 @@ public class CharacterSkillsController : MonoBehaviour
         float timeResult = timeRaw * newSkill.actionTime + newSkill.actionTimeMin;
         timeResult = Mathf.Clamp(timeResult, newSkill.actionTimeMin, newSkill.actionTime);
         
-        print("dist: " + dist + "; rawTime: " + timeRaw + "; _time: " + timeResult);
-        
         NavMeshAgent agent = hc.Agent;
         hc.AiInput.StopAgent(true);
         agent.enabled = false;
+        
+        transform.LookAt(targetPos, Vector3.up);
         
         Rigidbody rb = hc.Rb;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -77,5 +94,9 @@ public class CharacterSkillsController : MonoBehaviour
         
         agent.enabled = true;
         dashAttackCoroutine = null;
+        
+        hc.AiInput.SetAnimatorParameterBySkill(Dash, false);
+        hc.BodyPartsManager.SetAllBodyPartsDangerous(false);
+        PerformingSkill.skill = Skill.SkillType.Null;
     }
 }

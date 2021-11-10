@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - FxTemporaire
+  - DestroyOnAnyDamage
   layers:
   - Default
   - TransparentFX

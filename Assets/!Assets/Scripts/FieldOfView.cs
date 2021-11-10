@@ -129,6 +129,9 @@ public class FieldOfView : MonoBehaviour
         
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
+            if (!hc.AiInput.inParty)
+                yield return null;  
+            
             if (targetsInViewRadius[i] == null)
                 continue;
             
@@ -155,13 +158,21 @@ public class FieldOfView : MonoBehaviour
                     {
                         VisibleTargets.Add(target);
                     }
+                    
+                    
+                    
+                    if (!hc.AiInput.inParty)
+                        yield return null;   
                 }
 
-                t++;
-                if (t > 5)
+                if (hc.AiInput.inParty)
                 {
-                    t = 0;
-                    yield return null;   
+                    t++;
+                    if (t > 5)
+                    {
+                        t = 0;
+                        yield return null;
+                    }
                 }
             }
         }

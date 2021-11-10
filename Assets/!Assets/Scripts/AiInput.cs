@@ -131,6 +131,18 @@ public class AiInput : MonoBehaviour
         StartCoroutine(CapsuleCastAgainstUnits());
     }
 
+    public void SetAnimatorParameterBySkill(int newStringToHash, bool active)
+    {
+        anim.SetBool(newStringToHash, active);
+    }
+    
+    void SetAnimatorParameter(int newStringToHash, bool active)
+    {
+        if (hc.CharacterSkillsController && hc.CharacterSkillsController.PerformingSkill != null && hc.CharacterSkillsController.PerformingSkill.skill != Skill.SkillType.Null)
+            return;
+        
+        anim.SetBool(newStringToHash, active);
+    }
     public void Init()
     {
         SpawnController.Instance.AddAiInput(this);
@@ -139,7 +151,7 @@ public class AiInput : MonoBehaviour
 
         if (looseTargetDistance < hc.FieldOfView.ViewRadius)
             looseTargetDistance = hc.FieldOfView.ViewRadius;
-        
+            
         if (aiState == State.Wander)
             Wander();
         else if (aiState == State.Idle)
@@ -438,12 +450,12 @@ public class AiInput : MonoBehaviour
             if (Vector3.Distance(previousPos, transform.position) < 0.2f)
             {
                 moving = false;
-                anim.SetBool(Moving, false);
+                SetAnimatorParameter(Moving, false);
             }
             else // MOVING
             {
                 moving = true;
-                anim.SetBool(Moving, true);
+                SetAnimatorParameter(Moving, true);
             }
             previousPos = transform.position;
             
@@ -512,12 +524,12 @@ public class AiInput : MonoBehaviour
                     if (distance < runDistanceThreshold)
                     {
                         SetNavMeshAgentSpeed(walkSpeed);
-                        anim.SetBool(Running, false);
+                        SetAnimatorParameter(Running, false);
                     }
                     else
                     {
                         SetNavMeshAgentSpeed(runSpeed);
-                        anim.SetBool(Running, true);
+                        SetAnimatorParameter(Running, true);
                     }
                     
                     SetAgentDestinationTarget(currentTargetPosition, false);
@@ -550,13 +562,13 @@ public class AiInput : MonoBehaviour
                     if (newDistance > runDistanceThreshold)
                     {
                         // RUN  
-                        anim.SetBool(Running, true);
+                        SetAnimatorParameter(Running, true);
                         SetNavMeshAgentSpeed(runSpeed);
                     }
                     else
                     {
                         // WALK
-                        anim.SetBool(Running, false);
+                        SetAnimatorParameter(Running, false);
                         SetNavMeshAgentSpeed(walkSpeed);
                         
                     }
@@ -569,7 +581,7 @@ public class AiInput : MonoBehaviour
             }
             else
             {
-                anim.SetBool(Running, false);
+                SetAnimatorParameter(Running, false);
                 SetNavMeshAgentSpeed(walkSpeed);
             }
 
@@ -595,7 +607,7 @@ public class AiInput : MonoBehaviour
         StopAgent(false);
         aiState = State.Investigate;
         // WALK
-        anim.SetBool(Running, false);
+        SetAnimatorParameter(Running, false);
         SetNavMeshAgentSpeed(walkSpeed);
 
         while (true)
@@ -653,13 +665,13 @@ public class AiInput : MonoBehaviour
                 if (currentDistance > runDistanceThreshold)
                 {
                     // RUN
-                    anim.SetBool(Running, true);
+                    SetAnimatorParameter(Running, true);
                     SetNavMeshAgentSpeed(runSpeed);
                 }
                 else
                 {
                     // WALK
-                    anim.SetBool(Running, false);
+                    SetAnimatorParameter(Running, false);
                     SetNavMeshAgentSpeed(walkSpeed);
                 }
                 

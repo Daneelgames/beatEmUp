@@ -89,6 +89,15 @@ public class BodyPartsManager : MonoBehaviour
         }
     }
 
+    public void SetAllBodyPartsDangerous(bool dangerous)
+    {
+        for (int i = 0; i < bodyParts.Count; i++)
+        {
+            if (bodyParts[i])
+                bodyParts[i].SetDangerous(dangerous);
+        }
+    }
+
     [ContextMenu("SaveGlobalScaleAfterReparenting")]
     public void SaveGlobalScaleAfterReparenting()
     {

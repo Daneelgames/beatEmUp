@@ -16,6 +16,7 @@ public class SpawnController : MonoBehaviour
     private List<AiInput> spawnedAiInputs = new List<AiInput>();
     private List<ActivateRigidbodyOnNoise> _activateRigidbodyOnNoises = new List<ActivateRigidbodyOnNoise>();
 
+    private Dictionary<Transform, HealthController> dict_bodyPartTransform_Hc;
     private void Awake()
     {
         Instance = this;
@@ -26,6 +27,15 @@ public class SpawnController : MonoBehaviour
         spawnedAiInputs.Add(newAi);
     }
 
+    public void AddBodyPartTransform(Transform t, HealthController hc)
+    {
+        dict_bodyPartTransform_Hc.Add(t, hc);
+    }
+    public HealthController GetHcByBodyPartTransform(Transform t)
+    {
+        return dict_bodyPartTransform_Hc[t];
+    }
+    
     public void AddActivateRigidbodyOnNoise(ActivateRigidbodyOnNoise newActivateRigidbodyOnNoise)
     {
         _activateRigidbodyOnNoises.Add(newActivateRigidbodyOnNoise);
