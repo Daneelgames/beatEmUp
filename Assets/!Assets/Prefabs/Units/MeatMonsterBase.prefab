@@ -121,6 +121,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &3496487033709356491
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -262,6 +263,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &27461975
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -397,6 +399,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &3126910359421254714
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -615,6 +618,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &9146596730680068102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -751,6 +755,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &1147915038
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -969,6 +974,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &114851540121854589
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1344,6 +1350,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &3603298971399532873
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6537,6 +6544,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &1456332750882964968
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6755,6 +6763,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &5834656468650381250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7017,6 +7026,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &768080547260391764
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7316,6 +7326,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &3400530905073357189
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7716,6 +7727,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &706820808280700457
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7852,6 +7864,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &5512405265385952150
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8093,6 +8106,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &2475636135702558776
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8181,6 +8195,7 @@ MonoBehaviour:
   _attackManager: {fileID: 4792253143275227139}
   _interactionController: {fileID: 2695189181210928995}
   characterPerksController: {fileID: 6217995972828308375}
+  characterSkillsController: {fileID: 0}
   anim: {fileID: 919132149555714730}
   _aiInput: {fileID: 2984947846422348196}
   agent: {fileID: 315908125812861007}
@@ -8278,6 +8293,7 @@ MonoBehaviour:
   stopDistanceFollowTarget: 2
   runDistanceThreshold: 5
   looseTargetDistance: 20
+  rotateToTargetMaxDistance: 10
   simpleWalker: 1
   idleTimeMinMax: {x: 10, y: 30}
   attackCooldownMinMax: {x: 0.5, y: 1.5}
@@ -8438,7 +8454,7 @@ MonoBehaviour:
   drawFOV: 0
   hc: {fileID: 1212818265}
   eyesTransfom: {fileID: 1261236843457751220}
-  minVisibleBonesToSeeUnit: 2
+  minVisibleBonesToSeeUnit: 1
   resetVisibleUnitsCooldown: 10
   updateDelay: 0.5
   viewRadius: 50
@@ -8911,6 +8927,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &1338598788005272564
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9211,6 +9228,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &7748551760474329887
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9505,6 +9523,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &436021326509964738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9641,6 +9660,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &8075400491852241348
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9777,6 +9797,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &2167057789725121750
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9913,6 +9934,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &3361502973519830429
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10048,6 +10070,7 @@ MonoBehaviour:
   - {fileID: 5728637855925523102}
   - {fileID: 1300102917378140538}
   - {fileID: 2757094158265427970}
+  globalScaleAfterReparenting: {x: 30, y: 30, z: 30}
 --- !u!136 &5615365786086317999
 CapsuleCollider:
   m_ObjectHideFlags: 0

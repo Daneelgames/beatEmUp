@@ -37,7 +37,7 @@ public class SkillsDatabaseManager : MonoBehaviour
     {
         SkillsUi.Instance.StopAllAiming();
         if (currentCaster)
-            currentCaster.CharacterSkillsController.SetCurrentSkill(null);
+            currentCaster.CharacterSkillsController.SetSelectedSkill(null);
     }
     
     public void SkillSelected(HealthController caster, Skill skill)
@@ -49,7 +49,7 @@ public class SkillsDatabaseManager : MonoBehaviour
         if (caster == null)
             return;
         
-        currentCaster.CharacterSkillsController.SetCurrentSkill(skill);
+        currentCaster.CharacterSkillsController.SetSelectedSkill(skill);
         
         switch (skill.skill)
         {
@@ -57,15 +57,16 @@ public class SkillsDatabaseManager : MonoBehaviour
                 if (SkillsUi.Instance.State == SkillsUi.SkillsUiState.AimDirectional)
                 {
                     UnselectSkill();
-                    currentCaster.CharacterSkillsController.SetCurrentSkill(null);
+                    currentCaster.CharacterSkillsController.SetSelectedSkill(null);
                     currentCaster = null;
                     currentSkill = null;
                     
                     SkillsUi.Instance.AimDirectionalSkill(null, null);
                 }
                 else
+                {
                     SkillsUi.Instance.AimDirectionalSkill(caster, skill);
-                
+                }
                 break;
         }
     }

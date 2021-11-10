@@ -7,9 +7,10 @@ using UnityEngine.AI;
 public class CharacterSkillsController : MonoBehaviour
 {
     [SerializeField] private List<Skill> characterSkills = new List<Skill>();
-    private Skill currentSkill;
-    [SerializeField] private HealthController hc;
-
+    [SerializeField]
+    private Skill selectedSkill;
+    
+    [SerializeField]
     private Skill performingSkill;
     public Skill PerformingSkill
     {
@@ -22,19 +23,21 @@ public class CharacterSkillsController : MonoBehaviour
     private Coroutine dashAttackCoroutine;
     private static readonly int Dash = Animator.StringToHash("Dash");
 
+    [SerializeField] private HealthController hc;
+    
     [Header("Particles")]
     [SerializeField] ParticleSystem dashParticles;
 
-    public void SetCurrentSkill(Skill skill)
+    public void SetSelectedSkill(Skill skill)
     {
-        currentSkill = skill;
+        selectedSkill = new Skill(skill);
     }
 
     public void PerformSkill(Vector3 targetPos)
     {
         bool skillUsed = false;
         
-        var newSkill = currentSkill;
+        var newSkill = selectedSkill;
         SkillsDatabaseManager.Instance.UnselectSkill();
         
         switch (newSkill.skill)

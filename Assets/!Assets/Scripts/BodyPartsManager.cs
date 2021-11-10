@@ -53,6 +53,18 @@ public class BodyPartsManager : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        SetAllPartsColliders();
+
+        for (int i = 0; i < bodyParts.Count; i++)
+        {
+            SpawnController.Instance.RemoveBodyPartTransform(bodyParts[i].transform);
+        }
+
+        StartCoroutine(RemovePart(false));   
+    }
+
     public IEnumerator RemovePart(bool attackerGetsPArt)
     {
         if (removableParts.Count <= 0)

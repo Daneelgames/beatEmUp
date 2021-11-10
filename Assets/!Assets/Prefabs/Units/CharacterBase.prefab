@@ -14740,7 +14740,7 @@ MonoBehaviour:
   drawFOV: 0
   hc: {fileID: 1212818265}
   eyesTransfom: {fileID: 3485632504824966229}
-  minVisibleBonesToSeeUnit: 2
+  minVisibleBonesToSeeUnit: 1
   resetVisibleUnitsCooldown: 10
   updateDelay: 0.5
   viewRadius: 50

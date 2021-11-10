@@ -6,7 +6,6 @@ using UnityEngine;
 public class SkillsUi : MonoBehaviour
 {
     public static SkillsUi Instance;
-
     
     public enum SkillsUiState
     {
@@ -36,17 +35,25 @@ public class SkillsUi : MonoBehaviour
     {
         if (updateDirectionalSkillCoroutine != null)
             StopCoroutine(updateDirectionalSkillCoroutine);
-
+        
+        updateDirectionalSkillCoroutine = null;
+        
+        if (caster == null)
+            return;
+        
         State = SkillsUiState.AimDirectional;
         updateDirectionalSkillCoroutine = StartCoroutine(UpdateDirectionalSkill(caster, directionalSkill));   
     }
 
     public void StopAllAiming()
     {
+        print("StopAllAiming");
         if (updateDirectionalSkillCoroutine != null)
         {
             StopCoroutine(updateDirectionalSkillCoroutine);
         }
+
+        updateDirectionalSkillCoroutine = null;
         directionalSkillLineRenderer.positionCount = 0; 
         State = SkillsUiState.Null;
     }
@@ -63,6 +70,7 @@ public class SkillsUi : MonoBehaviour
         directionalSkillLineRenderer.positionCount = 2;
         while (true)
         {
+            directionalSkillLineRenderer.material.mainTextureOffset += Vector2.left * Time.deltaTime;
             var targetPos = GameManager.Instance.MouseWorldGroundPosition();
             float curDistance = Vector3.Distance(caster.transform.position, targetPos);
             curDistance = Mathf.Clamp(curDistance, skill.minDistance, skill.maxDistance);

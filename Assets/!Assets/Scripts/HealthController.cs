@@ -315,12 +315,19 @@ public class HealthController : MonoBehaviour
         VisibleEnemiesHCs.Clear();
 
         float hateDiscomfort = 0;
+        List<HealthController> _visibleUnits = new List<HealthController>();
+        for (int i = 0; i < visibleTargets.Count; i++)
+        {
+            HealthController hc = SpawnController.Instance.GetHcByBodyPartTransform(visibleTargets[i]);
+            if (hc)
+                _visibleUnits.Add(hc);
+        }
         
-        for (int i = GameManager.Instance.Units.Count - 1; i >= 0; i--)
+        for (int i = 0; i < _visibleUnits.Count; i++)
         {
             int visibleBonesAmount = 0;
 
-            var unit = GameManager.Instance.Units[i];
+            var unit = _visibleUnits[i];
 
             if (unit == this || unit.Health <= 0)
                 continue;
@@ -435,6 +442,8 @@ public class HealthController : MonoBehaviour
             characterController.enabled = false;
         if (fieldOfView)
             fieldOfView.Death();
+        if (_bodyPartsManager)
+            _bodyPartsManager.Death();
 
         if (onlyDisableAllSystems)
         {
@@ -443,16 +452,11 @@ public class HealthController : MonoBehaviour
         }
         StopCoroutine(UpdateHealthbar());
         healthBar.transform.parent.gameObject.SetActive(false);
-        _bodyPartsManager.SetAllPartsColliders();
         
         anim.SetBool(Alive, false);
 
         GameManager.Instance.SetLayerRecursively(gameObject, 6);
 
-        if (removePart)
-        {
-            StartCoroutine(_bodyPartsManager.RemovePart(false));   
-        }
 
         if (rb)
         {

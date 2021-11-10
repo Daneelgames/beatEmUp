@@ -359,7 +359,7 @@ public class AiInput : MonoBehaviour
         if (debugLogs && ally && !inParty)
             print("SetAggro");
         
-        if (hc.Friends.Contains(damager) && Random.value < kidness)
+        if (hc.Friends.Contains(damager) && Random.value < Kidness)
             return;
         
         if (followTargetCoroutine == null && aiState != State.FollowTarget)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -129,8 +130,9 @@ public class FieldOfView : MonoBehaviour
         
         for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
+            /*
             if (!hc.AiInput.inParty)
-                yield return null;  
+                yield return null;  */
             
             if (targetsInViewRadius[i] == null)
                 continue;
@@ -142,13 +144,12 @@ public class FieldOfView : MonoBehaviour
                 continue;
             }
             
-            //print("1");
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             float dstToTarget = Vector3.Distance(eyesTransfom.position, target.position);
 
+            // if in viewport
             bool canRaycast = dstToTarget <= sixSenseDistance || Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2;
 
-            // if in viewport
             if (canRaycast)
             {           
                 RaycastHit hit;
@@ -157,22 +158,38 @@ public class FieldOfView : MonoBehaviour
                     if (hit.collider.transform == target)
                     {
                         VisibleTargets.Add(target);
+                        
+                        // когда рейкаст попадает в бодиПарт, нужно убрать из списка все остальные коллайдеры этого HC
+                        HealthController newVisibleHc = SpawnController.Instance.GetHcByBodyPartTransform(target);
+                        
+                        if (newVisibleHc)
+                        {
+                            if (newVisibleHc.BodyPartsManager == null)
+                            {
+                                Debug.LogError(newVisibleHc.BodyPartsManager == null);
+                            }
+
+                            for (int j = 0; j < targetsInViewRadius.Length; j++)
+                            {
+                                if (i == j || targetsInViewRadius[j] == null)
+                                    continue;
+
+                                if (newVisibleHc.BodyPartsManager.bodyParts[0].OwnBodyPartsGameObjects
+                                    .Contains(targetsInViewRadius[j].gameObject))
+                                {
+                                    targetsInViewRadius[j] = null;
+                                }
+                            }
+                        }
                     }
-                    
-                    
-                    
-                    if (!hc.AiInput.inParty)
-                        yield return null;   
+                      
                 }
 
-                if (hc.AiInput.inParty)
+                t++;
+                if (t > 5)
                 {
-                    t++;
-                    if (t > 5)
-                    {
-                        t = 0;
-                        yield return null;
-                    }
+                    t = 0;
+                    yield return null;
                 }
             }
         }

@@ -14,6 +14,24 @@ public class SkillsInfoData : ScriptableObject
 [Serializable]
 public class Skill
 {
+    public Skill (Skill skillToCopy)
+    {
+        if (skillToCopy == null)
+            return;
+        
+        skill = skillToCopy.skill;
+        skillName = skillToCopy.skillName;
+        skillDescription = skillToCopy.skillDescription;
+        skillIcon = skillToCopy.skillIcon;
+        actionTime = skillToCopy.actionTime;
+        actionTimeMin = skillToCopy.actionTimeMin;
+        cooldownTime = skillToCopy.cooldownTime;
+        energyCost = skillToCopy.energyCost;
+        minDistance = skillToCopy.minDistance;
+        maxDistance = skillToCopy.maxDistance;
+        skillPower = skillToCopy.skillPower;
+    }
+    
     public enum SkillType
     {
         Null, DashAttack, SlowAoe, RegenAoe
