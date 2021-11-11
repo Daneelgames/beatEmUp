@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public bool simpleEnemiesAllies = true;
 
     [SerializeField] private List<Observable> _observablesInRunTime;
+
+    public string destractibleTag = "DestroyOnAnyDamage";
     public List<Observable> ObservablesInRunTime
     {
         get => _observablesInRunTime;

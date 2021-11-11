@@ -68,6 +68,7 @@ public class BodyPart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.gameObject.layer != 7)
             return;
             
@@ -94,11 +95,19 @@ public class BodyPart : MonoBehaviour
 
     void DamageHcByPartTransform(Transform part)
     {
+        if (part.transform.CompareTag(GameManager.Instance.destractibleTag))
+        {
+            if (gameObjectsOnStay.Contains(part.gameObject))
+                gameObjectsOnStay.Remove(part.gameObject);
+            
+            Destroy(part.gameObject);
+            return;
+        }
+        
         HealthController hcToDamage = SpawnController.Instance.GetHcByBodyPartTransform(part.transform);
         if (hcToDamage)
         {
-            _attackManager.DamageOtherBodyPart(hcToDamage.BodyPartsManager.bodyParts[Random.Range(0, hcToDamage.BodyPartsManager.bodyParts.Count)],
-                0, HealthController.DamageType.Melee);
+            _attackManager.DamageOtherBodyPart(hcToDamage.BodyPartsManager.bodyParts[Random.Range(0, hcToDamage.BodyPartsManager.bodyParts.Count)], 0, HealthController.DamageType.Melee);
             damagedBodyPartsGameObjects.Add(part.gameObject);
         }
     }

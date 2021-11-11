@@ -32,6 +32,7 @@ public class ItemInDatabase
     }
 
     public int restoreHpOnConsume = 500;
+    public int restoreEnergyOnConsume = 500;
     public string dropDownActionEquip = "Equip";
     public string dropDownActionConsume = "Consume";
     public string dropDownActionThrow = "Throw";

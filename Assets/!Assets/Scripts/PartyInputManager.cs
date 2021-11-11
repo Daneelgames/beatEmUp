@@ -60,22 +60,21 @@ public class PartyInputManager : MonoBehaviour
         if (Input.GetButtonDown("Skill0"))
         {
             if (SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills.Count > 0)
-                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0],
-                    SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[0]);
+                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0],0);
             else
                 SkillsDatabaseManager.Instance.UnselectSkill();
         }
         if (Input.GetButtonDown("Skill1"))
         {
             if (SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills.Count > 1)
-                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[1]);
+                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], 1);
             else
                 SkillsDatabaseManager.Instance.UnselectSkill();
         }
         if (Input.GetButtonDown("Skill2"))
         {
             if (SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills.Count > 2)
-                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], SelectedAllyUnits[0].CharacterSkillsController.CharacterSkills[2]);
+                SkillsDatabaseManager.Instance.SkillSelected(SelectedAllyUnits[0], 2);
             else
                 SkillsDatabaseManager.Instance.UnselectSkill();
         }
@@ -187,6 +186,8 @@ public class PartyInputManager : MonoBehaviour
         }
 
         unitWithLowestHp.Heal(ItemsDatabaseManager.Instance.ItemsDatabase.Items[itemDatabaseIndex].restoreHpOnConsume);
+        unitWithLowestHp.Energy += ItemsDatabaseManager.Instance.ItemsDatabase.Items[itemDatabaseIndex].restoreEnergyOnConsume;
+
         if (SelectedAllyUnits[0].AttackManager.WeaponInHands && SelectedAllyUnits[0].AttackManager.WeaponInHands.Interactable.IndexInDatabase == itemDatabaseIndex)
             SelectedAllyUnits[0].AttackManager.DestroyWeaponInHands(SelectedAllyUnits[0].AttackManager.WeaponInHands, true);
         else

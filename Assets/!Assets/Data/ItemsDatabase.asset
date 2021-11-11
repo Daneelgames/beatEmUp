@@ -15,8 +15,7 @@ MonoBehaviour:
   items:
   - itemIndexInDatabase: 0
     itemName: Med kit
-    itemDescription: If multiple units are selected, it will heal the one with least
-      Health
+    itemDescription: It will heal, but will not restore health
     itemPickUpReference:
       m_AssetGUID: 797a6c6b9c1d53f409c9fedf7510b9f6
       m_SubObjectName: 
@@ -27,6 +26,7 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: 38bd1dfe5d7bf36499d4b20a8dcfbe79, type: 2}
     itemTypes: 020000000300000004000000
     restoreHpOnConsume: 600
+    restoreEnergyOnConsume: 0
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
@@ -44,6 +44,7 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: 99190932d536d0d4291a8aafbdbbf1f2, type: 2}
     itemTypes: 000000000200000004000000
     restoreHpOnConsume: 500
+    restoreEnergyOnConsume: 500
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
@@ -61,13 +62,14 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: b703c68081326f34d930b0de54abd7ea, type: 2}
     itemTypes: 00000000010000000200000004000000
     restoreHpOnConsume: 500
+    restoreEnergyOnConsume: 500
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
     dropDownActionDrop: Drop
   - itemIndexInDatabase: 3
     itemName: Cactus
-    itemDescription: Weak in fight but can heal if eaten
+    itemDescription: Weak in fight but will restore energy and heal a bit if eaten
     itemPickUpReference:
       m_AssetGUID: 24c46ffb76710434284207feab3b1633
       m_SubObjectName: 
@@ -78,13 +80,14 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: 850a959ec33486b44b031adf2d9a2d3a, type: 2}
     itemTypes: 00000000020000000300000004000000
     restoreHpOnConsume: 200
+    restoreEnergyOnConsume: 500
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
     dropDownActionDrop: Drop
   - itemIndexInDatabase: 4
     itemName: Stone
-    itemDescription: Can be used for melee attacks
+    itemDescription: Can be used for melee attacks and for throws
     itemPickUpReference:
       m_AssetGUID: e33177f616a53a44ca9300edaf60cb1e
       m_SubObjectName: 
@@ -95,6 +98,7 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: 24cadda78e50af4449a7cd9b69adb3d3, type: 2}
     itemTypes: 0000000002000000
     restoreHpOnConsume: 500
+    restoreEnergyOnConsume: 500
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
@@ -112,6 +116,7 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: 333dc17784291e8488280e85b48a63f9, type: 2}
     itemTypes: 0000000002000000
     restoreHpOnConsume: 500
+    restoreEnergyOnConsume: 500
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
@@ -129,6 +134,7 @@ MonoBehaviour:
     objectInfoData: {fileID: 11400000, guid: 82d5e40a15cdc40478c53b9f5fb06566, type: 2}
     itemTypes: 0200000004000000
     restoreHpOnConsume: 0
+    restoreEnergyOnConsume: 500
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw

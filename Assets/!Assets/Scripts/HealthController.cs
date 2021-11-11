@@ -83,13 +83,21 @@ public class HealthController : MonoBehaviour
     public int Health
     {
         get => health;
-        set => health = value;
+        set
+        {
+            health = Mathf.Clamp(value, 0, healthMax);
+            
+        }
     }
 
     public int Energy
     {
         get => energy;
-        set => energy = value;
+        set
+        {
+            energy = Mathf.Clamp(value, 0, energyMax);
+            
+        }
     }
 
     public int HealthMax => healthMax;

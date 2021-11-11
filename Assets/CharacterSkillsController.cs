@@ -8,7 +8,7 @@ public class CharacterSkillsController : MonoBehaviour
 {
     [SerializeField] private List<Skill> characterSkills = new List<Skill>();
     [SerializeField]
-    private Skill selectedSkill;
+    private int selectedSkillIndex;
     
     [SerializeField]
     private Skill performingSkill;
@@ -28,25 +28,24 @@ public class CharacterSkillsController : MonoBehaviour
     [Header("Particles")]
     [SerializeField] ParticleSystem dashParticles;
     
-    public void SetSelectedSkill(Skill skill)
+    public void SetSelectedSkill(int skillIndex)
     {
-        selectedSkill = new Skill(skill);
+        selectedSkillIndex = skillIndex;
     }
 
     public void PerformSkill(Vector3 targetPos)
     {
         bool skillUsed = false;
-        
-        var newSkill = selectedSkill;
-        SkillsDatabaseManager.Instance.UnselectSkill();
-        
-        switch (newSkill.skill)
+
+        PerformingSkill = new Skill(CharacterSkills[selectedSkillIndex]);
+
+        switch (PerformingSkill.skill)
         {
           case Skill.SkillType.DashAttack:
               if (dashAttackCoroutine == null)
               {
                   skillUsed = true;
-                  dashAttackCoroutine = StartCoroutine(DashAttack(newSkill, targetPos));
+                  dashAttackCoroutine = StartCoroutine(DashAttack(PerformingSkill, targetPos));
               }
               break;
         }
@@ -54,19 +53,22 @@ public class CharacterSkillsController : MonoBehaviour
         {
             // deplete stamina
             
-            hc.Energy -= newSkill.energyCost;
+            hc.Energy -= PerformingSkill.energyCost;
             
             if (PartyInputManager.Instance.SelectedAllyUnits[0] == hc)
                 PartyUi.Instance.UseEnergyFeedback();
             
             // skill cooldown
-            StartCoroutine(SkillCooldown(newSkill));
-            SkillsUi.Instance.SkillCooldownUI(newSkill);
+            StartCoroutine(SkillCooldown(selectedSkillIndex));
+            SkillsUi.Instance.SkillCooldownUI(CharacterSkills[selectedSkillIndex]);
         }
+        
+        SkillsDatabaseManager.Instance.UnselectSkill();
     }
 
-    IEnumerator SkillCooldown(Skill newSkill)
+    IEnumerator SkillCooldown(int newSkillIndex)
     {
+        var newSkill = characterSkills[newSkillIndex];
         float t = newSkill.skillCooldown;
 
         newSkill.OnCooldown = true;
@@ -84,7 +86,7 @@ public class CharacterSkillsController : MonoBehaviour
 
     IEnumerator DashAttack(Skill newSkill, Vector3 targetPos)
     {
-        PerformingSkill = newSkill;
+        //PerformingSkill = newSkill;
         hc.AiInput.StopBehaviourCoroutines();
         hc.AiInput.SetAnimatorParameterBySkill(Dash, true);
         hc.BodyPartsManager.SetAllBodyPartsDangerous(true);

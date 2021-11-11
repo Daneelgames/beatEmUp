@@ -476,6 +476,9 @@ public class AttackManager : MonoBehaviour
         if (WeaponInHands)
             WeaponInHands.SetDangerous(true);
         
+        if (hc.Energy > 0)
+            hc.Energy -= currentAttack.EnergyCost;
+        
         attackReturnCoroutine = StartCoroutine(AttackReturn());
         attackDangerCoroutine = null;
     }
@@ -515,7 +518,7 @@ public class AttackManager : MonoBehaviour
             dmgScalerByCurrentAttack = currentAttack.AttackDamageScaler;
             critChanceScalerByCurrentAttack = currentAttack.AttackCritChanceScaler;
         }
-        
+
         if (damagedHCs.Contains(partToDamage.HC))
             return false;
 
@@ -643,8 +646,9 @@ public class Attack
     [SerializeField] private Transform shotPosition;
     [SerializeField] private bool useAmmo = false;
     public bool UseAmmo => useAmmo;
-    
-    [Header("Universal")]
+
+    [Header("Universal")] 
+    public int EnergyCost = 10;
     [SerializeField] private bool canAttackMidAir = false;
     [SerializeField] [Range(0.1f,5f)] private float attackDamageScaler = 1f;
     public float AttackDamageScaler { get => attackDamageScaler; }

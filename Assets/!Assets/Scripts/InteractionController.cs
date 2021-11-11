@@ -110,7 +110,7 @@ public class InteractionController : MonoBehaviour
                     {
                         Interact(closestInteractable);
                     }
-                    else if (closestInteractable.ConsumablePickUp && closestInteractable.ConsumablePickUp.heal)
+                    else if (closestInteractable.ConsumablePickUp && (closestInteractable.ConsumablePickUp.heal || closestInteractable.ConsumablePickUp.restoreEnergy))
                     {
                         Interact(closestInteractable);
                     }   

@@ -50,11 +50,8 @@
       <option value="$PROJECT_DIR$/Assets/DrawThrowArc.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AssetSpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Interactable.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ActionsDropDownMenu.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
       <option value="$PROJECT_DIR$/Assets/ActivateRigidbodyOnNoise.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Consumable.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UniversalCursorController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/ExplodeOnCollision.cs" />
@@ -71,24 +68,27 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterPerksController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PerksDatabaseManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterBodyPartVariants.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiNavigationManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SkillsInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterSkillsController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Consumable.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -169,7 +169,7 @@
       <workItem from="1636400607583" duration="2805000" />
       <workItem from="1636453885410" duration="15722000" />
       <workItem from="1636543428134" duration="15121000" />
-      <workItem from="1636639890534" duration="7252000" />
+      <workItem from="1636639890534" duration="12534000" />
     </task>
     <servers />
   </component>
