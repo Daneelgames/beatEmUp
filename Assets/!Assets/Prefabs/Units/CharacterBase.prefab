@@ -14430,6 +14430,8 @@ MonoBehaviour:
   invincible: 0
   health: 1000
   healthMax: 1000
+  energy: 1000
+  energyMax: 1000
   damagedAnimationTime: 0.4
   _objectInfoData: {fileID: 11400000, guid: 97133e9b5c9d7534989491d72685638d, type: 2}
   canvas: {fileID: 4698293244062374759}
@@ -14446,6 +14448,7 @@ MonoBehaviour:
   _bodyPartsManager: {fileID: 1212818261}
   fieldOfView: {fileID: 4369443321332258601}
   healthBar: {fileID: 1975066097511504334}
+  _observable: {fileID: -1577154495707085973}
   enemies: []
   enemiesGameObjects: []
   friends: []
@@ -14827,6 +14830,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSkills: []
+  selectedSkill:
+    skill: 0
+    skillName: 
+    skillDescription: 
+    skillIcon: {fileID: 0}
+    actionTime: 0
+    actionTimeMin: 0
+    skillCooldown: 0
+    energyCost: 0
+    minDistance: 0
+    maxDistance: 0
+    skillPower: 0
+    uiFillAmount: 0
+  performingSkill:
+    skill: 0
+    skillName: 
+    skillDescription: 
+    skillIcon: {fileID: 0}
+    actionTime: 0
+    actionTimeMin: 0
+    skillCooldown: 0
+    energyCost: 0
+    minDistance: 0
+    maxDistance: 0
+    skillPower: 0
+    uiFillAmount: 0
   hc: {fileID: 1212818265}
   dashParticles: {fileID: 5394685822593210493}
 --- !u!114 &-1577154495707085973

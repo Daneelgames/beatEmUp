@@ -15,6 +15,15 @@ public class PartyUi : MonoBehaviour
         Instance = this;
     }
     
+    [Header("Selected Unit Info")]
+    [SerializeField] private Text selectedUnitNameField;
+    [SerializeField] private Text selectedUnitInfoField;
+    [SerializeField] private Image selectedUnitHpBar;
+    [SerializeField] private Image selectedUnitHpBarBack;
+    [SerializeField] private Image selectedUnitEnergyBar;
+    [SerializeField] private Image selectedUnitEnergyBarBack;
+    
+    [Header("Misc")]
     [SerializeField] private List<Text> partyNumbersToSelect = new List<Text>();
     [SerializeField] private Text medKitsAmountFeedback;
     [SerializeField] private RectTransform canvasRect;
@@ -84,9 +93,51 @@ public class PartyUi : MonoBehaviour
                     partyNumbersToSelect[i].gameObject.SetActive(false);
                 }
             }
+
+            selectedUnitHpBar.fillAmount = (float)PartyInputManager.Instance.SelectedAllyUnits[0].Health / PartyInputManager.Instance.SelectedAllyUnits[0].HealthMax; 
+            selectedUnitEnergyBar.fillAmount = (float)PartyInputManager.Instance.SelectedAllyUnits[0].Energy / PartyInputManager.Instance.SelectedAllyUnits[0].EnergyMax; 
             
             yield return null;
         }
+    }
+
+    public void NotEnoughEnergyFeedback()
+    {
+        StartCoroutine(NotEnoughEnergyFeedbackOverTime());
+    }
+
+    IEnumerator NotEnoughEnergyFeedbackOverTime()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            selectedUnitEnergyBarBack.color = new Color(1f, 0f, 0.2f);
+            yield return new WaitForSeconds(0.1f);
+            selectedUnitEnergyBarBack.color = new Color(0.32f, 0.25f, 0f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        selectedUnitEnergyBarBack.color = new Color(0.32f, 0.25f, 0f);
+    }
+    public void UseEnergyFeedback()
+    {
+        StartCoroutine(UseEnergyFeedbackOverTime());
+    }
+
+    IEnumerator UseEnergyFeedbackOverTime()
+    {
+        selectedUnitEnergyBar.color = new Color(1f, 0f, 0.2f);
+        yield return new WaitForSeconds(0.2f);
+        selectedUnitEnergyBar.color = new Color(1f, 0.91f, 0f);
+    }
+    public void HpChangedFeedback()
+    {
+        StartCoroutine(HpChangedFeedbackOverTime());
+    }
+
+    IEnumerator HpChangedFeedbackOverTime()
+    {
+        selectedUnitHpBar.color = new Color(1f, 0f, 0.2f);
+        yield return new WaitForSeconds(0.2f);
+        selectedUnitHpBar.color = new Color(0f, 1f, 0.74f);
     }
 
     void LateUpdate()
@@ -205,7 +256,7 @@ public class PartyUi : MonoBehaviour
         actionFeedbackAnim.SetTrigger(MoveString);
     }
 
-    public void UpdateObservableInfo(Observable observable)
+    public string UpdateObservableInfo(Observable observable, bool selectedUnit)
     {
         if (observable == null)
         {
@@ -268,15 +319,25 @@ public class PartyUi : MonoBehaviour
             }
 
             if (!objInfo)
-                return;
-            nameString = objInfo.objectName + ", " + sexString + ", " + healthString;
+                return null;
             
-            observableInfoText.text = nameString;
-            observableInfoText2.text = objInfo.objectSpecialDescription + weaponString + perksString;
-            observableInfoAnim.SetBool(Active, true);
-        }
-    }
+            nameString = objInfo.objectName + ", " + sexString + ", " + healthString;
 
+            if (!selectedUnit)
+            {
+                observableInfoText.text = nameString;
+                observableInfoText2.text = objInfo.objectSpecialDescription + weaponString + perksString;
+                observableInfoAnim.SetBool(Active, true);   
+            }
+            else
+            {
+                return sexString + ". " + objInfo.objectSpecialDescription + weaponString + perksString;
+            }
+        }
+        
+        return null;
+    }
+    
     public void ToggleInventoryUI(HealthController unit)
     {
         if (unit == null || unit.Inventory == null)
@@ -320,6 +381,9 @@ public class PartyUi : MonoBehaviour
         {
             SpawnedInventoryUIs[0].UpdateInventoryUI(unit);
             UpdateSkillsIcons(unit);
+
+            selectedUnitNameField.text = unit.ObjectInfoData.objectName;
+            selectedUnitNameField.text = UpdateObservableInfo(unit.Observable, true);
         }
     }
     

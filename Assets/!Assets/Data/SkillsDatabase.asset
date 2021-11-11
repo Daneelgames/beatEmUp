@@ -19,30 +19,33 @@ MonoBehaviour:
     skillIcon: {fileID: 21300000, guid: 81a12d62f637141468a42abdc2e5ead7, type: 3}
     actionTime: 0.5
     actionTimeMin: 0.1
-    cooldownTime: 15
-    energyCost: 10
+    skillCooldown: 1
+    energyCost: 50
     minDistance: 2
     maxDistance: 10
     skillPower: 200
+    uiFillAmount: 0
   - skill: 2
     skillName: Slog
     skillDescription: Slow down units in area
     skillIcon: {fileID: 21300000, guid: 55ea2452fb4b1d849a18b2ed83588c2e, type: 3}
     actionTime: 10
     actionTimeMin: 0.1
-    cooldownTime: 20
+    skillCooldown: 0
     energyCost: 5
     minDistance: 2
     maxDistance: 10
     skillPower: 10
+    uiFillAmount: 0
   - skill: 3
     skillName: Flowers
     skillDescription: 'Plant them and they will heal your '
     skillIcon: {fileID: 21300000, guid: 77aeef750e9ae284999afcea38dfee1d, type: 3}
     actionTime: 90
     actionTimeMin: 0.1
-    cooldownTime: 60
+    skillCooldown: 0
     energyCost: 20
     minDistance: 2
     maxDistance: 10
     skillPower: 10
+    uiFillAmount: 0

@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillsUi : MonoBehaviour
 {
     public static SkillsUi Instance;
+
+    [Header("Links To Skill Images")] 
+    [SerializeField] private List<Image> skillImages;
     
     public enum SkillsUiState
     {
@@ -92,5 +96,23 @@ public class SkillsUi : MonoBehaviour
             
             default: return mouseTargetPos;
         }
+    }
+
+    public void SkillCooldownUI(Skill skill)
+    {
+        StartCoroutine(SkillCooldownUIOverTime(skill));
+    }
+
+    IEnumerator SkillCooldownUIOverTime(Skill skill)
+    {
+        var skillImage = skillImages[0];
+        var initColor = skillImage.color;
+        skillImage.color = Color.black;
+        while (skill.OnCooldown)
+        {
+            skillImage.fillAmount = skill.uiFillAmount;
+            yield return null;
+        }
+        skillImage.color = initColor;
     }
 }

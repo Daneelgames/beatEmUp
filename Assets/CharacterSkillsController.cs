@@ -27,7 +27,7 @@ public class CharacterSkillsController : MonoBehaviour
     
     [Header("Particles")]
     [SerializeField] ParticleSystem dashParticles;
-
+    
     public void SetSelectedSkill(Skill skill)
     {
         selectedSkill = new Skill(skill);
@@ -53,7 +53,33 @@ public class CharacterSkillsController : MonoBehaviour
         if (skillUsed)
         {
             // deplete stamina
+            
+            hc.Energy -= newSkill.energyCost;
+            
+            if (PartyInputManager.Instance.SelectedAllyUnits[0] == hc)
+                PartyUi.Instance.UseEnergyFeedback();
+            
+            // skill cooldown
+            StartCoroutine(SkillCooldown(newSkill));
+            SkillsUi.Instance.SkillCooldownUI(newSkill);
         }
+    }
+
+    IEnumerator SkillCooldown(Skill newSkill)
+    {
+        float t = newSkill.skillCooldown;
+
+        newSkill.OnCooldown = true;
+        
+        while (t > 0)
+        {
+            newSkill.uiFillAmount = 1 - t / newSkill.skillCooldown;
+            t -= Time.deltaTime;
+            yield return null;
+        }
+        
+        newSkill.uiFillAmount = 1;
+        newSkill.OnCooldown = false;
     }
 
     IEnumerator DashAttack(Skill newSkill, Vector3 targetPos)

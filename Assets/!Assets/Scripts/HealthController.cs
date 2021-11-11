@@ -32,6 +32,9 @@ public class HealthController : MonoBehaviour
     [SerializeField] private bool invincible = false;
     [SerializeField] private int health = 1000;
     [SerializeField] private int healthMax = 1000;
+    [SerializeField] private int energy = 1000;
+    [SerializeField] private int energyMax = 1000;
+    
     [SerializeField] private float damagedAnimationTime = 0.5f;
     private bool damageOnCooldown = false;
     
@@ -71,8 +74,11 @@ public class HealthController : MonoBehaviour
     public BodyPartsManager BodyPartsManager => _bodyPartsManager;
     [SerializeField] private FieldOfView fieldOfView;
     public FieldOfView FieldOfView => fieldOfView;
-    [SerializeField] 
-    private Image healthBar;
+    [SerializeField] private Image healthBar;
+
+    [SerializeField] private Observable _observable;
+
+    public Observable Observable => _observable;
 
     public int Health
     {
@@ -80,7 +86,14 @@ public class HealthController : MonoBehaviour
         set => health = value;
     }
 
+    public int Energy
+    {
+        get => energy;
+        set => energy = value;
+    }
+
     public int HealthMax => healthMax;
+    public int EnergyMax => energyMax;
 
     private static readonly int DamagedString = Animator.StringToHash("Damaged");
     private static readonly int Alive = Animator.StringToHash("Alive");

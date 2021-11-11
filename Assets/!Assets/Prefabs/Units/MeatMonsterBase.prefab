@@ -8187,6 +8187,8 @@ MonoBehaviour:
   invincible: 0
   health: 3000
   healthMax: 3000
+  energy: 1000
+  energyMax: 1000
   damagedAnimationTime: 0.25
   _objectInfoData: {fileID: 11400000, guid: 97133e9b5c9d7534989491d72685638d, type: 2}
   canvas: {fileID: 4698293244062374759}
@@ -8203,6 +8205,7 @@ MonoBehaviour:
   _bodyPartsManager: {fileID: 1212818261}
   fieldOfView: {fileID: 4369443321332258601}
   healthBar: {fileID: 1975066097511504334}
+  _observable: {fileID: -1577154495707085973}
   enemies: []
   enemiesGameObjects: []
   friends: []

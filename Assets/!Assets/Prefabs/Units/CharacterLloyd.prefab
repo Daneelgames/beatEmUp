@@ -41,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[0].energyCost
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[0].skillPower
@@ -57,11 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[0].cooldownTime
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[0].actionTimeMin
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
+      propertyPath: characterSkills.Array.data[0].skillCooldown
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -9055645553939308815, guid: 5ac5f6a66b35d5041a8b988f437e0dbe, type: 3}
       propertyPath: characterSkills.Array.data[0].skillDescription

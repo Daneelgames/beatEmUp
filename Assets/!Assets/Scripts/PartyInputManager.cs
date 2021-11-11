@@ -314,7 +314,7 @@ public class PartyInputManager : MonoBehaviour
                 observeCoroutine = null;
             }
             UniversalCursorController.Instance.SetDefaultCursor();
-            PartyUi.Instance.UpdateObservableInfo(null);
+            PartyUi.Instance.UpdateObservableInfo(null, false);
         }
     }
     private Coroutine observeCoroutine;
@@ -365,7 +365,7 @@ public class PartyInputManager : MonoBehaviour
             }
             if (lastUpdatedObservable != closestObjectWithInfo)
             {
-                PartyUi.Instance.UpdateObservableInfo(closestObjectWithInfo);
+                PartyUi.Instance.UpdateObservableInfo(closestObjectWithInfo, false);
                 lastUpdatedObservable = closestObjectWithInfo;
             }
         }

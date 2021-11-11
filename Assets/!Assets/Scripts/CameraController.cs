@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
                 //project forward and right vectors on the horizontal plane (y = 0)
                 forward.y = 0f;
                 right.y = 0f;
-                forward.Normalize();    
+                forward.Normalize();
                 right.Normalize();
             
                 Vector3 movementVector = forward * verticalAxis + right * horizontalAxis;

@@ -90,14 +90,6 @@ public class BodyPart : MonoBehaviour
         
         // else - damage it right away
         DamageHcByPartTransform(other.transform);
-        
-        /*
-        var newPartToDamage = other.gameObject.GetComponent<BodyPart>();
-        if (newPartToDamage)
-        {
-            _attackManager.DamageOtherBodyPart(newPartToDamage, 0, HealthController.DamageType.Melee);
-            damagedBodyPartsGameObjects.Add(newPartToDamage.gameObject);
-        }*/
     }
 
     void DamageHcByPartTransform(Transform part)

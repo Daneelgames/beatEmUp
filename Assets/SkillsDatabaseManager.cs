@@ -49,6 +49,20 @@ public class SkillsDatabaseManager : MonoBehaviour
         if (caster == null)
             return;
         
+        
+        // check if skill is on cooldown
+        if (skill.OnCooldown)
+        {
+            return;
+        }
+        
+        // check if unit has enough energy
+        if (caster.Energy < skill.energyCost)
+        {
+            PartyUi.Instance.NotEnoughEnergyFeedback();
+            return;
+        }
+        
         currentCaster.CharacterSkillsController.SetSelectedSkill(skill);
         
         switch (skill.skill)
