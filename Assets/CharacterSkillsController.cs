@@ -77,10 +77,10 @@ public class CharacterSkillsController : MonoBehaviour
             t -= Time.deltaTime;
             yield return null;
         }
-        
         newSkill.uiFillAmount = 1;
         newSkill.OnCooldown = false;
     }
+    
 
     IEnumerator DashAttack(Skill newSkill, Vector3 targetPos)
     {

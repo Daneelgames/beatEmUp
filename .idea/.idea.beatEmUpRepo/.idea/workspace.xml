@@ -81,14 +81,14 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
-      <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SkillsInfoData.cs" />
-      <option value="$PROJECT_DIR$/Assets/CharacterSkillsController.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsUi.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/CharacterSkillsController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -169,7 +169,7 @@
       <workItem from="1636400607583" duration="2805000" />
       <workItem from="1636453885410" duration="15722000" />
       <workItem from="1636543428134" duration="15121000" />
-      <workItem from="1636639890534" duration="5585000" />
+      <workItem from="1636639890534" duration="7252000" />
     </task>
     <servers />
   </component>
