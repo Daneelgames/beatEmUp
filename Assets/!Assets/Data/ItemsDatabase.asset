@@ -25,7 +25,7 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 5b9ad9cd5ac72c84f947c590c7dfc12e, type: 3}
     objectInfoData: {fileID: 11400000, guid: 38bd1dfe5d7bf36499d4b20a8dcfbe79, type: 2}
     itemTypes: 020000000300000004000000
-    restoreHpOnConsume: 600
+    restoreHpOnConsume: 1000
     restoreEnergyOnConsume: 0
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
@@ -79,8 +79,8 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 8a15be40cd665934ead2793881f4245e, type: 3}
     objectInfoData: {fileID: 11400000, guid: 850a959ec33486b44b031adf2d9a2d3a, type: 2}
     itemTypes: 00000000020000000300000004000000
-    restoreHpOnConsume: 200
-    restoreEnergyOnConsume: 500
+    restoreHpOnConsume: 500
+    restoreEnergyOnConsume: 300
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw
@@ -135,6 +135,24 @@ MonoBehaviour:
     itemTypes: 0200000004000000
     restoreHpOnConsume: 0
     restoreEnergyOnConsume: 500
+    dropDownActionEquip: Equip
+    dropDownActionConsume: Consume
+    dropDownActionThrow: Throw
+    dropDownActionDrop: Drop
+  - itemIndexInDatabase: 3
+    itemName: Meat Lizzard
+    itemDescription: Tastes just like chicken! From another planet
+    itemPickUpReference:
+      m_AssetGUID: 24c46ffb76710434284207feab3b1633
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    maxAmountPerInventory: 2
+    itemIcon: {fileID: 21300000, guid: 8a15be40cd665934ead2793881f4245e, type: 3}
+    objectInfoData: {fileID: 11400000, guid: 850a959ec33486b44b031adf2d9a2d3a, type: 2}
+    itemTypes: 020000000300000004000000
+    restoreHpOnConsume: 500
+    restoreEnergyOnConsume: 1000
     dropDownActionEquip: Equip
     dropDownActionConsume: Consume
     dropDownActionThrow: Throw

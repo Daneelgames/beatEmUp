@@ -81,7 +81,6 @@
       <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterSkillsController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
@@ -89,6 +88,7 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -169,7 +169,8 @@
       <workItem from="1636400607583" duration="2805000" />
       <workItem from="1636453885410" duration="15722000" />
       <workItem from="1636543428134" duration="15121000" />
-      <workItem from="1636639890534" duration="12534000" />
+      <workItem from="1636639890534" duration="13151000" />
+      <workItem from="1636747134635" duration="281000" />
     </task>
     <servers />
   </component>

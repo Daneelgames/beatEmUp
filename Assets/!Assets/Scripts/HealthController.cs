@@ -153,7 +153,7 @@ public class HealthController : MonoBehaviour
 
     public void Heal(float hpToAdd)
     {
-        Health = Mathf.Clamp(Health + Mathf.RoundToInt(hpToAdd), 1, HealthMax);
+        Health += Mathf.RoundToInt(hpToAdd);
     }
     
     IEnumerator UpdateHealthbar()
