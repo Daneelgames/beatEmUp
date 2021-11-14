@@ -45,7 +45,7 @@ public class AiInput : MonoBehaviour
     
     public enum AggroMode
     {
-        AggroOnSight, AttackIfAttacked
+        AggroOnSight, AttackIfAttacked, Flee
     }
 
     [SerializeField] private AggroMode _aggroMode = AggroMode.AggroOnSight;
@@ -158,7 +158,10 @@ public class AiInput : MonoBehaviour
             Idle();
         
         if (simpleWalker)
+        {
             StartCoroutine(SimpleWalker());
+            StartCoroutine(BurnEnergyByMovement());
+        }
 
         StartCoroutine(DistanceToLeader());
     }
@@ -279,6 +282,15 @@ public class AiInput : MonoBehaviour
                 StartCoroutine(HeardNoise(closestVisibleEnemy.transform.position, distanceToEnemy));
             }   
         }
+        else if (aggroMode == AggroMode.Flee)
+        {
+            RunAway(closestVisibleEnemy.transform.position);
+        }
+    }
+
+    void RunAway(Vector3 pointRunAwayFrom)
+    {
+        StopBehaviourCoroutines();
     }
 
     public void DamagedByEnemy(HealthController enemy)
@@ -361,6 +373,12 @@ public class AiInput : MonoBehaviour
         
         if (hc.Friends.Contains(damager) && Random.value < Kidness)
             return;
+
+        if (aggroMode == AggroMode.Flee)
+        {
+            // SET FLEE MODE
+            return;
+        }
         
         if (followTargetCoroutine == null && aiState != State.FollowTarget)
         {
@@ -444,7 +462,7 @@ public class AiInput : MonoBehaviour
     IEnumerator SimpleWalker()
     {
         Vector3 previousPos = transform.position;
-        while (true)
+        while (hc.Health > 0)
         {
             // IDLING
             if (Vector3.Distance(previousPos, transform.position) < 0.2f)
@@ -471,6 +489,16 @@ public class AiInput : MonoBehaviour
         }
     }
 
+    IEnumerator BurnEnergyByMovement()
+    {
+        while (hc.Health > 0)
+        {
+            if (moving)
+                hc.BurnEnergyByMovement();
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    
     void Wander()
     {
         if (debugLogs && ally && !inParty)

@@ -32,8 +32,10 @@ public class HealthController : MonoBehaviour
     [SerializeField] private bool invincible = false;
     [SerializeField] private int health = 1000;
     [SerializeField] private int healthMax = 1000;
-    [SerializeField] private int energy = 1000;
-    [SerializeField] private int energyMax = 1000;
+    [SerializeField] private float energy = 1000;
+    [SerializeField] private float energyMax = 1000;
+    [Tooltip("EVERY 0.1 SECONDS")]
+    [SerializeField] private float energyBurningOnMovement = 0.1f;
     
     [SerializeField] private float damagedAnimationTime = 0.5f;
     private bool damageOnCooldown = false;
@@ -90,18 +92,17 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    public int Energy
+    public float Energy
     {
         get => energy;
         set
         {
             energy = Mathf.Clamp(value, 0, energyMax);
-            
         }
     }
 
     public int HealthMax => healthMax;
-    public int EnergyMax => energyMax;
+    public float EnergyMax => energyMax;
 
     private static readonly int DamagedString = Animator.StringToHash("Damaged");
     private static readonly int Alive = Animator.StringToHash("Alive");
@@ -214,6 +215,12 @@ public class HealthController : MonoBehaviour
             }
 
         }
+    }
+
+    // EVERY 0.1 SECONDS
+    public void BurnEnergyByMovement()
+    {
+        Energy = Mathf.Clamp(Energy - energyBurningOnMovement, 0, EnergyMax);
     }
     
     public bool Damage(int dmg, HealthController damager, DamageType damageType, bool ignoreCooldown)
@@ -432,7 +439,7 @@ public class HealthController : MonoBehaviour
         {
             if (_aiInput)
             {
-                if (_aiInput.aggroMode == AiInput.AggroMode.AggroOnSight)
+                if (_aiInput.aggroMode == AiInput.AggroMode.AggroOnSight || _aiInput.aggroMode == AiInput.AggroMode.Flee)
                     _attackManager.SeeEnemy(closestVisibleEnemy, visibleTargetToAim);
                 
                 _aiInput.SeeEnemy(closestVisibleEnemy, distance);

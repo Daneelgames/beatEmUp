@@ -90,7 +90,7 @@ public class BodyPart : MonoBehaviour
         }
         
         // else - damage it right away
-        DamageHcByPartTransform(other.transform);
+        DamageHcByPartTransform(other.transform);   
     }
 
     void DamageHcByPartTransform(Transform part)

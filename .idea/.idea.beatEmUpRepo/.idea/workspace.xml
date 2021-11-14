@@ -25,6 +25,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/CharacterSkillsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../dontrunRepo/dontrun/Assets/Scripts/ActiveNpcManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MissionOnScreenMarker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/!Assets/Scripts/PerksInfoData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ActivateRigidbodyOnNoise.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShufflePositionForObjects.cs" root0="FORCE_HIGHLIGHTING" />
@@ -38,8 +39,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/ItemsManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/CharacterInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/NotifyOnDestroy.cs" />
       <option value="$PROJECT_DIR$/Assets/DetailsOnGroundController.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterInventoryUi.cs" />
@@ -73,22 +72,24 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPartsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SpawnController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/FieldOfView.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CameraController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/SkillsInfoData.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsUi.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
       <option value="$PROJECT_DIR$/Assets/SkillsDatabaseManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/UiButton.cs" />
       <option value="$PROJECT_DIR$/Assets/CharacterSkillsController.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AttackManager.cs" />
       <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Consumable.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/ItemsDatabase.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/InteractionController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/BodyPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/MissionWaypoint.cs" />
+      <option value="$PROJECT_DIR$/Assets/MissionOnScreenMarker.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -170,7 +171,7 @@
       <workItem from="1636453885410" duration="15722000" />
       <workItem from="1636543428134" duration="15121000" />
       <workItem from="1636639890534" duration="13151000" />
-      <workItem from="1636747134635" duration="281000" />
+      <workItem from="1636747134635" duration="5309000" />
     </task>
     <servers />
   </component>

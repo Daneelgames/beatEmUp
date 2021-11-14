@@ -537,6 +537,7 @@
             <e p="Readme.txt" t="Include" />
           </e>
         </e>
+        <e p="MissionOnScreenMarker.cs" t="Include" />
         <e p="RandomizeAudio.cs" t="Include" />
         <e p="ShufflePositionForObjects.cs" t="Include" />
         <e p="SimpleLowPolyNature" t="Include">

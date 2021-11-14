@@ -95,7 +95,7 @@ public class PartyUi : MonoBehaviour
             }
 
             selectedUnitHpBar.fillAmount = (float)PartyInputManager.Instance.SelectedAllyUnits[0].Health / PartyInputManager.Instance.SelectedAllyUnits[0].HealthMax; 
-            selectedUnitEnergyBar.fillAmount = (float)PartyInputManager.Instance.SelectedAllyUnits[0].Energy / PartyInputManager.Instance.SelectedAllyUnits[0].EnergyMax; 
+            selectedUnitEnergyBar.fillAmount = PartyInputManager.Instance.SelectedAllyUnits[0].Energy / PartyInputManager.Instance.SelectedAllyUnits[0].EnergyMax; 
             
             yield return null;
         }
@@ -147,22 +147,7 @@ public class PartyUi : MonoBehaviour
     
     public void UpdatePartyAggroMode()
     {
-        return;
-        
-        for (int i = 0; i < PartyInputManager.Instance.Party.Count; i++)
-        {
-            switch (PartyInputManager.Instance.Party[i].AiInput.aggroMode)
-            {
-                case AiInput.AggroMode.AggroOnSight:
-                     partyNumbersToSelect[i].color = Color.red;
-                    break;
-                
-                case AiInput.AggroMode.AttackIfAttacked:
-                    partyNumbersToSelect[i].color = Color.blue;
-                    break;
-            }
-            
-        }   
+        return;  
     }
 
     void SetOrderSprite(Sprite spr)

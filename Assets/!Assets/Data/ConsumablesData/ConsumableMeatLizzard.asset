@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce0e98cb02ac7b439454e7144f1d2ec, type: 3}
   m_Name: ConsumableMeatLizzard
   m_EditorClassIdentifier: 
-  objectName: Medkit
-  objectDies: Medkit dies
+  objectName: Meat Lizzard
+  objectSpecialDescription: 
+  sexMale: Male
+  sexFemale: Female
+  sexUnknown: Unknown
+  objectDies: Meat Lizzard dies
   objectAttacks: 
-  objectKills: Medkit kills
+  objectKills: Meat Lizzard kills
   objectGetsItem: 
-  objectIsDamaged: Medkit is damaged
+  objectIsDamaged: Meat Lizzard is damaged
+  weaponLaysInHisHand: lays in his hand
+  healthHigh: looks alright
+  healthMid: looks weakened
+  healthLow: near death

@@ -149,7 +149,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
     maxAmountPerInventory: 2
     itemIcon: {fileID: 21300000, guid: 8a15be40cd665934ead2793881f4245e, type: 3}
-    objectInfoData: {fileID: 11400000, guid: 850a959ec33486b44b031adf2d9a2d3a, type: 2}
+    objectInfoData: {fileID: 11400000, guid: 95f7ec99102d15449b268bd257bf6ef9, type: 2}
     itemTypes: 020000000300000004000000
     restoreHpOnConsume: 500
     restoreEnergyOnConsume: 1000
