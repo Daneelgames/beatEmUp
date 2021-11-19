@@ -59,7 +59,6 @@
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInventory.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/NoiseMaker.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterGenerator.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PlayerInput.cs" />
       <option value="$PROJECT_DIR$/Assets/ShufflePositionForObjects.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/Weapon.cs" />
@@ -88,8 +87,9 @@
       <option value="$PROJECT_DIR$/Assets/MissionOnScreenMarker.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/AiInput.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/HealthController.cs" />
-      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
       <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyUi.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/PartyInputManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/!Assets/Scripts/CharacterGenerator.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zUqPDlbkLgJnYcJFymbPbiwwgV" />
@@ -172,6 +172,7 @@
       <workItem from="1636543428134" duration="15121000" />
       <workItem from="1636639890534" duration="13151000" />
       <workItem from="1636747134635" duration="5309000" />
+      <workItem from="1637346103869" duration="271000" />
     </task>
     <servers />
   </component>

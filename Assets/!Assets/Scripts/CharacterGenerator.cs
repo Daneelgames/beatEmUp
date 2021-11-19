@@ -18,7 +18,7 @@ public class CharacterGenerator : MonoBehaviour
 
     public void GenerateUnit(HealthController hc)
     {
-        if (hc.AiInput.inParty == false)
+        if (hc.AiInput && hc.AiInput.inParty == false)
         {
             // random sex
             float r = Random.value;
@@ -42,7 +42,7 @@ public class CharacterGenerator : MonoBehaviour
                 if (newHc == hc)
                     continue;
                 
-                if (newHc.AiInput.ally != hc.AiInput.ally)
+                if (hc.AiInput == null || newHc.AiInput == null || (newHc.AiInput.ally != hc.AiInput.ally))
                     continue;
 
                 if (hc.AiInput.CanJoinGroupOnRuntime && newHc.AiInput.LeaderToFollow == null)
@@ -58,7 +58,7 @@ public class CharacterGenerator : MonoBehaviour
                 }
             }
 
-            if (squadFound == false && hc.AiInput.CanCreateGroupOnRuntime && hc.AiInput.LeaderToFollow == null)
+            if (squadFound == false && hc.AiInput && hc.AiInput.CanCreateGroupOnRuntime && hc.AiInput.LeaderToFollow == null)
             {
                 SetLeader(hc, null);
             }
@@ -88,7 +88,7 @@ public class CharacterGenerator : MonoBehaviour
             for (int i = 0; i < PerksDatabaseManager.Instance.PerksInfoData.perks.Count; i++)
             {
                 var perk = PerksDatabaseManager.Instance.PerksInfoData.perks[i];
-                if (perk.perkType == Perk.PerkType.RandomShouts && character.AiInput.inParty == false)
+                if (perk.perkType == Perk.PerkType.RandomShouts && (!character.AiInput || character.AiInput.inParty == false))
                 {
                     if (Random.value > 0.1f)
                         continue;

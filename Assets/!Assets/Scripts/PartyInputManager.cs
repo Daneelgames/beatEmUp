@@ -263,7 +263,9 @@ public class PartyInputManager : MonoBehaviour
                             break;
                     }
 
-                    SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
+                    if (SelectedAllyUnits[i].AiInput)
+                        SelectedAllyUnits[i].AiInput.SetAggroMode(AiInput.AggroMode.AttackIfAttacked);
+                    
                     if (interactableToInteract == null)
                     {
                         PartyUi.Instance.MoveOrderFeedback(newPos);
@@ -274,7 +276,8 @@ public class PartyInputManager : MonoBehaviour
                         SelectedAllyUnits[i].InteractionController.SetInteractableToInteract(interactableToInteract);
                     }
                     
-                    SelectedAllyUnits[i].AiInput.OrderMove(tempPose);
+                    if (SelectedAllyUnits[i].AiInput)
+                        SelectedAllyUnits[i].AiInput.OrderMove(tempPose);
                 }
             }   
         }
