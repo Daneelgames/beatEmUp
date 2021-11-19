@@ -41,12 +41,14 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetButton("FastMode") && Time.timeScale < 3)
             Time.timeScale = 3;
         else if (Input.GetButton("SlowMode") && Time.timeScale > 0.5f)
             Time.timeScale = 0.1f;
         else if (Time.timeScale > 1.1f || Time.timeScale < 0.9f)
             Time.timeScale = 1;
+            */
         
         if (Input.GetButtonDown("Cancel"))
         {

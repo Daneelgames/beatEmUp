@@ -22,7 +22,7 @@ public class PartyInventory : MonoBehaviour
 
     public void PickUpInteractable(HealthController hc, Interactable interactable)
     {
-        if ((hc && hc.AiInput.inParty == false) || pickInteractableCoroutine != null)
+        if ((hc && hc.AiInput && hc.AiInput.inParty == false) || pickInteractableCoroutine != null)
             return;
 
         pickInteractableCoroutine = StartCoroutine(PickInteractableWithDelay(hc, interactable));

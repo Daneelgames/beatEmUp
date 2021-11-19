@@ -53,7 +53,7 @@ public class SpawnController : MonoBehaviour
     {
         for (int i = 0; i < spawnedAiInputs.Count; i++)
         {
-            if (spawnedAiInputs[i].Hears == false || (noiseMaker && noiseMaker.AiInput.ally == spawnedAiInputs[i].ally))
+            if (spawnedAiInputs[i].Hears == false || (noiseMaker && noiseMaker.AiInput && noiseMaker.AiInput.ally == spawnedAiInputs[i].ally))
                 continue;
             
             float newDistance = Vector3.Distance(noiseMakerPos, spawnedAiInputs[i].transform.position);

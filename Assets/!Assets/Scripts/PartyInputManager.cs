@@ -29,6 +29,14 @@ public class PartyInputManager : MonoBehaviour
     private List<GameObject> spawnedUnitSelectedFeedbacks = new List<GameObject>();
 
     private bool observeMode = false;
+    private bool inventoryMode = false;
+
+    public bool InventoryMode
+    {
+        get => inventoryMode;
+        set => inventoryMode = value;
+    }
+
     private bool throwMode = false;
     private bool cursorOverUI = false;
     private void Awake()
@@ -78,6 +86,61 @@ public class PartyInputManager : MonoBehaviour
             else
                 SkillsDatabaseManager.Instance.UnselectSkill();
         }
+        
+        if (Input.GetButtonDown("Observe"))
+        {
+            ObserveMode(!observeMode);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
+            ThrowMode(false, -1);
+        }
+        
+        if (Input.GetButtonDown("Inventory"))
+        {
+            if (SelectedAllyUnits.Count <= 0)
+                return;
+            
+            InventoryMode = PartyUi.Instance.ToggleInventoryUI(SelectedAllyUnits[0]);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
+            ThrowMode(false, -1);
+            if (PartyUi.Instance.SpawnedInventoryUIs.Count <= 0 || PartyUi.Instance.SpawnedInventoryUIs[0].gameObject.activeInHierarchy == false)
+                SetCursorOverUI(false);
+        }
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (cursorOverUI)
+                return;
+            
+            ObserveMode(false);
+            ActionsDropDownMenu.Instance.CloseDropDownMenu();
+            
+            if (SelectedAllyUnits.Count <= 0)
+                return;
+            
+            Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
+            newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
+
+            if (SkillsUi.Instance.State != SkillsUi.SkillsUiState.Null)
+            {
+                SelectedAllyUnits[0].CharacterSkillsController.PerformSkill(SkillsUi.Instance.GetAimTargetPosition(newPos));
+            }
+            else if (throwMode)
+            {
+                if (SelectedAllyUnits[0].Health > 0)
+                    SelectedAllyUnits[0].AiInput.OrderThrow(newPos, currentThrowItemDatabaseIndex);
+                
+                ThrowMode(false, -1);
+            }
+            
+            /*
+            else
+            {
+                DefaultOrder(newPos);
+            }*/
+        }
+        
+        return;
+        
         if (Input.GetButtonDown("SelectFirstAlly"))
         {
             SelectUnit(0);
@@ -111,55 +174,6 @@ public class PartyInputManager : MonoBehaviour
             ThrowMode(false, -1);
         }
 
-        if (Input.GetButtonDown("Observe"))
-        {
-            ObserveMode(!observeMode);
-            ActionsDropDownMenu.Instance.CloseDropDownMenu();
-            ThrowMode(false, -1);
-        }
-        
-        if (Input.GetButtonDown("Inventory"))
-        {
-            if (SelectedAllyUnits.Count <= 0)
-                return;
-            
-            PartyUi.Instance.ToggleInventoryUI(SelectedAllyUnits[0]);
-            ActionsDropDownMenu.Instance.CloseDropDownMenu();
-            ThrowMode(false, -1);
-            if (PartyUi.Instance.SpawnedInventoryUIs.Count <= 0 || PartyUi.Instance.SpawnedInventoryUIs[0].gameObject.activeInHierarchy == false)
-                SetCursorOverUI(false);
-        }
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (cursorOverUI)
-                return;
-            
-            ObserveMode(false);
-            ActionsDropDownMenu.Instance.CloseDropDownMenu();
-            
-            if (SelectedAllyUnits.Count <= 0)
-                return;
-            
-            Vector3 newPos = GameManager.Instance.MouseWorldGroundPosition();
-            newPos = GameManager.Instance.GetClosestNavmeshPoint(newPos);
-
-            if (SkillsUi.Instance.State != SkillsUi.SkillsUiState.Null)
-            {
-                SelectedAllyUnits[0].CharacterSkillsController.PerformSkill(SkillsUi.Instance.GetAimTargetPosition(newPos));
-            }
-            else if (throwMode == false)
-            {
-                DefaultOrder(newPos);
-            }
-            else
-            {
-                if (SelectedAllyUnits[0].Health > 0)
-                    SelectedAllyUnits[0].AiInput.OrderThrow(newPos, currentThrowItemDatabaseIndex);
-                
-                ThrowMode(false, -1);
-            }
-        }
     }
 
     public void ConsumeItem(int itemDatabaseIndex)
@@ -292,9 +306,9 @@ public class PartyInputManager : MonoBehaviour
         {
             UniversalCursorController.Instance.SetThrowCursor();
         }
-        else if (!observeMode)
+        else if (!observeMode && !InventoryMode)
         {
-            UniversalCursorController.Instance.SetDefaultCursor();
+            UniversalCursorController.Instance.SetDefaultCursor(true);
         }
     }
 
@@ -317,7 +331,7 @@ public class PartyInputManager : MonoBehaviour
                 StopCoroutine(observeCoroutine);
                 observeCoroutine = null;
             }
-            UniversalCursorController.Instance.SetDefaultCursor();
+            UniversalCursorController.Instance.SetDefaultCursor(true);
             PartyUi.Instance.UpdateObservableInfo(null, false);
         }
     }

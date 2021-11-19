@@ -57,6 +57,7 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         characterRadius = characterController.radius;
+        anim.transform.parent = null;
         StartCoroutine(ControlMovementAnimations());
     }
 
@@ -99,6 +100,9 @@ public class PlayerInput : MonoBehaviour
 
     private void FixedUpdate()
     {
+        anim.transform.position = transform.position;
+        anim.transform.rotation = transform.rotation;
+        
         CheckGrounded();
     }
     void CheckGrounded()
@@ -120,6 +124,9 @@ public class PlayerInput : MonoBehaviour
 
     void GetAttackingInput()
     {
+        if (PartyInputManager.Instance.InventoryMode)
+            return;
+        
         if (Input.GetButton("Aim"))
         {
             if (aiming == false)

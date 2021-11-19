@@ -87,8 +87,13 @@ public class CharacterSkillsController : MonoBehaviour
     IEnumerator DashAttack(Skill newSkill, Vector3 targetPos)
     {
         //PerformingSkill = newSkill;
-        hc.AiInput.StopBehaviourCoroutines();
-        hc.AiInput.SetAnimatorParameterBySkill(Dash, true);
+        
+        if (hc.AiInput)
+        {
+            hc.AiInput.StopBehaviourCoroutines();
+            hc.AiInput.SetAnimatorParameterBySkill(Dash, true);
+            hc.AiInput.StopAgent(true);
+        }
         hc.BodyPartsManager.SetAllBodyPartsDangerous(true);
         hc.AttackManager.ClearDamaged();
 
@@ -103,7 +108,6 @@ public class CharacterSkillsController : MonoBehaviour
         timeResult = Mathf.Clamp(timeResult, newSkill.actionTimeMin, newSkill.actionTime);
         
         NavMeshAgent agent = hc.Agent;
-        hc.AiInput.StopAgent(true);
         agent.enabled = false;
         
         transform.LookAt(targetPos, Vector3.up);
@@ -126,7 +130,9 @@ public class CharacterSkillsController : MonoBehaviour
         agent.enabled = true;
         dashAttackCoroutine = null;
         
-        hc.AiInput.SetAnimatorParameterBySkill(Dash, false);
+        if (hc.AiInput)
+            hc.AiInput.SetAnimatorParameterBySkill(Dash, false);
+        
         hc.BodyPartsManager.SetAllBodyPartsDangerous(false);
         PerformingSkill.skill = Skill.SkillType.Null;
     }

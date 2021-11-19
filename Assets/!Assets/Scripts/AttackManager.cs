@@ -161,9 +161,9 @@ public class AttackManager : MonoBehaviour
         CanRotate = true;
     }
 
-    public void SeeEnemy(HealthController hc, BodyPart boneToAim)
+    public void SeeEnemy(HealthController _hc, BodyPart boneToAim)
     {
-        float distance = Vector3.Distance(transform.position, hc.transform.position);
+        float distance = Vector3.Distance(transform.position, _hc.transform.position);
         if (WeaponInHands && WeaponInHands.Ammo > 0)
         {
             if (distance  > 3 && distance <= hc.AiInput.AggroDistance)
@@ -542,7 +542,7 @@ public class AttackManager : MonoBehaviour
         if (hc.Friends.Contains(partToDamage.HC))
             resultDamage *= Mathf.RoundToInt(1 - hc.AiInput.Kidness);
 
-        if (partToDamage.HC.AiInput.inParty == false && partToDamage.HC.VisibleHCs.Contains(hc) == false)
+        if (partToDamage.HC.AiInput && partToDamage.HC.AiInput.inParty == false && partToDamage.HC.VisibleHCs.Contains(hc) == false)
             resultDamage *= 2;
         
         if (hc.CharacterPerksController.CurrentDiscomfort >= 3)
@@ -572,10 +572,13 @@ public class AttackManager : MonoBehaviour
             else if (hc.CharacterPerksController.GoodFighter)
                 resultDamage *= 2;
         }
+
+        bool inParty = false;
+        if (hc.AiInput)
+            inParty = hc.AiInput.inParty;
+        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc, damageType, inParty);
         
-        damagedSuccessfully = partToDamage.HC.Damage(resultDamage, hc, damageType, hc.AiInput.inParty);
-        
-        if (hc.Friends.Contains(partToDamage.HC))
+        if (hc.Friends.Contains(partToDamage.HC) && hc.AiInput)
         {
             if (Random.value <= hc.AiInput.Kidness)
             {

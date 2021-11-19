@@ -110,31 +110,33 @@ public class ActionsDropDownMenu : MonoBehaviour
             switch (actionWithItemsCurrent[actionIndex])
             {
                 case ActionWithItem.Equip:
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
-
+                    if (PartyInputManager.Instance.SelectedAllyUnits[0].AiInput)
+                    {
+                        PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                        PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    }
                     ItemsDatabaseManager.Instance.EquipItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Consume:
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    if (PartyInputManager.Instance.SelectedAllyUnits[0].AiInput)
+                    {
+                        PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                        PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    }
                     PartyInputManager.Instance.ConsumeItem(currentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Throw:
-                    /*
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
-                    */
-                    
                     PartyInputManager.Instance.ThrowMode(true, currentItemDatabaseIndex);
                     break;
                 
                 case ActionWithItem.Drop:
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
-                    PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
-                    
+                    if (PartyInputManager.Instance.SelectedAllyUnits[0].AiInput)
+                    {
+                        PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.StopBehaviourCoroutines();
+                        PartyInputManager.Instance.SelectedAllyUnits[0].AiInput.Idle();
+                    }
                     ItemsDatabaseManager.Instance.DropItemFromInventory(PartyInputManager.Instance.SelectedAllyUnits[0], CurrentItemDatabaseIndex);
                     break;
             }

@@ -44,6 +44,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] private ObjectInfoData _objectInfoData;
     public ObjectInfoData ObjectInfoData => _objectInfoData;
 
+    [SerializeField]
     private PlayerInput playerInput;
     public PlayerInput PlayerInput => playerInput;
     [SerializeField] private Canvas canvas;
@@ -388,9 +389,9 @@ public class HealthController : MonoBehaviour
                     hateDiscomfort ++;
                 }
                 
-                if (GameManager.Instance.simpleEnemiesAllies && _aiInput && unit._aiInput)
+                if (GameManager.Instance.simpleEnemiesAllies && _aiInput)
                 {
-                    if (unit._aiInput.ally != _aiInput.ally)
+                    if ((unit._aiInput == null && _aiInput.ally == false) || (unit._aiInput.ally != _aiInput.ally))
                     {
                         if (Enemies.Contains(unit) == false)
                         {

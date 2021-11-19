@@ -73,6 +73,7 @@
           </e>
           <e p="Readme.txt" t="Include" />
         </e>
+        <e p="FirstPersonLook.cs" t="Include" />
         <e p="FlatKit" t="Include">
           <e p="[Render Pipeline] URP" t="Include">
             <e p="RenderFeatures" t="Include">

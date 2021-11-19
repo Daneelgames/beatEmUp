@@ -142,6 +142,7 @@ public class PartyUi : MonoBehaviour
 
     void LateUpdate()
     {
+        print(Input.mousePosition);
         cursor.transform.parent.position = Input.mousePosition;
     }
     
@@ -183,7 +184,7 @@ public class PartyUi : MonoBehaviour
 
     public void CharacterPicksUpInteractable(HealthController hc, Interactable interactable)
     {
-        if (hc.AiInput.inParty == false)
+        if (hc.AiInput && hc.AiInput.inParty == false)
             return;
 
         string resultstring = hc.ObjectInfoData.objectGetsItem + " " + interactable.ObjectInfoData.objectName;
@@ -225,7 +226,7 @@ public class PartyUi : MonoBehaviour
     
     public void CharacterDamaged(HealthController damagedCharacter, HealthController damager)
     {
-        if (damagedCharacter.AiInput.inParty == false)
+        if (damagedCharacter.PlayerInput == null && damagedCharacter.AiInput.inParty == false)
             return;
 
         string resultstring = String.Empty;
@@ -323,7 +324,7 @@ public class PartyUi : MonoBehaviour
         return null;
     }
     
-    public void ToggleInventoryUI(HealthController unit)
+    public bool ToggleInventoryUI(HealthController unit)
     {
         if (unit == null || unit.Inventory == null)
         {
@@ -331,7 +332,9 @@ public class PartyUi : MonoBehaviour
             {
                 SpawnedInventoryUIs[i].gameObject.SetActive(false);
             }
-            return;
+            
+            UniversalCursorController.Instance.SetDefaultCursor(true);
+            return false;
         }
         
         CharacterInventoryUi inventoryUiToOpen = null;
@@ -345,7 +348,8 @@ public class PartyUi : MonoBehaviour
             else if (SpawnedInventoryUIs[i].Unit == unit)
             {
                 SpawnedInventoryUIs[i].gameObject.SetActive(false);
-                return;
+                UniversalCursorController.Instance.SetDefaultCursor(true);
+                return false;
             }
         }
 
@@ -354,10 +358,12 @@ public class PartyUi : MonoBehaviour
             inventoryUiToOpen = Instantiate(characterInventoryUiPrefab, canvasRect);
         }
         
+        UniversalCursorController.Instance.SetDefaultCursor(false);
         inventoryUiToOpen.transform.SetSiblingIndex(3);
         inventoryUiToOpen.gameObject.SetActive(true);
         inventoryUiToOpen.UpdateInventoryUI(unit);
         SpawnedInventoryUIs.Add(inventoryUiToOpen);
+        return true;
     }
 
     public void UnitSelected(HealthController unit)
