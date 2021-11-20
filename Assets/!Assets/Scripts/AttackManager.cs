@@ -167,7 +167,7 @@ public class AttackManager : MonoBehaviour
         if (WeaponInHands && WeaponInHands.Ammo > 0)
         {
             if (distance  > 3 && distance <= hc.AiInput.AggroDistance)
-                TryToAttack(false, boneToAim);   
+                TryToAttack(false, boneToAim);
         }
         else if (distance <= 3)
         {
