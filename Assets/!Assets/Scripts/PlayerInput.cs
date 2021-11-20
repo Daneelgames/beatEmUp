@@ -98,13 +98,6 @@ public class PlayerInput : MonoBehaviour
         #endregion
     }
 
-    private void FixedUpdate()
-    {
-        anim.transform.position = transform.position;
-        anim.transform.rotation = transform.rotation;
-        
-        CheckGrounded();
-    }
     void CheckGrounded()
     {
         Physics.OverlapSphereNonAlloc(transform.position + Vector3.up * characterRadius/2, characterRadius, groundColliders, groundMask);
@@ -117,9 +110,18 @@ public class PlayerInput : MonoBehaviour
             return;
         GetAttackingInput();
         GetMovementInput();
+    }
+
+    void FixedUpdate()
+    {
         AddGravity();
         ApplyMovement();
         Rotate();
+        
+        anim.transform.position = transform.position;
+        anim.transform.rotation = transform.rotation;
+        
+        CheckGrounded();
     }
 
     void GetAttackingInput()
@@ -236,6 +238,12 @@ public class PlayerInput : MonoBehaviour
         if (!attackManager.CanRotate)
             return;
 
+        lookRotation.SetLookRotation(FirstPersonLook.Instance.transform.forward, Vector3.up);
+        //lookRotation.SetLookRotation(aimPoint - transform.position, Vector3.up);
+
+        #region old
+
+        /*
         if (!aiming)
         {
             Vector3 enemyVector = Vector3.zero;
@@ -272,6 +280,9 @@ public class PlayerInput : MonoBehaviour
         {
             lookRotation.SetLookRotation(aimPoint - transform.position, Vector3.up);
         }
+        */
+
+        #endregion
         
         var targetRotation = Quaternion.Slerp(transform.rotation, lookRotation, turningSpeed * Time.deltaTime);
         transform.eulerAngles = new Vector3(0, targetRotation.eulerAngles.y, 0);

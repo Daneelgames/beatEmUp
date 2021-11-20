@@ -149,6 +149,7 @@ public class HealthController : MonoBehaviour
         if (_aiInput && _aiInput.inParty)
             PartyInputManager.Instance.AddPartyMember(this);
 
+        return;
         if (healthBar != null)
             StartCoroutine(UpdateHealthbar());
     }

@@ -108,14 +108,18 @@ public class CharacterSkillsController : MonoBehaviour
         timeResult = Mathf.Clamp(timeResult, newSkill.actionTimeMin, newSkill.actionTime);
         
         NavMeshAgent agent = hc.Agent;
-        agent.enabled = false;
+        if (agent)
+            agent.enabled = false;
         
         transform.LookAt(targetPos, Vector3.up);
         
         Rigidbody rb = hc.Rb;
-        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        rb.isKinematic = false;
-
+        if (rb)
+        {
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.isKinematic = false;
+        }
+        
         while (t < timeResult)
         {
             t += Time.fixedDeltaTime;
@@ -123,11 +127,16 @@ public class CharacterSkillsController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         
-        rb.velocity = Vector3.zero;
-        rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-        rb.isKinematic = true;
+        if (rb)
+        {
+            rb.velocity = Vector3.zero;
+            rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
+            rb.isKinematic = true;
+        }
         
-        agent.enabled = true;
+        if (agent)
+            agent.enabled = true;
+        
         dashAttackCoroutine = null;
         
         if (hc.AiInput)

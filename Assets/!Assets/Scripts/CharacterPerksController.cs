@@ -47,7 +47,8 @@ public class CharacterPerksController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(5, 30));
-            hc.AiInput.Alert();
+            if (hc.AiInput)
+                hc.AiInput.Alert();
         }
     }
     
